@@ -80,7 +80,7 @@ _game::
 	ld	a,(#_swap_memvideo + 0)
 	or	a, a
 	jr	NZ,00102$
-;src/game.c:18: mem_start = (u8*) 0x8000;//CPCT_LVMEM_START;		//lower page
+;src/game.c:18: mem_start = (u8*) CPCT_LVMEM_START;		//lower page
 	ld	hl, #0x8000
 	ld	(_mem_start), hl
 ;src/game.c:19: mem_page = cpct_page80;					//FIXME:: can probably delete??
@@ -88,7 +88,7 @@ _game::
 	ld	(hl), #0x20
 	jr	00103$
 00102$:
-;src/game.c:21: mem_start = (u8*) 0xC000;//CPCT_VMEM_START;		//upper,regular VMEM page
+;src/game.c:21: mem_start = (u8*) CPCT_VMEM_START;		//upper,regular VMEM page
 	ld	hl, #0xc000
 	ld	(_mem_start), hl
 ;src/game.c:22: mem_page = cpct_pageC0;

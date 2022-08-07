@@ -5,7 +5,7 @@
 void menu () {
     //Paint border and clear Screen
     cpct_setBorder(HW_WHITE);
-    cpct_memset(mem_start, cpct_px2byteM0(5,5), 0x4000); //5 is ordinal for WHITE from palette in M0 with 16c
+    cpct_memset(mem_start, cpct_px2byteM0(5,5), 0x4000); //5=WHITE ordinal from palette; 0x4000 is VMEM_SIZE
 
     //Logo
 	cpct_drawSprite(G_logo,

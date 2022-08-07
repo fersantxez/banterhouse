@@ -58,7 +58,7 @@
    0000 21 10 00      [10]   58 	ld	hl, #0x0010
    0003 E5            [11]   59 	push	hl
    0004 CDr00r00      [17]   60 	call	_cpct_setPALColour
-                             61 ;src/menu.c:8: cpct_memset(mem_start, cpct_px2byteM0(5,5), 0x4000); //5 is ordinal for WHITE from palette in M0 with 16c
+                             61 ;src/menu.c:8: cpct_memset(mem_start, cpct_px2byteM0(5,5), 0x4000); //5=WHITE ordinal from palette; 0x4000 is VMEM_SIZE
    0007 21 05 05      [10]   62 	ld	hl, #0x0505
    000A E5            [11]   63 	push	hl
    000B CDr00r00      [17]   64 	call	_cpct_px2byteM0

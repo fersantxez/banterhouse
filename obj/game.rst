@@ -80,7 +80,7 @@
    4130 3A 4A 5A      [13]   80 	ld	a,(#_swap_memvideo + 0)
    4133 B7            [ 4]   81 	or	a, a
    4134 20 0D         [12]   82 	jr	NZ,00102$
-                             83 ;src/game.c:18: mem_start = (u8*) 0x8000;//CPCT_LVMEM_START;		//lower page
+                             83 ;src/game.c:18: mem_start = (u8*) CPCT_LVMEM_START;		//lower page
    4136 21 00 80      [10]   84 	ld	hl, #0x8000
    4139 22 47 5A      [16]   85 	ld	(_mem_start), hl
                              86 ;src/game.c:19: mem_page = cpct_page80;					//FIXME:: can probably delete??
@@ -88,7 +88,7 @@
    413F 36 20         [10]   88 	ld	(hl), #0x20
    4141 18 0B         [12]   89 	jr	00103$
    4143                      90 00102$:
-                             91 ;src/game.c:21: mem_start = (u8*) 0xC000;//CPCT_VMEM_START;		//upper,regular VMEM page
+                             91 ;src/game.c:21: mem_start = (u8*) CPCT_VMEM_START;		//upper,regular VMEM page
    4143 21 00 C0      [10]   92 	ld	hl, #0xc000
    4146 22 47 5A      [16]   93 	ld	(_mem_start), hl
                              94 ;src/game.c:22: mem_page = cpct_pageC0;

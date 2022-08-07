@@ -79,7 +79,7 @@ _main::
 ;src/main.c:47: swap_memvideo = 0;
 	ld	hl,#_swap_memvideo + 0
 	ld	(hl), #0x00
-;src/main.c:48: mem_start = (u8*) 0xC000; //CPCT_VMEM_START
+;src/main.c:48: mem_start = (u8*) CPCT_VMEM_START;
 	ld	hl, #0xc000
 	ld	(_mem_start), hl
 ;src/main.c:49: mem_page = cpct_pageC0; //this likely can be obtained from above, but...

@@ -15,10 +15,10 @@ void game(){
 	while (1) {
 		//Change screen to be painted in next sync
 		if (!swap_memvideo) { 				//switch
-			mem_start = (u8*) 0x8000;//CPCT_LVMEM_START;		//lower page
+			mem_start = (u8*) CPCT_LVMEM_START;		//lower page
 			mem_page = cpct_page80;					//FIXME:: can probably delete??
 		} else {
-			mem_start = (u8*) 0xC000;//CPCT_VMEM_START;		//upper,regular VMEM page
+			mem_start = (u8*) CPCT_VMEM_START;		//upper,regular VMEM page
 			mem_page = cpct_pageC0;
 		}
 

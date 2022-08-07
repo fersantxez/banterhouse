@@ -45,7 +45,7 @@ void main(void) {
    while (1) {
       //Initialize double buffer
       swap_memvideo = 0;
-      mem_start = (u8*) 0xC000; //CPCT_VMEM_START
+      mem_start = (u8*) CPCT_VMEM_START;
       mem_page = cpct_pageC0; //this likely can be obtained from above, but...
 
       menu();
