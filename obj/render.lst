@@ -1,0 +1,101 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 3.6.8 #9946 (Linux)
+                              4 ;--------------------------------------------------------
+                              5 	.module render
+                              6 	.optsdcc -mz80
+                              7 	
+                              8 ;--------------------------------------------------------
+                              9 ; Public variables in this module
+                             10 ;--------------------------------------------------------
+                             11 	.globl _renderDelete
+                             12 	.globl _renderSprites
+                             13 	.globl _cpct_getScreenPtr
+                             14 	.globl _cpct_drawSpriteMasked
+                             15 	.globl _cpct_drawSolidBox
+                             16 	.globl _cpct_px2byteM0
+                             17 ;--------------------------------------------------------
+                             18 ; special function registers
+                             19 ;--------------------------------------------------------
+                             20 ;--------------------------------------------------------
+                             21 ; ram data
+                             22 ;--------------------------------------------------------
+                             23 	.area _DATA
+                             24 ;--------------------------------------------------------
+                             25 ; ram data
+                             26 ;--------------------------------------------------------
+                             27 	.area _INITIALIZED
+                             28 ;--------------------------------------------------------
+                             29 ; absolute external ram data
+                             30 ;--------------------------------------------------------
+                             31 	.area _DABS (ABS)
+                             32 ;--------------------------------------------------------
+                             33 ; global & static initialisations
+                             34 ;--------------------------------------------------------
+                             35 	.area _HOME
+                             36 	.area _GSINIT
+                             37 	.area _GSFINAL
+                             38 	.area _GSINIT
+                             39 ;--------------------------------------------------------
+                             40 ; Home
+                             41 ;--------------------------------------------------------
+                             42 	.area _HOME
+                             43 	.area _HOME
+                             44 ;--------------------------------------------------------
+                             45 ; code
+                             46 ;--------------------------------------------------------
+                             47 	.area _CODE
+                             48 ;src/render.c:6: void renderSprites(){
+                             49 ;	---------------------------------
+                             50 ; Function renderSprites
+                             51 ; ---------------------------------
+   0000                      52 _renderSprites::
+                             53 ;src/render.c:8: cpct_drawSpriteMasked(G_pitu, cpct_getScreenPtr( mem_start, coord_x, 0), G_PITU_W/2, G_PITU_H);
+   0000 ED 4Br00r00   [20]   54 	ld	bc, (_mem_start)
+   0004 AF            [ 4]   55 	xor	a, a
+   0005 F5            [11]   56 	push	af
+   0006 33            [ 6]   57 	inc	sp
+   0007 3Ar00r00      [13]   58 	ld	a, (_coord_x)
+   000A F5            [11]   59 	push	af
+   000B 33            [ 6]   60 	inc	sp
+   000C C5            [11]   61 	push	bc
+   000D CDr00r00      [17]   62 	call	_cpct_getScreenPtr
+   0010 01r00r00      [10]   63 	ld	bc, #_G_pitu+0
+   0013 11 08 20      [10]   64 	ld	de, #0x2008
+   0016 D5            [11]   65 	push	de
+   0017 E5            [11]   66 	push	hl
+   0018 C5            [11]   67 	push	bc
+   0019 CDr00r00      [17]   68 	call	_cpct_drawSpriteMasked
+   001C C9            [10]   69 	ret
+                             70 ;src/render.c:13: void renderDelete(){
+                             71 ;	---------------------------------
+                             72 ; Function renderDelete
+                             73 ; ---------------------------------
+   001D                      74 _renderDelete::
+                             75 ;src/render.c:14: cpct_drawSolidBox(cpct_getScreenPtr( mem_start, coord_x-2, 0), cpct_px2byteM0(5,5), G_PITU_W/2, G_PITU_H);
+   001D 21 05 05      [10]   76 	ld	hl, #0x0505
+   0020 E5            [11]   77 	push	hl
+   0021 CDr00r00      [17]   78 	call	_cpct_px2byteM0
+   0024 4D            [ 4]   79 	ld	c, l
+   0025 06 00         [ 7]   80 	ld	b, #0x00
+   0027 21r00r00      [10]   81 	ld	hl,#_coord_x + 0
+   002A 5E            [ 7]   82 	ld	e, (hl)
+   002B 1D            [ 4]   83 	dec	e
+   002C 1D            [ 4]   84 	dec	e
+   002D 2Ar00r00      [16]   85 	ld	hl, (_mem_start)
+   0030 C5            [11]   86 	push	bc
+   0031 AF            [ 4]   87 	xor	a, a
+   0032 57            [ 4]   88 	ld	d,a
+   0033 D5            [11]   89 	push	de
+   0034 E5            [11]   90 	push	hl
+   0035 CDr00r00      [17]   91 	call	_cpct_getScreenPtr
+   0038 C1            [10]   92 	pop	bc
+   0039 11 08 20      [10]   93 	ld	de, #0x2008
+   003C D5            [11]   94 	push	de
+   003D C5            [11]   95 	push	bc
+   003E E5            [11]   96 	push	hl
+   003F CDr00r00      [17]   97 	call	_cpct_drawSolidBox
+   0042 C9            [10]   98 	ret
+                             99 	.area _CODE
+                            100 	.area _INITIALIZER
+                            101 	.area _CABS (ABS)

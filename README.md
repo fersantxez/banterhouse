@@ -1,2 +1,2 @@
-# bntrhs
-initial drafts for the banterhouse CPC game
+# banterhouse
+A game for Amstrad fueled by curiosity and nostalgia.

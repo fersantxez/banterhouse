@@ -1,0 +1,2 @@
+void renderDelete();
+void renderSprites();

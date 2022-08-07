@@ -1,0 +1,112 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 3.6.8 #9946 (Linux)
+                              4 ;--------------------------------------------------------
+                              5 	.module main
+                              6 	.optsdcc -mz80
+                              7 	
+                              8 ;--------------------------------------------------------
+                              9 ; Public variables in this module
+                             10 ;--------------------------------------------------------
+                             11 	.globl _main
+                             12 	.globl _menu
+                             13 	.globl _cpct_setPalette
+                             14 	.globl _cpct_setVideoMode
+                             15 	.globl _cpct_setStackLocation
+                             16 	.globl _cpct_disableFirmware
+                             17 	.globl _swap_memvideo
+                             18 	.globl _mem_page
+                             19 	.globl _mem_start
+                             20 	.globl _paleta
+                             21 ;--------------------------------------------------------
+                             22 ; special function registers
+                             23 ;--------------------------------------------------------
+                             24 ;--------------------------------------------------------
+                             25 ; ram data
+                             26 ;--------------------------------------------------------
+                             27 	.area _DATA
+   0000                      28 _mem_start::
+   0000                      29 	.ds 2
+   0002                      30 _mem_page::
+   0002                      31 	.ds 1
+   0003                      32 _swap_memvideo::
+   0003                      33 	.ds 1
+                             34 ;--------------------------------------------------------
+                             35 ; ram data
+                             36 ;--------------------------------------------------------
+                             37 	.area _INITIALIZED
+                             38 ;--------------------------------------------------------
+                             39 ; absolute external ram data
+                             40 ;--------------------------------------------------------
+                             41 	.area _DABS (ABS)
+                             42 ;--------------------------------------------------------
+                             43 ; global & static initialisations
+                             44 ;--------------------------------------------------------
+                             45 	.area _HOME
+                             46 	.area _GSINIT
+                             47 	.area _GSFINAL
+                             48 	.area _GSINIT
+                             49 ;--------------------------------------------------------
+                             50 ; Home
+                             51 ;--------------------------------------------------------
+                             52 	.area _HOME
+                             53 	.area _HOME
+                             54 ;--------------------------------------------------------
+                             55 ; code
+                             56 ;--------------------------------------------------------
+                             57 	.area _CODE
+                             58 ;src/main.c:36: void main(void) {
+                             59 ;	---------------------------------
+                             60 ; Function main
+                             61 ; ---------------------------------
+   0000                      62 _main::
+                             63 ;src/main.c:39: cpct_setStackLocation ((u8*) 0x7FFF); //Move stack to right before double buffer 0X8000
+   0000 21 FF 7F      [10]   64 	ld	hl, #0x7fff
+   0003 CDr00r00      [17]   65 	call	_cpct_setStackLocation
+                             66 ;src/main.c:40: cpct_disableFirmware();
+   0006 CDr00r00      [17]   67 	call	_cpct_disableFirmware
+                             68 ;src/main.c:42: cpct_setVideoMode(0); //160x200; 16 colors in screen
+   0009 2E 00         [ 7]   69 	ld	l, #0x00
+   000B CDr00r00      [17]   70 	call	_cpct_setVideoMode
+                             71 ;src/main.c:43: cpct_setPalette(paleta,16);
+   000E 21 10 00      [10]   72 	ld	hl, #0x0010
+   0011 E5            [11]   73 	push	hl
+   0012 21r31r00      [10]   74 	ld	hl, #_paleta
+   0015 E5            [11]   75 	push	hl
+   0016 CDr00r00      [17]   76 	call	_cpct_setPalette
+                             77 ;src/main.c:45: while (1) {
+   0019                      78 00102$:
+                             79 ;src/main.c:47: swap_memvideo = 0;
+   0019 21r03r00      [10]   80 	ld	hl,#_swap_memvideo + 0
+   001C 36 00         [10]   81 	ld	(hl), #0x00
+                             82 ;src/main.c:48: mem_start = (u8*) 0xC000; //CPCT_VMEM_START
+   001E 21 00 C0      [10]   83 	ld	hl, #0xc000
+   0021 22r00r00      [16]   84 	ld	(_mem_start), hl
+                             85 ;src/main.c:49: mem_page = cpct_pageC0; //this likely can be obtained from above, but...
+   0024 21r02r00      [10]   86 	ld	hl,#_mem_page + 0
+   0027 36 30         [10]   87 	ld	(hl), #0x30
+                             88 ;src/main.c:51: menu();
+   0029 CDr00r00      [17]   89 	call	_menu
+                             90 ;src/main.c:52: game();
+   002C CDr00r00      [17]   91 	call	_game
+   002F 18 E8         [12]   92 	jr	00102$
+   0031                      93 _paleta:
+   0031 14                   94 	.db #0x14	; 20
+   0032 0B                   95 	.db #0x0b	; 11
+   0033 17                   96 	.db #0x17	; 23
+   0034 13                   97 	.db #0x13	; 19
+   0035 1B                   98 	.db #0x1b	; 27
+   0036 00                   99 	.db #0x00	; 0
+   0037 12                  100 	.db #0x12	; 18
+   0038 19                  101 	.db #0x19	; 25
+   0039 03                  102 	.db #0x03	; 3
+   003A 1C                  103 	.db #0x1c	; 28
+   003B 05                  104 	.db #0x05	; 5
+   003C 0F                  105 	.db #0x0f	; 15
+   003D 0E                  106 	.db #0x0e	; 14
+   003E 07                  107 	.db #0x07	; 7
+   003F 1E                  108 	.db #0x1e	; 30
+   0040 04                  109 	.db #0x04	; 4
+                            110 	.area _CODE
+                            111 	.area _INITIALIZER
+                            112 	.area _CABS (ABS)

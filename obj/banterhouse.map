@@ -1,0 +1,167 @@
+ASxxxx Linker V03.00 + NoICE + sdld,  page 1.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+.  .ABS.                            00000000    00000000 =           0. bytes (ABS,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     00000000  .__.ABS.                           cpct_strings
+     00000000  l__CABS                         
+     00000000  l__DABS                         
+     00000000  l__GSFINAL                      
+     00000000  l__GSINIT                       
+     00000000  l__HOME                         
+     00000000  l__INITIALIZED                  
+     00000000  l__INITIALIZER                  
+     00000000  s__CABS                         
+     00000000  s__DABS                         
+     00000005  l__DATA                         
+     00001A46  l__CODE                         
+     00004000  s__CODE                         
+     00005A46  s__DATA                         
+     00005A4B  s__GSFINAL                      
+     00005A4B  s__GSINIT                       
+     00005A4B  s__HOME                         
+     00005A4B  s__INITIALIZED                  
+     00005A4B  s__INITIALIZER                  
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 2.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+_CODE                               00004000    00001A46 =        6726. bytes (REL,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     00004000  _g_palette                         pitu
+     00004010  _g_pitu                            pitu
+     00004110  _game                              game
+     0000417B  _G_pitu                            graphics
+     0000437B  _G_pitu_walk                       graphics
+     0000457B  _G_pitu_jump                       graphics
+     0000477B  _G_alberto                         graphics
+     0000497B  _G_alberto_walk                    graphics
+     00004B7B  _G_blast                           graphics
+     00004D7B  _G_beer                            graphics
+     00004DDB  _G_logo                            graphics
+     000055DB  _main                              main
+     0000560C  _paleta                            main
+     0000561C  _menu                              menu
+     00005683  _renderSprites                     render
+     000056A0  _renderDelete                      render
+     000056C6  _cpct_isKeyPressed                 cpct_keyboard
+     000056C6  cpct_isKeyPressed_asm              cpct_keyboard
+     000056D2  _cpct_scanKeyboard_f               cpct_keyboard
+     000056D2  cpct_scanKeyboard_f_asm            cpct_keyboard
+     0000573C  _cpct_setPalette                   cpct_video
+     00005753  _cpct_setPALColour                 cpct_video
+     0000575F  _cpct_drawStringM0                 cpct_strings
+     00005799  cpct_drawCharM0_inner_asm          cpct_strings
+     000057F9  dc_2pxtableM0                      cpct_strings
+     000057FD  _cpct_drawSprite                   cpct_sprites
+     000058A2  _cpct_keyboardStatusBuffer         cpct_keyboard
+     000058AC  _cpct_setVideoMemoryPage           cpct_video
+     000058AC  cpct_setVideoMemoryPage_asm        cpct_video
+     000058B5  _cpct_drawSpriteMasked             cpct_sprites
+     000058E4  _cpct_setStackLocation             cpct_memutils
+     000058E4  cpct_setStackLocation_asm          cpct_memutils
+     000058E8  _cpct_isAnyKeyPressed_f            cpct_keyboard
+     000058E8  cpct_isAnyKeyPressed_f_asm         cpct_keyboard
+     00005903  _cpct_setVideoMode                 cpct_video
+     00005911  _cpct_waitVSYNC                    cpct_video
+     00005911  cpct_waitVSYNC_asm                 cpct_video
+     00005919  _cpct_px2byteM0                    cpct_sprites
+     00005935  _cpct_memset                       cpct_memutils
+     00005943  _cpct_disableFirmware              cpct_firmware
+     00005943  _cpct_removeInterruptHandler       cpct_firmware
+     00005943  cpct_disableFirmware_asm           cpct_firmware
+     00005943  cpct_removeInterruptHandler_asm    cpct_firmware
+     00005953  _cpct_drawSolidBox                 cpct_sprites
+     000059FA  _cpct_mode_rom_status              cpct_firmware
+     000059FB  _cpct_setDrawCharM0                cpct_strings
+     00005A20  _cpct_getScreenPtr                 cpct_video
+     00005A36  dc_mode0_ct                        cpct_strings
+ASxxxx Linker V03.00 + NoICE + sdld,  page 3.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+_DATA                               00005A46    00000005 =           5. bytes (REL,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     00005A46  _coord_x                           game
+     00005A47  _mem_start                         main
+     00005A49  _mem_page                          main
+     00005A4A  _swap_memvideo                     main
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 4.
+
+Files Linked                              [ module(s) ]
+
+obj/pitu.rel                              [ pitu ]
+obj/game.rel                              [ game ]
+obj/graphics.rel                          [ graphics ]
+obj/main.rel                              [ main ]
+obj/menu.rel                              [ menu ]
+obj/render.rel                            [ render ]
+
+
+Libraries Linked                          [ object file ]
+
+/home/fersanchez/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_isKeyPressed.rel ]
+/home/fersanchez/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_scanKeyboard_f.rel ]
+/home/fersanchez/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_setPalette_cbindings.rel ]
+/home/fersanchez/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_setPALColour_cbindings.rel ]
+/home/fersanchez/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_drawStringM0_cbindings.rel ]
+/home/fersanchez/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_drawCharM0_inner.rel ]
+/home/fersanchez/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_drawSprite_cbindings.rel ]
+/home/fersanchez/cpctelera/cpctelera/cpctelera.lib
+                                          [ keyboard.rel ]
+/home/fersanchez/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_setVideoMemoryPage.rel ]
+/home/fersanchez/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_drawSpriteMasked_cbindings. ]
+/home/fersanchez/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_setStackLocation.rel ]
+/home/fersanchez/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_isAnyKeyPressed_f.rel ]
+/home/fersanchez/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_setVideoMode_cbindings.rel ]
+/home/fersanchez/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_waitVSYNC.rel ]
+/home/fersanchez/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_px2byteM0_cbindings.rel ]
+/home/fersanchez/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_memset_cbinding.rel ]
+/home/fersanchez/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_removeInterruptHandler.rel ]
+/home/fersanchez/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_drawSolidBox_cbindings.rel ]
+/home/fersanchez/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpc_mode_rom_status.rel ]
+/home/fersanchez/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_setDrawCharM0_cbindings.rel ]
+/home/fersanchez/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_getScreenPtr_cbindings.rel ]
+/home/fersanchez/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_dc_mode0_ct.rel ]
+
+ASxxxx Linker V03.00 + NoICE + sdld,  page 5.
+
+User Base Address Definitions
+
+_CODE = 0x4000
+_DATA = 0x0000
+
+

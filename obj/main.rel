@@ -1,0 +1,55 @@
+XL2
+H 9 areas C global symbols
+M main
+O -mz80
+S _cpct_setPalette Ref0000
+S _menu Ref0000
+S .__.ABS. Def0000
+S _cpct_setStackLocation Ref0000
+S _cpct_setVideoMode Ref0000
+S _game Ref0000
+S _cpct_disableFirmware Ref0000
+A _CODE size 41 flags 0 addr 0
+S _main Def0000
+S _paleta Def0031
+A _DATA size 4 flags 0 addr 0
+S _swap_memvideo Def0003
+S _mem_page Def0002
+S _mem_start Def0000
+A _INITIALIZED size 0 flags 0 addr 0
+A _DABS size 0 flags 8 addr 0
+A _HOME size 0 flags 0 addr 0
+A _GSINIT size 0 flags 0 addr 0
+A _GSFINAL size 0 flags 0 addr 0
+A _INITIALIZER size 0 flags 0 addr 0
+A _CABS size 0 flags 8 addr 0
+T 00 00
+R 00 00 01 00
+T 00 00
+R 00 00 01 00
+T 02 00
+R 00 00 01 00
+T 02 00
+R 00 00 01 00
+T 03 00
+R 00 00 01 00
+T 03 00
+R 00 00 01 00
+T 00 00
+R 00 00 00 00
+T 00 00 21 FF 7F CD 00 00 CD 00 00 2E 00 CD 00 00
+R 00 00 00 00 02 06 03 00 02 09 06 00 02 0E 04 00
+T 0E 00 21 10 00 E5 21 31 00 E5 CD 00 00
+R 00 00 00 00 00 07 00 00 02 0B 00 00
+T 19 00
+R 00 00 00 00
+T 19 00 21 03 00 36 00 21 00 C0 22 00 00 21 02 00
+R 00 00 00 00 00 03 01 00 00 0B 01 00 00 0E 01 00
+T 27 00 36 30 CD 00 00 CD 00 00 18 E8
+R 00 00 00 00 02 05 01 00 02 08 05 00
+T 31 00
+R 00 00 00 00
+T 31 00 14 0B 17 13 1B 00 12 19 03 1C 05 0F 0E 07
+R 00 00 00 00
+T 3F 00 1E 04
+R 00 00 00 00
