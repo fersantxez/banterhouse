@@ -209,7 +209,7 @@ _moveSprites::
 	ld	sp, hl
 ;src/game.c:54: for (i=0; i < MAX_SPRITES; i++) {
 	ld	-8 (ix), #0x00
-00112$:
+00116$:
 ;src/game.c:55: if (sprites[i].id !=0) {			//check only live sprites to optimize CPU (non-zero)
 	ld	c,-8 (ix)
 	ld	b,#0x00
@@ -222,63 +222,63 @@ _moveSprites::
 	add	hl, hl
 	ld	bc,#_sprites
 	add	hl,bc
-	ld	-4 (ix), l
-	ld	-3 (ix), h
+	ld	-2 (ix), l
+	ld	-1 (ix), h
 	ld	a, (hl)
-	ld	-7 (ix), a
+	ld	-5 (ix), a
 	or	a, a
-	jp	Z, 00113$
+	jp	Z, 00117$
 ;src/game.c:56: collision = 0;
 	ld	-10 (ix), #0x00
 ;src/game.c:58: x = sprites[i].x;
-	ld	a, -4 (ix)
+	ld	a, -2 (ix)
 	add	a, #0x01
+	ld	-7 (ix), a
+	ld	a, -1 (ix)
+	adc	a, #0x00
 	ld	-6 (ix), a
-	ld	a, -3 (ix)
-	adc	a, #0x00
-	ld	-5 (ix), a
-	ld	l,-6 (ix)
-	ld	h,-5 (ix)
-	ld	b, (hl)
-;src/game.c:59: y = sprites[i].y;
-	ld	a, -4 (ix)
-	add	a, #0x02
-	ld	-2 (ix), a
-	ld	a, -3 (ix)
-	adc	a, #0x00
-	ld	-1 (ix), a
-	ld	l,-2 (ix)
-	ld	h,-1 (ix)
+	ld	l,-7 (ix)
+	ld	h,-6 (ix)
 	ld	c, (hl)
-;src/game.c:61: y = y + (4*sprites[i].moveV);	//vertical movement: Y is *px, X is *byte. M0 so Y is 4 times slower
+;src/game.c:59: y = sprites[i].y;
+	ld	a, -2 (ix)
+	add	a, #0x02
+	ld	-4 (ix), a
+	ld	a, -1 (ix)
+	adc	a, #0x00
+	ld	-3 (ix), a
 	ld	l,-4 (ix)
 	ld	h,-3 (ix)
+	ld	b, (hl)
+;src/game.c:61: x = x + (sprites[i].moveH);
+	ld	l,-2 (ix)
+	ld	h,-1 (ix)
+	ld	de, #0x0004
+	add	hl, de
+	ld	l, (hl)
+	add	hl, bc
+	ld	c, l
+;src/game.c:62: y = y + (4*sprites[i].moveV);	//vertical movement: Y is *px, X is *byte. M0 so Y is 4 times slower
+	ld	l,-2 (ix)
+	ld	h,-1 (ix)
 	inc	hl
 	inc	hl
 	inc	hl
 	ld	a, (hl)
 	add	a, a
 	add	a, a
-	ld	l, a
-	add	hl, bc
-	ld	c, l
-;src/game.c:62: x = x + (sprites[i].moveH);
-	ld	l,-4 (ix)
-	ld	h,-3 (ix)
-	ld	de, #0x0004
-	add	hl, de
-	ld	e, (hl)
+	ld	e, a
 	ld	l, b
 	add	hl, de
 	ld	-9 (ix), l
-;src/game.c:65: if (y > (GAME_AREA_BOTTOM - sprites[i].height))
-	ld	l,-4 (ix)
-	ld	h,-3 (ix)
-	ld	de, #0x0009
+;src/game.c:65: if (x > (GAME_AREA_RIGHT - sprites[i].width))
+	ld	l,-2 (ix)
+	ld	h,-1 (ix)
+	ld	de, #0x000a
 	add	hl, de
 	ld	e, (hl)
 	ld	d, #0x00
-	ld	a, #0xc8
+	ld	a, #0x50
 	sub	a, e
 	ld	b, a
 	ld	a, #0x00
@@ -290,21 +290,22 @@ _moveSprites::
 	sub	a, l
 	ld	a, e
 	sbc	a, d
-	jp	PO, 00141$
+	jp	PO, 00149$
 	xor	a, #0x80
-00141$:
-	jp	P, 00102$
-;src/game.c:66: collision = collision | TOP_BOTTOM_COLLISION; //signal top collision w/bitmask
-	ld	-10 (ix), #0x01
-00102$:
-;src/game.c:68: if (x > (GAME_AREA_RIGHT - sprites[i].width))
-	ld	l,-4 (ix)
-	ld	h,-3 (ix)
-	ld	de, #0x000a
+00149$:
+	jp	P, 00104$
+;src/game.c:66: collision = collision | RIGHT_COLLISION;
+	ld	-10 (ix), #0x02
+;src/game.c:68: collision = collision | LEFT_COLLISION;
+00104$:
+;src/game.c:70: if (y > (GAME_AREA_BOTTOM - sprites[i].height))
+	ld	l,-2 (ix)
+	ld	h,-1 (ix)
+	ld	de, #0x0009
 	add	hl, de
 	ld	e, (hl)
 	ld	d, #0x00
-	ld	a, #0x50
+	ld	a, #0xc8
 	sub	a, e
 	ld	e, a
 	ld	a, #0x00
@@ -316,57 +317,66 @@ _moveSprites::
 	sub	a, l
 	ld	a, d
 	sbc	a, h
-	jp	PO, 00142$
+	jp	PO, 00150$
 	xor	a, #0x80
-00142$:
-	jp	P, 00104$
-;src/game.c:69: collision = collision | LEFT_RIGHT_COLLISION; //signal right collision w/bitmask
-	set	1, -10 (ix)
-00104$:
-;src/game.c:74: if ((collision & TOP_BOTTOM_COLLISION) == 0)		//if not hitting top, move sideways
-	bit	0, -10 (ix)
-	jr	NZ,00106$
-;src/game.c:75: sprites[i].y = y;
-	ld	l,-2 (ix)
-	ld	h,-1 (ix)
-	ld	(hl), c
+00150$:
+	jp	P, 00106$
+;src/game.c:71: collision = collision | BOTTOM_COLLISION;
+	set	0, -10 (ix)
 00106$:
-;src/game.c:76: if ((collision & LEFT_RIGHT_COLLISION) == 0)		//if not hitting right, move up/down
+;src/game.c:72: if (y < GAME_AREA_TOP)
+	ld	a, -9 (ix)
+	sub	a, #0x10
+	jr	NC,00108$
+;src/game.c:73: collision = collision | TOP_COLLISION;
+	ld	a, -10 (ix)
+	or	a, #0x05
+	ld	-10 (ix), a
+00108$:
+;src/game.c:77: if ((collision & LEFT_RIGHT_COLLISION) == 0)		//if not hitting right, move up/down
 	bit	1, -10 (ix)
-	jr	NZ,00113$
-;src/game.c:77: sprites[i].x = x;
-	ld	l,-6 (ix)
-	ld	h,-5 (ix)
+	jr	NZ,00110$
+;src/game.c:78: sprites[i].x = x;								//keep x as it was
+	ld	l,-7 (ix)
+	ld	h,-6 (ix)
+	ld	(hl), c
+00110$:
+;src/game.c:80: if ((collision & TOP_BOTTOM_COLLISION) == 0)		//if not hitting top, move sideways //
+	bit	0, -10 (ix)
+	jr	NZ,00117$
+;src/game.c:81: sprites[i].y = y;								//keep y as it was
+	ld	l,-4 (ix)
+	ld	h,-3 (ix)
 	ld	a, -9 (ix)
 	ld	(hl), a
-00113$:
+00117$:
 ;src/game.c:54: for (i=0; i < MAX_SPRITES; i++) {
 	inc	-8 (ix)
 	ld	a, -8 (ix)
 	sub	a, #0x0a
-	jp	C, 00112$
+	jp	C, 00116$
 	ld	sp, ix
 	pop	ix
 	ret
-;src/game.c:85: void init_game() {
+;src/game.c:89: void init_game() {
 ;	---------------------------------
 ; Function init_game
 ; ---------------------------------
 _init_game::
-;src/game.c:88: sprites[0].id = 1;												//mark the sprite "alive" (non-zero)
+;src/game.c:92: sprites[0].id = 1;												//mark the sprite "alive" (non-zero)
 	ld	hl, #_sprites
 	ld	(hl), #0x01
-;src/game.c:89: sprites[0].x = sprites[0].y = 0;								//init position to 0,0
+;src/game.c:93: sprites[0].x = sprites[0].y = 0;								//init position to 0,0
 	ld	hl, #(_sprites + 0x0002)
 	ld	(hl), #0x00
 	ld	hl, #(_sprites + 0x0001)
 	ld	(hl), #0x00
-;src/game.c:90: sprites[0].moveV = sprites[0].moveH = 0;						//init movement to none
+;src/game.c:94: sprites[0].moveV = sprites[0].moveH = 0;						//init movement to none
 	ld	hl, #(_sprites + 0x0004)
 	ld	(hl), #0x00
 	ld	hl, #(_sprites + 0x0003)
 	ld	(hl), #0x00
-;src/game.c:92: sprites[0].x_prev_A = sprites[0].y_prev_A = sprites[0].x_prev_B = sprites[0].y_prev_B = 0;
+;src/game.c:96: sprites[0].x_prev_A = sprites[0].y_prev_A = sprites[0].x_prev_B = sprites[0].y_prev_B = 0;
 	ld	hl, #(_sprites + 0x0008)
 	ld	(hl), #0x00
 	ld	hl, #(_sprites + 0x0007)
@@ -375,42 +385,42 @@ _init_game::
 	ld	(hl), #0x00
 	ld	hl, #(_sprites + 0x0005)
 	ld	(hl), #0x00
-;src/game.c:93: sprites[0].height = G_PITU_H;
+;src/game.c:97: sprites[0].height = G_PITU_H;
 	ld	hl, #(_sprites + 0x0009)
 	ld	(hl), #0x20
-;src/game.c:94: sprites[0].width = G_PITU_W;									//!?! /2: - M0, length in bytes = /2 in px
+;src/game.c:98: sprites[0].width = G_PITU_W;									//!?! /2: - M0, length in bytes = /2 in px
 	ld	hl, #(_sprites + 0x000a)
 	ld	(hl), #0x07
-;src/game.c:95: sprites[0].properties = 0;										//bitmasked properties - init to 0
+;src/game.c:99: sprites[0].properties = 0;										//bitmasked properties - init to 0
 	ld	bc, #_sprites + 11
 	xor	a, a
 	ld	(bc), a
-;src/game.c:96: sprites[0].properties = sprites[0].properties | MASK_RENDER;	//init to "render" on screen
+;src/game.c:100: sprites[0].properties = sprites[0].properties | MASK_RENDER;	//init to "render" on screen
 	ld	a, (bc)
 	set	0, a
 	ld	(bc), a
-;src/game.c:97: sprites[0].frames = 2;											//main sprite has two "moves" to animate
+;src/game.c:101: sprites[0].frames = 2;											//main sprite has two "moves" to animate
 	ld	hl, #(_sprites + 0x000e)
 	ld	(hl), #0x02
-;src/game.c:98: sprites[0].sprite_f1 = (u8*)G_pitu; 							//first render for sprite. &G_pitu[0]
+;src/game.c:102: sprites[0].sprite_f1 = (u8*)G_pitu; 							//first render for sprite. &G_pitu[0]
 	ld	hl, #_G_pitu
 	ld	((_sprites + 0x000f)), hl
-;src/game.c:99: sprites[0].sprite_f2 = (u8*)G_pitu_walk;
+;src/game.c:103: sprites[0].sprite_f2 = (u8*)G_pitu_walk;
 	ld	hl, #_G_pitu_walk
 	ld	((_sprites + 0x0011)), hl
-;src/game.c:100: sprites[0].sprite_f3 = (u8*)G_pitu_jump;
+;src/game.c:104: sprites[0].sprite_f3 = (u8*)G_pitu_jump;
 	ld	hl, #_G_pitu_jump
 	ld	((_sprites + 0x0013)), hl
-;src/game.c:101: sprites[0].sprite_f3 = (u8*)G_blast;
+;src/game.c:105: sprites[0].sprite_f3 = (u8*)G_blast;
 	ld	hl, #_G_blast
 	ld	((_sprites + 0x0013)), hl
-;src/game.c:102: sprites[0].turned = 0;											//start looking right/front
+;src/game.c:106: sprites[0].turned = 0;											//start looking right/front
 	ld	hl, #(_sprites + 0x0017)
 	ld	(hl), #0x00
-;src/game.c:105: for (i = 1; i < MAX_SPRITES; i++)
+;src/game.c:109: for (i = 1; i < MAX_SPRITES; i++)
 	ld	c, #0x01
 00102$:
-;src/game.c:106: sprites[i].id=0;
+;src/game.c:110: sprites[i].id=0;
 	ld	b,#0x00
 	ld	l, c
 	ld	h, b
@@ -422,25 +432,25 @@ _init_game::
 	ld	de, #_sprites
 	add	hl, de
 	ld	(hl), #0x00
-;src/game.c:105: for (i = 1; i < MAX_SPRITES; i++)
+;src/game.c:109: for (i = 1; i < MAX_SPRITES; i++)
 	inc	c
 	ld	a, c
 	sub	a, #0x0a
 	jr	C,00102$
-;src/game.c:108: anim_clock=1;
+;src/game.c:112: anim_clock=1;
 	ld	hl,#_anim_clock + 0
 	ld	(hl), #0x01
 	ret
-;src/game.c:114: void game(){
+;src/game.c:118: void game(){
 ;	---------------------------------
 ; Function game
 ; ---------------------------------
 _game::
-;src/game.c:116: cpct_setBorder(HW_WHITE);
+;src/game.c:120: cpct_setBorder(HW_WHITE);
 	ld	hl, #0x0010
 	push	hl
 	call	_cpct_setPALColour
-;src/game.c:118: cpct_memset ((u8*)CPCT_LVMEM_START, cpct_px2byteM0(5, 5), 0x8000); //5 is ordinal for WHITE from palette in M0 with 16c
+;src/game.c:122: cpct_memset ((u8*)CPCT_LVMEM_START, cpct_px2byteM0(5, 5), 0x8000); //5 is ordinal for WHITE from palette in M0 with 16c
 	ld	hl, #0x0505
 	push	hl
 	call	_cpct_px2byteM0
@@ -452,55 +462,55 @@ _game::
 	ld	l, #0x00
 	push	hl
 	call	_cpct_memset
-;src/game.c:120: while (1) {
+;src/game.c:124: while (1) {
 00107$:
-;src/game.c:123: if (!swap_memvideo) { 					//switch
+;src/game.c:127: if (!swap_memvideo) { 					//switch
 	ld	a,(#_swap_memvideo + 0)
 	or	a, a
 	jr	NZ,00102$
-;src/game.c:124: mem_start = (u8*) CPCT_LVMEM_START;	//lower VMEM page
+;src/game.c:128: mem_start = (u8*) CPCT_LVMEM_START;	//lower VMEM page
 	ld	hl, #0x8000
 	ld	(_mem_start), hl
-;src/game.c:125: mem_page = cpct_page80;				//FIXME:: can probably delete??
+;src/game.c:129: mem_page = cpct_page80;				//FIXME:: can probably delete??
 	ld	hl,#_mem_page + 0
 	ld	(hl), #0x20
 	jr	00103$
 00102$:
-;src/game.c:127: mem_start = (u8*) CPCT_VMEM_START;	//upper,regular VMEM page
+;src/game.c:131: mem_start = (u8*) CPCT_VMEM_START;	//upper,regular VMEM page
 	ld	hl, #0xc000
 	ld	(_mem_start), hl
-;src/game.c:128: mem_page = cpct_pageC0;
+;src/game.c:132: mem_page = cpct_pageC0;
 	ld	hl,#_mem_page + 0
 	ld	(hl), #0x30
 00103$:
-;src/game.c:132: keyboard(); 							//user movement
+;src/game.c:136: keyboard(); 							//user movement
 	call	_keyboard
-;src/game.c:134: moveSprites();
+;src/game.c:138: moveSprites();
 	call	_moveSprites
-;src/game.c:135: deleteSprites();
+;src/game.c:139: deleteSprites();
 	call	_deleteSprites
-;src/game.c:136: renderSprites();
+;src/game.c:140: renderSprites();
 	call	_renderSprites
-;src/game.c:139: cpct_waitVSYNC();						//Wait until CRTC has printed a full frame to "repaint"
+;src/game.c:143: cpct_waitVSYNC();						//Wait until CRTC has printed a full frame to "repaint"
 	call	_cpct_waitVSYNC
-;src/game.c:140: cpct_setVideoMemoryPage(mem_page);		//Tell CRTC to "paint" the new page--FIXME: can this use "mem_start" instead?
+;src/game.c:144: cpct_setVideoMemoryPage(mem_page);		//Tell CRTC to "paint" the new page--FIXME: can this use "mem_start" instead?
 	ld	iy, #_mem_page
 	ld	l, 0 (iy)
 	call	_cpct_setVideoMemoryPage
-;src/game.c:141: swap_memvideo = ~swap_memvideo; 		//flip the switch
+;src/game.c:145: swap_memvideo = ~swap_memvideo; 		//flip the switch
 	ld	iy, #_swap_memvideo
 	ld	a, 0 (iy)
 	cpl
 	ld	0 (iy), a
-;src/game.c:143: anim_clock+=ANIM_SPEED;
+;src/game.c:147: anim_clock+=ANIM_SPEED;
 	ld	iy, #_anim_clock
 	inc	0 (iy)
 	inc	0 (iy)
-;src/game.c:144: if (anim_clock > ANIM_CYCLE)
+;src/game.c:148: if (anim_clock > ANIM_CYCLE)
 	ld	a, #0x10
 	sub	a, 0 (iy)
 	jr	NC,00107$
-;src/game.c:145: anim_clock=1;
+;src/game.c:149: anim_clock=1;
 	ld	0 (iy), #0x01
 	jr	00107$
 	.area _CODE

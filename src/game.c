@@ -58,23 +58,27 @@ void moveSprites() {
 			x = sprites[i].x;
 			y = sprites[i].y;
 
-			y = y + (4*sprites[i].moveV);	//vertical movement: Y is *px, X is *byte. M0 so Y is 4 times slower
 			x = x + (sprites[i].moveH);
+			y = y + (4*sprites[i].moveV);	//vertical movement: Y is *px, X is *byte. M0 so Y is 4 times slower
 
-			//GAME AREA: If outside, signal collision
-			if (y > (GAME_AREA_BOTTOM - sprites[i].height))
-				collision = collision | TOP_BOTTOM_COLLISION; //signal top collision w/bitmask
-			//No need to control bottom collision b/c y its a u8: over 255 it overflows back to 0
+			//GAME AREA: If outside, signal collision with corresponding bitmask
 			if (x > (GAME_AREA_RIGHT - sprites[i].width))
-				collision = collision | LEFT_RIGHT_COLLISION; //signal right collision w/bitmask
-			//No need to control left collision b/c y its a u8: over 255 it overflows back to 0
+				collision = collision | RIGHT_COLLISION;
+			if (x < GAME_AREA_LEFT)
+				collision = collision | LEFT_COLLISION;
+
+			if (y > (GAME_AREA_BOTTOM - sprites[i].height))
+				collision = collision | BOTTOM_COLLISION;
+			if (y < GAME_AREA_TOP)
+				collision = collision | TOP_COLLISION;
 			
 			//Treat vertical and horizonal collision differently so that
 			//diagonal collision doesn't block both directions
-			if ((collision & TOP_BOTTOM_COLLISION) == 0)		//if not hitting top, move sideways
-				sprites[i].y = y;
 			if ((collision & LEFT_RIGHT_COLLISION) == 0)		//if not hitting right, move up/down
-				sprites[i].x = x;
+				sprites[i].x = x;								//keep x as it was
+			//FIXME: not working - always believes there's TOPDOWN collision so not moving up or down
+			if ((collision & TOP_BOTTOM_COLLISION) == 0)		//if not hitting top, move sideways //
+				sprites[i].y = y;								//keep y as it was
 		}
 	}
 }

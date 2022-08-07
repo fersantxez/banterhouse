@@ -38,16 +38,14 @@ void renderSprites(){
 								} else sprite = sprites[i].sprite_f4;
 				} else sprite = sprites[i].sprite_f1;
 
-				if (sprites[i].turned)					//turn sprite around
-					cpct_hflipSpriteMaskedM0(sprites[i].width, sprites[i].height, sprite);
+				if (sprites[i].turned)							//turn sprite around
+					//cpct_hflipSpriteMaskedM0(sprites[i].width, sprites[i].height, sprite);
+					sprite = sprite + ((G_PITU_W*2)*G_PITU_H);	//find next sprite in memory, "rev" version
 
 				cpct_drawSpriteMasked(sprite,
 					//on current *mem_start* plus sprite size
 					cpct_getScreenPtr(mem_start, sprites[i].x, sprites[i].y),
 					sprites[i].width, sprites[i].height);
-
-				if (sprites[i].turned)					//turn back to normal (looking right)
-					cpct_hflipSpriteMaskedM0(sprites[i].width, sprites[i].height, sprite);
 
 			}
 

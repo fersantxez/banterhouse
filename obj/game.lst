@@ -209,7 +209,7 @@
    00CD F9            [ 6]  209 	ld	sp, hl
                             210 ;src/game.c:54: for (i=0; i < MAX_SPRITES; i++) {
    00CE DD 36 F8 00   [19]  211 	ld	-8 (ix), #0x00
-   00D2                     212 00112$:
+   00D2                     212 00116$:
                             213 ;src/game.c:55: if (sprites[i].id !=0) {			//check only live sprites to optimize CPU (non-zero)
    00D2 DD 4E F8      [19]  214 	ld	c,-8 (ix)
    00D5 06 00         [ 7]  215 	ld	b,#0x00
@@ -222,63 +222,63 @@
    00DD 29            [11]  222 	add	hl, hl
    00DE 01r00r00      [10]  223 	ld	bc,#_sprites
    00E1 09            [11]  224 	add	hl,bc
-   00E2 DD 75 FC      [19]  225 	ld	-4 (ix), l
-   00E5 DD 74 FD      [19]  226 	ld	-3 (ix), h
+   00E2 DD 75 FE      [19]  225 	ld	-2 (ix), l
+   00E5 DD 74 FF      [19]  226 	ld	-1 (ix), h
    00E8 7E            [ 7]  227 	ld	a, (hl)
-   00E9 DD 77 F9      [19]  228 	ld	-7 (ix), a
+   00E9 DD 77 FB      [19]  228 	ld	-5 (ix), a
    00EC B7            [ 4]  229 	or	a, a
-   00ED CArB0r01      [10]  230 	jp	Z, 00113$
+   00ED CArBFr01      [10]  230 	jp	Z, 00117$
                             231 ;src/game.c:56: collision = 0;
    00F0 DD 36 F6 00   [19]  232 	ld	-10 (ix), #0x00
                             233 ;src/game.c:58: x = sprites[i].x;
-   00F4 DD 7E FC      [19]  234 	ld	a, -4 (ix)
+   00F4 DD 7E FE      [19]  234 	ld	a, -2 (ix)
    00F7 C6 01         [ 7]  235 	add	a, #0x01
-   00F9 DD 77 FA      [19]  236 	ld	-6 (ix), a
-   00FC DD 7E FD      [19]  237 	ld	a, -3 (ix)
+   00F9 DD 77 F9      [19]  236 	ld	-7 (ix), a
+   00FC DD 7E FF      [19]  237 	ld	a, -1 (ix)
    00FF CE 00         [ 7]  238 	adc	a, #0x00
-   0101 DD 77 FB      [19]  239 	ld	-5 (ix), a
-   0104 DD 6E FA      [19]  240 	ld	l,-6 (ix)
-   0107 DD 66 FB      [19]  241 	ld	h,-5 (ix)
-   010A 46            [ 7]  242 	ld	b, (hl)
+   0101 DD 77 FA      [19]  239 	ld	-6 (ix), a
+   0104 DD 6E F9      [19]  240 	ld	l,-7 (ix)
+   0107 DD 66 FA      [19]  241 	ld	h,-6 (ix)
+   010A 4E            [ 7]  242 	ld	c, (hl)
                             243 ;src/game.c:59: y = sprites[i].y;
-   010B DD 7E FC      [19]  244 	ld	a, -4 (ix)
+   010B DD 7E FE      [19]  244 	ld	a, -2 (ix)
    010E C6 02         [ 7]  245 	add	a, #0x02
-   0110 DD 77 FE      [19]  246 	ld	-2 (ix), a
-   0113 DD 7E FD      [19]  247 	ld	a, -3 (ix)
+   0110 DD 77 FC      [19]  246 	ld	-4 (ix), a
+   0113 DD 7E FF      [19]  247 	ld	a, -1 (ix)
    0116 CE 00         [ 7]  248 	adc	a, #0x00
-   0118 DD 77 FF      [19]  249 	ld	-1 (ix), a
-   011B DD 6E FE      [19]  250 	ld	l,-2 (ix)
-   011E DD 66 FF      [19]  251 	ld	h,-1 (ix)
-   0121 4E            [ 7]  252 	ld	c, (hl)
-                            253 ;src/game.c:61: y = y + (4*sprites[i].moveV);	//vertical movement: Y is *px, X is *byte. M0 so Y is 4 times slower
-   0122 DD 6E FC      [19]  254 	ld	l,-4 (ix)
-   0125 DD 66 FD      [19]  255 	ld	h,-3 (ix)
-   0128 23            [ 6]  256 	inc	hl
-   0129 23            [ 6]  257 	inc	hl
-   012A 23            [ 6]  258 	inc	hl
-   012B 7E            [ 7]  259 	ld	a, (hl)
-   012C 87            [ 4]  260 	add	a, a
-   012D 87            [ 4]  261 	add	a, a
-   012E 6F            [ 4]  262 	ld	l, a
-   012F 09            [11]  263 	add	hl, bc
-   0130 4D            [ 4]  264 	ld	c, l
-                            265 ;src/game.c:62: x = x + (sprites[i].moveH);
-   0131 DD 6E FC      [19]  266 	ld	l,-4 (ix)
-   0134 DD 66 FD      [19]  267 	ld	h,-3 (ix)
-   0137 11 04 00      [10]  268 	ld	de, #0x0004
-   013A 19            [11]  269 	add	hl, de
-   013B 5E            [ 7]  270 	ld	e, (hl)
+   0118 DD 77 FD      [19]  249 	ld	-3 (ix), a
+   011B DD 6E FC      [19]  250 	ld	l,-4 (ix)
+   011E DD 66 FD      [19]  251 	ld	h,-3 (ix)
+   0121 46            [ 7]  252 	ld	b, (hl)
+                            253 ;src/game.c:61: x = x + (sprites[i].moveH);
+   0122 DD 6E FE      [19]  254 	ld	l,-2 (ix)
+   0125 DD 66 FF      [19]  255 	ld	h,-1 (ix)
+   0128 11 04 00      [10]  256 	ld	de, #0x0004
+   012B 19            [11]  257 	add	hl, de
+   012C 6E            [ 7]  258 	ld	l, (hl)
+   012D 09            [11]  259 	add	hl, bc
+   012E 4D            [ 4]  260 	ld	c, l
+                            261 ;src/game.c:62: y = y + (4*sprites[i].moveV);	//vertical movement: Y is *px, X is *byte. M0 so Y is 4 times slower
+   012F DD 6E FE      [19]  262 	ld	l,-2 (ix)
+   0132 DD 66 FF      [19]  263 	ld	h,-1 (ix)
+   0135 23            [ 6]  264 	inc	hl
+   0136 23            [ 6]  265 	inc	hl
+   0137 23            [ 6]  266 	inc	hl
+   0138 7E            [ 7]  267 	ld	a, (hl)
+   0139 87            [ 4]  268 	add	a, a
+   013A 87            [ 4]  269 	add	a, a
+   013B 5F            [ 4]  270 	ld	e, a
    013C 68            [ 4]  271 	ld	l, b
    013D 19            [11]  272 	add	hl, de
    013E DD 75 F7      [19]  273 	ld	-9 (ix), l
-                            274 ;src/game.c:65: if (y > (GAME_AREA_BOTTOM - sprites[i].height))
-   0141 DD 6E FC      [19]  275 	ld	l,-4 (ix)
-   0144 DD 66 FD      [19]  276 	ld	h,-3 (ix)
-   0147 11 09 00      [10]  277 	ld	de, #0x0009
+                            274 ;src/game.c:65: if (x > (GAME_AREA_RIGHT - sprites[i].width))
+   0141 DD 6E FE      [19]  275 	ld	l,-2 (ix)
+   0144 DD 66 FF      [19]  276 	ld	h,-1 (ix)
+   0147 11 0A 00      [10]  277 	ld	de, #0x000a
    014A 19            [11]  278 	add	hl, de
    014B 5E            [ 7]  279 	ld	e, (hl)
    014C 16 00         [ 7]  280 	ld	d, #0x00
-   014E 3E C8         [ 7]  281 	ld	a, #0xc8
+   014E 3E 50         [ 7]  281 	ld	a, #0x50
    0150 93            [ 4]  282 	sub	a, e
    0151 47            [ 4]  283 	ld	b, a
    0152 3E 00         [ 7]  284 	ld	a, #0x00
@@ -290,219 +290,229 @@
    015A 95            [ 4]  290 	sub	a, l
    015B 7B            [ 4]  291 	ld	a, e
    015C 9A            [ 4]  292 	sbc	a, d
-   015D E2r62r01      [10]  293 	jp	PO, 00141$
+   015D E2r62r01      [10]  293 	jp	PO, 00149$
    0160 EE 80         [ 7]  294 	xor	a, #0x80
-   0162                     295 00141$:
-   0162 F2r69r01      [10]  296 	jp	P, 00102$
-                            297 ;src/game.c:66: collision = collision | TOP_BOTTOM_COLLISION; //signal top collision w/bitmask
-   0165 DD 36 F6 01   [19]  298 	ld	-10 (ix), #0x01
-   0169                     299 00102$:
-                            300 ;src/game.c:68: if (x > (GAME_AREA_RIGHT - sprites[i].width))
-   0169 DD 6E FC      [19]  301 	ld	l,-4 (ix)
-   016C DD 66 FD      [19]  302 	ld	h,-3 (ix)
-   016F 11 0A 00      [10]  303 	ld	de, #0x000a
-   0172 19            [11]  304 	add	hl, de
-   0173 5E            [ 7]  305 	ld	e, (hl)
-   0174 16 00         [ 7]  306 	ld	d, #0x00
-   0176 3E 50         [ 7]  307 	ld	a, #0x50
-   0178 93            [ 4]  308 	sub	a, e
-   0179 5F            [ 4]  309 	ld	e, a
-   017A 3E 00         [ 7]  310 	ld	a, #0x00
-   017C 9A            [ 4]  311 	sbc	a, d
-   017D 57            [ 4]  312 	ld	d, a
-   017E DD 6E F7      [19]  313 	ld	l, -9 (ix)
-   0181 26 00         [ 7]  314 	ld	h, #0x00
-   0183 7B            [ 4]  315 	ld	a, e
-   0184 95            [ 4]  316 	sub	a, l
-   0185 7A            [ 4]  317 	ld	a, d
-   0186 9C            [ 4]  318 	sbc	a, h
-   0187 E2r8Cr01      [10]  319 	jp	PO, 00142$
-   018A EE 80         [ 7]  320 	xor	a, #0x80
-   018C                     321 00142$:
-   018C F2r93r01      [10]  322 	jp	P, 00104$
-                            323 ;src/game.c:69: collision = collision | LEFT_RIGHT_COLLISION; //signal right collision w/bitmask
-   018F DD CB F6 CE   [23]  324 	set	1, -10 (ix)
-   0193                     325 00104$:
-                            326 ;src/game.c:74: if ((collision & TOP_BOTTOM_COLLISION) == 0)		//if not hitting top, move sideways
-   0193 DD CB F6 46   [20]  327 	bit	0, -10 (ix)
-   0197 20 07         [12]  328 	jr	NZ,00106$
-                            329 ;src/game.c:75: sprites[i].y = y;
-   0199 DD 6E FE      [19]  330 	ld	l,-2 (ix)
-   019C DD 66 FF      [19]  331 	ld	h,-1 (ix)
-   019F 71            [ 7]  332 	ld	(hl), c
-   01A0                     333 00106$:
-                            334 ;src/game.c:76: if ((collision & LEFT_RIGHT_COLLISION) == 0)		//if not hitting right, move up/down
-   01A0 DD CB F6 4E   [20]  335 	bit	1, -10 (ix)
-   01A4 20 0A         [12]  336 	jr	NZ,00113$
-                            337 ;src/game.c:77: sprites[i].x = x;
-   01A6 DD 6E FA      [19]  338 	ld	l,-6 (ix)
-   01A9 DD 66 FB      [19]  339 	ld	h,-5 (ix)
-   01AC DD 7E F7      [19]  340 	ld	a, -9 (ix)
-   01AF 77            [ 7]  341 	ld	(hl), a
-   01B0                     342 00113$:
-                            343 ;src/game.c:54: for (i=0; i < MAX_SPRITES; i++) {
-   01B0 DD 34 F8      [23]  344 	inc	-8 (ix)
-   01B3 DD 7E F8      [19]  345 	ld	a, -8 (ix)
-   01B6 D6 0A         [ 7]  346 	sub	a, #0x0a
-   01B8 DArD2r00      [10]  347 	jp	C, 00112$
-   01BB DD F9         [10]  348 	ld	sp, ix
-   01BD DD E1         [14]  349 	pop	ix
-   01BF C9            [10]  350 	ret
-                            351 ;src/game.c:85: void init_game() {
-                            352 ;	---------------------------------
-                            353 ; Function init_game
-                            354 ; ---------------------------------
-   01C0                     355 _init_game::
-                            356 ;src/game.c:88: sprites[0].id = 1;												//mark the sprite "alive" (non-zero)
-   01C0 21r00r00      [10]  357 	ld	hl, #_sprites
-   01C3 36 01         [10]  358 	ld	(hl), #0x01
-                            359 ;src/game.c:89: sprites[0].x = sprites[0].y = 0;								//init position to 0,0
-   01C5 21r02r00      [10]  360 	ld	hl, #(_sprites + 0x0002)
-   01C8 36 00         [10]  361 	ld	(hl), #0x00
-   01CA 21r01r00      [10]  362 	ld	hl, #(_sprites + 0x0001)
-   01CD 36 00         [10]  363 	ld	(hl), #0x00
-                            364 ;src/game.c:90: sprites[0].moveV = sprites[0].moveH = 0;						//init movement to none
-   01CF 21r04r00      [10]  365 	ld	hl, #(_sprites + 0x0004)
-   01D2 36 00         [10]  366 	ld	(hl), #0x00
-   01D4 21r03r00      [10]  367 	ld	hl, #(_sprites + 0x0003)
-   01D7 36 00         [10]  368 	ld	(hl), #0x00
-                            369 ;src/game.c:92: sprites[0].x_prev_A = sprites[0].y_prev_A = sprites[0].x_prev_B = sprites[0].y_prev_B = 0;
-   01D9 21r08r00      [10]  370 	ld	hl, #(_sprites + 0x0008)
-   01DC 36 00         [10]  371 	ld	(hl), #0x00
-   01DE 21r07r00      [10]  372 	ld	hl, #(_sprites + 0x0007)
-   01E1 36 00         [10]  373 	ld	(hl), #0x00
-   01E3 21r06r00      [10]  374 	ld	hl, #(_sprites + 0x0006)
-   01E6 36 00         [10]  375 	ld	(hl), #0x00
-   01E8 21r05r00      [10]  376 	ld	hl, #(_sprites + 0x0005)
-   01EB 36 00         [10]  377 	ld	(hl), #0x00
-                            378 ;src/game.c:93: sprites[0].height = G_PITU_H;
-   01ED 21r09r00      [10]  379 	ld	hl, #(_sprites + 0x0009)
-   01F0 36 20         [10]  380 	ld	(hl), #0x20
-                            381 ;src/game.c:94: sprites[0].width = G_PITU_W;									//!?! /2: - M0, length in bytes = /2 in px
-   01F2 21r0Ar00      [10]  382 	ld	hl, #(_sprites + 0x000a)
-   01F5 36 07         [10]  383 	ld	(hl), #0x07
-                            384 ;src/game.c:95: sprites[0].properties = 0;										//bitmasked properties - init to 0
-   01F7 01r0Br00      [10]  385 	ld	bc, #_sprites + 11
-   01FA AF            [ 4]  386 	xor	a, a
-   01FB 02            [ 7]  387 	ld	(bc), a
-                            388 ;src/game.c:96: sprites[0].properties = sprites[0].properties | MASK_RENDER;	//init to "render" on screen
-   01FC 0A            [ 7]  389 	ld	a, (bc)
-   01FD CB C7         [ 8]  390 	set	0, a
-   01FF 02            [ 7]  391 	ld	(bc), a
-                            392 ;src/game.c:97: sprites[0].frames = 2;											//main sprite has two "moves" to animate
-   0200 21r0Er00      [10]  393 	ld	hl, #(_sprites + 0x000e)
-   0203 36 02         [10]  394 	ld	(hl), #0x02
-                            395 ;src/game.c:98: sprites[0].sprite_f1 = (u8*)G_pitu; 							//first render for sprite. &G_pitu[0]
-   0205 21r00r00      [10]  396 	ld	hl, #_G_pitu
-   0208 22r0Fr00      [16]  397 	ld	((_sprites + 0x000f)), hl
-                            398 ;src/game.c:99: sprites[0].sprite_f2 = (u8*)G_pitu_walk;
-   020B 21r00r00      [10]  399 	ld	hl, #_G_pitu_walk
-   020E 22r11r00      [16]  400 	ld	((_sprites + 0x0011)), hl
-                            401 ;src/game.c:100: sprites[0].sprite_f3 = (u8*)G_pitu_jump;
-   0211 21r00r00      [10]  402 	ld	hl, #_G_pitu_jump
-   0214 22r13r00      [16]  403 	ld	((_sprites + 0x0013)), hl
-                            404 ;src/game.c:101: sprites[0].sprite_f3 = (u8*)G_blast;
-   0217 21r00r00      [10]  405 	ld	hl, #_G_blast
-   021A 22r13r00      [16]  406 	ld	((_sprites + 0x0013)), hl
-                            407 ;src/game.c:102: sprites[0].turned = 0;											//start looking right/front
-   021D 21r17r00      [10]  408 	ld	hl, #(_sprites + 0x0017)
-   0220 36 00         [10]  409 	ld	(hl), #0x00
-                            410 ;src/game.c:105: for (i = 1; i < MAX_SPRITES; i++)
-   0222 0E 01         [ 7]  411 	ld	c, #0x01
-   0224                     412 00102$:
-                            413 ;src/game.c:106: sprites[i].id=0;
-   0224 06 00         [ 7]  414 	ld	b,#0x00
-   0226 69            [ 4]  415 	ld	l, c
-   0227 60            [ 4]  416 	ld	h, b
-   0228 29            [11]  417 	add	hl, hl
-   0229 09            [11]  418 	add	hl, bc
-   022A 29            [11]  419 	add	hl, hl
-   022B 29            [11]  420 	add	hl, hl
-   022C 29            [11]  421 	add	hl, hl
-   022D 11r00r00      [10]  422 	ld	de, #_sprites
-   0230 19            [11]  423 	add	hl, de
-   0231 36 00         [10]  424 	ld	(hl), #0x00
-                            425 ;src/game.c:105: for (i = 1; i < MAX_SPRITES; i++)
-   0233 0C            [ 4]  426 	inc	c
-   0234 79            [ 4]  427 	ld	a, c
-   0235 D6 0A         [ 7]  428 	sub	a, #0x0a
-   0237 38 EB         [12]  429 	jr	C,00102$
-                            430 ;src/game.c:108: anim_clock=1;
-   0239 21rF0r00      [10]  431 	ld	hl,#_anim_clock + 0
-   023C 36 01         [10]  432 	ld	(hl), #0x01
-   023E C9            [10]  433 	ret
-                            434 ;src/game.c:114: void game(){
-                            435 ;	---------------------------------
-                            436 ; Function game
-                            437 ; ---------------------------------
-   023F                     438 _game::
-                            439 ;src/game.c:116: cpct_setBorder(HW_WHITE);
-   023F 21 10 00      [10]  440 	ld	hl, #0x0010
-   0242 E5            [11]  441 	push	hl
-   0243 CDr00r00      [17]  442 	call	_cpct_setPALColour
-                            443 ;src/game.c:118: cpct_memset ((u8*)CPCT_LVMEM_START, cpct_px2byteM0(5, 5), 0x8000); //5 is ordinal for WHITE from palette in M0 with 16c
-   0246 21 05 05      [10]  444 	ld	hl, #0x0505
-   0249 E5            [11]  445 	push	hl
-   024A CDr00r00      [17]  446 	call	_cpct_px2byteM0
-   024D 45            [ 4]  447 	ld	b, l
-   024E 21 00 80      [10]  448 	ld	hl, #0x8000
-   0251 E5            [11]  449 	push	hl
-   0252 C5            [11]  450 	push	bc
-   0253 33            [ 6]  451 	inc	sp
-   0254 2E 00         [ 7]  452 	ld	l, #0x00
-   0256 E5            [11]  453 	push	hl
-   0257 CDr00r00      [17]  454 	call	_cpct_memset
-                            455 ;src/game.c:120: while (1) {
-   025A                     456 00107$:
-                            457 ;src/game.c:123: if (!swap_memvideo) { 					//switch
-   025A 3Ar00r00      [13]  458 	ld	a,(#_swap_memvideo + 0)
-   025D B7            [ 4]  459 	or	a, a
-   025E 20 0D         [12]  460 	jr	NZ,00102$
-                            461 ;src/game.c:124: mem_start = (u8*) CPCT_LVMEM_START;	//lower VMEM page
-   0260 21 00 80      [10]  462 	ld	hl, #0x8000
-   0263 22r00r00      [16]  463 	ld	(_mem_start), hl
-                            464 ;src/game.c:125: mem_page = cpct_page80;				//FIXME:: can probably delete??
-   0266 21r00r00      [10]  465 	ld	hl,#_mem_page + 0
-   0269 36 20         [10]  466 	ld	(hl), #0x20
-   026B 18 0B         [12]  467 	jr	00103$
-   026D                     468 00102$:
-                            469 ;src/game.c:127: mem_start = (u8*) CPCT_VMEM_START;	//upper,regular VMEM page
-   026D 21 00 C0      [10]  470 	ld	hl, #0xc000
-   0270 22r00r00      [16]  471 	ld	(_mem_start), hl
-                            472 ;src/game.c:128: mem_page = cpct_pageC0;
-   0273 21r00r00      [10]  473 	ld	hl,#_mem_page + 0
-   0276 36 30         [10]  474 	ld	(hl), #0x30
-   0278                     475 00103$:
-                            476 ;src/game.c:132: keyboard(); 							//user movement
-   0278 CDr00r00      [17]  477 	call	_keyboard
-                            478 ;src/game.c:134: moveSprites();
-   027B CDrC1r00      [17]  479 	call	_moveSprites
-                            480 ;src/game.c:135: deleteSprites();
-   027E CDr00r00      [17]  481 	call	_deleteSprites
-                            482 ;src/game.c:136: renderSprites();
-   0281 CDr00r00      [17]  483 	call	_renderSprites
-                            484 ;src/game.c:139: cpct_waitVSYNC();						//Wait until CRTC has printed a full frame to "repaint"
-   0284 CDr00r00      [17]  485 	call	_cpct_waitVSYNC
-                            486 ;src/game.c:140: cpct_setVideoMemoryPage(mem_page);		//Tell CRTC to "paint" the new page--FIXME: can this use "mem_start" instead?
-   0287 FD 21r00r00   [14]  487 	ld	iy, #_mem_page
-   028B FD 6E 00      [19]  488 	ld	l, 0 (iy)
-   028E CDr00r00      [17]  489 	call	_cpct_setVideoMemoryPage
-                            490 ;src/game.c:141: swap_memvideo = ~swap_memvideo; 		//flip the switch
-   0291 FD 21r00r00   [14]  491 	ld	iy, #_swap_memvideo
-   0295 FD 7E 00      [19]  492 	ld	a, 0 (iy)
-   0298 2F            [ 4]  493 	cpl
-   0299 FD 77 00      [19]  494 	ld	0 (iy), a
-                            495 ;src/game.c:143: anim_clock+=ANIM_SPEED;
-   029C FD 21rF0r00   [14]  496 	ld	iy, #_anim_clock
-   02A0 FD 34 00      [23]  497 	inc	0 (iy)
-   02A3 FD 34 00      [23]  498 	inc	0 (iy)
-                            499 ;src/game.c:144: if (anim_clock > ANIM_CYCLE)
-   02A6 3E 10         [ 7]  500 	ld	a, #0x10
-   02A8 FD 96 00      [19]  501 	sub	a, 0 (iy)
-   02AB 30 AD         [12]  502 	jr	NC,00107$
-                            503 ;src/game.c:145: anim_clock=1;
-   02AD FD 36 00 01   [19]  504 	ld	0 (iy), #0x01
-   02B1 18 A7         [12]  505 	jr	00107$
-                            506 	.area _CODE
-                            507 	.area _INITIALIZER
-                            508 	.area _CABS (ABS)
+   0162                     295 00149$:
+   0162 F2r69r01      [10]  296 	jp	P, 00104$
+                            297 ;src/game.c:66: collision = collision | RIGHT_COLLISION;
+   0165 DD 36 F6 02   [19]  298 	ld	-10 (ix), #0x02
+                            299 ;src/game.c:68: collision = collision | LEFT_COLLISION;
+   0169                     300 00104$:
+                            301 ;src/game.c:70: if (y > (GAME_AREA_BOTTOM - sprites[i].height))
+   0169 DD 6E FE      [19]  302 	ld	l,-2 (ix)
+   016C DD 66 FF      [19]  303 	ld	h,-1 (ix)
+   016F 11 09 00      [10]  304 	ld	de, #0x0009
+   0172 19            [11]  305 	add	hl, de
+   0173 5E            [ 7]  306 	ld	e, (hl)
+   0174 16 00         [ 7]  307 	ld	d, #0x00
+   0176 3E C8         [ 7]  308 	ld	a, #0xc8
+   0178 93            [ 4]  309 	sub	a, e
+   0179 5F            [ 4]  310 	ld	e, a
+   017A 3E 00         [ 7]  311 	ld	a, #0x00
+   017C 9A            [ 4]  312 	sbc	a, d
+   017D 57            [ 4]  313 	ld	d, a
+   017E DD 6E F7      [19]  314 	ld	l, -9 (ix)
+   0181 26 00         [ 7]  315 	ld	h, #0x00
+   0183 7B            [ 4]  316 	ld	a, e
+   0184 95            [ 4]  317 	sub	a, l
+   0185 7A            [ 4]  318 	ld	a, d
+   0186 9C            [ 4]  319 	sbc	a, h
+   0187 E2r8Cr01      [10]  320 	jp	PO, 00150$
+   018A EE 80         [ 7]  321 	xor	a, #0x80
+   018C                     322 00150$:
+   018C F2r93r01      [10]  323 	jp	P, 00106$
+                            324 ;src/game.c:71: collision = collision | BOTTOM_COLLISION;
+   018F DD CB F6 C6   [23]  325 	set	0, -10 (ix)
+   0193                     326 00106$:
+                            327 ;src/game.c:72: if (y < GAME_AREA_TOP)
+   0193 DD 7E F7      [19]  328 	ld	a, -9 (ix)
+   0196 D6 10         [ 7]  329 	sub	a, #0x10
+   0198 30 08         [12]  330 	jr	NC,00108$
+                            331 ;src/game.c:73: collision = collision | TOP_COLLISION;
+   019A DD 7E F6      [19]  332 	ld	a, -10 (ix)
+   019D F6 05         [ 7]  333 	or	a, #0x05
+   019F DD 77 F6      [19]  334 	ld	-10 (ix), a
+   01A2                     335 00108$:
+                            336 ;src/game.c:77: if ((collision & LEFT_RIGHT_COLLISION) == 0)		//if not hitting right, move up/down
+   01A2 DD CB F6 4E   [20]  337 	bit	1, -10 (ix)
+   01A6 20 07         [12]  338 	jr	NZ,00110$
+                            339 ;src/game.c:78: sprites[i].x = x;								//keep x as it was
+   01A8 DD 6E F9      [19]  340 	ld	l,-7 (ix)
+   01AB DD 66 FA      [19]  341 	ld	h,-6 (ix)
+   01AE 71            [ 7]  342 	ld	(hl), c
+   01AF                     343 00110$:
+                            344 ;src/game.c:80: if ((collision & TOP_BOTTOM_COLLISION) == 0)		//if not hitting top, move sideways //
+   01AF DD CB F6 46   [20]  345 	bit	0, -10 (ix)
+   01B3 20 0A         [12]  346 	jr	NZ,00117$
+                            347 ;src/game.c:81: sprites[i].y = y;								//keep y as it was
+   01B5 DD 6E FC      [19]  348 	ld	l,-4 (ix)
+   01B8 DD 66 FD      [19]  349 	ld	h,-3 (ix)
+   01BB DD 7E F7      [19]  350 	ld	a, -9 (ix)
+   01BE 77            [ 7]  351 	ld	(hl), a
+   01BF                     352 00117$:
+                            353 ;src/game.c:54: for (i=0; i < MAX_SPRITES; i++) {
+   01BF DD 34 F8      [23]  354 	inc	-8 (ix)
+   01C2 DD 7E F8      [19]  355 	ld	a, -8 (ix)
+   01C5 D6 0A         [ 7]  356 	sub	a, #0x0a
+   01C7 DArD2r00      [10]  357 	jp	C, 00116$
+   01CA DD F9         [10]  358 	ld	sp, ix
+   01CC DD E1         [14]  359 	pop	ix
+   01CE C9            [10]  360 	ret
+                            361 ;src/game.c:89: void init_game() {
+                            362 ;	---------------------------------
+                            363 ; Function init_game
+                            364 ; ---------------------------------
+   01CF                     365 _init_game::
+                            366 ;src/game.c:92: sprites[0].id = 1;												//mark the sprite "alive" (non-zero)
+   01CF 21r00r00      [10]  367 	ld	hl, #_sprites
+   01D2 36 01         [10]  368 	ld	(hl), #0x01
+                            369 ;src/game.c:93: sprites[0].x = sprites[0].y = 0;								//init position to 0,0
+   01D4 21r02r00      [10]  370 	ld	hl, #(_sprites + 0x0002)
+   01D7 36 00         [10]  371 	ld	(hl), #0x00
+   01D9 21r01r00      [10]  372 	ld	hl, #(_sprites + 0x0001)
+   01DC 36 00         [10]  373 	ld	(hl), #0x00
+                            374 ;src/game.c:94: sprites[0].moveV = sprites[0].moveH = 0;						//init movement to none
+   01DE 21r04r00      [10]  375 	ld	hl, #(_sprites + 0x0004)
+   01E1 36 00         [10]  376 	ld	(hl), #0x00
+   01E3 21r03r00      [10]  377 	ld	hl, #(_sprites + 0x0003)
+   01E6 36 00         [10]  378 	ld	(hl), #0x00
+                            379 ;src/game.c:96: sprites[0].x_prev_A = sprites[0].y_prev_A = sprites[0].x_prev_B = sprites[0].y_prev_B = 0;
+   01E8 21r08r00      [10]  380 	ld	hl, #(_sprites + 0x0008)
+   01EB 36 00         [10]  381 	ld	(hl), #0x00
+   01ED 21r07r00      [10]  382 	ld	hl, #(_sprites + 0x0007)
+   01F0 36 00         [10]  383 	ld	(hl), #0x00
+   01F2 21r06r00      [10]  384 	ld	hl, #(_sprites + 0x0006)
+   01F5 36 00         [10]  385 	ld	(hl), #0x00
+   01F7 21r05r00      [10]  386 	ld	hl, #(_sprites + 0x0005)
+   01FA 36 00         [10]  387 	ld	(hl), #0x00
+                            388 ;src/game.c:97: sprites[0].height = G_PITU_H;
+   01FC 21r09r00      [10]  389 	ld	hl, #(_sprites + 0x0009)
+   01FF 36 20         [10]  390 	ld	(hl), #0x20
+                            391 ;src/game.c:98: sprites[0].width = G_PITU_W;									//!?! /2: - M0, length in bytes = /2 in px
+   0201 21r0Ar00      [10]  392 	ld	hl, #(_sprites + 0x000a)
+   0204 36 07         [10]  393 	ld	(hl), #0x07
+                            394 ;src/game.c:99: sprites[0].properties = 0;										//bitmasked properties - init to 0
+   0206 01r0Br00      [10]  395 	ld	bc, #_sprites + 11
+   0209 AF            [ 4]  396 	xor	a, a
+   020A 02            [ 7]  397 	ld	(bc), a
+                            398 ;src/game.c:100: sprites[0].properties = sprites[0].properties | MASK_RENDER;	//init to "render" on screen
+   020B 0A            [ 7]  399 	ld	a, (bc)
+   020C CB C7         [ 8]  400 	set	0, a
+   020E 02            [ 7]  401 	ld	(bc), a
+                            402 ;src/game.c:101: sprites[0].frames = 2;											//main sprite has two "moves" to animate
+   020F 21r0Er00      [10]  403 	ld	hl, #(_sprites + 0x000e)
+   0212 36 02         [10]  404 	ld	(hl), #0x02
+                            405 ;src/game.c:102: sprites[0].sprite_f1 = (u8*)G_pitu; 							//first render for sprite. &G_pitu[0]
+   0214 21r00r00      [10]  406 	ld	hl, #_G_pitu
+   0217 22r0Fr00      [16]  407 	ld	((_sprites + 0x000f)), hl
+                            408 ;src/game.c:103: sprites[0].sprite_f2 = (u8*)G_pitu_walk;
+   021A 21r00r00      [10]  409 	ld	hl, #_G_pitu_walk
+   021D 22r11r00      [16]  410 	ld	((_sprites + 0x0011)), hl
+                            411 ;src/game.c:104: sprites[0].sprite_f3 = (u8*)G_pitu_jump;
+   0220 21r00r00      [10]  412 	ld	hl, #_G_pitu_jump
+   0223 22r13r00      [16]  413 	ld	((_sprites + 0x0013)), hl
+                            414 ;src/game.c:105: sprites[0].sprite_f3 = (u8*)G_blast;
+   0226 21r00r00      [10]  415 	ld	hl, #_G_blast
+   0229 22r13r00      [16]  416 	ld	((_sprites + 0x0013)), hl
+                            417 ;src/game.c:106: sprites[0].turned = 0;											//start looking right/front
+   022C 21r17r00      [10]  418 	ld	hl, #(_sprites + 0x0017)
+   022F 36 00         [10]  419 	ld	(hl), #0x00
+                            420 ;src/game.c:109: for (i = 1; i < MAX_SPRITES; i++)
+   0231 0E 01         [ 7]  421 	ld	c, #0x01
+   0233                     422 00102$:
+                            423 ;src/game.c:110: sprites[i].id=0;
+   0233 06 00         [ 7]  424 	ld	b,#0x00
+   0235 69            [ 4]  425 	ld	l, c
+   0236 60            [ 4]  426 	ld	h, b
+   0237 29            [11]  427 	add	hl, hl
+   0238 09            [11]  428 	add	hl, bc
+   0239 29            [11]  429 	add	hl, hl
+   023A 29            [11]  430 	add	hl, hl
+   023B 29            [11]  431 	add	hl, hl
+   023C 11r00r00      [10]  432 	ld	de, #_sprites
+   023F 19            [11]  433 	add	hl, de
+   0240 36 00         [10]  434 	ld	(hl), #0x00
+                            435 ;src/game.c:109: for (i = 1; i < MAX_SPRITES; i++)
+   0242 0C            [ 4]  436 	inc	c
+   0243 79            [ 4]  437 	ld	a, c
+   0244 D6 0A         [ 7]  438 	sub	a, #0x0a
+   0246 38 EB         [12]  439 	jr	C,00102$
+                            440 ;src/game.c:112: anim_clock=1;
+   0248 21rF0r00      [10]  441 	ld	hl,#_anim_clock + 0
+   024B 36 01         [10]  442 	ld	(hl), #0x01
+   024D C9            [10]  443 	ret
+                            444 ;src/game.c:118: void game(){
+                            445 ;	---------------------------------
+                            446 ; Function game
+                            447 ; ---------------------------------
+   024E                     448 _game::
+                            449 ;src/game.c:120: cpct_setBorder(HW_WHITE);
+   024E 21 10 00      [10]  450 	ld	hl, #0x0010
+   0251 E5            [11]  451 	push	hl
+   0252 CDr00r00      [17]  452 	call	_cpct_setPALColour
+                            453 ;src/game.c:122: cpct_memset ((u8*)CPCT_LVMEM_START, cpct_px2byteM0(5, 5), 0x8000); //5 is ordinal for WHITE from palette in M0 with 16c
+   0255 21 05 05      [10]  454 	ld	hl, #0x0505
+   0258 E5            [11]  455 	push	hl
+   0259 CDr00r00      [17]  456 	call	_cpct_px2byteM0
+   025C 45            [ 4]  457 	ld	b, l
+   025D 21 00 80      [10]  458 	ld	hl, #0x8000
+   0260 E5            [11]  459 	push	hl
+   0261 C5            [11]  460 	push	bc
+   0262 33            [ 6]  461 	inc	sp
+   0263 2E 00         [ 7]  462 	ld	l, #0x00
+   0265 E5            [11]  463 	push	hl
+   0266 CDr00r00      [17]  464 	call	_cpct_memset
+                            465 ;src/game.c:124: while (1) {
+   0269                     466 00107$:
+                            467 ;src/game.c:127: if (!swap_memvideo) { 					//switch
+   0269 3Ar00r00      [13]  468 	ld	a,(#_swap_memvideo + 0)
+   026C B7            [ 4]  469 	or	a, a
+   026D 20 0D         [12]  470 	jr	NZ,00102$
+                            471 ;src/game.c:128: mem_start = (u8*) CPCT_LVMEM_START;	//lower VMEM page
+   026F 21 00 80      [10]  472 	ld	hl, #0x8000
+   0272 22r00r00      [16]  473 	ld	(_mem_start), hl
+                            474 ;src/game.c:129: mem_page = cpct_page80;				//FIXME:: can probably delete??
+   0275 21r00r00      [10]  475 	ld	hl,#_mem_page + 0
+   0278 36 20         [10]  476 	ld	(hl), #0x20
+   027A 18 0B         [12]  477 	jr	00103$
+   027C                     478 00102$:
+                            479 ;src/game.c:131: mem_start = (u8*) CPCT_VMEM_START;	//upper,regular VMEM page
+   027C 21 00 C0      [10]  480 	ld	hl, #0xc000
+   027F 22r00r00      [16]  481 	ld	(_mem_start), hl
+                            482 ;src/game.c:132: mem_page = cpct_pageC0;
+   0282 21r00r00      [10]  483 	ld	hl,#_mem_page + 0
+   0285 36 30         [10]  484 	ld	(hl), #0x30
+   0287                     485 00103$:
+                            486 ;src/game.c:136: keyboard(); 							//user movement
+   0287 CDr00r00      [17]  487 	call	_keyboard
+                            488 ;src/game.c:138: moveSprites();
+   028A CDrC1r00      [17]  489 	call	_moveSprites
+                            490 ;src/game.c:139: deleteSprites();
+   028D CDr00r00      [17]  491 	call	_deleteSprites
+                            492 ;src/game.c:140: renderSprites();
+   0290 CDr00r00      [17]  493 	call	_renderSprites
+                            494 ;src/game.c:143: cpct_waitVSYNC();						//Wait until CRTC has printed a full frame to "repaint"
+   0293 CDr00r00      [17]  495 	call	_cpct_waitVSYNC
+                            496 ;src/game.c:144: cpct_setVideoMemoryPage(mem_page);		//Tell CRTC to "paint" the new page--FIXME: can this use "mem_start" instead?
+   0296 FD 21r00r00   [14]  497 	ld	iy, #_mem_page
+   029A FD 6E 00      [19]  498 	ld	l, 0 (iy)
+   029D CDr00r00      [17]  499 	call	_cpct_setVideoMemoryPage
+                            500 ;src/game.c:145: swap_memvideo = ~swap_memvideo; 		//flip the switch
+   02A0 FD 21r00r00   [14]  501 	ld	iy, #_swap_memvideo
+   02A4 FD 7E 00      [19]  502 	ld	a, 0 (iy)
+   02A7 2F            [ 4]  503 	cpl
+   02A8 FD 77 00      [19]  504 	ld	0 (iy), a
+                            505 ;src/game.c:147: anim_clock+=ANIM_SPEED;
+   02AB FD 21rF0r00   [14]  506 	ld	iy, #_anim_clock
+   02AF FD 34 00      [23]  507 	inc	0 (iy)
+   02B2 FD 34 00      [23]  508 	inc	0 (iy)
+                            509 ;src/game.c:148: if (anim_clock > ANIM_CYCLE)
+   02B5 3E 10         [ 7]  510 	ld	a, #0x10
+   02B7 FD 96 00      [19]  511 	sub	a, 0 (iy)
+   02BA 30 AD         [12]  512 	jr	NC,00107$
+                            513 ;src/game.c:149: anim_clock=1;
+   02BC FD 36 00 01   [19]  514 	ld	0 (iy), #0x01
+   02C0 18 A7         [12]  515 	jr	00107$
+                            516 	.area _CODE
+                            517 	.area _INITIALIZER
+                            518 	.area _CABS (ABS)

@@ -11,20 +11,20 @@ Symbol Table
     _cpct_drawSolidBox                                             **** GX
     _cpct_drawSpriteMasked                                         **** GX
     _cpct_getScreenPtr                                             **** GX
-    _cpct_hflipSpriteMaskedM0                                      **** GX
     _cpct_px2byteM0                                                **** GX
-  0 _deleteSprites                                                 01E5 GR
+  0 _deleteSprites                                                 017C GR
     _mem_start                                                     **** GX
   0 _renderSprites                                                 0000 GR
     _sprites                                                       **** GX
     _swap_memvideo                                                 **** GX
+
 
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 2.
 Hexadecimal [16-Bits]
 
 Area Table
 
-   0 _CODE                                      size  2D2   flags    0
+   0 _CODE                                      size  269   flags    0
    1 _DATA                                      size    0   flags    0
    2 _INITIALIZED                               size    0   flags    0
    3 _DABS                                      size    0   flags    8

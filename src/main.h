@@ -7,16 +7,21 @@
 //Game config
 #define MAX_SPRITES 10
 
-#define GAME_AREA_TOP 0
+#define GAME_AREA_TOP 16				//leave room for a scoreboard etc. 0-16 (2 chars)
 #define GAME_AREA_BOTTOM 200
 #define GAME_AREA_LEFT 0
 #define GAME_AREA_RIGHT 80
 
-#define TOP_BOTTOM_COLLISION 0x01
-#define LEFT_RIGHT_COLLISION 0x02
+#define RIGHT_COLLISION			0b00000010
+#define LEFT_COLLISION 			0b00001010
+#define LEFT_RIGHT_COLLISION	0b00000010	//even
+#define BOTTOM_COLLISION 		0b00000001
+#define TOP_COLLISION 			0b00000101
+#define TOP_BOTTOM_COLLISION 	0b00000001	//odd
 
-#define MASK_RENDER 0b00000001			//BITMASK to signal which sprites to render (e.g. still on screen)
-#define MASK_ANIMATE 0b00000010			//BITMASK to signal which sprites to animate
+
+#define MASK_RENDER 		0b00000001	//BITMASK to signal which sprites to render (e.g. still on screen)
+#define MASK_ANIMATE 		0b00000010	//BITMASK to signal which sprites to animate
 
 #define ANIM_CYCLE 16					//max animation frames
 #define ANIM_SPEED 2 					//1-4; 4 is faster
