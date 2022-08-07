@@ -32,7 +32,7 @@
 ;--------------------------------------------------------
 	.area _DATA
 _sprites::
-	.ds 250
+	.ds 240
 _anim_clock::
 	.ds 1
 ;--------------------------------------------------------
@@ -116,6 +116,8 @@ _keyboard::
 ;src/game.c:27: if (cpct_isKeyPressed(Key_CursorLeft) || cpct_isKeyPressed(Key_O) || cpct_isKeyPressed(Joy0_Left)){
 	ld	hl, #0x0101
 	call	_cpct_isKeyPressed
+;src/game.c:29: sprites[0].turned = 1;
+;src/game.c:27: if (cpct_isKeyPressed(Key_CursorLeft) || cpct_isKeyPressed(Key_O) || cpct_isKeyPressed(Joy0_Left)){
 	ld	a, l
 	or	a, a
 	jr	NZ,00109$
@@ -133,6 +135,9 @@ _keyboard::
 ;src/game.c:28: sprites[0].moveH = -1;
 	ld	hl, #(_sprites + 0x0004)
 	ld	(hl), #0xff
+;src/game.c:29: sprites[0].turned = 1;
+	ld	hl, #(_sprites + 0x0017)
+	ld	(hl), #0x01
 00110$:
 ;src/game.c:31: if (cpct_isKeyPressed(Key_CursorRight) || cpct_isKeyPressed(Key_P) || cpct_isKeyPressed(Joy0_Right)){
 	ld	hl, #0x0200
@@ -154,6 +159,9 @@ _keyboard::
 ;src/game.c:32: sprites[0].moveH = 1;
 	ld	hl, #(_sprites + 0x0004)
 	ld	(hl), #0x01
+;src/game.c:33: sprites[0].turned = 0;
+	ld	hl, #(_sprites + 0x0017)
+	ld	(hl), #0x00
 00114$:
 ;src/game.c:37: if (sprites[0].moveH !=0 || sprites[0].moveV !=0)					//sprite moved
 	ld	hl, #(_sprites + 0x0004) + 0
@@ -212,40 +220,39 @@ _moveSprites::
 	add	hl, hl
 	add	hl, hl
 	add	hl, hl
-	add	hl, bc
 	ld	bc,#_sprites
 	add	hl,bc
-	ld	-7 (ix), l
-	ld	-6 (ix), h
+	ld	-2 (ix), l
+	ld	-1 (ix), h
 	ld	a, (hl)
-	ld	-1 (ix), a
+	ld	-7 (ix), a
 	or	a, a
 	jp	Z, 00113$
 ;src/game.c:56: collision = 0;
 	ld	-10 (ix), #0x00
 ;src/game.c:58: x = sprites[i].x;
-	ld	a, -7 (ix)
+	ld	a, -2 (ix)
 	add	a, #0x01
-	ld	-3 (ix), a
-	ld	a, -6 (ix)
+	ld	-6 (ix), a
+	ld	a, -1 (ix)
 	adc	a, #0x00
-	ld	-2 (ix), a
-	ld	l,-3 (ix)
-	ld	h,-2 (ix)
+	ld	-5 (ix), a
+	ld	l,-6 (ix)
+	ld	h,-5 (ix)
 	ld	b, (hl)
 ;src/game.c:59: y = sprites[i].y;
-	ld	a, -7 (ix)
+	ld	a, -2 (ix)
 	add	a, #0x02
-	ld	-5 (ix), a
-	ld	a, -6 (ix)
-	adc	a, #0x00
 	ld	-4 (ix), a
-	ld	l,-5 (ix)
-	ld	h,-4 (ix)
+	ld	a, -1 (ix)
+	adc	a, #0x00
+	ld	-3 (ix), a
+	ld	l,-4 (ix)
+	ld	h,-3 (ix)
 	ld	c, (hl)
 ;src/game.c:61: y = y + (4*sprites[i].moveV);	//vertical movement: Y is *px, X is *byte. M0 so Y is 4 times slower
-	ld	l,-7 (ix)
-	ld	h,-6 (ix)
+	ld	l,-2 (ix)
+	ld	h,-1 (ix)
 	inc	hl
 	inc	hl
 	inc	hl
@@ -256,8 +263,8 @@ _moveSprites::
 	add	hl, bc
 	ld	c, l
 ;src/game.c:62: x = x + (sprites[i].moveH);
-	ld	l,-7 (ix)
-	ld	h,-6 (ix)
+	ld	l,-2 (ix)
+	ld	h,-1 (ix)
 	ld	de, #0x0004
 	add	hl, de
 	ld	e, (hl)
@@ -265,8 +272,8 @@ _moveSprites::
 	add	hl, de
 	ld	-9 (ix), l
 ;src/game.c:65: if (y > (GAME_AREA_BOTTOM - sprites[i].height))
-	ld	l,-7 (ix)
-	ld	h,-6 (ix)
+	ld	l,-2 (ix)
+	ld	h,-1 (ix)
 	ld	de, #0x0009
 	add	hl, de
 	ld	e, (hl)
@@ -291,8 +298,8 @@ _moveSprites::
 	ld	-10 (ix), #0x01
 00102$:
 ;src/game.c:68: if (x > (GAME_AREA_RIGHT - sprites[i].width))
-	ld	l,-7 (ix)
-	ld	h,-6 (ix)
+	ld	l,-2 (ix)
+	ld	h,-1 (ix)
 	ld	de, #0x000a
 	add	hl, de
 	ld	e, (hl)
@@ -320,16 +327,16 @@ _moveSprites::
 	bit	0, -10 (ix)
 	jr	NZ,00106$
 ;src/game.c:75: sprites[i].y = y;
-	ld	l,-5 (ix)
-	ld	h,-4 (ix)
+	ld	l,-4 (ix)
+	ld	h,-3 (ix)
 	ld	(hl), c
 00106$:
 ;src/game.c:76: if ((collision & LEFT_RIGHT_COLLISION) == 0)		//if not hitting right, move up/down
 	bit	1, -10 (ix)
 	jr	NZ,00113$
 ;src/game.c:77: sprites[i].x = x;
-	ld	l,-3 (ix)
-	ld	h,-2 (ix)
+	ld	l,-6 (ix)
+	ld	h,-5 (ix)
 	ld	a, -9 (ix)
 	ld	(hl), a
 00113$:
@@ -398,8 +405,8 @@ _init_game::
 	ld	hl, #_G_blast
 	ld	((_sprites + 0x0013)), hl
 ;src/game.c:102: sprites[0].turned = 0;											//start looking right/front
-	ld	hl, #0x0000
-	ld	((_sprites + 0x0017)), hl
+	ld	hl, #(_sprites + 0x0017)
+	ld	(hl), #0x00
 ;src/game.c:105: for (i = 1; i < MAX_SPRITES; i++)
 	ld	c, #0x01
 00102$:
@@ -412,7 +419,6 @@ _init_game::
 	add	hl, hl
 	add	hl, hl
 	add	hl, hl
-	add	hl, bc
 	ld	de, #_sprites
 	add	hl, de
 	ld	(hl), #0x00
@@ -488,6 +494,7 @@ _game::
 	ld	0 (iy), a
 ;src/game.c:143: anim_clock+=ANIM_SPEED;
 	ld	iy, #_anim_clock
+	inc	0 (iy)
 	inc	0 (iy)
 ;src/game.c:144: if (anim_clock > ANIM_CYCLE)
 	ld	a, #0x10

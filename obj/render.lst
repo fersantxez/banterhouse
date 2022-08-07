@@ -54,14 +54,14 @@
    0000 DD E5         [15]   54 	push	ix
    0002 DD 21 00 00   [14]   55 	ld	ix,#0
    0006 DD 39         [15]   56 	add	ix,sp
-   0008 21 F6 FF      [10]   57 	ld	hl, #-10
+   0008 21 F1 FF      [10]   57 	ld	hl, #-15
    000B 39            [11]   58 	add	hl, sp
    000C F9            [ 6]   59 	ld	sp, hl
                              60 ;src/render.c:16: for (i = 0; i < MAX_SPRITES; i++) {
-   000D DD 36 F6 00   [19]   61 	ld	-10 (ix), #0x00
-   0011                      62 00126$:
+   000D DD 36 F1 00   [19]   61 	ld	-15 (ix), #0x00
+   0011                      62 00128$:
                              63 ;src/render.c:17: if (sprites[i].id !=0) {						//only live and renderable sprites
-   0011 DD 4E F6      [19]   64 	ld	c,-10 (ix)
+   0011 DD 4E F1      [19]   64 	ld	c,-15 (ix)
    0014 06 00         [ 7]   65 	ld	b,#0x00
    0016 69            [ 4]   66 	ld	l, c
    0017 60            [ 4]   67 	ld	h, b
@@ -70,371 +70,390 @@
    001A 29            [11]   70 	add	hl, hl
    001B 29            [11]   71 	add	hl, hl
    001C 29            [11]   72 	add	hl, hl
-   001D 09            [11]   73 	add	hl, bc
-   001E 01r00r00      [10]   74 	ld	bc,#_sprites
-   0021 09            [11]   75 	add	hl,bc
-   0022 DD 75 FA      [19]   76 	ld	-6 (ix), l
-   0025 DD 74 FB      [19]   77 	ld	-5 (ix), h
-   0028 7E            [ 7]   78 	ld	a, (hl)
-   0029 B7            [ 4]   79 	or	a, a
-   002A CArA4r01      [10]   80 	jp	Z, 00127$
-                             81 ;src/render.c:18: if (sprites[i].properties & MASK_RENDER) {
-   002D DD 6E FA      [19]   82 	ld	l,-6 (ix)
-   0030 DD 66 FB      [19]   83 	ld	h,-5 (ix)
-   0033 11 0B 00      [10]   84 	ld	de, #0x000b
-   0036 19            [11]   85 	add	hl, de
-   0037 4E            [ 7]   86 	ld	c, (hl)
-                             87 ;src/render.c:46: cpct_getScreenPtr(mem_start, sprites[i].x, sprites[i].y),
-   0038 DD 7E FA      [19]   88 	ld	a, -6 (ix)
-   003B C6 02         [ 7]   89 	add	a, #0x02
-   003D DD 77 F8      [19]   90 	ld	-8 (ix), a
-   0040 DD 7E FB      [19]   91 	ld	a, -5 (ix)
-   0043 CE 00         [ 7]   92 	adc	a, #0x00
-   0045 DD 77 F9      [19]   93 	ld	-7 (ix), a
-   0048 DD 7E FA      [19]   94 	ld	a, -6 (ix)
-   004B C6 01         [ 7]   95 	add	a, #0x01
-   004D DD 77 FE      [19]   96 	ld	-2 (ix), a
-   0050 DD 7E FB      [19]   97 	ld	a, -5 (ix)
-   0053 CE 00         [ 7]   98 	adc	a, #0x00
-   0055 DD 77 FF      [19]   99 	ld	-1 (ix), a
-                            100 ;src/render.c:18: if (sprites[i].properties & MASK_RENDER) {
-   0058 CB 41         [ 8]  101 	bit	0, c
-   005A CAr53r01      [10]  102 	jp	Z,00119$
-                            103 ;src/render.c:33: sprite = sprites[i].sprite_f1; 
-   005D DD 7E FA      [19]  104 	ld	a, -6 (ix)
-   0060 C6 0F         [ 7]  105 	add	a, #0x0f
-   0062 DD 77 FC      [19]  106 	ld	-4 (ix), a
-   0065 DD 7E FB      [19]  107 	ld	a, -5 (ix)
-   0068 CE 00         [ 7]  108 	adc	a, #0x00
-   006A DD 77 FD      [19]  109 	ld	-3 (ix), a
-                            110 ;src/render.c:20: if (sprites[i].properties & MASK_ANIMATE) {
-   006D CB 49         [ 8]  111 	bit	1, c
-   006F 28 55         [12]  112 	jr	Z,00114$
-                            113 ;src/render.c:28: if (anim_clock > 7) num_frame=2;
-   0071 3E 07         [ 7]  114 	ld	a, #0x07
-   0073 FD 21r00r00   [14]  115 	ld	iy, #_anim_clock
-   0077 FD 96 00      [19]  116 	sub	a, 0 (iy)
-   007A 30 04         [12]  117 	jr	NC,00102$
-   007C 3E 02         [ 7]  118 	ld	a, #0x02
-   007E 18 02         [12]  119 	jr	00103$
-   0080                     120 00102$:
-                            121 ;src/render.c:29: else num_frame=1;
-   0080 3E 01         [ 7]  122 	ld	a, #0x01
-   0082                     123 00103$:
-                            124 ;src/render.c:32: if (num_frame == 1) {
-   0082 FE 01         [ 7]  125 	cp	a, #0x01
-   0084 20 0B         [12]  126 	jr	NZ,00111$
-                            127 ;src/render.c:33: sprite = sprites[i].sprite_f1; 
-   0086 DD 6E FC      [19]  128 	ld	l,-4 (ix)
-   0089 DD 66 FD      [19]  129 	ld	h,-3 (ix)
-   008C 5E            [ 7]  130 	ld	e, (hl)
-   008D 23            [ 6]  131 	inc	hl
-   008E 56            [ 7]  132 	ld	d, (hl)
-   008F 18 3E         [12]  133 	jr	00115$
-   0091                     134 00111$:
-                            135 ;src/render.c:34: } else if (num_frame == 2) {
-   0091 FE 02         [ 7]  136 	cp	a, #0x02
-   0093 20 0F         [12]  137 	jr	NZ,00108$
-                            138 ;src/render.c:35: sprite = sprites[i].sprite_f2;
-   0095 DD 6E FA      [19]  139 	ld	l,-6 (ix)
-   0098 DD 66 FB      [19]  140 	ld	h,-5 (ix)
-   009B 11 11 00      [10]  141 	ld	de, #0x0011
-   009E 19            [11]  142 	add	hl, de
-   009F 5E            [ 7]  143 	ld	e, (hl)
-   00A0 23            [ 6]  144 	inc	hl
-   00A1 56            [ 7]  145 	ld	d, (hl)
-   00A2 18 2B         [12]  146 	jr	00115$
-   00A4                     147 00108$:
-                            148 ;src/render.c:36: } else if (num_frame == 3) { 
-   00A4 D6 03         [ 7]  149 	sub	a, #0x03
-   00A6 20 0F         [12]  150 	jr	NZ,00105$
-                            151 ;src/render.c:37: sprite = sprites[i].sprite_f3; 
-   00A8 DD 6E FA      [19]  152 	ld	l,-6 (ix)
-   00AB DD 66 FB      [19]  153 	ld	h,-5 (ix)
-   00AE 11 13 00      [10]  154 	ld	de, #0x0013
-   00B1 19            [11]  155 	add	hl, de
-   00B2 5E            [ 7]  156 	ld	e, (hl)
-   00B3 23            [ 6]  157 	inc	hl
-   00B4 56            [ 7]  158 	ld	d, (hl)
-   00B5 18 18         [12]  159 	jr	00115$
-   00B7                     160 00105$:
-                            161 ;src/render.c:38: } else sprite = sprites[i].sprite_f4;
-   00B7 DD 6E FA      [19]  162 	ld	l,-6 (ix)
-   00BA DD 66 FB      [19]  163 	ld	h,-5 (ix)
-   00BD 11 15 00      [10]  164 	ld	de, #0x0015
-   00C0 19            [11]  165 	add	hl, de
-   00C1 5E            [ 7]  166 	ld	e, (hl)
-   00C2 23            [ 6]  167 	inc	hl
-   00C3 56            [ 7]  168 	ld	d, (hl)
-   00C4 18 09         [12]  169 	jr	00115$
-   00C6                     170 00114$:
-                            171 ;src/render.c:39: } else sprite = sprites[i].sprite_f1;
-   00C6 DD 6E FC      [19]  172 	ld	l,-4 (ix)
-   00C9 DD 66 FD      [19]  173 	ld	h,-3 (ix)
-   00CC 5E            [ 7]  174 	ld	e, (hl)
-   00CD 23            [ 6]  175 	inc	hl
-   00CE 56            [ 7]  176 	ld	d, (hl)
-   00CF                     177 00115$:
-                            178 ;src/render.c:41: if (sprites[i].turned)					//turn sprite around
-   00CF DD 6E FA      [19]  179 	ld	l,-6 (ix)
-   00D2 DD 66 FB      [19]  180 	ld	h,-5 (ix)
-   00D5 01 17 00      [10]  181 	ld	bc, #0x0017
-   00D8 09            [11]  182 	add	hl, bc
-   00D9 7E            [ 7]  183 	ld	a, (hl)
-   00DA 23            [ 6]  184 	inc	hl
-   00DB 66            [ 7]  185 	ld	h, (hl)
-   00DC 6F            [ 4]  186 	ld	l, a
+   001D 01r00r00      [10]   73 	ld	bc,#_sprites
+   0020 09            [11]   74 	add	hl,bc
+   0021 DD 75 FB      [19]   75 	ld	-5 (ix), l
+   0024 DD 74 FC      [19]   76 	ld	-4 (ix), h
+   0027 7E            [ 7]   77 	ld	a, (hl)
+   0028 B7            [ 4]   78 	or	a, a
+   0029 CArD5r01      [10]   79 	jp	Z, 00129$
+                             80 ;src/render.c:18: if (sprites[i].properties & MASK_RENDER) {
+   002C DD 6E FB      [19]   81 	ld	l,-5 (ix)
+   002F DD 66 FC      [19]   82 	ld	h,-4 (ix)
+   0032 11 0B 00      [10]   83 	ld	de, #0x000b
+   0035 19            [11]   84 	add	hl, de
+   0036 4E            [ 7]   85 	ld	c, (hl)
+                             86 ;src/render.c:46: cpct_getScreenPtr(mem_start, sprites[i].x, sprites[i].y),
+   0037 DD 7E FB      [19]   87 	ld	a, -5 (ix)
+   003A C6 02         [ 7]   88 	add	a, #0x02
+   003C DD 77 F7      [19]   89 	ld	-9 (ix), a
+   003F DD 7E FC      [19]   90 	ld	a, -4 (ix)
+   0042 CE 00         [ 7]   91 	adc	a, #0x00
+   0044 DD 77 F8      [19]   92 	ld	-8 (ix), a
+   0047 DD 7E FB      [19]   93 	ld	a, -5 (ix)
+   004A C6 01         [ 7]   94 	add	a, #0x01
+   004C DD 77 FD      [19]   95 	ld	-3 (ix), a
+   004F DD 7E FC      [19]   96 	ld	a, -4 (ix)
+   0052 CE 00         [ 7]   97 	adc	a, #0x00
+   0054 DD 77 FE      [19]   98 	ld	-2 (ix), a
+                             99 ;src/render.c:18: if (sprites[i].properties & MASK_RENDER) {
+   0057 CB 41         [ 8]  100 	bit	0, c
+   0059 CAr84r01      [10]  101 	jp	Z,00121$
+                            102 ;src/render.c:33: sprite = sprites[i].sprite_f1; 
+   005C DD 7E FB      [19]  103 	ld	a, -5 (ix)
+   005F C6 0F         [ 7]  104 	add	a, #0x0f
+   0061 DD 77 F4      [19]  105 	ld	-12 (ix), a
+   0064 DD 7E FC      [19]  106 	ld	a, -4 (ix)
+   0067 CE 00         [ 7]  107 	adc	a, #0x00
+   0069 DD 77 F5      [19]  108 	ld	-11 (ix), a
+                            109 ;src/render.c:20: if (sprites[i].properties & MASK_ANIMATE) {
+   006C CB 49         [ 8]  110 	bit	1, c
+   006E 28 55         [12]  111 	jr	Z,00114$
+                            112 ;src/render.c:28: if (anim_clock > 7) num_frame=2;
+   0070 3E 07         [ 7]  113 	ld	a, #0x07
+   0072 FD 21r00r00   [14]  114 	ld	iy, #_anim_clock
+   0076 FD 96 00      [19]  115 	sub	a, 0 (iy)
+   0079 30 04         [12]  116 	jr	NC,00102$
+   007B 3E 02         [ 7]  117 	ld	a, #0x02
+   007D 18 02         [12]  118 	jr	00103$
+   007F                     119 00102$:
+                            120 ;src/render.c:29: else num_frame=1;
+   007F 3E 01         [ 7]  121 	ld	a, #0x01
+   0081                     122 00103$:
+                            123 ;src/render.c:32: if (num_frame == 1) {
+   0081 FE 01         [ 7]  124 	cp	a, #0x01
+   0083 20 0B         [12]  125 	jr	NZ,00111$
+                            126 ;src/render.c:33: sprite = sprites[i].sprite_f1; 
+   0085 DD 6E F4      [19]  127 	ld	l,-12 (ix)
+   0088 DD 66 F5      [19]  128 	ld	h,-11 (ix)
+   008B 5E            [ 7]  129 	ld	e, (hl)
+   008C 23            [ 6]  130 	inc	hl
+   008D 56            [ 7]  131 	ld	d, (hl)
+   008E 18 3E         [12]  132 	jr	00115$
+   0090                     133 00111$:
+                            134 ;src/render.c:34: } else if (num_frame == 2) {
+   0090 FE 02         [ 7]  135 	cp	a, #0x02
+   0092 20 0F         [12]  136 	jr	NZ,00108$
+                            137 ;src/render.c:35: sprite = sprites[i].sprite_f2;
+   0094 DD 6E FB      [19]  138 	ld	l,-5 (ix)
+   0097 DD 66 FC      [19]  139 	ld	h,-4 (ix)
+   009A 11 11 00      [10]  140 	ld	de, #0x0011
+   009D 19            [11]  141 	add	hl, de
+   009E 5E            [ 7]  142 	ld	e, (hl)
+   009F 23            [ 6]  143 	inc	hl
+   00A0 56            [ 7]  144 	ld	d, (hl)
+   00A1 18 2B         [12]  145 	jr	00115$
+   00A3                     146 00108$:
+                            147 ;src/render.c:36: } else if (num_frame == 3) { 
+   00A3 D6 03         [ 7]  148 	sub	a, #0x03
+   00A5 20 0F         [12]  149 	jr	NZ,00105$
+                            150 ;src/render.c:37: sprite = sprites[i].sprite_f3; 
+   00A7 DD 6E FB      [19]  151 	ld	l,-5 (ix)
+   00AA DD 66 FC      [19]  152 	ld	h,-4 (ix)
+   00AD 11 13 00      [10]  153 	ld	de, #0x0013
+   00B0 19            [11]  154 	add	hl, de
+   00B1 5E            [ 7]  155 	ld	e, (hl)
+   00B2 23            [ 6]  156 	inc	hl
+   00B3 56            [ 7]  157 	ld	d, (hl)
+   00B4 18 18         [12]  158 	jr	00115$
+   00B6                     159 00105$:
+                            160 ;src/render.c:38: } else sprite = sprites[i].sprite_f4;
+   00B6 DD 6E FB      [19]  161 	ld	l,-5 (ix)
+   00B9 DD 66 FC      [19]  162 	ld	h,-4 (ix)
+   00BC 11 15 00      [10]  163 	ld	de, #0x0015
+   00BF 19            [11]  164 	add	hl, de
+   00C0 5E            [ 7]  165 	ld	e, (hl)
+   00C1 23            [ 6]  166 	inc	hl
+   00C2 56            [ 7]  167 	ld	d, (hl)
+   00C3 18 09         [12]  168 	jr	00115$
+   00C5                     169 00114$:
+                            170 ;src/render.c:39: } else sprite = sprites[i].sprite_f1;
+   00C5 DD 6E F4      [19]  171 	ld	l,-12 (ix)
+   00C8 DD 66 F5      [19]  172 	ld	h,-11 (ix)
+   00CB 5E            [ 7]  173 	ld	e, (hl)
+   00CC 23            [ 6]  174 	inc	hl
+   00CD 56            [ 7]  175 	ld	d, (hl)
+   00CE                     176 00115$:
+                            177 ;src/render.c:41: if (sprites[i].turned)					//turn sprite around
+   00CE DD 7E FB      [19]  178 	ld	a, -5 (ix)
+   00D1 C6 17         [ 7]  179 	add	a, #0x17
+   00D3 DD 77 F4      [19]  180 	ld	-12 (ix), a
+   00D6 DD 7E FC      [19]  181 	ld	a, -4 (ix)
+   00D9 CE 00         [ 7]  182 	adc	a, #0x00
+   00DB DD 77 F5      [19]  183 	ld	-11 (ix), a
+   00DE DD 6E F4      [19]  184 	ld	l,-12 (ix)
+   00E1 DD 66 F5      [19]  185 	ld	h,-11 (ix)
+   00E4 4E            [ 7]  186 	ld	c, (hl)
                             187 ;src/render.c:42: cpct_hflipSpriteMaskedM0(sprites[i].width, sprites[i].height, sprite);
-   00DD DD 7E FA      [19]  188 	ld	a, -6 (ix)
-   00E0 C6 09         [ 7]  189 	add	a, #0x09
-   00E2 4F            [ 4]  190 	ld	c, a
-   00E3 DD 7E FB      [19]  191 	ld	a, -5 (ix)
-   00E6 CE 00         [ 7]  192 	adc	a, #0x00
-   00E8 47            [ 4]  193 	ld	b, a
-   00E9 DD 7E FA      [19]  194 	ld	a, -6 (ix)
-   00EC C6 0A         [ 7]  195 	add	a, #0x0a
-   00EE DD 77 FC      [19]  196 	ld	-4 (ix), a
-   00F1 DD 7E FB      [19]  197 	ld	a, -5 (ix)
-   00F4 CE 00         [ 7]  198 	adc	a, #0x00
-   00F6 DD 77 FD      [19]  199 	ld	-3 (ix), a
+   00E5 DD 7E FB      [19]  188 	ld	a, -5 (ix)
+   00E8 C6 09         [ 7]  189 	add	a, #0x09
+   00EA DD 77 F9      [19]  190 	ld	-7 (ix), a
+   00ED DD 7E FC      [19]  191 	ld	a, -4 (ix)
+   00F0 CE 00         [ 7]  192 	adc	a, #0x00
+   00F2 DD 77 FA      [19]  193 	ld	-6 (ix), a
+   00F5 DD 7E FB      [19]  194 	ld	a, -5 (ix)
+   00F8 C6 0A         [ 7]  195 	add	a, #0x0a
+   00FA DD 77 F2      [19]  196 	ld	-14 (ix), a
+   00FD DD 7E FC      [19]  197 	ld	a, -4 (ix)
+   0100 CE 00         [ 7]  198 	adc	a, #0x00
+   0102 DD 77 F3      [19]  199 	ld	-13 (ix), a
                             200 ;src/render.c:41: if (sprites[i].turned)					//turn sprite around
-   00F9 7C            [ 4]  201 	ld	a, h
-   00FA B5            [ 4]  202 	or	a,l
-   00FB 28 1C         [12]  203 	jr	Z,00117$
+   0105 79            [ 4]  201 	ld	a, c
+   0106 B7            [ 4]  202 	or	a, a
+   0107 28 18         [12]  203 	jr	Z,00117$
                             204 ;src/render.c:42: cpct_hflipSpriteMaskedM0(sprites[i].width, sprites[i].height, sprite);
-   00FD 0A            [ 7]  205 	ld	a, (bc)
-   00FE DD 6E FC      [19]  206 	ld	l,-4 (ix)
-   0101 DD 66 FD      [19]  207 	ld	h,-3 (ix)
-   0104 F5            [11]  208 	push	af
-   0105 7E            [ 7]  209 	ld	a, (hl)
-   0106 DD 77 F7      [19]  210 	ld	-9 (ix), a
-   0109 F1            [10]  211 	pop	af
-   010A C5            [11]  212 	push	bc
-   010B D5            [11]  213 	push	de
-   010C D5            [11]  214 	push	de
-   010D F5            [11]  215 	push	af
-   010E 33            [ 6]  216 	inc	sp
-   010F DD 7E F7      [19]  217 	ld	a, -9 (ix)
-   0112 F5            [11]  218 	push	af
-   0113 33            [ 6]  219 	inc	sp
-   0114 CDr00r00      [17]  220 	call	_cpct_hflipSpriteMaskedM0
-   0117 D1            [10]  221 	pop	de
-   0118 C1            [10]  222 	pop	bc
-   0119                     223 00117$:
-                            224 ;src/render.c:47: sprites[i].width, sprites[i].height);
-   0119 0A            [ 7]  225 	ld	a, (bc)
-   011A DD 77 F7      [19]  226 	ld	-9 (ix), a
-   011D DD 6E FC      [19]  227 	ld	l,-4 (ix)
-   0120 DD 66 FD      [19]  228 	ld	h,-3 (ix)
-   0123 7E            [ 7]  229 	ld	a, (hl)
-   0124 DD 77 FC      [19]  230 	ld	-4 (ix), a
-                            231 ;src/render.c:46: cpct_getScreenPtr(mem_start, sprites[i].x, sprites[i].y),
-   0127 DD 6E F8      [19]  232 	ld	l,-8 (ix)
-   012A DD 66 F9      [19]  233 	ld	h,-7 (ix)
-   012D 4E            [ 7]  234 	ld	c, (hl)
-   012E DD 6E FE      [19]  235 	ld	l,-2 (ix)
-   0131 DD 66 FF      [19]  236 	ld	h,-1 (ix)
-   0134 46            [ 7]  237 	ld	b, (hl)
-   0135 FD 2Ar00r00   [20]  238 	ld	iy, (_mem_start)
-   0139 D5            [11]  239 	push	de
-   013A 79            [ 4]  240 	ld	a, c
-   013B F5            [11]  241 	push	af
-   013C 33            [ 6]  242 	inc	sp
-   013D C5            [11]  243 	push	bc
-   013E 33            [ 6]  244 	inc	sp
-   013F FD E5         [15]  245 	push	iy
-   0141 CDr00r00      [17]  246 	call	_cpct_getScreenPtr
-   0144 4D            [ 4]  247 	ld	c, l
-   0145 44            [ 4]  248 	ld	b, h
-   0146 D1            [10]  249 	pop	de
-                            250 ;src/render.c:44: cpct_drawSpriteMasked(sprite,
-   0147 DD 66 F7      [19]  251 	ld	h, -9 (ix)
-   014A DD 6E FC      [19]  252 	ld	l, -4 (ix)
-   014D E5            [11]  253 	push	hl
-   014E C5            [11]  254 	push	bc
-   014F D5            [11]  255 	push	de
-   0150 CDr00r00      [17]  256 	call	_cpct_drawSpriteMasked
-   0153                     257 00119$:
-                            258 ;src/render.c:46: cpct_getScreenPtr(mem_start, sprites[i].x, sprites[i].y),
-   0153 DD 6E FE      [19]  259 	ld	l,-2 (ix)
-   0156 DD 66 FF      [19]  260 	ld	h,-1 (ix)
-   0159 4E            [ 7]  261 	ld	c, (hl)
-                            262 ;src/render.c:51: if (!swap_memvideo) {
-   015A 3Ar00r00      [13]  263 	ld	a,(#_swap_memvideo + 0)
-   015D B7            [ 4]  264 	or	a, a
-   015E 20 23         [12]  265 	jr	NZ,00121$
-                            266 ;src/render.c:52: sprites[i].x_prev_B = sprites[i].x;
-   0160 DD 7E FA      [19]  267 	ld	a, -6 (ix)
-   0163 C6 07         [ 7]  268 	add	a, #0x07
-   0165 6F            [ 4]  269 	ld	l, a
-   0166 DD 7E FB      [19]  270 	ld	a, -5 (ix)
-   0169 CE 00         [ 7]  271 	adc	a, #0x00
-   016B 67            [ 4]  272 	ld	h, a
-   016C 71            [ 7]  273 	ld	(hl), c
-                            274 ;src/render.c:53: sprites[i].y_prev_B = sprites[i].y;
-   016D DD 7E FA      [19]  275 	ld	a, -6 (ix)
-   0170 C6 08         [ 7]  276 	add	a, #0x08
-   0172 4F            [ 4]  277 	ld	c, a
-   0173 DD 7E FB      [19]  278 	ld	a, -5 (ix)
-   0176 CE 00         [ 7]  279 	adc	a, #0x00
-   0178 47            [ 4]  280 	ld	b, a
-   0179 DD 6E F8      [19]  281 	ld	l,-8 (ix)
-   017C DD 66 F9      [19]  282 	ld	h,-7 (ix)
-   017F 7E            [ 7]  283 	ld	a, (hl)
-   0180 02            [ 7]  284 	ld	(bc), a
-   0181 18 21         [12]  285 	jr	00127$
-   0183                     286 00121$:
-                            287 ;src/render.c:55: sprites[i].x_prev_A = sprites[i].x;
-   0183 DD 7E FA      [19]  288 	ld	a, -6 (ix)
-   0186 C6 05         [ 7]  289 	add	a, #0x05
-   0188 6F            [ 4]  290 	ld	l, a
-   0189 DD 7E FB      [19]  291 	ld	a, -5 (ix)
-   018C CE 00         [ 7]  292 	adc	a, #0x00
-   018E 67            [ 4]  293 	ld	h, a
-   018F 71            [ 7]  294 	ld	(hl), c
-                            295 ;src/render.c:56: sprites[i].y_prev_A = sprites[i].y;
-   0190 DD 7E FA      [19]  296 	ld	a, -6 (ix)
-   0193 C6 06         [ 7]  297 	add	a, #0x06
-   0195 4F            [ 4]  298 	ld	c, a
-   0196 DD 7E FB      [19]  299 	ld	a, -5 (ix)
-   0199 CE 00         [ 7]  300 	adc	a, #0x00
-   019B 47            [ 4]  301 	ld	b, a
-   019C DD 6E F8      [19]  302 	ld	l,-8 (ix)
-   019F DD 66 F9      [19]  303 	ld	h,-7 (ix)
-   01A2 7E            [ 7]  304 	ld	a, (hl)
-   01A3 02            [ 7]  305 	ld	(bc), a
-   01A4                     306 00127$:
-                            307 ;src/render.c:16: for (i = 0; i < MAX_SPRITES; i++) {
-   01A4 DD 34 F6      [23]  308 	inc	-10 (ix)
-   01A7 DD 7E F6      [19]  309 	ld	a, -10 (ix)
-   01AA D6 0A         [ 7]  310 	sub	a, #0x0a
-   01AC DAr11r00      [10]  311 	jp	C, 00126$
-   01AF DD F9         [10]  312 	ld	sp, ix
-   01B1 DD E1         [14]  313 	pop	ix
-   01B3 C9            [10]  314 	ret
-                            315 ;src/render.c:62: void deleteSprites(){
-                            316 ;	---------------------------------
-                            317 ; Function deleteSprites
-                            318 ; ---------------------------------
-   01B4                     319 _deleteSprites::
-   01B4 DD E5         [15]  320 	push	ix
-   01B6 DD 21 00 00   [14]  321 	ld	ix,#0
-   01BA DD 39         [15]  322 	add	ix,sp
-   01BC 21 F5 FF      [10]  323 	ld	hl, #-11
-   01BF 39            [11]  324 	add	hl, sp
-   01C0 F9            [ 6]  325 	ld	sp, hl
-                            326 ;src/render.c:67: for (i = 0; i < MAX_SPRITES; i++) {
-   01C1 DD 36 F5 00   [19]  327 	ld	-11 (ix), #0x00
-   01C5                     328 00107$:
-                            329 ;src/render.c:68: if (sprites[i].id !=0) {
-   01C5 DD 4E F5      [19]  330 	ld	c,-11 (ix)
-   01C8 06 00         [ 7]  331 	ld	b,#0x00
-   01CA 69            [ 4]  332 	ld	l, c
-   01CB 60            [ 4]  333 	ld	h, b
-   01CC 29            [11]  334 	add	hl, hl
-   01CD 09            [11]  335 	add	hl, bc
-   01CE 29            [11]  336 	add	hl, hl
-   01CF 29            [11]  337 	add	hl, hl
-   01D0 29            [11]  338 	add	hl, hl
-   01D1 09            [11]  339 	add	hl, bc
-   01D2 01r00r00      [10]  340 	ld	bc,#_sprites
-   01D5 09            [11]  341 	add	hl,bc
-   01D6 DD 75 F6      [19]  342 	ld	-10 (ix), l
-   01D9 DD 74 F7      [19]  343 	ld	-9 (ix), h
-   01DC 7E            [ 7]  344 	ld	a, (hl)
-   01DD DD 77 FF      [19]  345 	ld	-1 (ix), a
-   01E0 B7            [ 4]  346 	or	a, a
-   01E1 CAr92r02      [10]  347 	jp	Z, 00108$
-                            348 ;src/render.c:69: if (!swap_memvideo){
-   01E4 3Ar00r00      [13]  349 	ld	a,(#_swap_memvideo + 0)
-   01E7 B7            [ 4]  350 	or	a, a
-   01E8 20 1E         [12]  351 	jr	NZ,00102$
-                            352 ;src/render.c:70: x = sprites[i].x_prev_B;
-   01EA DD 6E F6      [19]  353 	ld	l,-10 (ix)
-   01ED DD 66 F7      [19]  354 	ld	h,-9 (ix)
-   01F0 11 07 00      [10]  355 	ld	de, #0x0007
-   01F3 19            [11]  356 	add	hl, de
-   01F4 7E            [ 7]  357 	ld	a, (hl)
-   01F5 DD 77 FF      [19]  358 	ld	-1 (ix), a
-                            359 ;src/render.c:71: y = sprites[i].y_prev_B;
-   01F8 DD 6E F6      [19]  360 	ld	l,-10 (ix)
-   01FB DD 66 F7      [19]  361 	ld	h,-9 (ix)
-   01FE 11 08 00      [10]  362 	ld	de, #0x0008
-   0201 19            [11]  363 	add	hl, de
-   0202 7E            [ 7]  364 	ld	a, (hl)
-   0203 DD 77 FE      [19]  365 	ld	-2 (ix), a
-   0206 18 1C         [12]  366 	jr	00103$
-   0208                     367 00102$:
-                            368 ;src/render.c:74: x = sprites[i].x_prev_A;
-   0208 DD 6E F6      [19]  369 	ld	l,-10 (ix)
-   020B DD 66 F7      [19]  370 	ld	h,-9 (ix)
-   020E 11 05 00      [10]  371 	ld	de, #0x0005
-   0211 19            [11]  372 	add	hl, de
-   0212 7E            [ 7]  373 	ld	a, (hl)
-   0213 DD 77 FF      [19]  374 	ld	-1 (ix), a
-                            375 ;src/render.c:75: y = sprites[i].y_prev_A;
-   0216 DD 6E F6      [19]  376 	ld	l,-10 (ix)
-   0219 DD 66 F7      [19]  377 	ld	h,-9 (ix)
-   021C 11 06 00      [10]  378 	ld	de, #0x0006
-   021F 19            [11]  379 	add	hl, de
-   0220 7E            [ 7]  380 	ld	a, (hl)
-   0221 DD 77 FE      [19]  381 	ld	-2 (ix), a
-   0224                     382 00103$:
-                            383 ;src/render.c:80: sprites[i].width, sprites[i].height);
-   0224 DD 7E F6      [19]  384 	ld	a, -10 (ix)
-   0227 DD 77 FC      [19]  385 	ld	-4 (ix), a
-   022A DD 7E F7      [19]  386 	ld	a, -9 (ix)
-   022D DD 77 FD      [19]  387 	ld	-3 (ix), a
-   0230 DD 6E FC      [19]  388 	ld	l,-4 (ix)
-   0233 DD 66 FD      [19]  389 	ld	h,-3 (ix)
-   0236 11 09 00      [10]  390 	ld	de, #0x0009
-   0239 19            [11]  391 	add	hl, de
-   023A 7E            [ 7]  392 	ld	a, (hl)
-   023B DD 77 FC      [19]  393 	ld	-4 (ix), a
-   023E DD 6E F6      [19]  394 	ld	l,-10 (ix)
-   0241 DD 66 F7      [19]  395 	ld	h,-9 (ix)
-   0244 11 0A 00      [10]  396 	ld	de, #0x000a
-   0247 19            [11]  397 	add	hl, de
-   0248 7E            [ 7]  398 	ld	a, (hl)
-   0249 DD 77 F6      [19]  399 	ld	-10 (ix), a
-                            400 ;src/render.c:79: cpct_px2byteM0(5,5),						//background color
-   024C 21 05 05      [10]  401 	ld	hl, #0x0505
-   024F E5            [11]  402 	push	hl
-   0250 CDr00r00      [17]  403 	call	_cpct_px2byteM0
-   0253 DD 75 FA      [19]  404 	ld	-6 (ix), l
-   0256 DD 36 FB 00   [19]  405 	ld	-5 (ix), #0x00
-                            406 ;src/render.c:78: cpct_getScreenPtr(mem_start, x, y),
-   025A 2Ar00r00      [16]  407 	ld	hl, (_mem_start)
-   025D DD 75 F8      [19]  408 	ld	-8 (ix), l
-   0260 DD 74 F9      [19]  409 	ld	-7 (ix), h
-   0263 DD 66 FE      [19]  410 	ld	h, -2 (ix)
-   0266 DD 6E FF      [19]  411 	ld	l, -1 (ix)
-   0269 E5            [11]  412 	push	hl
-   026A DD 6E F8      [19]  413 	ld	l,-8 (ix)
-   026D DD 66 F9      [19]  414 	ld	h,-7 (ix)
-   0270 E5            [11]  415 	push	hl
-   0271 CDr00r00      [17]  416 	call	_cpct_getScreenPtr
-   0274 DD 74 F9      [19]  417 	ld	-7 (ix), h
-   0277 DD 75 F8      [19]  418 	ld	-8 (ix), l
-   027A DD 66 FC      [19]  419 	ld	h, -4 (ix)
-   027D DD 6E F6      [19]  420 	ld	l, -10 (ix)
-   0280 E5            [11]  421 	push	hl
-   0281 DD 6E FA      [19]  422 	ld	l,-6 (ix)
-   0284 DD 66 FB      [19]  423 	ld	h,-5 (ix)
-   0287 E5            [11]  424 	push	hl
-   0288 DD 6E F8      [19]  425 	ld	l,-8 (ix)
-   028B DD 66 F9      [19]  426 	ld	h,-7 (ix)
-   028E E5            [11]  427 	push	hl
-   028F CDr00r00      [17]  428 	call	_cpct_drawSolidBox
-   0292                     429 00108$:
-                            430 ;src/render.c:67: for (i = 0; i < MAX_SPRITES; i++) {
-   0292 DD 34 F5      [23]  431 	inc	-11 (ix)
-   0295 DD 7E F5      [19]  432 	ld	a, -11 (ix)
-   0298 D6 0A         [ 7]  433 	sub	a, #0x0a
-   029A DArC5r01      [10]  434 	jp	C, 00107$
-   029D DD F9         [10]  435 	ld	sp, ix
-   029F DD E1         [14]  436 	pop	ix
-   02A1 C9            [10]  437 	ret
-                            438 	.area _CODE
-                            439 	.area _INITIALIZER
-                            440 	.area _CABS (ABS)
+   0109 DD 6E F9      [19]  205 	ld	l,-7 (ix)
+   010C DD 66 FA      [19]  206 	ld	h,-6 (ix)
+   010F 46            [ 7]  207 	ld	b, (hl)
+   0110 DD 6E F2      [19]  208 	ld	l,-14 (ix)
+   0113 DD 66 F3      [19]  209 	ld	h,-13 (ix)
+   0116 7E            [ 7]  210 	ld	a, (hl)
+   0117 D5            [11]  211 	push	de
+   0118 D5            [11]  212 	push	de
+   0119 C5            [11]  213 	push	bc
+   011A 33            [ 6]  214 	inc	sp
+   011B F5            [11]  215 	push	af
+   011C 33            [ 6]  216 	inc	sp
+   011D CDr00r00      [17]  217 	call	_cpct_hflipSpriteMaskedM0
+   0120 D1            [10]  218 	pop	de
+   0121                     219 00117$:
+                            220 ;src/render.c:47: sprites[i].width, sprites[i].height);
+   0121 DD 6E F9      [19]  221 	ld	l,-7 (ix)
+   0124 DD 66 FA      [19]  222 	ld	h,-6 (ix)
+   0127 7E            [ 7]  223 	ld	a, (hl)
+   0128 DD 77 FF      [19]  224 	ld	-1 (ix), a
+   012B DD 6E F2      [19]  225 	ld	l,-14 (ix)
+   012E DD 66 F3      [19]  226 	ld	h,-13 (ix)
+   0131 7E            [ 7]  227 	ld	a, (hl)
+   0132 DD 77 F6      [19]  228 	ld	-10 (ix), a
+                            229 ;src/render.c:46: cpct_getScreenPtr(mem_start, sprites[i].x, sprites[i].y),
+   0135 DD 6E F7      [19]  230 	ld	l,-9 (ix)
+   0138 DD 66 F8      [19]  231 	ld	h,-8 (ix)
+   013B 4E            [ 7]  232 	ld	c, (hl)
+   013C DD 6E FD      [19]  233 	ld	l,-3 (ix)
+   013F DD 66 FE      [19]  234 	ld	h,-2 (ix)
+   0142 46            [ 7]  235 	ld	b, (hl)
+   0143 FD 2Ar00r00   [20]  236 	ld	iy, (_mem_start)
+   0147 D5            [11]  237 	push	de
+   0148 79            [ 4]  238 	ld	a, c
+   0149 F5            [11]  239 	push	af
+   014A 33            [ 6]  240 	inc	sp
+   014B C5            [11]  241 	push	bc
+   014C 33            [ 6]  242 	inc	sp
+   014D FD E5         [15]  243 	push	iy
+   014F CDr00r00      [17]  244 	call	_cpct_getScreenPtr
+   0152 4D            [ 4]  245 	ld	c, l
+   0153 44            [ 4]  246 	ld	b, h
+   0154 D1            [10]  247 	pop	de
+                            248 ;src/render.c:44: cpct_drawSpriteMasked(sprite,
+   0155 D5            [11]  249 	push	de
+   0156 DD 66 FF      [19]  250 	ld	h, -1 (ix)
+   0159 DD 6E F6      [19]  251 	ld	l, -10 (ix)
+   015C E5            [11]  252 	push	hl
+   015D C5            [11]  253 	push	bc
+   015E D5            [11]  254 	push	de
+   015F CDr00r00      [17]  255 	call	_cpct_drawSpriteMasked
+   0162 D1            [10]  256 	pop	de
+                            257 ;src/render.c:49: if (sprites[i].turned)					//turn back to normal (looking right)
+   0163 DD 6E F4      [19]  258 	ld	l,-12 (ix)
+   0166 DD 66 F5      [19]  259 	ld	h,-11 (ix)
+   0169 7E            [ 7]  260 	ld	a, (hl)
+   016A B7            [ 4]  261 	or	a, a
+   016B 28 17         [12]  262 	jr	Z,00121$
+                            263 ;src/render.c:50: cpct_hflipSpriteMaskedM0(sprites[i].width, sprites[i].height, sprite);
+   016D DD 6E F9      [19]  264 	ld	l,-7 (ix)
+   0170 DD 66 FA      [19]  265 	ld	h,-6 (ix)
+   0173 4E            [ 7]  266 	ld	c, (hl)
+   0174 DD 6E F2      [19]  267 	ld	l,-14 (ix)
+   0177 DD 66 F3      [19]  268 	ld	h,-13 (ix)
+   017A 46            [ 7]  269 	ld	b, (hl)
+   017B D5            [11]  270 	push	de
+   017C 79            [ 4]  271 	ld	a, c
+   017D F5            [11]  272 	push	af
+   017E 33            [ 6]  273 	inc	sp
+   017F C5            [11]  274 	push	bc
+   0180 33            [ 6]  275 	inc	sp
+   0181 CDr00r00      [17]  276 	call	_cpct_hflipSpriteMaskedM0
+   0184                     277 00121$:
+                            278 ;src/render.c:46: cpct_getScreenPtr(mem_start, sprites[i].x, sprites[i].y),
+   0184 DD 6E FD      [19]  279 	ld	l,-3 (ix)
+   0187 DD 66 FE      [19]  280 	ld	h,-2 (ix)
+   018A 4E            [ 7]  281 	ld	c, (hl)
+                            282 ;src/render.c:55: if (!swap_memvideo) {
+   018B 3Ar00r00      [13]  283 	ld	a,(#_swap_memvideo + 0)
+   018E B7            [ 4]  284 	or	a, a
+   018F 20 23         [12]  285 	jr	NZ,00123$
+                            286 ;src/render.c:56: sprites[i].x_prev_B = sprites[i].x;
+   0191 DD 7E FB      [19]  287 	ld	a, -5 (ix)
+   0194 C6 07         [ 7]  288 	add	a, #0x07
+   0196 6F            [ 4]  289 	ld	l, a
+   0197 DD 7E FC      [19]  290 	ld	a, -4 (ix)
+   019A CE 00         [ 7]  291 	adc	a, #0x00
+   019C 67            [ 4]  292 	ld	h, a
+   019D 71            [ 7]  293 	ld	(hl), c
+                            294 ;src/render.c:57: sprites[i].y_prev_B = sprites[i].y;
+   019E DD 7E FB      [19]  295 	ld	a, -5 (ix)
+   01A1 C6 08         [ 7]  296 	add	a, #0x08
+   01A3 4F            [ 4]  297 	ld	c, a
+   01A4 DD 7E FC      [19]  298 	ld	a, -4 (ix)
+   01A7 CE 00         [ 7]  299 	adc	a, #0x00
+   01A9 47            [ 4]  300 	ld	b, a
+   01AA DD 6E F7      [19]  301 	ld	l,-9 (ix)
+   01AD DD 66 F8      [19]  302 	ld	h,-8 (ix)
+   01B0 7E            [ 7]  303 	ld	a, (hl)
+   01B1 02            [ 7]  304 	ld	(bc), a
+   01B2 18 21         [12]  305 	jr	00129$
+   01B4                     306 00123$:
+                            307 ;src/render.c:59: sprites[i].x_prev_A = sprites[i].x;
+   01B4 DD 7E FB      [19]  308 	ld	a, -5 (ix)
+   01B7 C6 05         [ 7]  309 	add	a, #0x05
+   01B9 6F            [ 4]  310 	ld	l, a
+   01BA DD 7E FC      [19]  311 	ld	a, -4 (ix)
+   01BD CE 00         [ 7]  312 	adc	a, #0x00
+   01BF 67            [ 4]  313 	ld	h, a
+   01C0 71            [ 7]  314 	ld	(hl), c
+                            315 ;src/render.c:60: sprites[i].y_prev_A = sprites[i].y;
+   01C1 DD 7E FB      [19]  316 	ld	a, -5 (ix)
+   01C4 C6 06         [ 7]  317 	add	a, #0x06
+   01C6 4F            [ 4]  318 	ld	c, a
+   01C7 DD 7E FC      [19]  319 	ld	a, -4 (ix)
+   01CA CE 00         [ 7]  320 	adc	a, #0x00
+   01CC 47            [ 4]  321 	ld	b, a
+   01CD DD 6E F7      [19]  322 	ld	l,-9 (ix)
+   01D0 DD 66 F8      [19]  323 	ld	h,-8 (ix)
+   01D3 7E            [ 7]  324 	ld	a, (hl)
+   01D4 02            [ 7]  325 	ld	(bc), a
+   01D5                     326 00129$:
+                            327 ;src/render.c:16: for (i = 0; i < MAX_SPRITES; i++) {
+   01D5 DD 34 F1      [23]  328 	inc	-15 (ix)
+   01D8 DD 7E F1      [19]  329 	ld	a, -15 (ix)
+   01DB D6 0A         [ 7]  330 	sub	a, #0x0a
+   01DD DAr11r00      [10]  331 	jp	C, 00128$
+   01E0 DD F9         [10]  332 	ld	sp, ix
+   01E2 DD E1         [14]  333 	pop	ix
+   01E4 C9            [10]  334 	ret
+                            335 ;src/render.c:66: void deleteSprites(){
+                            336 ;	---------------------------------
+                            337 ; Function deleteSprites
+                            338 ; ---------------------------------
+   01E5                     339 _deleteSprites::
+   01E5 DD E5         [15]  340 	push	ix
+   01E7 DD 21 00 00   [14]  341 	ld	ix,#0
+   01EB DD 39         [15]  342 	add	ix,sp
+   01ED 21 F5 FF      [10]  343 	ld	hl, #-11
+   01F0 39            [11]  344 	add	hl, sp
+   01F1 F9            [ 6]  345 	ld	sp, hl
+                            346 ;src/render.c:71: for (i = 0; i < MAX_SPRITES; i++) {
+   01F2 DD 36 F5 00   [19]  347 	ld	-11 (ix), #0x00
+   01F6                     348 00107$:
+                            349 ;src/render.c:72: if (sprites[i].id !=0) {
+   01F6 DD 4E F5      [19]  350 	ld	c,-11 (ix)
+   01F9 06 00         [ 7]  351 	ld	b,#0x00
+   01FB 69            [ 4]  352 	ld	l, c
+   01FC 60            [ 4]  353 	ld	h, b
+   01FD 29            [11]  354 	add	hl, hl
+   01FE 09            [11]  355 	add	hl, bc
+   01FF 29            [11]  356 	add	hl, hl
+   0200 29            [11]  357 	add	hl, hl
+   0201 29            [11]  358 	add	hl, hl
+   0202 01r00r00      [10]  359 	ld	bc,#_sprites
+   0205 09            [11]  360 	add	hl,bc
+   0206 DD 75 F6      [19]  361 	ld	-10 (ix), l
+   0209 DD 74 F7      [19]  362 	ld	-9 (ix), h
+   020C 7E            [ 7]  363 	ld	a, (hl)
+   020D DD 77 FF      [19]  364 	ld	-1 (ix), a
+   0210 B7            [ 4]  365 	or	a, a
+   0211 CArC2r02      [10]  366 	jp	Z, 00108$
+                            367 ;src/render.c:73: if (!swap_memvideo){
+   0214 3Ar00r00      [13]  368 	ld	a,(#_swap_memvideo + 0)
+   0217 B7            [ 4]  369 	or	a, a
+   0218 20 1E         [12]  370 	jr	NZ,00102$
+                            371 ;src/render.c:74: x = sprites[i].x_prev_B;
+   021A DD 6E F6      [19]  372 	ld	l,-10 (ix)
+   021D DD 66 F7      [19]  373 	ld	h,-9 (ix)
+   0220 11 07 00      [10]  374 	ld	de, #0x0007
+   0223 19            [11]  375 	add	hl, de
+   0224 7E            [ 7]  376 	ld	a, (hl)
+   0225 DD 77 FF      [19]  377 	ld	-1 (ix), a
+                            378 ;src/render.c:75: y = sprites[i].y_prev_B;
+   0228 DD 6E F6      [19]  379 	ld	l,-10 (ix)
+   022B DD 66 F7      [19]  380 	ld	h,-9 (ix)
+   022E 11 08 00      [10]  381 	ld	de, #0x0008
+   0231 19            [11]  382 	add	hl, de
+   0232 7E            [ 7]  383 	ld	a, (hl)
+   0233 DD 77 FE      [19]  384 	ld	-2 (ix), a
+   0236 18 1C         [12]  385 	jr	00103$
+   0238                     386 00102$:
+                            387 ;src/render.c:78: x = sprites[i].x_prev_A;
+   0238 DD 6E F6      [19]  388 	ld	l,-10 (ix)
+   023B DD 66 F7      [19]  389 	ld	h,-9 (ix)
+   023E 11 05 00      [10]  390 	ld	de, #0x0005
+   0241 19            [11]  391 	add	hl, de
+   0242 7E            [ 7]  392 	ld	a, (hl)
+   0243 DD 77 FF      [19]  393 	ld	-1 (ix), a
+                            394 ;src/render.c:79: y = sprites[i].y_prev_A;
+   0246 DD 6E F6      [19]  395 	ld	l,-10 (ix)
+   0249 DD 66 F7      [19]  396 	ld	h,-9 (ix)
+   024C 11 06 00      [10]  397 	ld	de, #0x0006
+   024F 19            [11]  398 	add	hl, de
+   0250 7E            [ 7]  399 	ld	a, (hl)
+   0251 DD 77 FE      [19]  400 	ld	-2 (ix), a
+   0254                     401 00103$:
+                            402 ;src/render.c:84: sprites[i].width, sprites[i].height);
+   0254 DD 7E F6      [19]  403 	ld	a, -10 (ix)
+   0257 DD 77 FC      [19]  404 	ld	-4 (ix), a
+   025A DD 7E F7      [19]  405 	ld	a, -9 (ix)
+   025D DD 77 FD      [19]  406 	ld	-3 (ix), a
+   0260 DD 6E FC      [19]  407 	ld	l,-4 (ix)
+   0263 DD 66 FD      [19]  408 	ld	h,-3 (ix)
+   0266 11 09 00      [10]  409 	ld	de, #0x0009
+   0269 19            [11]  410 	add	hl, de
+   026A 7E            [ 7]  411 	ld	a, (hl)
+   026B DD 77 FC      [19]  412 	ld	-4 (ix), a
+   026E DD 6E F6      [19]  413 	ld	l,-10 (ix)
+   0271 DD 66 F7      [19]  414 	ld	h,-9 (ix)
+   0274 11 0A 00      [10]  415 	ld	de, #0x000a
+   0277 19            [11]  416 	add	hl, de
+   0278 7E            [ 7]  417 	ld	a, (hl)
+   0279 DD 77 F6      [19]  418 	ld	-10 (ix), a
+                            419 ;src/render.c:83: cpct_px2byteM0(5,5),						//background color
+   027C 21 05 05      [10]  420 	ld	hl, #0x0505
+   027F E5            [11]  421 	push	hl
+   0280 CDr00r00      [17]  422 	call	_cpct_px2byteM0
+   0283 DD 75 FA      [19]  423 	ld	-6 (ix), l
+   0286 DD 36 FB 00   [19]  424 	ld	-5 (ix), #0x00
+                            425 ;src/render.c:82: cpct_getScreenPtr(mem_start, x, y),
+   028A 2Ar00r00      [16]  426 	ld	hl, (_mem_start)
+   028D DD 75 F8      [19]  427 	ld	-8 (ix), l
+   0290 DD 74 F9      [19]  428 	ld	-7 (ix), h
+   0293 DD 66 FE      [19]  429 	ld	h, -2 (ix)
+   0296 DD 6E FF      [19]  430 	ld	l, -1 (ix)
+   0299 E5            [11]  431 	push	hl
+   029A DD 6E F8      [19]  432 	ld	l,-8 (ix)
+   029D DD 66 F9      [19]  433 	ld	h,-7 (ix)
+   02A0 E5            [11]  434 	push	hl
+   02A1 CDr00r00      [17]  435 	call	_cpct_getScreenPtr
+   02A4 DD 74 F9      [19]  436 	ld	-7 (ix), h
+   02A7 DD 75 F8      [19]  437 	ld	-8 (ix), l
+   02AA DD 66 FC      [19]  438 	ld	h, -4 (ix)
+   02AD DD 6E F6      [19]  439 	ld	l, -10 (ix)
+   02B0 E5            [11]  440 	push	hl
+   02B1 DD 6E FA      [19]  441 	ld	l,-6 (ix)
+   02B4 DD 66 FB      [19]  442 	ld	h,-5 (ix)
+   02B7 E5            [11]  443 	push	hl
+   02B8 DD 6E F8      [19]  444 	ld	l,-8 (ix)
+   02BB DD 66 F9      [19]  445 	ld	h,-7 (ix)
+   02BE E5            [11]  446 	push	hl
+   02BF CDr00r00      [17]  447 	call	_cpct_drawSolidBox
+   02C2                     448 00108$:
+                            449 ;src/render.c:71: for (i = 0; i < MAX_SPRITES; i++) {
+   02C2 DD 34 F5      [23]  450 	inc	-11 (ix)
+   02C5 DD 7E F5      [19]  451 	ld	a, -11 (ix)
+   02C8 D6 0A         [ 7]  452 	sub	a, #0x0a
+   02CA DArF6r01      [10]  453 	jp	C, 00107$
+   02CD DD F9         [10]  454 	ld	sp, ix
+   02CF DD E1         [14]  455 	pop	ix
+   02D1 C9            [10]  456 	ret
+                            457 	.area _CODE
+                            458 	.area _INITIALIZER
+                            459 	.area _CABS (ABS)

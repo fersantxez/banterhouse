@@ -45,6 +45,10 @@ void renderSprites(){
 					//on current *mem_start* plus sprite size
 					cpct_getScreenPtr(mem_start, sprites[i].x, sprites[i].y),
 					sprites[i].width, sprites[i].height);
+
+				if (sprites[i].turned)					//turn back to normal (looking right)
+					cpct_hflipSpriteMaskedM0(sprites[i].width, sprites[i].height, sprite);
+
 			}
 
 			//Save position in the sprite struct to erase after movement 

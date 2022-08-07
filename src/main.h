@@ -19,7 +19,7 @@
 #define MASK_ANIMATE 0b00000010			//BITMASK to signal which sprites to animate
 
 #define ANIM_CYCLE 16					//max animation frames
-#define ANIM_SPEED 1 					//1-4; 4 is faster
+#define ANIM_SPEED 2 					//1-4; 4 is faster
 
 //Double buffer storage
 extern u8* mem_start;					//current vmem_start - 0xC000/CPCT_VMEM_START for page 1,0x8000/CPCT_LVMEM_START for page 0
@@ -47,7 +47,7 @@ typedef struct {
 	u8* sprite_f2;						//sprite frame 2 "e.g. walking"
 	u8* sprite_f3;						//sprite frame 3 "e.g. jumping"
 	u8* sprite_f4;						//sprite frame 4 "e.g. dying"
-	u8* turned;							//0 = looking right/front; 1 = looking left (turned)
+	u8 turned;							//0 = looking right/front; 1 = looking left (turned)
 } TSprite;
 
 extern TSprite sprites[MAX_SPRITES];	//stores all sprites in the game

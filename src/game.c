@@ -26,11 +26,11 @@ void keyboard(){
 	}
 	if (cpct_isKeyPressed(Key_CursorLeft) || cpct_isKeyPressed(Key_O) || cpct_isKeyPressed(Joy0_Left)){
 		sprites[0].moveH = -1;
-		//sprites[0].turned = 1;
+		sprites[0].turned = 1;
 	}
 	if (cpct_isKeyPressed(Key_CursorRight) || cpct_isKeyPressed(Key_P) || cpct_isKeyPressed(Joy0_Right)){
 		sprites[0].moveH = 1;
-		//sprites[0].turned = 1;
+		sprites[0].turned = 0;
 	}
 
 	//sprite animation: if sprite moved, mark for animation
