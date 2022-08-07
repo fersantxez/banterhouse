@@ -90,7 +90,8 @@ void init_game() {
 	u8 i; //index
 
 	sprites[0].id = 1;												//mark the sprite "alive" (non-zero)
-	sprites[0].x = sprites[0].y = 0;								//init position to 0,0
+	sprites[0].x = GAME_AREA_LEFT;									//init position to 0,0
+	sprites[0].y = GAME_AREA_TOP;
 	sprites[0].moveV = sprites[0].moveH = 0;						//init movement to none
 	//refs to prev positions of moving sprites in both (A,B) VMEM pages (double buffer) - init to 0
 	sprites[0].x_prev_A = sprites[0].y_prev_A = sprites[0].x_prev_B = sprites[0].y_prev_B = 0;

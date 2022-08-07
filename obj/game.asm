@@ -366,17 +366,18 @@ _init_game::
 ;src/game.c:92: sprites[0].id = 1;												//mark the sprite "alive" (non-zero)
 	ld	hl, #_sprites
 	ld	(hl), #0x01
-;src/game.c:93: sprites[0].x = sprites[0].y = 0;								//init position to 0,0
-	ld	hl, #(_sprites + 0x0002)
-	ld	(hl), #0x00
+;src/game.c:93: sprites[0].x = GAME_AREA_LEFT;									//init position to 0,0
 	ld	hl, #(_sprites + 0x0001)
 	ld	(hl), #0x00
-;src/game.c:94: sprites[0].moveV = sprites[0].moveH = 0;						//init movement to none
+;src/game.c:94: sprites[0].y = GAME_AREA_TOP;
+	ld	hl, #(_sprites + 0x0002)
+	ld	(hl), #0x10
+;src/game.c:95: sprites[0].moveV = sprites[0].moveH = 0;						//init movement to none
 	ld	hl, #(_sprites + 0x0004)
 	ld	(hl), #0x00
 	ld	hl, #(_sprites + 0x0003)
 	ld	(hl), #0x00
-;src/game.c:96: sprites[0].x_prev_A = sprites[0].y_prev_A = sprites[0].x_prev_B = sprites[0].y_prev_B = 0;
+;src/game.c:97: sprites[0].x_prev_A = sprites[0].y_prev_A = sprites[0].x_prev_B = sprites[0].y_prev_B = 0;
 	ld	hl, #(_sprites + 0x0008)
 	ld	(hl), #0x00
 	ld	hl, #(_sprites + 0x0007)
@@ -385,42 +386,42 @@ _init_game::
 	ld	(hl), #0x00
 	ld	hl, #(_sprites + 0x0005)
 	ld	(hl), #0x00
-;src/game.c:97: sprites[0].height = G_PITU_H;
+;src/game.c:98: sprites[0].height = G_PITU_H;
 	ld	hl, #(_sprites + 0x0009)
 	ld	(hl), #0x20
-;src/game.c:98: sprites[0].width = G_PITU_W;									//!?! /2: - M0, length in bytes = /2 in px
+;src/game.c:99: sprites[0].width = G_PITU_W;									//!?! /2: - M0, length in bytes = /2 in px
 	ld	hl, #(_sprites + 0x000a)
 	ld	(hl), #0x07
-;src/game.c:99: sprites[0].properties = 0;										//bitmasked properties - init to 0
+;src/game.c:100: sprites[0].properties = 0;										//bitmasked properties - init to 0
 	ld	bc, #_sprites + 11
 	xor	a, a
 	ld	(bc), a
-;src/game.c:100: sprites[0].properties = sprites[0].properties | MASK_RENDER;	//init to "render" on screen
+;src/game.c:101: sprites[0].properties = sprites[0].properties | MASK_RENDER;	//init to "render" on screen
 	ld	a, (bc)
 	set	0, a
 	ld	(bc), a
-;src/game.c:101: sprites[0].frames = 2;											//main sprite has two "moves" to animate
+;src/game.c:102: sprites[0].frames = 2;											//main sprite has two "moves" to animate
 	ld	hl, #(_sprites + 0x000e)
 	ld	(hl), #0x02
-;src/game.c:102: sprites[0].sprite_f1 = (u8*)G_pitu; 							//first render for sprite. &G_pitu[0]
+;src/game.c:103: sprites[0].sprite_f1 = (u8*)G_pitu; 							//first render for sprite. &G_pitu[0]
 	ld	hl, #_G_pitu
 	ld	((_sprites + 0x000f)), hl
-;src/game.c:103: sprites[0].sprite_f2 = (u8*)G_pitu_walk;
+;src/game.c:104: sprites[0].sprite_f2 = (u8*)G_pitu_walk;
 	ld	hl, #_G_pitu_walk
 	ld	((_sprites + 0x0011)), hl
-;src/game.c:104: sprites[0].sprite_f3 = (u8*)G_pitu_jump;
+;src/game.c:105: sprites[0].sprite_f3 = (u8*)G_pitu_jump;
 	ld	hl, #_G_pitu_jump
 	ld	((_sprites + 0x0013)), hl
-;src/game.c:105: sprites[0].sprite_f3 = (u8*)G_blast;
+;src/game.c:106: sprites[0].sprite_f3 = (u8*)G_blast;
 	ld	hl, #_G_blast
 	ld	((_sprites + 0x0013)), hl
-;src/game.c:106: sprites[0].turned = 0;											//start looking right/front
+;src/game.c:107: sprites[0].turned = 0;											//start looking right/front
 	ld	hl, #(_sprites + 0x0017)
 	ld	(hl), #0x00
-;src/game.c:109: for (i = 1; i < MAX_SPRITES; i++)
+;src/game.c:110: for (i = 1; i < MAX_SPRITES; i++)
 	ld	c, #0x01
 00102$:
-;src/game.c:110: sprites[i].id=0;
+;src/game.c:111: sprites[i].id=0;
 	ld	b,#0x00
 	ld	l, c
 	ld	h, b
@@ -432,25 +433,25 @@ _init_game::
 	ld	de, #_sprites
 	add	hl, de
 	ld	(hl), #0x00
-;src/game.c:109: for (i = 1; i < MAX_SPRITES; i++)
+;src/game.c:110: for (i = 1; i < MAX_SPRITES; i++)
 	inc	c
 	ld	a, c
 	sub	a, #0x0a
 	jr	C,00102$
-;src/game.c:112: anim_clock=1;
+;src/game.c:113: anim_clock=1;
 	ld	hl,#_anim_clock + 0
 	ld	(hl), #0x01
 	ret
-;src/game.c:118: void game(){
+;src/game.c:119: void game(){
 ;	---------------------------------
 ; Function game
 ; ---------------------------------
 _game::
-;src/game.c:120: cpct_setBorder(HW_WHITE);
+;src/game.c:121: cpct_setBorder(HW_WHITE);
 	ld	hl, #0x0010
 	push	hl
 	call	_cpct_setPALColour
-;src/game.c:122: cpct_memset ((u8*)CPCT_LVMEM_START, cpct_px2byteM0(5, 5), 0x8000); //5 is ordinal for WHITE from palette in M0 with 16c
+;src/game.c:123: cpct_memset ((u8*)CPCT_LVMEM_START, cpct_px2byteM0(5, 5), 0x8000); //5 is ordinal for WHITE from palette in M0 with 16c
 	ld	hl, #0x0505
 	push	hl
 	call	_cpct_px2byteM0
@@ -462,55 +463,55 @@ _game::
 	ld	l, #0x00
 	push	hl
 	call	_cpct_memset
-;src/game.c:124: while (1) {
+;src/game.c:125: while (1) {
 00107$:
-;src/game.c:127: if (!swap_memvideo) { 					//switch
+;src/game.c:128: if (!swap_memvideo) { 					//switch
 	ld	a,(#_swap_memvideo + 0)
 	or	a, a
 	jr	NZ,00102$
-;src/game.c:128: mem_start = (u8*) CPCT_LVMEM_START;	//lower VMEM page
+;src/game.c:129: mem_start = (u8*) CPCT_LVMEM_START;	//lower VMEM page
 	ld	hl, #0x8000
 	ld	(_mem_start), hl
-;src/game.c:129: mem_page = cpct_page80;				//FIXME:: can probably delete??
+;src/game.c:130: mem_page = cpct_page80;				//FIXME:: can probably delete??
 	ld	hl,#_mem_page + 0
 	ld	(hl), #0x20
 	jr	00103$
 00102$:
-;src/game.c:131: mem_start = (u8*) CPCT_VMEM_START;	//upper,regular VMEM page
+;src/game.c:132: mem_start = (u8*) CPCT_VMEM_START;	//upper,regular VMEM page
 	ld	hl, #0xc000
 	ld	(_mem_start), hl
-;src/game.c:132: mem_page = cpct_pageC0;
+;src/game.c:133: mem_page = cpct_pageC0;
 	ld	hl,#_mem_page + 0
 	ld	(hl), #0x30
 00103$:
-;src/game.c:136: keyboard(); 							//user movement
+;src/game.c:137: keyboard(); 							//user movement
 	call	_keyboard
-;src/game.c:138: moveSprites();
+;src/game.c:139: moveSprites();
 	call	_moveSprites
-;src/game.c:139: deleteSprites();
+;src/game.c:140: deleteSprites();
 	call	_deleteSprites
-;src/game.c:140: renderSprites();
+;src/game.c:141: renderSprites();
 	call	_renderSprites
-;src/game.c:143: cpct_waitVSYNC();						//Wait until CRTC has printed a full frame to "repaint"
+;src/game.c:144: cpct_waitVSYNC();						//Wait until CRTC has printed a full frame to "repaint"
 	call	_cpct_waitVSYNC
-;src/game.c:144: cpct_setVideoMemoryPage(mem_page);		//Tell CRTC to "paint" the new page--FIXME: can this use "mem_start" instead?
+;src/game.c:145: cpct_setVideoMemoryPage(mem_page);		//Tell CRTC to "paint" the new page--FIXME: can this use "mem_start" instead?
 	ld	iy, #_mem_page
 	ld	l, 0 (iy)
 	call	_cpct_setVideoMemoryPage
-;src/game.c:145: swap_memvideo = ~swap_memvideo; 		//flip the switch
+;src/game.c:146: swap_memvideo = ~swap_memvideo; 		//flip the switch
 	ld	iy, #_swap_memvideo
 	ld	a, 0 (iy)
 	cpl
 	ld	0 (iy), a
-;src/game.c:147: anim_clock+=ANIM_SPEED;
+;src/game.c:148: anim_clock+=ANIM_SPEED;
 	ld	iy, #_anim_clock
 	inc	0 (iy)
 	inc	0 (iy)
-;src/game.c:148: if (anim_clock > ANIM_CYCLE)
+;src/game.c:149: if (anim_clock > ANIM_CYCLE)
 	ld	a, #0x10
 	sub	a, 0 (iy)
 	jr	NC,00107$
-;src/game.c:149: anim_clock=1;
+;src/game.c:150: anim_clock=1;
 	ld	0 (iy), #0x01
 	jr	00107$
 	.area _CODE
