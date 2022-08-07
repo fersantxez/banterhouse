@@ -1,43 +1,22 @@
+/* game.c
+*/
+
 #include <cpctelera.h>
 #include "main.h"
 #include "render.h"
 #include "graphics.h"
 
-u8 coord_x; //current sprite position
+u8 coord_x; 														//current sprite position
 
 TSprite sprites[MAX_SPRITES];
 u8 cycle;
 
-void init_game() {
-	// Initialize storage and config for sprites/game elements
 
-	u8 i; //index
-
-	//init user
-	sprites[0].id = 1;												//mark the sprite "alive"
-	sprites[0].x = sprites[0].y = 0;								//init position to 0,0
-	sprites[0].moveV = sprites[0].moveH = 0;						//init movement to none
-	//used to delete prev positions of moving sprites in both (A,B) VMEM pages (double buffer)
-	sprites[0].x_prev_A = sprites[0].y_prev_A = sprites[0].x_prev_B = sprites[0].y_prev_B = 0;
-	sprites[0].height = G_PITU_H;
-	sprites[0].width = G_PITU_W/2;									//!?! /2: - M0, length in bytes = /2 in px
-	sprites[0].properties = 0;										//bitmasked properties - init to 0
-	sprites[0].properties = sprites[0].properties | MASK_RENDER;	//init to "render"
-	sprites[0].sprite_f1 = (u8*)&G_pitu[0]; //&G_pitu[0]			//first position render
-	sprites[0].sprite_f2 = (u8*)G_pitu_walk;
-	sprites[0].sprite_f3 = (u8*)G_pitu_jump;
-	sprites[0].sprite_f3 = (u8*)G_blast;
-	//sprites[0].turned = 0
-
-	//clean up memory for sprites - start at zero (e.g. after reset)
-	for (i = 1; i < MAX_SPRITES; i++)
-		sprites[i].id=0;
-
-	cycle=0;
-
-}
-
+/* FIXME: Doc me how
+*/
 void keyboard(){
+	// Read keyboard and move user's sprite
+
 	sprites[0].moveV = sprites[0].moveH = 0; 						//start with no movement
 
 	cpct_scanKeyboard_f();											//read keyboard/joystick
@@ -57,10 +36,15 @@ void keyboard(){
 	}
 }
 
+/* FIXME: Doc me how
+*/
 void AI(){
 }
 
+/* FIXME: Doc me how
+*/
 void moveSprites() {
+
 	u8 i,x,y,collision;
 
 	for (i=0; i < MAX_SPRITES; i++) {
@@ -88,7 +72,40 @@ void moveSprites() {
 	}
 }
 
+/*	FIXME: Doc me how
+	Initialize storage and config for sprites/game elements
+*/
+void init_game() {
+	u8 i; //index
+
+	sprites[0].id = 1;												//mark the sprite "alive" (non-zero)
+	sprites[0].x = sprites[0].y = 0;								//init position to 0,0
+	sprites[0].moveV = sprites[0].moveH = 0;						//init movement to none
+	//used to delete prev positions of moving sprites in both (A,B) VMEM pages (double buffer)
+	sprites[0].x_prev_A = sprites[0].y_prev_A = sprites[0].x_prev_B = sprites[0].y_prev_B = 0;
+	sprites[0].height = G_PITU_H;
+	sprites[0].width = G_PITU_W;									//!?! /2: - M0, length in bytes = /2 in px
+	sprites[0].properties = 0;										//bitmasked properties - init to 0
+	sprites[0].properties = sprites[0].properties | MASK_RENDER;	//init to "render"
+	sprites[0].sprite_f1 = (u8*)&G_pitu[0]; //&G_pitu[0]			//first position render
+	sprites[0].sprite_f2 = (u8*)G_pitu_walk;
+	sprites[0].sprite_f3 = (u8*)G_pitu_jump;
+	sprites[0].sprite_f3 = (u8*)G_blast;
+	//sprites[0].turned = 0
+
+	//zero out memory for sprites (e.g. after reset)
+	for (i = 1; i < MAX_SPRITES; i++)
+		sprites[i].id=0;
+
+	cycle=0;
+
+}
+
+
+/* FIXME: Doc me how
+*/
 void game(){
+
 	cpct_setBorder(HW_WHITE);
 	//clear screen from "LVMEM" to "VMEM" for "double buffer" - 0x8000 to 0xFFFF: 0x8000 long
 	cpct_memset ((u8*)CPCT_LVMEM_START, cpct_px2byteM0(5, 5), 0x8000); //5 is ordinal for WHITE from palette in M0 with 16c
@@ -98,11 +115,11 @@ void game(){
 	while (1) {
 
 		//double buffer: switch screen to be painted in next sync
-		if (!swap_memvideo) { 				//switch
-			mem_start = (u8*) CPCT_LVMEM_START;		//lower VMEM page
-			mem_page = cpct_page80;					//FIXME:: can probably delete??
+		if (!swap_memvideo) { 					//switch
+			mem_start = (u8*) CPCT_LVMEM_START;	//lower VMEM page
+			mem_page = cpct_page80;				//FIXME:: can probably delete??
 		} else {
-			mem_start = (u8*) CPCT_VMEM_START;		//upper,regular VMEM page
+			mem_start = (u8*) CPCT_VMEM_START;	//upper,regular VMEM page
 			mem_page = cpct_pageC0;
 		}
 

@@ -7,7 +7,7 @@ Symbol Table
     .__.ABS.                                                    =  0000 G
     .__.CPU.                                                    =  0000 L
     .__.H$L.                                                    =  0000 L
-  0 _AI                                                            010F GR
+  0 _AI                                                            0099 GR
     _G_blast                                                       **** GX
     _G_pitu                                                        **** GX
     _G_pitu_jump                                                   **** GX
@@ -23,11 +23,11 @@ Symbol Table
   1 _cycle                                                         00DD GR
     _deleteSprites                                                 **** GX
   0 _game                                                          01EB GR
-  0 _init_game                                                     0000 GR
-  0 _keyboard                                                      0076 GR
+  0 _init_game                                                     0175 GR
+  0 _keyboard                                                      0000 GR
     _mem_page                                                      **** GX
     _mem_start                                                     **** GX
-  0 _moveSprites                                                   0110 GR
+  0 _moveSprites                                                   009A GR
     _renderSprites                                                 **** GX
   1 _sprites                                                       0001 GR
     _swap_memvideo                                                 **** GX

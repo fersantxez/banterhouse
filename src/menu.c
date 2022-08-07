@@ -10,7 +10,7 @@ void menu () {
     //Logo
 	cpct_drawSprite(G_logo,
 		cpctm_screenPtr(CPCT_VMEM_START, 25, 50),
-		G_LOGO_W/2,G_LOGO_H);
+		G_LOGO_W,G_LOGO_H);
 
 	//Press key message
 	cpct_setDrawCharM0 (10, 7); //fg color=15, bg color=5. CPCT>1.5 requires initializing before "drawString"

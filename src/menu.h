@@ -1,3 +1,4 @@
 /* menu.h
 */
-void menu();
+
+void menu();				//Display the game menu
