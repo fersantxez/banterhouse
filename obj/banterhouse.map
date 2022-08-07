@@ -17,102 +17,103 @@ Area                                    Addr        Size        Decimal Bytes (A
      00000000  l__INITIALIZER                  
      00000000  s__CABS                         
      00000000  s__DABS                         
-     000000E2  l__DATA                         
-     00001DFA  l__CODE                         
+     000000FF  l__DATA                         
+     00001F24  l__CODE                         
      00004000  s__CODE                         
-     00005DFA  s__DATA                         
-     00005EDC  s__GSFINAL                      
-     00005EDC  s__GSINIT                       
-     00005EDC  s__HOME                         
-     00005EDC  s__INITIALIZED                  
-     00005EDC  s__INITIALIZER                  
+     00005F24  s__DATA                         
+     00006023  s__GSFINAL                      
+     00006023  s__GSINIT                       
+     00006023  s__HOME                         
+     00006023  s__INITIALIZED                  
+     00006023  s__INITIALIZER                  
 
 ASxxxx Linker V03.00 + NoICE + sdld,  page 2.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-_CODE                               00004000    00001DFA =        7674. bytes (REL,CON)
+_CODE                               00004000    00001F24 =        7972. bytes (REL,CON)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
      00004000  _g_palette                         pitu
      00004010  _g_pitu                            pitu
      00004110  _keyboard                          game
-     000041A9  _AI                                game
-     000041AA  _moveSprites                       game
-     000042AA  _init_game                         game
-     00004320  _game                              game
-     00004396  _G_pitu                            graphics
-     00004596  _G_pitu_walk                       graphics
-     00004796  _G_pitu_jump                       graphics
-     00004996  _G_alberto                         graphics
-     00004B96  _G_alberto_walk                    graphics
-     00004D96  _G_blast                           graphics
-     00004F96  _G_beer                            graphics
-     00004FF6  _G_logo                            graphics
-     000057F6  _main                              main
-     0000582A  _paleta                            main
-     0000583A  _menu                              menu
-     000058A1  _renderSprites                     render
-     0000598C  _deleteSprites                     render
-     00005A7A  _cpct_setPalette                   cpct_video
-     00005A91  _cpct_isKeyPressed                 cpct_keyboard
-     00005A91  cpct_isKeyPressed_asm              cpct_keyboard
-     00005A9D  _cpct_scanKeyboard_f               cpct_keyboard
-     00005A9D  cpct_scanKeyboard_f_asm            cpct_keyboard
-     00005B07  _cpct_setPALColour                 cpct_video
-     00005B13  _cpct_drawStringM0                 cpct_strings
-     00005B4D  cpct_drawCharM0_inner_asm          cpct_strings
-     00005BAD  dc_2pxtableM0                      cpct_strings
-     00005BB1  _cpct_drawSprite                   cpct_sprites
-     00005C56  _cpct_keyboardStatusBuffer         cpct_keyboard
-     00005C60  _cpct_setVideoMemoryPage           cpct_video
-     00005C60  cpct_setVideoMemoryPage_asm        cpct_video
-     00005C69  _cpct_drawSpriteMasked             cpct_sprites
-     00005C98  _cpct_setStackLocation             cpct_memutils
-     00005C98  cpct_setStackLocation_asm          cpct_memutils
-     00005C9C  _cpct_isAnyKeyPressed_f            cpct_keyboard
-     00005C9C  cpct_isAnyKeyPressed_f_asm         cpct_keyboard
-     00005CB7  _cpct_setVideoMode                 cpct_video
-     00005CC5  _cpct_waitVSYNC                    cpct_video
-     00005CC5  cpct_waitVSYNC_asm                 cpct_video
-     00005CCD  _cpct_px2byteM0                    cpct_sprites
-     00005CE9  _cpct_memset                       cpct_memutils
-     00005CF7  _cpct_disableFirmware              cpct_firmware
-     00005CF7  _cpct_removeInterruptHandler       cpct_firmware
-     00005CF7  cpct_disableFirmware_asm           cpct_firmware
-     00005CF7  cpct_removeInterruptHandler_asm    cpct_firmware
-     00005D07  _cpct_drawSolidBox                 cpct_sprites
-     00005DAE  _cpct_mode_rom_status              cpct_firmware
-     00005DAF  _cpct_setDrawCharM0                cpct_strings
+     000041C6  _AI                                game
+     000041C7  _moveSprites                       game
+     000042C7  _init_game                         game
+     00004348  _game                              game
+     000043B9  _G_pitu                            graphics
+     000045B9  _G_pitu_walk                       graphics
+     000047B9  _G_pitu_jump                       graphics
+     000049B9  _G_alberto                         graphics
+     00004BB9  _G_alberto_walk                    graphics
+     00004DB9  _G_blast                           graphics
+     00004FB9  _G_beer                            graphics
+     00005019  _G_logo                            graphics
+     00005819  _main                              main
+     0000584D  _paleta                            main
+     0000585D  _menu                              menu
+     000058C4  _renderSprites                     render
+     00005A78  _deleteSprites                     render
+     00005B66  _cpct_setPalette                   cpct_video
+     00005B7D  _cpct_isKeyPressed                 cpct_keyboard
+     00005B7D  cpct_isKeyPressed_asm              cpct_keyboard
+     00005B89  _cpct_scanKeyboard_f               cpct_keyboard
+     00005B89  cpct_scanKeyboard_f_asm            cpct_keyboard
+     00005BF3  _cpct_hflipSpriteMaskedM0          cpct_sprites
+     00005C31  _cpct_setPALColour                 cpct_video
+     00005C3D  _cpct_drawStringM0                 cpct_strings
+     00005C77  cpct_drawCharM0_inner_asm          cpct_strings
+     00005CD7  dc_2pxtableM0                      cpct_strings
+     00005CDB  _cpct_drawSprite                   cpct_sprites
+     00005D80  _cpct_keyboardStatusBuffer         cpct_keyboard
+     00005D8A  _cpct_setVideoMemoryPage           cpct_video
+     00005D8A  cpct_setVideoMemoryPage_asm        cpct_video
+     00005D93  _cpct_drawSpriteMasked             cpct_sprites
+     00005DC2  _cpct_setStackLocation             cpct_memutils
+     00005DC2  cpct_setStackLocation_asm          cpct_memutils
+     00005DC6  _cpct_isAnyKeyPressed_f            cpct_keyboard
+     00005DC6  cpct_isAnyKeyPressed_f_asm         cpct_keyboard
+     00005DE1  _cpct_setVideoMode                 cpct_video
+     00005DEF  _cpct_waitVSYNC                    cpct_video
+     00005DEF  cpct_waitVSYNC_asm                 cpct_video
+     00005DF7  _cpct_px2byteM0                    cpct_sprites
+     00005E13  _cpct_memset                       cpct_memutils
+     00005E21  _cpct_disableFirmware              cpct_firmware
+     00005E21  _cpct_removeInterruptHandler       cpct_firmware
+     00005E21  cpct_disableFirmware_asm           cpct_firmware
+     00005E21  cpct_removeInterruptHandler_asm    cpct_firmware
+     00005E31  _cpct_drawSolidBox                 cpct_sprites
+     00005ED8  _cpct_mode_rom_status              cpct_firmware
 ASxxxx Linker V03.00 + NoICE + sdld,  page 3.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-_CODE                               00004000    00001DFA =        7674. bytes (REL,CON)
+_CODE                               00004000    00001F24 =        7972. bytes (REL,CON)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-     00005DD4  _cpct_getScreenPtr                 cpct_video
-     00005DEA  dc_mode0_ct                        cpct_strings
+     00005ED9  _cpct_setDrawCharM0                cpct_strings
+     00005EFE  _cpct_getScreenPtr                 cpct_video
+     00005F14  dc_mode0_ct                        cpct_strings
 
 ASxxxx Linker V03.00 + NoICE + sdld,  page 4.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-_DATA                               00005DFA    000000E2 =         226. bytes (REL,CON)
+_DATA                               00005F24    000000FF =         255. bytes (REL,CON)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-     00005DFA  _coord_x                           game
-     00005DFB  _sprites                           game
-     00005ED7  _cycle                             game
-     00005ED8  _mem_start                         main
-     00005EDA  _mem_page                          main
-     00005EDB  _swap_memvideo                     main
+     00005F24  _sprites                           game
+     0000601E  _anim_clock                        game
+     0000601F  _mem_start                         main
+     00006021  _mem_page                          main
+     00006022  _swap_memvideo                     main
+
 ASxxxx Linker V03.00 + NoICE + sdld,  page 5.
 
 Files Linked                              [ module(s) ]
@@ -133,6 +134,8 @@ Libraries Linked                          [ object file ]
                                           [ cpct_isKeyPressed.rel ]
 /home/fersanchez/cpctelera/cpctelera/cpctelera.lib
                                           [ cpct_scanKeyboard_f.rel ]
+/home/fersanchez/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_hflipSpriteMaskedM0_cbindin ]
 /home/fersanchez/cpctelera/cpctelera/cpctelera.lib
                                           [ cpct_setPALColour_cbindings.rel ]
 /home/fersanchez/cpctelera/cpctelera/cpctelera.lib

@@ -7,12 +7,12 @@ Symbol Table
     .__.ABS.                                                    =  0000 G
     .__.CPU.                                                    =  0000 L
     .__.H$L.                                                    =  0000 L
-  0 _AI                                                            0099 GR
+  0 _AI                                                            00B6 GR
     _G_blast                                                       **** GX
     _G_pitu                                                        **** GX
     _G_pitu_jump                                                   **** GX
     _G_pitu_walk                                                   **** GX
-  1 _coord_x                                                       0000 GR
+  1 _anim_clock                                                    00FA GR
     _cpct_isKeyPressed                                             **** GX
     _cpct_memset                                                   **** GX
     _cpct_px2byteM0                                                **** GX
@@ -20,26 +20,24 @@ Symbol Table
     _cpct_setPALColour                                             **** GX
     _cpct_setVideoMemoryPage                                       **** GX
     _cpct_waitVSYNC                                                **** GX
-  1 _cycle                                                         00DD GR
     _deleteSprites                                                 **** GX
-  0 _game                                                          0210 GR
-  0 _init_game                                                     019A GR
+  0 _game                                                          0238 GR
+  0 _init_game                                                     01B7 GR
   0 _keyboard                                                      0000 GR
     _mem_page                                                      **** GX
     _mem_start                                                     **** GX
-  0 _moveSprites                                                   009A GR
+  0 _moveSprites                                                   00B7 GR
     _renderSprites                                                 **** GX
-  1 _sprites                                                       0001 GR
+  1 _sprites                                                       0000 GR
     _swap_memvideo                                                 **** GX
-
 
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 2.
 Hexadecimal [16-Bits]
 
 Area Table
 
-   0 _CODE                                      size  286   flags    0
-   1 _DATA                                      size   DE   flags    0
+   0 _CODE                                      size  2A9   flags    0
+   1 _DATA                                      size   FB   flags    0
    2 _INITIALIZED                               size    0   flags    0
    3 _DABS                                      size    0   flags    8
    4 _HOME                                      size    0   flags    0

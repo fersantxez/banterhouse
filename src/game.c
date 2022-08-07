@@ -6,20 +6,18 @@
 #include "render.h"
 #include "graphics.h"
 
-u8 coord_x; 														//current sprite position
-
 TSprite sprites[MAX_SPRITES];
-u8 cycle;
-
+u8 anim_clock;
 
 /* FIXME: Doc me how
 */
 void keyboard(){
 	// Read keyboard and move user's sprite
 
-	sprites[0].moveV = sprites[0].moveH = 0; 						//start with no movement
+	sprites[0].moveV = sprites[0].moveH = 0; 							//start with no movement
 
-	cpct_scanKeyboard_f();											//read keyboard/joystick
+	//sprite movement: read keyboard/joystick and update movement registers
+	cpct_scanKeyboard_f();
 	if (cpct_isKeyPressed(Key_CursorUp) || cpct_isKeyPressed(Key_Q) || cpct_isKeyPressed(Joy0_Up)){	
 		sprites[0].moveV = -1;		
 	}
@@ -34,6 +32,12 @@ void keyboard(){
 		sprites[0].moveH = 1;
 		//sprites[0].turned = 1;
 	}
+
+	//sprite animation: if sprite moved, mark for animation
+	if (sprites[0].moveH !=0 || sprites[0].moveV !=0)					//sprite moved
+		sprites[0].properties = sprites[0].properties | MASK_ANIMATE; 	//mark for animation
+	else
+		sprites[0].properties = sprites[0].properties & ~MASK_ANIMATE;	//unmark for animation;
 }
 
 /* FIXME: Doc me how
@@ -90,20 +94,20 @@ void init_game() {
 	sprites[0].width = G_PITU_W;									//!?! /2: - M0, length in bytes = /2 in px
 	sprites[0].properties = 0;										//bitmasked properties - init to 0
 	sprites[0].properties = sprites[0].properties | MASK_RENDER;	//init to "render" on screen
-	sprites[0].sprite_f1 = (u8*)G_pitu; //&G_pitu[0]				//first render for sprite
+	sprites[0].frames = 2;											//main sprite has two "moves" to animate
+	sprites[0].sprite_f1 = (u8*)G_pitu; 							//first render for sprite. &G_pitu[0]
 	sprites[0].sprite_f2 = (u8*)G_pitu_walk;
 	sprites[0].sprite_f3 = (u8*)G_pitu_jump;
 	sprites[0].sprite_f3 = (u8*)G_blast;
-	//sprites[0].turned = 0
+	sprites[0].turned = 0;											//start looking right/front
 
 	//zero out memory for sprites (e.g. after reset)
 	for (i = 1; i < MAX_SPRITES; i++)
 		sprites[i].id=0;
 
-	cycle=0;
+	anim_clock=1;
 
 }
-
 
 /* FIXME: Doc me how
 */
@@ -112,8 +116,6 @@ void game(){
 	cpct_setBorder(HW_WHITE);
 	//clear screen from "LVMEM" to "VMEM" for "double buffer" - 0x8000 to 0xFFFF: 0x8000 long
 	cpct_memset ((u8*)CPCT_LVMEM_START, cpct_px2byteM0(5, 5), 0x8000); //5 is ordinal for WHITE from palette in M0 with 16c
-
-	coord_x = 0;
 
 	while (1) {
 
@@ -138,8 +140,8 @@ void game(){
 		cpct_setVideoMemoryPage(mem_page);		//Tell CRTC to "paint" the new page--FIXME: can this use "mem_start" instead?
 		swap_memvideo = ~swap_memvideo; 		//flip the switch
 
-		cycle++;
-		if (cycle == 16)
-			cycle=0;
+		anim_clock+=ANIM_SPEED;
+		if (anim_clock > ANIM_CYCLE)
+			anim_clock=1;
 		}
 }
