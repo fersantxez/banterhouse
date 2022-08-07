@@ -1,1 +1,3 @@
+/* menu.h
+*/
 void menu();

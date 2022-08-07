@@ -9,6 +9,7 @@
 ; Public variables in this module
 ;--------------------------------------------------------
 	.globl _main
+	.globl _game
 	.globl _init_game
 	.globl _menu
 	.globl _cpct_setPalette
@@ -77,20 +78,20 @@ _main::
 	call	_cpct_setPalette
 ;src/main.c:46: while (1) {
 00102$:
-;src/main.c:48: swap_memvideo = 0;
+;src/main.c:49: swap_memvideo = 0;                        //set DB switch to "zero" (upper VMEM page first)
 	ld	hl,#_swap_memvideo + 0
 	ld	(hl), #0x00
-;src/main.c:49: mem_start = (u8*) CPCT_VMEM_START;
+;src/main.c:50: mem_start = (u8*) CPCT_VMEM_START;        //upper, standard VMEM page first
 	ld	hl, #0xc000
 	ld	(_mem_start), hl
-;src/main.c:50: mem_page = cpct_pageC0; //this likely can be obtained from above, but...
+;src/main.c:51: mem_page = cpct_pageC0;                   //upper, C0 page
 	ld	hl,#_mem_page + 0
 	ld	(hl), #0x30
-;src/main.c:52: menu();
+;src/main.c:53: menu();
 	call	_menu
-;src/main.c:53: init_game();
+;src/main.c:54: init_game();
 	call	_init_game
-;src/main.c:54: game();
+;src/main.c:55: game();
 	call	_game
 	jr	00102$
 _paleta:

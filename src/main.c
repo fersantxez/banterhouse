@@ -45,9 +45,10 @@ void main(void) {
 
    while (1) {
       //Initialize double buffer
-      swap_memvideo = 0;
-      mem_start = (u8*) CPCT_VMEM_START;
-      mem_page = cpct_pageC0; //this likely can be obtained from above, but...
+      //FIXME: these three vars can likely can be reduced to one
+      swap_memvideo = 0;                        //set DB switch to "zero" (upper VMEM page first)
+      mem_start = (u8*) CPCT_VMEM_START;        //upper, standard VMEM page first
+      mem_page = cpct_pageC0;                   //upper, C0 page
 
       menu();
       init_game();

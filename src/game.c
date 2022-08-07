@@ -9,18 +9,21 @@ TSprite sprites[MAX_SPRITES];
 u8 cycle;
 
 void init_game() {
+	// Initialize storage and config for sprites/game elements
+
 	u8 i; //index
 
 	//init user
-	sprites[0].id = 1;								//mark the sprite "alive"
-	sprites[0].x = sprites[0].y = 0;				//init position to 0,0
-	sprites[0].moveV = sprites[0].moveH = 0;		//init movement to none
+	sprites[0].id = 1;												//mark the sprite "alive"
+	sprites[0].x = sprites[0].y = 0;								//init position to 0,0
+	sprites[0].moveV = sprites[0].moveH = 0;						//init movement to none
+	//used to delete prev positions of moving sprites in both (A,B) VMEM pages (double buffer)
 	sprites[0].x_prev_A = sprites[0].y_prev_A = sprites[0].x_prev_B = sprites[0].y_prev_B = 0;
 	sprites[0].height = G_PITU_H;
-	sprites[0].width = G_PITU_W/2;
-	sprites[0].properties = 0;
-	sprites[0].properties = sprites[0].properties | MASK_RENDER;
-	sprites[0].sprite_f1 = (u8*)G_pitu; //&G_pitu[0]
+	sprites[0].width = G_PITU_W/2;									//!?! /2: - M0, length in bytes = /2 in px
+	sprites[0].properties = 0;										//bitmasked properties - init to 0
+	sprites[0].properties = sprites[0].properties | MASK_RENDER;	//init to "render"
+	sprites[0].sprite_f1 = (u8*)&G_pitu[0]; //&G_pitu[0]			//first position render
 	sprites[0].sprite_f2 = (u8*)G_pitu_walk;
 	sprites[0].sprite_f3 = (u8*)G_pitu_jump;
 	sprites[0].sprite_f3 = (u8*)G_blast;
@@ -38,18 +41,18 @@ void keyboard(){
 	sprites[0].moveV = sprites[0].moveH = 0; 						//start with no movement
 
 	cpct_scanKeyboard_f();											//read keyboard/joystick
-	if (cpct_isKeyPressed(Key_Q) || cpct_isKeyPressed(Joy0_Up)){	//predefined Q=UP
-		sprites[0].moveV = -1;										//FIXME=UP = -1???
+	if (cpct_isKeyPressed(Key_CursorUp) || cpct_isKeyPressed(Key_Q) || cpct_isKeyPressed(Joy0_Up)){	
+		sprites[0].moveV = -1;		
 	}
-	if (cpct_isKeyPressed(Key_A) || cpct_isKeyPressed(Joy0_Down)){	//predefined A=DOWN
+	if (cpct_isKeyPressed(Key_CursorDown) || cpct_isKeyPressed(Key_A) || cpct_isKeyPressed(Joy0_Down)){
 		sprites[0].moveV = 1;
 	}
-	if (cpct_isKeyPressed(Key_O) || cpct_isKeyPressed(Joy0_Left)){	//predefined O=LEFT
+	if (cpct_isKeyPressed(Key_CursorLeft) || cpct_isKeyPressed(Key_O) || cpct_isKeyPressed(Joy0_Left)){
 		sprites[0].moveH = -1;
 		//sprites[0].turned = 1;
 	}
-	if (cpct_isKeyPressed(Key_P) || cpct_isKeyPressed(Joy0_Right)){ //predefined P=RIGHT
-		sprites[0].moveH = -1;										//FIXME=RIGHT = -1???
+	if (cpct_isKeyPressed(Key_CursorRight) || cpct_isKeyPressed(Key_P) || cpct_isKeyPressed(Joy0_Right)){
+		sprites[0].moveH = 1;
 		//sprites[0].turned = 1;
 	}
 }
@@ -93,9 +96,10 @@ void game(){
 	coord_x = 0;
 
 	while (1) {
-		//Change screen to be painted in next sync
+
+		//double buffer: switch screen to be painted in next sync
 		if (!swap_memvideo) { 				//switch
-			mem_start = (u8*) CPCT_LVMEM_START;		//lower page
+			mem_start = (u8*) CPCT_LVMEM_START;		//lower VMEM page
 			mem_page = cpct_page80;					//FIXME:: can probably delete??
 		} else {
 			mem_start = (u8*) CPCT_VMEM_START;		//upper,regular VMEM page

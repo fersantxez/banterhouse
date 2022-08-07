@@ -1,3 +1,6 @@
+/* main.h
+*/
+
 //Double Buffer config
 #define CPCT_LVMEM_START 0x8000 //lower VMEM page start; higher is standard CPCT_VMEM_START=0xC000
 
