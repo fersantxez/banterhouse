@@ -18,21 +18,21 @@ Area                                    Addr        Size        Decimal Bytes (A
      00000000  s__CABS                         
      00000000  s__DABS                         
      000000F5  l__DATA                         
-     00001F5E  l__CODE                         
+     000026D2  l__CODE                         
      00004000  s__CODE                         
-     00005F5E  s__DATA                         
-     00006053  s__GSFINAL                      
-     00006053  s__GSINIT                       
-     00006053  s__HOME                         
-     00006053  s__INITIALIZED                  
-     00006053  s__INITIALIZER                  
+     000066D2  s__DATA                         
+     000067C7  s__GSFINAL                      
+     000067C7  s__GSINIT                       
+     000067C7  s__HOME                         
+     000067C7  s__INITIALIZED                  
+     000067C7  s__INITIALIZER                  
 
 ASxxxx Linker V03.00 + NoICE + sdld,  page 2.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-_CODE                               00004000    00001F5E =        8030. bytes (REL,CON)
+_CODE                               00004000    000026D2 =        9938. bytes (REL,CON)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
@@ -44,75 +44,81 @@ _CODE                               00004000    00001F5E =        8030. bytes (R
      000042D0  _init_game                         game
      0000434F  _game                              game
      000043C3  _G_pitu                            graphics
-     000045C3  _G_pitu_walk                       graphics
-     000047C3  _G_pitu_jump                       graphics
-     000049C3  _G_alberto                         graphics
-     00004BC3  _G_alberto_walk                    graphics
-     00004DC3  _G_blast                           graphics
-     00004FC3  _G_beer                            graphics
-     00005023  _G_logo                            graphics
-     00005823  _main                              main
-     00005857  _paleta                            main
-     00005867  _menu                              menu
-     000058CE  _renderSprites                     render
-     00005AB3  _deleteSprites                     render
-     00005BA0  _cpct_setPalette                   cpct_video
-     00005BB7  _cpct_isKeyPressed                 cpct_keyboard
-     00005BB7  cpct_isKeyPressed_asm              cpct_keyboard
-     00005BC3  _cpct_scanKeyboard_f               cpct_keyboard
-     00005BC3  cpct_scanKeyboard_f_asm            cpct_keyboard
-     00005C2D  _cpct_hflipSpriteMaskedM0          cpct_sprites
-     00005C6B  _cpct_setPALColour                 cpct_video
-     00005C77  _cpct_drawStringM0                 cpct_strings
-     00005CB1  cpct_drawCharM0_inner_asm          cpct_strings
-     00005D11  dc_2pxtableM0                      cpct_strings
-     00005D15  _cpct_drawSprite                   cpct_sprites
-     00005DBA  _cpct_keyboardStatusBuffer         cpct_keyboard
-     00005DC4  _cpct_setVideoMemoryPage           cpct_video
-     00005DC4  cpct_setVideoMemoryPage_asm        cpct_video
-     00005DCD  _cpct_drawSpriteMasked             cpct_sprites
-     00005DFC  _cpct_setStackLocation             cpct_memutils
-     00005DFC  cpct_setStackLocation_asm          cpct_memutils
-     00005E00  _cpct_isAnyKeyPressed_f            cpct_keyboard
-     00005E00  cpct_isAnyKeyPressed_f_asm         cpct_keyboard
-     00005E1B  _cpct_setVideoMode                 cpct_video
-     00005E29  _cpct_waitVSYNC                    cpct_video
-     00005E29  cpct_waitVSYNC_asm                 cpct_video
-     00005E31  _cpct_px2byteM0                    cpct_sprites
-     00005E4D  _cpct_memset                       cpct_memutils
-     00005E5B  _cpct_disableFirmware              cpct_firmware
-     00005E5B  _cpct_removeInterruptHandler       cpct_firmware
-     00005E5B  cpct_disableFirmware_asm           cpct_firmware
-     00005E5B  cpct_removeInterruptHandler_asm    cpct_firmware
-     00005E6B  _cpct_drawSolidBox                 cpct_sprites
-     00005F12  _cpct_mode_rom_status              cpct_firmware
+     00004583  _G_pitu_rev                        graphics
+     00004743  _G_pitu_walk                       graphics
+     00004903  _G_pitu_walk_rev                   graphics
+     00004AC3  _G_pitu_jump                       graphics
+     00004C83  _G_pitu_jump_rev                   graphics
+     00004E43  _G_alberto                         graphics
+     00005003  _G_alberto_rev                     graphics
+     000051C3  _G_alberto_walk                    graphics
+     00005383  _G_alberto_walk_rev                graphics
+     00005543  _G_blast                           graphics
+     000056E7  _G_beer                            graphics
+     0000573F  _G_beer_rev                        graphics
+     00005797  _G_logo                            graphics
+     00005F97  _main                              main
+     00005FCB  _paleta                            main
+     00005FDB  _menu                              menu
+     00006042  _renderSprites                     render
+     00006227  _deleteSprites                     render
+     00006314  _cpct_setPalette                   cpct_video
+     0000632B  _cpct_isKeyPressed                 cpct_keyboard
+     0000632B  cpct_isKeyPressed_asm              cpct_keyboard
+     00006337  _cpct_scanKeyboard_f               cpct_keyboard
+     00006337  cpct_scanKeyboard_f_asm            cpct_keyboard
+     000063A1  _cpct_hflipSpriteMaskedM0          cpct_sprites
+     000063DF  _cpct_setPALColour                 cpct_video
+     000063EB  _cpct_drawStringM0                 cpct_strings
+     00006425  cpct_drawCharM0_inner_asm          cpct_strings
+     00006485  dc_2pxtableM0                      cpct_strings
+     00006489  _cpct_drawSprite                   cpct_sprites
+     0000652E  _cpct_keyboardStatusBuffer         cpct_keyboard
+     00006538  _cpct_setVideoMemoryPage           cpct_video
+     00006538  cpct_setVideoMemoryPage_asm        cpct_video
+     00006541  _cpct_drawSpriteMasked             cpct_sprites
+     00006570  _cpct_setStackLocation             cpct_memutils
+     00006570  cpct_setStackLocation_asm          cpct_memutils
+     00006574  _cpct_isAnyKeyPressed_f            cpct_keyboard
+     00006574  cpct_isAnyKeyPressed_f_asm         cpct_keyboard
+     0000658F  _cpct_setVideoMode                 cpct_video
+     0000659D  _cpct_waitVSYNC                    cpct_video
+     0000659D  cpct_waitVSYNC_asm                 cpct_video
+     000065A5  _cpct_px2byteM0                    cpct_sprites
+     000065C1  _cpct_memset                       cpct_memutils
 ASxxxx Linker V03.00 + NoICE + sdld,  page 3.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-_CODE                               00004000    00001F5E =        8030. bytes (REL,CON)
+_CODE                               00004000    000026D2 =        9938. bytes (REL,CON)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-     00005F13  _cpct_setDrawCharM0                cpct_strings
-     00005F38  _cpct_getScreenPtr                 cpct_video
-     00005F4E  dc_mode0_ct                        cpct_strings
+     000065CF  _cpct_disableFirmware              cpct_firmware
+     000065CF  _cpct_removeInterruptHandler       cpct_firmware
+     000065CF  cpct_disableFirmware_asm           cpct_firmware
+     000065CF  cpct_removeInterruptHandler_asm    cpct_firmware
+     000065DF  _cpct_drawSolidBox                 cpct_sprites
+     00006686  _cpct_mode_rom_status              cpct_firmware
+     00006687  _cpct_setDrawCharM0                cpct_strings
+     000066AC  _cpct_getScreenPtr                 cpct_video
+     000066C2  dc_mode0_ct                        cpct_strings
 
 ASxxxx Linker V03.00 + NoICE + sdld,  page 4.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-_DATA                               00005F5E    000000F5 =         245. bytes (REL,CON)
+_DATA                               000066D2    000000F5 =         245. bytes (REL,CON)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-     00005F5E  _sprites                           game
-     0000604E  _anim_clock                        game
-     0000604F  _mem_start                         main
-     00006051  _mem_page                          main
-     00006052  _swap_memvideo                     main
+     000066D2  _sprites                           game
+     000067C2  _anim_clock                        game
+     000067C3  _mem_start                         main
+     000067C5  _mem_page                          main
+     000067C6  _swap_memvideo                     main
 
 ASxxxx Linker V03.00 + NoICE + sdld,  page 5.
 

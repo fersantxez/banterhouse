@@ -222,8 +222,8 @@
    00DD 29            [11]  222 	add	hl, hl
    00DE 01r00r00      [10]  223 	ld	bc,#_sprites
    00E1 09            [11]  224 	add	hl,bc
-   00E2 DD 75 FE      [19]  225 	ld	-2 (ix), l
-   00E5 DD 74 FF      [19]  226 	ld	-1 (ix), h
+   00E2 DD 75 FC      [19]  225 	ld	-4 (ix), l
+   00E5 DD 74 FD      [19]  226 	ld	-3 (ix), h
    00E8 7E            [ 7]  227 	ld	a, (hl)
    00E9 DD 77 F9      [19]  228 	ld	-7 (ix), a
    00EC B7            [ 4]  229 	or	a, a
@@ -231,28 +231,28 @@
                             231 ;src/game.c:56: collision = 0;
    00F0 DD 36 F6 00   [19]  232 	ld	-10 (ix), #0x00
                             233 ;src/game.c:58: x = sprites[i].x;
-   00F4 DD 7E FE      [19]  234 	ld	a, -2 (ix)
+   00F4 DD 7E FC      [19]  234 	ld	a, -4 (ix)
    00F7 C6 01         [ 7]  235 	add	a, #0x01
    00F9 DD 77 FA      [19]  236 	ld	-6 (ix), a
-   00FC DD 7E FF      [19]  237 	ld	a, -1 (ix)
+   00FC DD 7E FD      [19]  237 	ld	a, -3 (ix)
    00FF CE 00         [ 7]  238 	adc	a, #0x00
    0101 DD 77 FB      [19]  239 	ld	-5 (ix), a
    0104 DD 6E FA      [19]  240 	ld	l,-6 (ix)
    0107 DD 66 FB      [19]  241 	ld	h,-5 (ix)
    010A 46            [ 7]  242 	ld	b, (hl)
                             243 ;src/game.c:59: y = sprites[i].y;
-   010B DD 7E FE      [19]  244 	ld	a, -2 (ix)
+   010B DD 7E FC      [19]  244 	ld	a, -4 (ix)
    010E C6 02         [ 7]  245 	add	a, #0x02
-   0110 DD 77 FC      [19]  246 	ld	-4 (ix), a
-   0113 DD 7E FF      [19]  247 	ld	a, -1 (ix)
+   0110 DD 77 FE      [19]  246 	ld	-2 (ix), a
+   0113 DD 7E FD      [19]  247 	ld	a, -3 (ix)
    0116 CE 00         [ 7]  248 	adc	a, #0x00
-   0118 DD 77 FD      [19]  249 	ld	-3 (ix), a
-   011B DD 6E FC      [19]  250 	ld	l,-4 (ix)
-   011E DD 66 FD      [19]  251 	ld	h,-3 (ix)
+   0118 DD 77 FF      [19]  249 	ld	-1 (ix), a
+   011B DD 6E FE      [19]  250 	ld	l,-2 (ix)
+   011E DD 66 FF      [19]  251 	ld	h,-1 (ix)
    0121 4E            [ 7]  252 	ld	c, (hl)
                             253 ;src/game.c:61: y = y + (4*sprites[i].moveV);	//vertical movement: Y is *px, X is *byte. M0 so Y is 4 times slower
-   0122 DD 6E FE      [19]  254 	ld	l,-2 (ix)
-   0125 DD 66 FF      [19]  255 	ld	h,-1 (ix)
+   0122 DD 6E FC      [19]  254 	ld	l,-4 (ix)
+   0125 DD 66 FD      [19]  255 	ld	h,-3 (ix)
    0128 23            [ 6]  256 	inc	hl
    0129 23            [ 6]  257 	inc	hl
    012A 23            [ 6]  258 	inc	hl
@@ -263,8 +263,8 @@
    012F 09            [11]  263 	add	hl, bc
    0130 4D            [ 4]  264 	ld	c, l
                             265 ;src/game.c:62: x = x + (sprites[i].moveH);
-   0131 DD 6E FE      [19]  266 	ld	l,-2 (ix)
-   0134 DD 66 FF      [19]  267 	ld	h,-1 (ix)
+   0131 DD 6E FC      [19]  266 	ld	l,-4 (ix)
+   0134 DD 66 FD      [19]  267 	ld	h,-3 (ix)
    0137 11 04 00      [10]  268 	ld	de, #0x0004
    013A 19            [11]  269 	add	hl, de
    013B 5E            [ 7]  270 	ld	e, (hl)
@@ -272,8 +272,8 @@
    013D 19            [11]  272 	add	hl, de
    013E DD 75 F7      [19]  273 	ld	-9 (ix), l
                             274 ;src/game.c:65: if (y > (GAME_AREA_BOTTOM - sprites[i].height))
-   0141 DD 6E FE      [19]  275 	ld	l,-2 (ix)
-   0144 DD 66 FF      [19]  276 	ld	h,-1 (ix)
+   0141 DD 6E FC      [19]  275 	ld	l,-4 (ix)
+   0144 DD 66 FD      [19]  276 	ld	h,-3 (ix)
    0147 11 09 00      [10]  277 	ld	de, #0x0009
    014A 19            [11]  278 	add	hl, de
    014B 5E            [ 7]  279 	ld	e, (hl)
@@ -298,8 +298,8 @@
    0165 DD 36 F6 01   [19]  298 	ld	-10 (ix), #0x01
    0169                     299 00102$:
                             300 ;src/game.c:68: if (x > (GAME_AREA_RIGHT - sprites[i].width))
-   0169 DD 6E FE      [19]  301 	ld	l,-2 (ix)
-   016C DD 66 FF      [19]  302 	ld	h,-1 (ix)
+   0169 DD 6E FC      [19]  301 	ld	l,-4 (ix)
+   016C DD 66 FD      [19]  302 	ld	h,-3 (ix)
    016F 11 0A 00      [10]  303 	ld	de, #0x000a
    0172 19            [11]  304 	add	hl, de
    0173 5E            [ 7]  305 	ld	e, (hl)
@@ -327,8 +327,8 @@
    0193 DD CB F6 46   [20]  327 	bit	0, -10 (ix)
    0197 20 07         [12]  328 	jr	NZ,00106$
                             329 ;src/game.c:75: sprites[i].y = y;
-   0199 DD 6E FC      [19]  330 	ld	l,-4 (ix)
-   019C DD 66 FD      [19]  331 	ld	h,-3 (ix)
+   0199 DD 6E FE      [19]  330 	ld	l,-2 (ix)
+   019C DD 66 FF      [19]  331 	ld	h,-1 (ix)
    019F 71            [ 7]  332 	ld	(hl), c
    01A0                     333 00106$:
                             334 ;src/game.c:76: if ((collision & LEFT_RIGHT_COLLISION) == 0)		//if not hitting right, move up/down
@@ -380,7 +380,7 @@
    01F0 36 20         [10]  380 	ld	(hl), #0x20
                             381 ;src/game.c:94: sprites[0].width = G_PITU_W;									//!?! /2: - M0, length in bytes = /2 in px
    01F2 21r0Ar00      [10]  382 	ld	hl, #(_sprites + 0x000a)
-   01F5 36 08         [10]  383 	ld	(hl), #0x08
+   01F5 36 07         [10]  383 	ld	(hl), #0x07
                             384 ;src/game.c:95: sprites[0].properties = 0;										//bitmasked properties - init to 0
    01F7 01r0Br00      [10]  385 	ld	bc, #_sprites + 11
    01FA AF            [ 4]  386 	xor	a, a

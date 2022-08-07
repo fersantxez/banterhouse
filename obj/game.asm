@@ -222,8 +222,8 @@ _moveSprites::
 	add	hl, hl
 	ld	bc,#_sprites
 	add	hl,bc
-	ld	-2 (ix), l
-	ld	-1 (ix), h
+	ld	-4 (ix), l
+	ld	-3 (ix), h
 	ld	a, (hl)
 	ld	-7 (ix), a
 	or	a, a
@@ -231,28 +231,28 @@ _moveSprites::
 ;src/game.c:56: collision = 0;
 	ld	-10 (ix), #0x00
 ;src/game.c:58: x = sprites[i].x;
-	ld	a, -2 (ix)
+	ld	a, -4 (ix)
 	add	a, #0x01
 	ld	-6 (ix), a
-	ld	a, -1 (ix)
+	ld	a, -3 (ix)
 	adc	a, #0x00
 	ld	-5 (ix), a
 	ld	l,-6 (ix)
 	ld	h,-5 (ix)
 	ld	b, (hl)
 ;src/game.c:59: y = sprites[i].y;
-	ld	a, -2 (ix)
+	ld	a, -4 (ix)
 	add	a, #0x02
-	ld	-4 (ix), a
-	ld	a, -1 (ix)
+	ld	-2 (ix), a
+	ld	a, -3 (ix)
 	adc	a, #0x00
-	ld	-3 (ix), a
-	ld	l,-4 (ix)
-	ld	h,-3 (ix)
-	ld	c, (hl)
-;src/game.c:61: y = y + (4*sprites[i].moveV);	//vertical movement: Y is *px, X is *byte. M0 so Y is 4 times slower
+	ld	-1 (ix), a
 	ld	l,-2 (ix)
 	ld	h,-1 (ix)
+	ld	c, (hl)
+;src/game.c:61: y = y + (4*sprites[i].moveV);	//vertical movement: Y is *px, X is *byte. M0 so Y is 4 times slower
+	ld	l,-4 (ix)
+	ld	h,-3 (ix)
 	inc	hl
 	inc	hl
 	inc	hl
@@ -263,8 +263,8 @@ _moveSprites::
 	add	hl, bc
 	ld	c, l
 ;src/game.c:62: x = x + (sprites[i].moveH);
-	ld	l,-2 (ix)
-	ld	h,-1 (ix)
+	ld	l,-4 (ix)
+	ld	h,-3 (ix)
 	ld	de, #0x0004
 	add	hl, de
 	ld	e, (hl)
@@ -272,8 +272,8 @@ _moveSprites::
 	add	hl, de
 	ld	-9 (ix), l
 ;src/game.c:65: if (y > (GAME_AREA_BOTTOM - sprites[i].height))
-	ld	l,-2 (ix)
-	ld	h,-1 (ix)
+	ld	l,-4 (ix)
+	ld	h,-3 (ix)
 	ld	de, #0x0009
 	add	hl, de
 	ld	e, (hl)
@@ -298,8 +298,8 @@ _moveSprites::
 	ld	-10 (ix), #0x01
 00102$:
 ;src/game.c:68: if (x > (GAME_AREA_RIGHT - sprites[i].width))
-	ld	l,-2 (ix)
-	ld	h,-1 (ix)
+	ld	l,-4 (ix)
+	ld	h,-3 (ix)
 	ld	de, #0x000a
 	add	hl, de
 	ld	e, (hl)
@@ -327,8 +327,8 @@ _moveSprites::
 	bit	0, -10 (ix)
 	jr	NZ,00106$
 ;src/game.c:75: sprites[i].y = y;
-	ld	l,-4 (ix)
-	ld	h,-3 (ix)
+	ld	l,-2 (ix)
+	ld	h,-1 (ix)
 	ld	(hl), c
 00106$:
 ;src/game.c:76: if ((collision & LEFT_RIGHT_COLLISION) == 0)		//if not hitting right, move up/down
@@ -380,7 +380,7 @@ _init_game::
 	ld	(hl), #0x20
 ;src/game.c:94: sprites[0].width = G_PITU_W;									//!?! /2: - M0, length in bytes = /2 in px
 	ld	hl, #(_sprites + 0x000a)
-	ld	(hl), #0x08
+	ld	(hl), #0x07
 ;src/game.c:95: sprites[0].properties = 0;										//bitmasked properties - init to 0
 	ld	bc, #_sprites + 11
 	xor	a, a

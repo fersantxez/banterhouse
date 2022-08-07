@@ -72,40 +72,40 @@ _renderSprites::
 	add	hl, hl
 	ld	bc,#_sprites
 	add	hl,bc
-	ld	-5 (ix), l
-	ld	-4 (ix), h
+	ld	-2 (ix), l
+	ld	-1 (ix), h
 	ld	a, (hl)
 	or	a, a
 	jp	Z, 00129$
 ;src/render.c:18: if (sprites[i].properties & MASK_RENDER) {
-	ld	l,-5 (ix)
-	ld	h,-4 (ix)
+	ld	l,-2 (ix)
+	ld	h,-1 (ix)
 	ld	de, #0x000b
 	add	hl, de
 	ld	c, (hl)
 ;src/render.c:46: cpct_getScreenPtr(mem_start, sprites[i].x, sprites[i].y),
-	ld	a, -5 (ix)
+	ld	a, -2 (ix)
 	add	a, #0x02
-	ld	-9 (ix), a
-	ld	a, -4 (ix)
+	ld	-6 (ix), a
+	ld	a, -1 (ix)
 	adc	a, #0x00
-	ld	-8 (ix), a
-	ld	a, -5 (ix)
+	ld	-5 (ix), a
+	ld	a, -2 (ix)
 	add	a, #0x01
-	ld	-3 (ix), a
-	ld	a, -4 (ix)
+	ld	-13 (ix), a
+	ld	a, -1 (ix)
 	adc	a, #0x00
-	ld	-2 (ix), a
+	ld	-12 (ix), a
 ;src/render.c:18: if (sprites[i].properties & MASK_RENDER) {
 	bit	0, c
 	jp	Z,00121$
 ;src/render.c:33: sprite = sprites[i].sprite_f1; 
-	ld	a, -5 (ix)
+	ld	a, -2 (ix)
 	add	a, #0x0f
-	ld	-12 (ix), a
-	ld	a, -4 (ix)
-	adc	a, #0x00
 	ld	-11 (ix), a
+	ld	a, -1 (ix)
+	adc	a, #0x00
+	ld	-10 (ix), a
 ;src/render.c:20: if (sprites[i].properties & MASK_ANIMATE) {
 	bit	1, c
 	jr	Z,00114$
@@ -124,8 +124,8 @@ _renderSprites::
 	cp	a, #0x01
 	jr	NZ,00111$
 ;src/render.c:33: sprite = sprites[i].sprite_f1; 
-	ld	l,-12 (ix)
-	ld	h,-11 (ix)
+	ld	l,-11 (ix)
+	ld	h,-10 (ix)
 	ld	e, (hl)
 	inc	hl
 	ld	d, (hl)
@@ -135,8 +135,8 @@ _renderSprites::
 	cp	a, #0x02
 	jr	NZ,00108$
 ;src/render.c:35: sprite = sprites[i].sprite_f2;
-	ld	l,-5 (ix)
-	ld	h,-4 (ix)
+	ld	l,-2 (ix)
+	ld	h,-1 (ix)
 	ld	de, #0x0011
 	add	hl, de
 	ld	e, (hl)
@@ -148,8 +148,8 @@ _renderSprites::
 	sub	a, #0x03
 	jr	NZ,00105$
 ;src/render.c:37: sprite = sprites[i].sprite_f3; 
-	ld	l,-5 (ix)
-	ld	h,-4 (ix)
+	ld	l,-2 (ix)
+	ld	h,-1 (ix)
 	ld	de, #0x0013
 	add	hl, de
 	ld	e, (hl)
@@ -158,8 +158,8 @@ _renderSprites::
 	jr	00115$
 00105$:
 ;src/render.c:38: } else sprite = sprites[i].sprite_f4;
-	ld	l,-5 (ix)
-	ld	h,-4 (ix)
+	ld	l,-2 (ix)
+	ld	h,-1 (ix)
 	ld	de, #0x0015
 	add	hl, de
 	ld	e, (hl)
@@ -168,45 +168,45 @@ _renderSprites::
 	jr	00115$
 00114$:
 ;src/render.c:39: } else sprite = sprites[i].sprite_f1;
-	ld	l,-12 (ix)
-	ld	h,-11 (ix)
+	ld	l,-11 (ix)
+	ld	h,-10 (ix)
 	ld	e, (hl)
 	inc	hl
 	ld	d, (hl)
 00115$:
 ;src/render.c:41: if (sprites[i].turned)					//turn sprite around
-	ld	a, -5 (ix)
+	ld	a, -2 (ix)
 	add	a, #0x17
-	ld	-12 (ix), a
-	ld	a, -4 (ix)
-	adc	a, #0x00
 	ld	-11 (ix), a
-	ld	l,-12 (ix)
-	ld	h,-11 (ix)
+	ld	a, -1 (ix)
+	adc	a, #0x00
+	ld	-10 (ix), a
+	ld	l,-11 (ix)
+	ld	h,-10 (ix)
 	ld	c, (hl)
 ;src/render.c:42: cpct_hflipSpriteMaskedM0(sprites[i].width, sprites[i].height, sprite);
-	ld	a, -5 (ix)
+	ld	a, -2 (ix)
 	add	a, #0x09
-	ld	-7 (ix), a
-	ld	a, -4 (ix)
+	ld	-4 (ix), a
+	ld	a, -1 (ix)
 	adc	a, #0x00
-	ld	-6 (ix), a
-	ld	a, -5 (ix)
+	ld	-3 (ix), a
+	ld	a, -2 (ix)
 	add	a, #0x0a
-	ld	-14 (ix), a
-	ld	a, -4 (ix)
+	ld	-8 (ix), a
+	ld	a, -1 (ix)
 	adc	a, #0x00
-	ld	-13 (ix), a
+	ld	-7 (ix), a
 ;src/render.c:41: if (sprites[i].turned)					//turn sprite around
 	ld	a, c
 	or	a, a
 	jr	Z,00117$
 ;src/render.c:42: cpct_hflipSpriteMaskedM0(sprites[i].width, sprites[i].height, sprite);
-	ld	l,-7 (ix)
-	ld	h,-6 (ix)
+	ld	l,-4 (ix)
+	ld	h,-3 (ix)
 	ld	b, (hl)
-	ld	l,-14 (ix)
-	ld	h,-13 (ix)
+	ld	l,-8 (ix)
+	ld	h,-7 (ix)
 	ld	a, (hl)
 	push	de
 	push	de
@@ -218,20 +218,20 @@ _renderSprites::
 	pop	de
 00117$:
 ;src/render.c:47: sprites[i].width, sprites[i].height);
-	ld	l,-7 (ix)
-	ld	h,-6 (ix)
+	ld	l,-4 (ix)
+	ld	h,-3 (ix)
 	ld	a, (hl)
-	ld	-1 (ix), a
-	ld	l,-14 (ix)
-	ld	h,-13 (ix)
+	ld	-9 (ix), a
+	ld	l,-8 (ix)
+	ld	h,-7 (ix)
 	ld	a, (hl)
-	ld	-10 (ix), a
+	ld	-14 (ix), a
 ;src/render.c:46: cpct_getScreenPtr(mem_start, sprites[i].x, sprites[i].y),
-	ld	l,-9 (ix)
-	ld	h,-8 (ix)
+	ld	l,-6 (ix)
+	ld	h,-5 (ix)
 	ld	c, (hl)
-	ld	l,-3 (ix)
-	ld	h,-2 (ix)
+	ld	l,-13 (ix)
+	ld	h,-12 (ix)
 	ld	b, (hl)
 	ld	iy, (_mem_start)
 	push	de
@@ -247,25 +247,25 @@ _renderSprites::
 	pop	de
 ;src/render.c:44: cpct_drawSpriteMasked(sprite,
 	push	de
-	ld	h, -1 (ix)
-	ld	l, -10 (ix)
+	ld	h, -9 (ix)
+	ld	l, -14 (ix)
 	push	hl
 	push	bc
 	push	de
 	call	_cpct_drawSpriteMasked
 	pop	de
 ;src/render.c:49: if (sprites[i].turned)					//turn back to normal (looking right)
-	ld	l,-12 (ix)
-	ld	h,-11 (ix)
+	ld	l,-11 (ix)
+	ld	h,-10 (ix)
 	ld	a, (hl)
 	or	a, a
 	jr	Z,00121$
 ;src/render.c:50: cpct_hflipSpriteMaskedM0(sprites[i].width, sprites[i].height, sprite);
-	ld	l,-7 (ix)
-	ld	h,-6 (ix)
+	ld	l,-4 (ix)
+	ld	h,-3 (ix)
 	ld	c, (hl)
-	ld	l,-14 (ix)
-	ld	h,-13 (ix)
+	ld	l,-8 (ix)
+	ld	h,-7 (ix)
 	ld	b, (hl)
 	push	de
 	ld	a, c
@@ -276,51 +276,51 @@ _renderSprites::
 	call	_cpct_hflipSpriteMaskedM0
 00121$:
 ;src/render.c:46: cpct_getScreenPtr(mem_start, sprites[i].x, sprites[i].y),
-	ld	l,-3 (ix)
-	ld	h,-2 (ix)
+	ld	l,-13 (ix)
+	ld	h,-12 (ix)
 	ld	c, (hl)
 ;src/render.c:55: if (!swap_memvideo) {
 	ld	a,(#_swap_memvideo + 0)
 	or	a, a
 	jr	NZ,00123$
 ;src/render.c:56: sprites[i].x_prev_B = sprites[i].x;
-	ld	a, -5 (ix)
+	ld	a, -2 (ix)
 	add	a, #0x07
 	ld	l, a
-	ld	a, -4 (ix)
+	ld	a, -1 (ix)
 	adc	a, #0x00
 	ld	h, a
 	ld	(hl), c
 ;src/render.c:57: sprites[i].y_prev_B = sprites[i].y;
-	ld	a, -5 (ix)
+	ld	a, -2 (ix)
 	add	a, #0x08
 	ld	c, a
-	ld	a, -4 (ix)
+	ld	a, -1 (ix)
 	adc	a, #0x00
 	ld	b, a
-	ld	l,-9 (ix)
-	ld	h,-8 (ix)
+	ld	l,-6 (ix)
+	ld	h,-5 (ix)
 	ld	a, (hl)
 	ld	(bc), a
 	jr	00129$
 00123$:
 ;src/render.c:59: sprites[i].x_prev_A = sprites[i].x;
-	ld	a, -5 (ix)
+	ld	a, -2 (ix)
 	add	a, #0x05
 	ld	l, a
-	ld	a, -4 (ix)
+	ld	a, -1 (ix)
 	adc	a, #0x00
 	ld	h, a
 	ld	(hl), c
 ;src/render.c:60: sprites[i].y_prev_A = sprites[i].y;
-	ld	a, -5 (ix)
+	ld	a, -2 (ix)
 	add	a, #0x06
 	ld	c, a
-	ld	a, -4 (ix)
+	ld	a, -1 (ix)
 	adc	a, #0x00
 	ld	b, a
-	ld	l,-9 (ix)
-	ld	h,-8 (ix)
+	ld	l,-6 (ix)
+	ld	h,-5 (ix)
 	ld	a, (hl)
 	ld	(bc), a
 00129$:
