@@ -22,8 +22,8 @@ Symbol Table
     _cpct_waitVSYNC                                                **** GX
   1 _cycle                                                         00DD GR
     _deleteSprites                                                 **** GX
-  0 _game                                                          01EB GR
-  0 _init_game                                                     0175 GR
+  0 _game                                                          0210 GR
+  0 _init_game                                                     019A GR
   0 _keyboard                                                      0000 GR
     _mem_page                                                      **** GX
     _mem_start                                                     **** GX
@@ -38,7 +38,7 @@ Hexadecimal [16-Bits]
 
 Area Table
 
-   0 _CODE                                      size  261   flags    0
+   0 _CODE                                      size  286   flags    0
    1 _DATA                                      size   DE   flags    0
    2 _INITIALIZED                               size    0   flags    0
    3 _DABS                                      size    0   flags    8

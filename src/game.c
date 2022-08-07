@@ -57,16 +57,19 @@ void moveSprites() {
 			y = y + (4*sprites[i].moveV);	//vertical movement: Y is *px, X is *byte. M0 so Y is 4 times slower
 			x = x + (sprites[i].moveH);
 
-			//If outside GAME AREA signal collision
-			/*if (y > (GAME_AREA_BOTTOM - sprites[i].height))
-				collision = collision | 0x01; //top or down collision
+			//GAME AREA: If outside, signal collision
+			if (y > (GAME_AREA_BOTTOM - sprites[i].height))
+				collision = collision | TOP_BOTTOM_COLLISION; //signal top collision w/bitmask
+			//No need to control bottom collision b/c y its a u8: over 255 it overflows back to 0
 			if (x > (GAME_AREA_RIGHT - sprites[i].width))
-				collision = collision } 0x02; //left of right collision
-			*/
-			//Treat vertical and horizonal collision differently for effect
-			if ((collision & 0x01) == 0)
+				collision = collision | LEFT_RIGHT_COLLISION; //signal right collision w/bitmask
+			//No need to control left collision b/c y its a u8: over 255 it overflows back to 0
+			
+			//Treat vertical and horizonal collision differently so that
+			//diagonal collision doesn't block both directions
+			if ((collision & TOP_BOTTOM_COLLISION) == 0)		//if not hitting top, move sideways
 				sprites[i].y = y;
-			if ((collision & 0x02) == 0)
+			if ((collision & LEFT_RIGHT_COLLISION) == 0)		//if not hitting right, move up/down
 				sprites[i].x = x;
 		}
 	}
@@ -81,13 +84,13 @@ void init_game() {
 	sprites[0].id = 1;												//mark the sprite "alive" (non-zero)
 	sprites[0].x = sprites[0].y = 0;								//init position to 0,0
 	sprites[0].moveV = sprites[0].moveH = 0;						//init movement to none
-	//used to delete prev positions of moving sprites in both (A,B) VMEM pages (double buffer)
+	//refs to prev positions of moving sprites in both (A,B) VMEM pages (double buffer) - init to 0
 	sprites[0].x_prev_A = sprites[0].y_prev_A = sprites[0].x_prev_B = sprites[0].y_prev_B = 0;
 	sprites[0].height = G_PITU_H;
 	sprites[0].width = G_PITU_W;									//!?! /2: - M0, length in bytes = /2 in px
 	sprites[0].properties = 0;										//bitmasked properties - init to 0
-	sprites[0].properties = sprites[0].properties | MASK_RENDER;	//init to "render"
-	sprites[0].sprite_f1 = (u8*)&G_pitu[0]; //&G_pitu[0]			//first position render
+	sprites[0].properties = sprites[0].properties | MASK_RENDER;	//init to "render" on screen
+	sprites[0].sprite_f1 = (u8*)G_pitu; //&G_pitu[0]				//first render for sprite
 	sprites[0].sprite_f2 = (u8*)G_pitu_walk;
 	sprites[0].sprite_f3 = (u8*)G_pitu_jump;
 	sprites[0].sprite_f3 = (u8*)G_blast;

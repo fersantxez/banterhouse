@@ -71,7 +71,7 @@
    0019 C5            [11]   71 	push	bc
    001A CDr00r00      [17]   72 	call	_cpct_memset
                              73 ;src/menu.c:11: cpct_drawSprite(G_logo,
-   001D 21 10 20      [10]   74 	ld	hl, #0x2010
+   001D 21 20 20      [10]   74 	ld	hl, #0x2020
    0020 E5            [11]   75 	push	hl
    0021 21 F9 D1      [10]   76 	ld	hl, #0xd1f9
    0024 E5            [11]   77 	push	hl

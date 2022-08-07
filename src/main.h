@@ -16,6 +16,9 @@ extern u8 swap_memvideo; 				//boolean switch one to the other
 #define GAME_AREA_LEFT 0
 #define GAME_AREA_RIGHT 80
 
+#define TOP_BOTTOM_COLLISION 0x01
+#define LEFT_RIGHT_COLLISION 0x02
+
 #define MASK_RENDER 0b00000001			//BITMASK to signal which entities to render (e.g. still on screen)
 #define MASK_FRAMES 0b00000010			//BITMASK to signal which frames to render
 

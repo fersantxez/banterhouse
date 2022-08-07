@@ -71,7 +71,7 @@ _menu::
 	push	bc
 	call	_cpct_memset
 ;src/menu.c:11: cpct_drawSprite(G_logo,
-	ld	hl, #0x2010
+	ld	hl, #0x2020
 	push	hl
 	ld	hl, #0xd1f9
 	push	hl
