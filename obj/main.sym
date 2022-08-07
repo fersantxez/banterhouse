@@ -12,19 +12,21 @@ Symbol Table
     _cpct_setStackLocation                                         **** GX
     _cpct_setVideoMode                                             **** GX
     _game                                                          **** GX
+    _init_game                                                     **** GX
   0 _main                                                          0000 GR
   1 _mem_page                                                      0002 GR
   1 _mem_start                                                     0000 GR
     _menu                                                          **** GX
-  0 _paleta                                                        0031 GR
+  0 _paleta                                                        0034 GR
   1 _swap_memvideo                                                 0003 GR
+
 
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 2.
 Hexadecimal [16-Bits]
 
 Area Table
 
-   0 _CODE                                      size   41   flags    0
+   0 _CODE                                      size   44   flags    0
    1 _DATA                                      size    4   flags    0
    2 _INITIALIZED                               size    0   flags    0
    3 _DABS                                      size    0   flags    8

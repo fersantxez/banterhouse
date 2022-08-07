@@ -7,17 +7,29 @@ Symbol Table
     .__.ABS.                                                    =  0000 G
     .__.CPU.                                                    =  0000 L
     .__.H$L.                                                    =  0000 L
+  0 _AI                                                            00E7 GR
+    _G_blast                                                       **** GX
+    _G_pitu                                                        **** GX
+    _G_pitu_jump                                                   **** GX
+    _G_pitu_walk                                                   **** GX
   1 _coord_x                                                       0000 GR
+    _cpct_isKeyPressed                                             **** GX
     _cpct_memset                                                   **** GX
     _cpct_px2byteM0                                                **** GX
+    _cpct_scanKeyboard_f                                           **** GX
     _cpct_setPALColour                                             **** GX
     _cpct_setVideoMemoryPage                                       **** GX
     _cpct_waitVSYNC                                                **** GX
-  0 _game                                                          0000 GR
+  1 _cycle                                                         00DD GR
+    _deleteSprites                                                 **** GX
+  0 _game                                                          01C3 GR
+  0 _init_game                                                     0000 GR
+  0 _keyboard                                                      0076 GR
     _mem_page                                                      **** GX
     _mem_start                                                     **** GX
-    _renderDelete                                                  **** GX
+  0 _moveSprites                                                   00E8 GR
     _renderSprites                                                 **** GX
+  1 _sprites                                                       0001 GR
     _swap_memvideo                                                 **** GX
 
 
@@ -26,8 +38,8 @@ Hexadecimal [16-Bits]
 
 Area Table
 
-   0 _CODE                                      size   6B   flags    0
-   1 _DATA                                      size    1   flags    0
+   0 _CODE                                      size  239   flags    0
+   1 _DATA                                      size   DE   flags    0
    2 _INITIALIZED                               size    0   flags    0
    3 _DABS                                      size    0   flags    8
    4 _HOME                                      size    0   flags    0

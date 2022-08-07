@@ -53,65 +53,65 @@
                              53 ;	---------------------------------
                              54 ; Function menu
                              55 ; ---------------------------------
-   561C                      56 _menu::
+   57ED                      56 _menu::
                              57 ;src/menu.c:7: cpct_setBorder(HW_WHITE);
-   561C 21 10 00      [10]   58 	ld	hl, #0x0010
-   561F E5            [11]   59 	push	hl
-   5620 CD 53 57      [17]   60 	call	_cpct_setPALColour
+   57ED 21 10 00      [10]   58 	ld	hl, #0x0010
+   57F0 E5            [11]   59 	push	hl
+   57F1 CD BA 5A      [17]   60 	call	_cpct_setPALColour
                              61 ;src/menu.c:8: cpct_memset(mem_start, cpct_px2byteM0(5,5), 0x4000); //5=WHITE ordinal from palette; 0x4000 is VMEM_SIZE
-   5623 21 05 05      [10]   62 	ld	hl, #0x0505
-   5626 E5            [11]   63 	push	hl
-   5627 CD 19 59      [17]   64 	call	_cpct_px2byteM0
-   562A 55            [ 4]   65 	ld	d, l
-   562B ED 4B 47 5A   [20]   66 	ld	bc, (_mem_start)
-   562F 21 00 40      [10]   67 	ld	hl, #0x4000
-   5632 E5            [11]   68 	push	hl
-   5633 D5            [11]   69 	push	de
-   5634 33            [ 6]   70 	inc	sp
-   5635 C5            [11]   71 	push	bc
-   5636 CD 35 59      [17]   72 	call	_cpct_memset
+   57F4 21 05 05      [10]   62 	ld	hl, #0x0505
+   57F7 E5            [11]   63 	push	hl
+   57F8 CD 80 5C      [17]   64 	call	_cpct_px2byteM0
+   57FB 55            [ 4]   65 	ld	d, l
+   57FC ED 4B 8B 5E   [20]   66 	ld	bc, (_mem_start)
+   5800 21 00 40      [10]   67 	ld	hl, #0x4000
+   5803 E5            [11]   68 	push	hl
+   5804 D5            [11]   69 	push	de
+   5805 33            [ 6]   70 	inc	sp
+   5806 C5            [11]   71 	push	bc
+   5807 CD 9C 5C      [17]   72 	call	_cpct_memset
                              73 ;src/menu.c:11: cpct_drawSprite(G_logo,
-   5639 21 20 20      [10]   74 	ld	hl, #0x2020
-   563C E5            [11]   75 	push	hl
-   563D 21 F9 D1      [10]   76 	ld	hl, #0xd1f9
-   5640 E5            [11]   77 	push	hl
-   5641 21 DB 4D      [10]   78 	ld	hl, #_G_logo
-   5644 E5            [11]   79 	push	hl
-   5645 CD FD 57      [17]   80 	call	_cpct_drawSprite
+   580A 21 20 20      [10]   74 	ld	hl, #0x2020
+   580D E5            [11]   75 	push	hl
+   580E 21 F9 D1      [10]   76 	ld	hl, #0xd1f9
+   5811 E5            [11]   77 	push	hl
+   5812 21 A9 4F      [10]   78 	ld	hl, #_G_logo
+   5815 E5            [11]   79 	push	hl
+   5816 CD 64 5B      [17]   80 	call	_cpct_drawSprite
                              81 ;src/menu.c:16: cpct_setDrawCharM0 (10, 7); //fg color=15, bg color=5. CPCT>1.5 requires initializing before "drawString"
-   5648 21 0A 07      [10]   82 	ld	hl, #0x070a
-   564B E5            [11]   83 	push	hl
-   564C CD FB 59      [17]   84 	call	_cpct_setDrawCharM0
+   5819 21 0A 07      [10]   82 	ld	hl, #0x070a
+   581C E5            [11]   83 	push	hl
+   581D CD 62 5D      [17]   84 	call	_cpct_setDrawCharM0
                              85 ;src/menu.c:17: cpct_drawStringM0("Press S to Start", cpctm_screenPtr(CPCT_VMEM_START, 10, 160 )); //X=(byte 10)=(pixel 20);Y=(line 160)
-   564F 21 4A C6      [10]   86 	ld	hl, #0xc64a
-   5652 E5            [11]   87 	push	hl
-   5653 21 72 56      [10]   88 	ld	hl, #___str_0
-   5656 E5            [11]   89 	push	hl
-   5657 CD 5F 57      [17]   90 	call	_cpct_drawStringM0
+   5820 21 4A C6      [10]   86 	ld	hl, #0xc64a
+   5823 E5            [11]   87 	push	hl
+   5824 21 43 58      [10]   88 	ld	hl, #___str_0
+   5827 E5            [11]   89 	push	hl
+   5828 CD C6 5A      [17]   90 	call	_cpct_drawStringM0
                              91 ;src/menu.c:20: do {
-   565A                      92 00101$:
+   582B                      92 00101$:
                              93 ;src/menu.c:21: cpct_scanKeyboard_f();
-   565A CD D2 56      [17]   94 	call	_cpct_scanKeyboard_f
+   582B CD 50 5A      [17]   94 	call	_cpct_scanKeyboard_f
                              95 ;src/menu.c:22: } while (cpct_isAnyKeyPressed_f());
-   565D CD E8 58      [17]   96 	call	_cpct_isAnyKeyPressed_f
-   5660 7D            [ 4]   97 	ld	a, l
-   5661 B7            [ 4]   98 	or	a, a
-   5662 20 F6         [12]   99 	jr	NZ,00101$
+   582E CD 4F 5C      [17]   96 	call	_cpct_isAnyKeyPressed_f
+   5831 7D            [ 4]   97 	ld	a, l
+   5832 B7            [ 4]   98 	or	a, a
+   5833 20 F6         [12]   99 	jr	NZ,00101$
                             100 ;src/menu.c:24: while (!cpct_isKeyPressed(Key_S)) //any key: cpct_isAnyKeyPressed_f())
-   5664                     101 00104$:
-   5664 21 07 10      [10]  102 	ld	hl, #0x1007
-   5667 CD C6 56      [17]  103 	call	_cpct_isKeyPressed
-   566A 7D            [ 4]  104 	ld	a, l
-   566B B7            [ 4]  105 	or	a, a
-   566C C0            [11]  106 	ret	NZ
+   5835                     101 00104$:
+   5835 21 07 10      [10]  102 	ld	hl, #0x1007
+   5838 CD 44 5A      [17]  103 	call	_cpct_isKeyPressed
+   583B 7D            [ 4]  104 	ld	a, l
+   583C B7            [ 4]  105 	or	a, a
+   583D C0            [11]  106 	ret	NZ
                             107 ;src/menu.c:25: cpct_scanKeyboard_f();
-   566D CD D2 56      [17]  108 	call	_cpct_scanKeyboard_f
-   5670 18 F2         [12]  109 	jr	00104$
-   5672                     110 ___str_0:
-   5672 50 72 65 73 73 20   111 	.ascii "Press S to Start"
+   583E CD 50 5A      [17]  108 	call	_cpct_scanKeyboard_f
+   5841 18 F2         [12]  109 	jr	00104$
+   5843                     110 ___str_0:
+   5843 50 72 65 73 73 20   111 	.ascii "Press S to Start"
         53 20 74 6F 20 53
         74 61 72 74
-   5682 00                  112 	.db 0x00
+   5853 00                  112 	.db 0x00
                             113 	.area _CODE
                             114 	.area _INITIALIZER
                             115 	.area _CABS (ABS)

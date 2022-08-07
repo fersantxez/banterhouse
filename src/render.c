@@ -4,13 +4,52 @@
 #include "game.h"
 
 void renderSprites(){
-	//drawSpriteMasked! sprite built w/"Mask Data Inline" in RGAS - double size!
-	cpct_drawSpriteMasked(G_pitu, cpct_getScreenPtr( mem_start, coord_x, 0), G_PITU_W/2, G_PITU_H);
+	u8 i;
+	u8* sprite;
+
+	for (i = 0; i < MAX_SPRITES; i++) {
+		if (sprites[i].id !=0) {			//only live and renderable sprites
+			if (sprites[i].properties & MASK_RENDER){
+				sprite = sprites[i].sprite_f1;
+
+				cpct_drawSpriteMasked(sprite,
+					cpct_getScreenPtr(mem_start, sprites[i].x, sprites[i].y), //on current *mem_start* plus sprite size
+					sprites[i].width, sprites[i].height);
+			}
+
+			//Save position in the sprite struct to erase after movement 
+			if (!swap_memvideo) {
+				sprites[i].x_prev_B = sprites[i].x;
+				sprites[i].y_prev_B = sprites[i].y;
+			} else {
+				sprites[i].x_prev_A = sprites[i].x;
+				sprites[i].y_prev_A = sprites[i].y;
+			}
+		}
+	}
 }
 
-//Paint a square of W:G_PITU_W and H:G_PITU_H with the background color to delete the sprite
-//We delete the sprite in "coord_x-2" because we're deleting the position we were in two frames ago
-void renderDelete(){
-	cpct_drawSolidBox(cpct_getScreenPtr( mem_start, coord_x-2, 0), cpct_px2byteM0(5,5), G_PITU_W/2, G_PITU_H);
+//Paint squares with the background on the previous position of every sprite
+void deleteSprites(){
+	u8 x, y;
+	u8 i;
+
+	for (i = 0; i < MAX_SPRITES; i++) {
+		if (sprites[i].id !=0) {
+			if (!swap_memvideo){
+				x = sprites[i].x_prev_B;
+				y = sprites[i].y_prev_B;
+			}
+			else {
+				x = sprites[i].x_prev_A;
+				y = sprites[i].y_prev_A;
+			}
+			cpct_drawSolidBox(
+				cpct_getScreenPtr(mem_start, x, y),
+				cpct_px2byteM0(5,5), 
+				sprites[i].width, sprites[i].height);
+		}
+	}
 }
+
 

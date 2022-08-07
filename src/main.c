@@ -17,6 +17,7 @@
 
 #include <cpctelera.h>
 #include "menu.h"
+#include "game.h"
 
 //Palette in code needs HW values. Can get FW values from RGAS and map to FW_XX then to HW_XX
 //https://www.cpcwiki.eu/index.php/Video_modes#Colour_attributes
@@ -49,6 +50,7 @@ void main(void) {
       mem_page = cpct_pageC0; //this likely can be obtained from above, but...
 
       menu();
+      init_game();
       game();
    }
    
