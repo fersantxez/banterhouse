@@ -54,7 +54,7 @@
 ##     $(eval $(call IMG2SPRITES,imgs/1.png,0,g,4,8,$(PAL),,src/))        ##
 ############################################################################
 
-# Palette in image_conversion needs FW_VALUES
+# Palette in image_conversion needs FW_VALUES, in Decimal (RGAS gives FW/hex)
 # conversion table: https://lronaldo.github.io/cpctelera/files/video/cpct_setPalette-asm.html
 #hex from RGAS
 #PALETTE={00 1A 0B 14 17 0D \
@@ -76,4 +76,29 @@ PALETTE={0 26 11 20 23 13 \
 ##	  hardware colour values.
 
 #$(eval $(call IMG2SPRITES,img/example.png,0,pre,24,12,$(PALETTE),mask,src/,hwpalette))
-$(eval $(call IMG2SPRITES,img/pitu.png,0,g,16,32,$(PALETTE),,src/,hwpalette))
+#$(eval $(call IMG2SPRITES,img/pitu.png,0,g,16,32,$(PALETTE),,src/,hwpalette))
+
+#From Taller CPCtelera
+#https://youtu.be/8fI68O1V-08?t=1018
+
+#default config
+#$(eval $(call IMG2SP, SET_MODE        , 0             ))  { 0, 1, 2          }
+#$(eval $(call IMG2SP, SET_MASK        , none          ))  { interlaced, none }
+#$(eval $(call IMG2SP, SET_FOLDER      , src/          ))
+#$(eval $(call IMG2SP, SET_EXTRAPAR    ,               ))
+#$(eval $(call IMG2SP, SET_IMG_FORMAT  , sprites       ))  { sprites, zgtiles }
+#$(eval $(call IMG2SP, SET_OUTPUT      , c             ))  { bin, c           }
+#$(eval $(call IMG2SP, SET_PALETTE_FW  , $(PALETTE)    ))
+#$(eval $(call IMG2SP, CONVERT_PALETTE , $(PALETTE), g_palette ))
+#$(eval $(call IMG2SP, CONVERT         , img.png, w, h, array, palette, tileset))
+
+#example - conversion
+$(eval $(call IMG2SP, SET_MODE        , 0             ))
+$(eval $(call IMG2SP, SET_MASK        , none          ))
+$(eval $(call IMG2SP, SET_FOLDER      , src/          ))
+$(eval $(call IMG2SP, SET_EXTRAPAR    ,               ))
+$(eval $(call IMG2SP, SET_IMG_FORMAT  , zgtiles       ))  #CPCtelera uses this format, unusual but performing
+$(eval $(call IMG2SP, SET_OUTPUT      , c             ))  
+$(eval $(call IMG2SP, SET_PALETTE_FW  , $(PALETTE)    ))
+#$(eval $(call IMG2SP, CONVERT_PALETTE , $(PALETTE), g_palette ))
+$(eval $(call IMG2SP, CONVERT         , maps/tileset.png, 8, 8, g_tileset, , ))

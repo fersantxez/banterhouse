@@ -64,3 +64,24 @@
 ##
 
 #$(eval $(call TMX2C,img/level0b.tmx,g_level0_4bit,src/levels/,4))
+
+#From Taller CPCtelera
+#https://youtu.be/8fI68O1V-08?t=913
+
+#default config
+#$(eval $(call TMX2DATA, SET_ASMVARPREFIX, yes           ))	 { yes, no       }
+#$(eval $(call TMX2DATA, SET_USEMACROS   , yes           ))  { yes, no       }
+#$(eval $(call TMX2DATA, SET_OUTPUTS     , h c           ))  { bin hs h s c  } #output file format
+#$(eval $(call TMX2DATA, SET_BASE        , dec           ))  { dec hex bin   }
+#$(eval $(call TMX2DATA, SET_BITSPERITEM , 8             ))  { 1, 2, 4, 6, 8 }
+#$(eval $(call TMX2DATA, SET_FOLDER      , src/          ))
+#$(eval $(call TMX2DATA, SET_EXTRAPAR    ,               ))
+
+#example - conversion
+$(eval $(call TMX2DATA, SET_ASMVARPREFIX, yes           ))
+$(eval $(call TMX2DATA, SET_USEMACROS   , yes           ))
+$(eval $(call TMX2DATA, SET_OUTPUTS     , h c           ))
+$(eval $(call TMX2DATA, SET_BASE        , dec           ))
+$(eval $(call TMX2DATA, SET_BITSPERITEM , 8             ))
+$(eval $(call TMX2DATA, SET_EXTRAPAR    ,               ))
+$(eval $(call TMX2DATA, CONVERT         , maps/scr01.tmx))   #relative path from project root
