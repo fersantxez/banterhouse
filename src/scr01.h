@@ -10,10 +10,10 @@
 #include <cpctelera.h>
 
 //#### Width and height constants ####
-#define g_map_W  20
-#define g_map_H  23
+#define G_map_W  20 //FIXME: need to use half in mode 0??
+#define G_map_H  23
 
 //#### Converted layer tilemaps ####
 //   Visible layers: 1
 //
-extern const u8 g_map[460];
+extern const u8 G_map[20*23];

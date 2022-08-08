@@ -27,12 +27,12 @@
                              27 ; ram data
                              28 ;--------------------------------------------------------
                              29 	.area _DATA
-   69E7                      30 _mem_start::
-   69E7                      31 	.ds 2
-   69E9                      32 _mem_page::
-   69E9                      33 	.ds 1
-   69EA                      34 _swap_memvideo::
-   69EA                      35 	.ds 1
+   6CD6                      30 _mem_start::
+   6CD6                      31 	.ds 2
+   6CD8                      32 _mem_page::
+   6CD8                      33 	.ds 1
+   6CD9                      34 _swap_memvideo::
+   6CD9                      35 	.ds 1
                              36 ;--------------------------------------------------------
                              37 ; ram data
                              38 ;--------------------------------------------------------
@@ -61,56 +61,56 @@
                              61 ;	---------------------------------
                              62 ; Function main
                              63 ; ---------------------------------
-   6262                      64 _main::
+   629A                      64 _main::
                              65 ;src/main.c:34: cpct_setStackLocation ((u8*) 0x7FFF);        //Move stack to right before double buffer 0X8000
-   6262 21 FF 7F      [10]   66 	ld	hl, #0x7fff
-   6265 CD 94 67      [17]   67 	call	_cpct_setStackLocation
+   629A 21 FF 7F      [10]   66 	ld	hl, #0x7fff
+   629D CD 7F 68      [17]   67 	call	_cpct_setStackLocation
                              68 ;src/main.c:35: cpct_disableFirmware();
-   6268 CD F3 67      [17]   69 	call	_cpct_disableFirmware
+   62A0 CD E6 68      [17]   69 	call	_cpct_disableFirmware
                              70 ;src/main.c:37: cpct_setVideoMode(0); //160x200; 16 colors in screen
-   626B 2E 00         [ 7]   71 	ld	l, #0x00
-   626D CD B3 67      [17]   72 	call	_cpct_setVideoMode
+   62A3 2E 00         [ 7]   71 	ld	l, #0x00
+   62A5 CD 9E 68      [17]   72 	call	_cpct_setVideoMode
                              73 ;src/main.c:38: cpct_setPalette(paleta,16);
-   6270 21 10 00      [10]   74 	ld	hl, #0x0010
-   6273 E5            [11]   75 	push	hl
-   6274 21 96 62      [10]   76 	ld	hl, #_paleta
-   6277 E5            [11]   77 	push	hl
-   6278 CD 76 65      [17]   78 	call	_cpct_setPalette
+   62A8 21 10 00      [10]   74 	ld	hl, #0x0010
+   62AB E5            [11]   75 	push	hl
+   62AC 21 CE 62      [10]   76 	ld	hl, #_paleta
+   62AF E5            [11]   77 	push	hl
+   62B0 CD BC 65      [17]   78 	call	_cpct_setPalette
                              79 ;src/main.c:40: while (1) {
-   627B                      80 00102$:
+   62B3                      80 00102$:
                              81 ;src/main.c:43: swap_memvideo = 0;                        //set DB switch to "zero" (upper VMEM page first)
-   627B 21 EA 69      [10]   82 	ld	hl,#_swap_memvideo + 0
-   627E 36 00         [10]   83 	ld	(hl), #0x00
+   62B3 21 D9 6C      [10]   82 	ld	hl,#_swap_memvideo + 0
+   62B6 36 00         [10]   83 	ld	(hl), #0x00
                              84 ;src/main.c:44: mem_start = (u8*) CPCT_VMEM_START;        //upper, standard VMEM page first
-   6280 21 00 C0      [10]   85 	ld	hl, #0xc000
-   6283 22 E7 69      [16]   86 	ld	(_mem_start), hl
+   62B8 21 00 C0      [10]   85 	ld	hl, #0xc000
+   62BB 22 D6 6C      [16]   86 	ld	(_mem_start), hl
                              87 ;src/main.c:45: mem_page = cpct_pageC0;                   //upper, C0 page
-   6286 21 E9 69      [10]   88 	ld	hl,#_mem_page + 0
-   6289 36 30         [10]   89 	ld	(hl), #0x30
+   62BE 21 D8 6C      [10]   88 	ld	hl,#_mem_page + 0
+   62C1 36 30         [10]   89 	ld	(hl), #0x30
                              90 ;src/main.c:47: menu();
-   628B CD A6 62      [17]   91 	call	_menu
+   62C3 CD DE 62      [17]   91 	call	_menu
                              92 ;src/main.c:48: init_game();
-   628E CD 9B 45      [17]   93 	call	_init_game
+   62C6 CD D0 45      [17]   93 	call	_init_game
                              94 ;src/main.c:49: game();
-   6291 CD 1A 46      [17]   95 	call	_game
-   6294 18 E5         [12]   96 	jr	00102$
-   6296                      97 _paleta:
-   6296 14                   98 	.db #0x14	; 20
-   6297 0B                   99 	.db #0x0b	; 11
-   6298 17                  100 	.db #0x17	; 23
-   6299 13                  101 	.db #0x13	; 19
-   629A 1B                  102 	.db #0x1b	; 27
-   629B 00                  103 	.db #0x00	; 0
-   629C 12                  104 	.db #0x12	; 18
-   629D 19                  105 	.db #0x19	; 25
-   629E 03                  106 	.db #0x03	; 3
-   629F 1C                  107 	.db #0x1c	; 28
-   62A0 05                  108 	.db #0x05	; 5
-   62A1 0F                  109 	.db #0x0f	; 15
-   62A2 0E                  110 	.db #0x0e	; 14
-   62A3 07                  111 	.db #0x07	; 7
-   62A4 1E                  112 	.db #0x1e	; 30
-   62A5 04                  113 	.db #0x04	; 4
+   62C9 CD 4F 46      [17]   95 	call	_game
+   62CC 18 E5         [12]   96 	jr	00102$
+   62CE                      97 _paleta:
+   62CE 14                   98 	.db #0x14	; 20
+   62CF 0B                   99 	.db #0x0b	; 11
+   62D0 17                  100 	.db #0x17	; 23
+   62D1 13                  101 	.db #0x13	; 19
+   62D2 1B                  102 	.db #0x1b	; 27
+   62D3 00                  103 	.db #0x00	; 0
+   62D4 12                  104 	.db #0x12	; 18
+   62D5 19                  105 	.db #0x19	; 25
+   62D6 03                  106 	.db #0x03	; 3
+   62D7 1C                  107 	.db #0x1c	; 28
+   62D8 05                  108 	.db #0x05	; 5
+   62D9 0F                  109 	.db #0x0f	; 15
+   62DA 0E                  110 	.db #0x0e	; 14
+   62DB 07                  111 	.db #0x07	; 7
+   62DC 1E                  112 	.db #0x1e	; 30
+   62DD 04                  113 	.db #0x04	; 4
                             114 	.area _CODE
                             115 	.area _INITIALIZER
                             116 	.area _CABS (ABS)

@@ -8,22 +8,22 @@
                               8 ;--------------------------------------------------------
                               9 ; Public variables in this module
                              10 ;--------------------------------------------------------
-                             11 	.globl _g_tileset_15
-                             12 	.globl _g_tileset_14
-                             13 	.globl _g_tileset_13
-                             14 	.globl _g_tileset_12
-                             15 	.globl _g_tileset_11
-                             16 	.globl _g_tileset_10
-                             17 	.globl _g_tileset_09
-                             18 	.globl _g_tileset_08
-                             19 	.globl _g_tileset_07
-                             20 	.globl _g_tileset_06
-                             21 	.globl _g_tileset_05
-                             22 	.globl _g_tileset_04
-                             23 	.globl _g_tileset_03
-                             24 	.globl _g_tileset_02
-                             25 	.globl _g_tileset_01
-                             26 	.globl _g_tileset_00
+                             11 	.globl _G_tileset_15
+                             12 	.globl _G_tileset_14
+                             13 	.globl _G_tileset_13
+                             14 	.globl _G_tileset_12
+                             15 	.globl _G_tileset_11
+                             16 	.globl _G_tileset_10
+                             17 	.globl _G_tileset_09
+                             18 	.globl _G_tileset_08
+                             19 	.globl _G_tileset_07
+                             20 	.globl _G_tileset_06
+                             21 	.globl _G_tileset_05
+                             22 	.globl _G_tileset_04
+                             23 	.globl _G_tileset_03
+                             24 	.globl _G_tileset_02
+                             25 	.globl _G_tileset_01
+                             26 	.globl _G_tileset_00
                              27 ;--------------------------------------------------------
                              28 ; special function registers
                              29 ;--------------------------------------------------------
@@ -56,7 +56,7 @@
                              56 ;--------------------------------------------------------
                              57 	.area _CODE
                              58 	.area _CODE
-   41CC                      59 _g_tileset_00:
+   41CC                      59 _G_tileset_00:
    41CC C0                   60 	.db #0xc0	; 192
    41CD C0                   61 	.db #0xc0	; 192
    41CE C0                   62 	.db #0xc0	; 192
@@ -89,7 +89,7 @@
    41E9 C0                   89 	.db #0xc0	; 192
    41EA C0                   90 	.db #0xc0	; 192
    41EB C0                   91 	.db #0xc0	; 192
-   41EC                      92 _g_tileset_01:
+   41EC                      92 _G_tileset_01:
    41EC CC                   93 	.db #0xcc	; 204
    41ED CC                   94 	.db #0xcc	; 204
    41EE CC                   95 	.db #0xcc	; 204
@@ -122,7 +122,7 @@
    4209 C0                  122 	.db #0xc0	; 192
    420A C0                  123 	.db #0xc0	; 192
    420B C0                  124 	.db #0xc0	; 192
-   420C                     125 _g_tileset_02:
+   420C                     125 _G_tileset_02:
    420C C8                  126 	.db #0xc8	; 200
    420D C0                  127 	.db #0xc0	; 192
    420E C0                  128 	.db #0xc0	; 192
@@ -155,7 +155,7 @@
    4229 C0                  155 	.db #0xc0	; 192
    422A C0                  156 	.db #0xc0	; 192
    422B C8                  157 	.db #0xc8	; 200
-   422C                     158 _g_tileset_03:
+   422C                     158 _G_tileset_03:
    422C C0                  159 	.db #0xc0	; 192
    422D C0                  160 	.db #0xc0	; 192
    422E C0                  161 	.db #0xc0	; 192
@@ -188,7 +188,7 @@
    4249 C0                  188 	.db #0xc0	; 192
    424A C0                  189 	.db #0xc0	; 192
    424B C0                  190 	.db #0xc0	; 192
-   424C                     191 _g_tileset_04:
+   424C                     191 _G_tileset_04:
    424C CC                  192 	.db #0xcc	; 204
    424D CC                  193 	.db #0xcc	; 204
    424E CC                  194 	.db #0xcc	; 204
@@ -221,7 +221,7 @@
    4269 C0                  221 	.db #0xc0	; 192
    426A C0                  222 	.db #0xc0	; 192
    426B C8                  223 	.db #0xc8	; 200
-   426C                     224 _g_tileset_05:
+   426C                     224 _G_tileset_05:
    426C CC                  225 	.db #0xcc	; 204
    426D CC                  226 	.db #0xcc	; 204
    426E CC                  227 	.db #0xcc	; 204
@@ -254,7 +254,7 @@
    4289 C0                  254 	.db #0xc0	; 192
    428A C0                  255 	.db #0xc0	; 192
    428B C0                  256 	.db #0xc0	; 192
-   428C                     257 _g_tileset_06:
+   428C                     257 _G_tileset_06:
    428C C8                  258 	.db #0xc8	; 200
    428D C0                  259 	.db #0xc0	; 192
    428E C0                  260 	.db #0xc0	; 192
@@ -287,7 +287,7 @@
    42A9 C0                  287 	.db #0xc0	; 192
    42AA C0                  288 	.db #0xc0	; 192
    42AB C8                  289 	.db #0xc8	; 200
-   42AC                     290 _g_tileset_07:
+   42AC                     290 _G_tileset_07:
    42AC C0                  291 	.db #0xc0	; 192
    42AD C0                  292 	.db #0xc0	; 192
    42AE C0                  293 	.db #0xc0	; 192
@@ -320,7 +320,7 @@
    42C9 C0                  320 	.db #0xc0	; 192
    42CA C0                  321 	.db #0xc0	; 192
    42CB C0                  322 	.db #0xc0	; 192
-   42CC                     323 _g_tileset_08:
+   42CC                     323 _G_tileset_08:
    42CC 63                  324 	.db #0x63	; 99	'c'
    42CD 73                  325 	.db #0x73	; 115	's'
    42CE B3                  326 	.db #0xb3	; 179
@@ -353,7 +353,7 @@
    42E9 E3                  353 	.db #0xe3	; 227
    42EA C3                  354 	.db #0xc3	; 195
    42EB E3                  355 	.db #0xe3	; 227
-   42EC                     356 _g_tileset_09:
+   42EC                     356 _G_tileset_09:
    42EC 00                  357 	.db #0x00	; 0
    42ED 3F                  358 	.db #0x3f	; 63
    42EE 3F                  359 	.db #0x3f	; 63
@@ -386,7 +386,7 @@
    4309 3F                  386 	.db #0x3f	; 63
    430A 3F                  387 	.db #0x3f	; 63
    430B 3F                  388 	.db #0x3f	; 63
-   430C                     389 _g_tileset_10:
+   430C                     389 _G_tileset_10:
    430C F0                  390 	.db #0xf0	; 240
    430D F0                  391 	.db #0xf0	; 240
    430E A0                  392 	.db #0xa0	; 160
@@ -419,7 +419,7 @@
    4329 F0                  419 	.db #0xf0	; 240
    432A F0                  420 	.db #0xf0	; 240
    432B F0                  421 	.db #0xf0	; 240
-   432C                     422 _g_tileset_11:
+   432C                     422 _G_tileset_11:
    432C B0                  423 	.db #0xb0	; 176
    432D 70                  424 	.db #0x70	; 112	'p'
    432E B0                  425 	.db #0xb0	; 176
@@ -452,7 +452,7 @@
    4349 F0                  452 	.db #0xf0	; 240
    434A B0                  453 	.db #0xb0	; 176
    434B F0                  454 	.db #0xf0	; 240
-   434C                     455 _g_tileset_12:
+   434C                     455 _G_tileset_12:
    434C C3                  456 	.db #0xc3	; 195
    434D C3                  457 	.db #0xc3	; 195
    434E C3                  458 	.db #0xc3	; 195
@@ -485,7 +485,7 @@
    4369 C3                  485 	.db #0xc3	; 195
    436A C3                  486 	.db #0xc3	; 195
    436B C3                  487 	.db #0xc3	; 195
-   436C                     488 _g_tileset_13:
+   436C                     488 _G_tileset_13:
    436C C0                  489 	.db #0xc0	; 192
    436D C0                  490 	.db #0xc0	; 192
    436E C0                  491 	.db #0xc0	; 192
@@ -518,7 +518,7 @@
    4389 C0                  518 	.db #0xc0	; 192
    438A C0                  519 	.db #0xc0	; 192
    438B C0                  520 	.db #0xc0	; 192
-   438C                     521 _g_tileset_14:
+   438C                     521 _G_tileset_14:
    438C C0                  522 	.db #0xc0	; 192
    438D C0                  523 	.db #0xc0	; 192
    438E C0                  524 	.db #0xc0	; 192
@@ -551,7 +551,7 @@
    43A9 C0                  551 	.db #0xc0	; 192
    43AA C0                  552 	.db #0xc0	; 192
    43AB C0                  553 	.db #0xc0	; 192
-   43AC                     554 _g_tileset_15:
+   43AC                     554 _G_tileset_15:
    43AC C0                  555 	.db #0xc0	; 192
    43AD C0                  556 	.db #0xc0	; 192
    43AE C0                  557 	.db #0xc0	; 192

@@ -9,11 +9,17 @@ Symbol Table
     .__.H$L.                                                    =  0000 L
   0 _AI                                                            00C0 GR
     _G_blast                                                       **** GX
+    _G_map                                                         **** GX
     _G_pitu                                                        **** GX
     _G_pitu_jump                                                   **** GX
     _G_pitu_walk                                                   **** GX
+    _G_tileset_00                                                  **** GX
   1 _anim_clock                                                    00F0 GR
+  0 _collisions                                                    0203 GR
+    _cpct_etm_drawTilemap4x8_ag                                    **** GX
+    _cpct_etm_setDrawTilemap4x8_ag                                 **** GX
     _cpct_isKeyPressed                                             **** GX
+    _cpct_memcpy                                                   **** GX
     _cpct_memset                                                   **** GX
     _cpct_px2byteM0                                                **** GX
     _cpct_scanKeyboard_f                                           **** GX
@@ -21,9 +27,11 @@ Symbol Table
     _cpct_setVideoMemoryPage                                       **** GX
     _cpct_waitVSYNC                                                **** GX
     _deleteSprites                                                 **** GX
-  0 _game                                                          024E GR
-  0 _init_game                                                     01CF GR
+  0 _game                                                          0283 GR
+  0 _init_game                                                     0204 GR
+  0 _init_level                                                    01CF GR
   0 _keyboard                                                      0000 GR
+  1 _map                                                           00F1 GR
     _mem_page                                                      **** GX
     _mem_start                                                     **** GX
   0 _moveSprites                                                   00C1 GR
@@ -31,13 +39,14 @@ Symbol Table
   1 _sprites                                                       0000 GR
     _swap_memvideo                                                 **** GX
 
+
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 2.
 Hexadecimal [16-Bits]
 
 Area Table
 
-   0 _CODE                                      size  2C2   flags    0
-   1 _DATA                                      size   F1   flags    0
+   0 _CODE                                      size  2FA   flags    0
+   1 _DATA                                      size  2BD   flags    0
    2 _INITIALIZED                               size    0   flags    0
    3 _DABS                                      size    0   flags    8
    4 _HOME                                      size    0   flags    0

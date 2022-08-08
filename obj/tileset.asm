@@ -8,22 +8,22 @@
 ;--------------------------------------------------------
 ; Public variables in this module
 ;--------------------------------------------------------
-	.globl _g_tileset_15
-	.globl _g_tileset_14
-	.globl _g_tileset_13
-	.globl _g_tileset_12
-	.globl _g_tileset_11
-	.globl _g_tileset_10
-	.globl _g_tileset_09
-	.globl _g_tileset_08
-	.globl _g_tileset_07
-	.globl _g_tileset_06
-	.globl _g_tileset_05
-	.globl _g_tileset_04
-	.globl _g_tileset_03
-	.globl _g_tileset_02
-	.globl _g_tileset_01
-	.globl _g_tileset_00
+	.globl _G_tileset_15
+	.globl _G_tileset_14
+	.globl _G_tileset_13
+	.globl _G_tileset_12
+	.globl _G_tileset_11
+	.globl _G_tileset_10
+	.globl _G_tileset_09
+	.globl _G_tileset_08
+	.globl _G_tileset_07
+	.globl _G_tileset_06
+	.globl _G_tileset_05
+	.globl _G_tileset_04
+	.globl _G_tileset_03
+	.globl _G_tileset_02
+	.globl _G_tileset_01
+	.globl _G_tileset_00
 ;--------------------------------------------------------
 ; special function registers
 ;--------------------------------------------------------
@@ -56,7 +56,7 @@
 ;--------------------------------------------------------
 	.area _CODE
 	.area _CODE
-_g_tileset_00:
+_G_tileset_00:
 	.db #0xc0	; 192
 	.db #0xc0	; 192
 	.db #0xc0	; 192
@@ -89,7 +89,7 @@ _g_tileset_00:
 	.db #0xc0	; 192
 	.db #0xc0	; 192
 	.db #0xc0	; 192
-_g_tileset_01:
+_G_tileset_01:
 	.db #0xcc	; 204
 	.db #0xcc	; 204
 	.db #0xcc	; 204
@@ -122,7 +122,7 @@ _g_tileset_01:
 	.db #0xc0	; 192
 	.db #0xc0	; 192
 	.db #0xc0	; 192
-_g_tileset_02:
+_G_tileset_02:
 	.db #0xc8	; 200
 	.db #0xc0	; 192
 	.db #0xc0	; 192
@@ -155,7 +155,7 @@ _g_tileset_02:
 	.db #0xc0	; 192
 	.db #0xc0	; 192
 	.db #0xc8	; 200
-_g_tileset_03:
+_G_tileset_03:
 	.db #0xc0	; 192
 	.db #0xc0	; 192
 	.db #0xc0	; 192
@@ -188,7 +188,7 @@ _g_tileset_03:
 	.db #0xc0	; 192
 	.db #0xc0	; 192
 	.db #0xc0	; 192
-_g_tileset_04:
+_G_tileset_04:
 	.db #0xcc	; 204
 	.db #0xcc	; 204
 	.db #0xcc	; 204
@@ -221,7 +221,7 @@ _g_tileset_04:
 	.db #0xc0	; 192
 	.db #0xc0	; 192
 	.db #0xc8	; 200
-_g_tileset_05:
+_G_tileset_05:
 	.db #0xcc	; 204
 	.db #0xcc	; 204
 	.db #0xcc	; 204
@@ -254,7 +254,7 @@ _g_tileset_05:
 	.db #0xc0	; 192
 	.db #0xc0	; 192
 	.db #0xc0	; 192
-_g_tileset_06:
+_G_tileset_06:
 	.db #0xc8	; 200
 	.db #0xc0	; 192
 	.db #0xc0	; 192
@@ -287,7 +287,7 @@ _g_tileset_06:
 	.db #0xc0	; 192
 	.db #0xc0	; 192
 	.db #0xc8	; 200
-_g_tileset_07:
+_G_tileset_07:
 	.db #0xc0	; 192
 	.db #0xc0	; 192
 	.db #0xc0	; 192
@@ -320,7 +320,7 @@ _g_tileset_07:
 	.db #0xc0	; 192
 	.db #0xc0	; 192
 	.db #0xc0	; 192
-_g_tileset_08:
+_G_tileset_08:
 	.db #0x63	; 99	'c'
 	.db #0x73	; 115	's'
 	.db #0xb3	; 179
@@ -353,7 +353,7 @@ _g_tileset_08:
 	.db #0xe3	; 227
 	.db #0xc3	; 195
 	.db #0xe3	; 227
-_g_tileset_09:
+_G_tileset_09:
 	.db #0x00	; 0
 	.db #0x3f	; 63
 	.db #0x3f	; 63
@@ -386,7 +386,7 @@ _g_tileset_09:
 	.db #0x3f	; 63
 	.db #0x3f	; 63
 	.db #0x3f	; 63
-_g_tileset_10:
+_G_tileset_10:
 	.db #0xf0	; 240
 	.db #0xf0	; 240
 	.db #0xa0	; 160
@@ -419,7 +419,7 @@ _g_tileset_10:
 	.db #0xf0	; 240
 	.db #0xf0	; 240
 	.db #0xf0	; 240
-_g_tileset_11:
+_G_tileset_11:
 	.db #0xb0	; 176
 	.db #0x70	; 112	'p'
 	.db #0xb0	; 176
@@ -452,7 +452,7 @@ _g_tileset_11:
 	.db #0xf0	; 240
 	.db #0xb0	; 176
 	.db #0xf0	; 240
-_g_tileset_12:
+_G_tileset_12:
 	.db #0xc3	; 195
 	.db #0xc3	; 195
 	.db #0xc3	; 195
@@ -485,7 +485,7 @@ _g_tileset_12:
 	.db #0xc3	; 195
 	.db #0xc3	; 195
 	.db #0xc3	; 195
-_g_tileset_13:
+_G_tileset_13:
 	.db #0xc0	; 192
 	.db #0xc0	; 192
 	.db #0xc0	; 192
@@ -518,7 +518,7 @@ _g_tileset_13:
 	.db #0xc0	; 192
 	.db #0xc0	; 192
 	.db #0xc0	; 192
-_g_tileset_14:
+_G_tileset_14:
 	.db #0xc0	; 192
 	.db #0xc0	; 192
 	.db #0xc0	; 192
@@ -551,7 +551,7 @@ _g_tileset_14:
 	.db #0xc0	; 192
 	.db #0xc0	; 192
 	.db #0xc0	; 192
-_g_tileset_15:
+_G_tileset_15:
 	.db #0xc0	; 192
 	.db #0xc0	; 192
 	.db #0xc0	; 192

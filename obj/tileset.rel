@@ -4,22 +4,22 @@ M tileset
 O -mz80
 S .__.ABS. Def0000
 A _CODE size 200 flags 0 addr 0
-S _g_tileset_00 Def0000
-S _g_tileset_01 Def0020
-S _g_tileset_10 Def0140
-S _g_tileset_02 Def0040
-S _g_tileset_11 Def0160
-S _g_tileset_03 Def0060
-S _g_tileset_12 Def0180
-S _g_tileset_04 Def0080
-S _g_tileset_13 Def01A0
-S _g_tileset_05 Def00A0
-S _g_tileset_14 Def01C0
-S _g_tileset_06 Def00C0
-S _g_tileset_15 Def01E0
-S _g_tileset_07 Def00E0
-S _g_tileset_08 Def0100
-S _g_tileset_09 Def0120
+S _G_tileset_02 Def0040
+S _G_tileset_11 Def0160
+S _G_tileset_03 Def0060
+S _G_tileset_12 Def0180
+S _G_tileset_04 Def0080
+S _G_tileset_13 Def01A0
+S _G_tileset_05 Def00A0
+S _G_tileset_14 Def01C0
+S _G_tileset_06 Def00C0
+S _G_tileset_15 Def01E0
+S _G_tileset_07 Def00E0
+S _G_tileset_08 Def0100
+S _G_tileset_09 Def0120
+S _G_tileset_00 Def0000
+S _G_tileset_01 Def0020
+S _G_tileset_10 Def0140
 A _DATA size 0 flags 0 addr 0
 A _INITIALIZED size 0 flags 0 addr 0
 A _DABS size 0 flags 8 addr 0

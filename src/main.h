@@ -12,16 +12,15 @@
 #define GAME_AREA_LEFT 0
 #define GAME_AREA_RIGHT 80
 
-#define RIGHT_COLLISION			0b00000010
-#define LEFT_COLLISION 			0b00001010
-#define LEFT_RIGHT_COLLISION	0b00000010	//even
-#define BOTTOM_COLLISION 		0b00000001
-#define TOP_COLLISION 			0b00000101
-#define TOP_BOTTOM_COLLISION 	0b00000001	//odd
-
-
 #define MASK_RENDER 		0b00000001	//BITMASK to signal which sprites to render (e.g. still on screen)
 #define MASK_ANIMATE 		0b00000010	//BITMASK to signal which sprites to animate
+
+#define RIGHT_COLLISION			0b00000010
+#define LEFT_COLLISION 			0b00001010
+#define LEFT_RIGHT_COLLISION	0b00000010
+#define BOTTOM_COLLISION 		0b00000001
+#define TOP_COLLISION 			0b00000101
+#define TOP_BOTTOM_COLLISION 	0b00000001
 
 #define ANIM_CYCLE 16					//max animation frames
 #define ANIM_SPEED 2 					//1-4; 4 is faster
@@ -56,5 +55,5 @@ typedef struct {
 } TSprite;
 
 extern TSprite sprites[MAX_SPRITES];	//stores all sprites in the game
-
 extern u8 anim_clock;					//animation clock (1 -> ANIMATION_CYCLE)
+extern u8 map[20*23];					//FIXME: Use G_map_W/H instead. //buffer to store current level background
