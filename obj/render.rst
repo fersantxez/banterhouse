@@ -84,7 +84,7 @@
                              84 ;src/render.c:27: new_width++;
    6379 0C            [ 4]   85 	inc	c
    637A                      86 00102$:
-                             87 ;src/render.c:29: new_height = (height / 8) + 1;
+                             87 ;src/render.c:29: new_height = (height / 8) + 1; //FIXME: that +1 is artificially added b/c this code is "leaving a trail"
    637A DD 7E 09      [19]   88 	ld	a, 9 (ix)
    637D 0F            [ 4]   89 	rrca
    637E 0F            [ 4]   90 	rrca
@@ -142,10 +142,10 @@
    63C6 D1            [10]  142 	pop	de
                             143 ;src/render.c:37: cpct_etm_drawTilemap4x8_ag( (u8*)cpct_getScreenPtr( mem_start, new_x, new_y + GAME_AREA_TOP), &map[first_tile] );
    63C7 DD 7E FB      [19]  144 	ld	a, -5 (ix)
-   63CA C6 9B         [ 7]  145 	add	a, #<(_map)
+   63CA C6 AE         [ 7]  145 	add	a, #<(_map)
    63CC 4F            [ 4]  146 	ld	c, a
    63CD DD 7E FC      [19]  147 	ld	a, -4 (ix)
-   63D0 CE 6A         [ 7]  148 	adc	a, #>(_map)
+   63D0 CE 69         [ 7]  148 	adc	a, #>(_map)
    63D2 47            [ 4]  149 	ld	b, a
    63D3 7B            [ 4]  150 	ld	a, e
    63D4 C6 10         [ 7]  151 	add	a, #0x10
@@ -189,48 +189,48 @@
    640C 29            [11]  189 	add	hl, hl
    640D 29            [11]  190 	add	hl, hl
    640E 29            [11]  191 	add	hl, hl
-   640F 01 AA 69      [10]  192 	ld	bc,#_sprites
+   640F 01 7A 6B      [10]  192 	ld	bc,#_sprites
    6412 09            [11]  193 	add	hl,bc
-   6413 DD 75 FD      [19]  194 	ld	-3 (ix), l
-   6416 DD 74 FE      [19]  195 	ld	-2 (ix), h
+   6413 DD 75 FB      [19]  194 	ld	-5 (ix), l
+   6416 DD 74 FC      [19]  195 	ld	-4 (ix), h
    6419 7E            [ 7]  196 	ld	a, (hl)
    641A B7            [ 4]  197 	or	a, a
    641B CA 6C 65      [10]  198 	jp	Z, 00127$
                             199 ;src/render.c:47: if (sprites[i].properties & MASK_RENDER) {
-   641E DD 6E FD      [19]  200 	ld	l,-3 (ix)
-   6421 DD 66 FE      [19]  201 	ld	h,-2 (ix)
+   641E DD 6E FB      [19]  200 	ld	l,-5 (ix)
+   6421 DD 66 FC      [19]  201 	ld	h,-4 (ix)
    6424 11 0B 00      [10]  202 	ld	de, #0x000b
    6427 19            [11]  203 	add	hl, de
    6428 4E            [ 7]  204 	ld	c, (hl)
                             205 ;src/render.c:76: cpct_getScreenPtr(mem_start, sprites[i].x, sprites[i].y),
-   6429 DD 7E FD      [19]  206 	ld	a, -3 (ix)
+   6429 DD 7E FB      [19]  206 	ld	a, -5 (ix)
    642C C6 02         [ 7]  207 	add	a, #0x02
-   642E DD 77 F7      [19]  208 	ld	-9 (ix), a
-   6431 DD 7E FE      [19]  209 	ld	a, -2 (ix)
+   642E DD 77 F9      [19]  208 	ld	-7 (ix), a
+   6431 DD 7E FC      [19]  209 	ld	a, -4 (ix)
    6434 CE 00         [ 7]  210 	adc	a, #0x00
-   6436 DD 77 F8      [19]  211 	ld	-8 (ix), a
-   6439 DD 7E FD      [19]  212 	ld	a, -3 (ix)
+   6436 DD 77 FA      [19]  211 	ld	-6 (ix), a
+   6439 DD 7E FB      [19]  212 	ld	a, -5 (ix)
    643C C6 01         [ 7]  213 	add	a, #0x01
-   643E DD 77 FB      [19]  214 	ld	-5 (ix), a
-   6441 DD 7E FE      [19]  215 	ld	a, -2 (ix)
+   643E DD 77 F7      [19]  214 	ld	-9 (ix), a
+   6441 DD 7E FC      [19]  215 	ld	a, -4 (ix)
    6444 CE 00         [ 7]  216 	adc	a, #0x00
-   6446 DD 77 FC      [19]  217 	ld	-4 (ix), a
+   6446 DD 77 F8      [19]  217 	ld	-8 (ix), a
                             218 ;src/render.c:47: if (sprites[i].properties & MASK_RENDER) {
    6449 CB 41         [ 8]  219 	bit	0, c
    644B CA 1B 65      [10]  220 	jp	Z,00119$
                             221 ;src/render.c:62: sprite = sprites[i].sprite_f1; 
-   644E DD 7E FD      [19]  222 	ld	a, -3 (ix)
+   644E DD 7E FB      [19]  222 	ld	a, -5 (ix)
    6451 C6 0F         [ 7]  223 	add	a, #0x0f
-   6453 DD 77 F9      [19]  224 	ld	-7 (ix), a
-   6456 DD 7E FE      [19]  225 	ld	a, -2 (ix)
+   6453 DD 77 FE      [19]  224 	ld	-2 (ix), a
+   6456 DD 7E FC      [19]  225 	ld	a, -4 (ix)
    6459 CE 00         [ 7]  226 	adc	a, #0x00
-   645B DD 77 FA      [19]  227 	ld	-6 (ix), a
+   645B DD 77 FF      [19]  227 	ld	-1 (ix), a
                             228 ;src/render.c:49: if (sprites[i].properties & MASK_ANIMATE) {
    645E CB 49         [ 8]  229 	bit	1, c
    6460 28 55         [12]  230 	jr	Z,00114$
                             231 ;src/render.c:57: if (anim_clock > 7) num_frame=2;
    6462 3E 07         [ 7]  232 	ld	a, #0x07
-   6464 FD 21 9A 6A   [14]  233 	ld	iy, #_anim_clock
+   6464 FD 21 6A 6C   [14]  233 	ld	iy, #_anim_clock
    6468 FD 96 00      [19]  234 	sub	a, 0 (iy)
    646B 30 04         [12]  235 	jr	NC,00102$
    646D 3E 02         [ 7]  236 	ld	a, #0x02
@@ -243,8 +243,8 @@
    6473 FE 01         [ 7]  243 	cp	a, #0x01
    6475 20 0B         [12]  244 	jr	NZ,00111$
                             245 ;src/render.c:62: sprite = sprites[i].sprite_f1; 
-   6477 DD 6E F9      [19]  246 	ld	l,-7 (ix)
-   647A DD 66 FA      [19]  247 	ld	h,-6 (ix)
+   6477 DD 6E FE      [19]  246 	ld	l,-2 (ix)
+   647A DD 66 FF      [19]  247 	ld	h,-1 (ix)
    647D 4E            [ 7]  248 	ld	c, (hl)
    647E 23            [ 6]  249 	inc	hl
    647F 46            [ 7]  250 	ld	b, (hl)
@@ -254,8 +254,8 @@
    6482 FE 02         [ 7]  254 	cp	a, #0x02
    6484 20 0F         [12]  255 	jr	NZ,00108$
                             256 ;src/render.c:64: sprite = sprites[i].sprite_f2;
-   6486 DD 6E FD      [19]  257 	ld	l,-3 (ix)
-   6489 DD 66 FE      [19]  258 	ld	h,-2 (ix)
+   6486 DD 6E FB      [19]  257 	ld	l,-5 (ix)
+   6489 DD 66 FC      [19]  258 	ld	h,-4 (ix)
    648C 11 11 00      [10]  259 	ld	de, #0x0011
    648F 19            [11]  260 	add	hl, de
    6490 4E            [ 7]  261 	ld	c, (hl)
@@ -267,8 +267,8 @@
    6495 D6 03         [ 7]  267 	sub	a, #0x03
    6497 20 0F         [12]  268 	jr	NZ,00105$
                             269 ;src/render.c:66: sprite = sprites[i].sprite_f3; 
-   6499 DD 6E FD      [19]  270 	ld	l,-3 (ix)
-   649C DD 66 FE      [19]  271 	ld	h,-2 (ix)
+   6499 DD 6E FB      [19]  270 	ld	l,-5 (ix)
+   649C DD 66 FC      [19]  271 	ld	h,-4 (ix)
    649F 11 13 00      [10]  272 	ld	de, #0x0013
    64A2 19            [11]  273 	add	hl, de
    64A3 4E            [ 7]  274 	ld	c, (hl)
@@ -277,8 +277,8 @@
    64A6 18 18         [12]  277 	jr	00115$
    64A8                     278 00105$:
                             279 ;src/render.c:67: } else sprite = sprites[i].sprite_f4;
-   64A8 DD 6E FD      [19]  280 	ld	l,-3 (ix)
-   64AB DD 66 FE      [19]  281 	ld	h,-2 (ix)
+   64A8 DD 6E FB      [19]  280 	ld	l,-5 (ix)
+   64AB DD 66 FC      [19]  281 	ld	h,-4 (ix)
    64AE 11 15 00      [10]  282 	ld	de, #0x0015
    64B1 19            [11]  283 	add	hl, de
    64B2 4E            [ 7]  284 	ld	c, (hl)
@@ -287,15 +287,15 @@
    64B5 18 09         [12]  287 	jr	00115$
    64B7                     288 00114$:
                             289 ;src/render.c:68: } else sprite = sprites[i].sprite_f1;
-   64B7 DD 6E F9      [19]  290 	ld	l,-7 (ix)
-   64BA DD 66 FA      [19]  291 	ld	h,-6 (ix)
+   64B7 DD 6E FE      [19]  290 	ld	l,-2 (ix)
+   64BA DD 66 FF      [19]  291 	ld	h,-1 (ix)
    64BD 4E            [ 7]  292 	ld	c, (hl)
    64BE 23            [ 6]  293 	inc	hl
    64BF 46            [ 7]  294 	ld	b, (hl)
    64C0                     295 00115$:
                             296 ;src/render.c:70: if (sprites[i].turned)							//turn sprite around
-   64C0 DD 6E FD      [19]  297 	ld	l,-3 (ix)
-   64C3 DD 66 FE      [19]  298 	ld	h,-2 (ix)
+   64C0 DD 6E FB      [19]  297 	ld	l,-5 (ix)
+   64C3 DD 66 FC      [19]  298 	ld	h,-4 (ix)
    64C6 11 17 00      [10]  299 	ld	de, #0x0017
    64C9 19            [11]  300 	add	hl, de
    64CA 7E            [ 7]  301 	ld	a, (hl)
@@ -308,26 +308,26 @@
    64D3 44            [ 4]  308 	ld	b, h
    64D4                     309 00117$:
                             310 ;src/render.c:77: sprites[i].width, sprites[i].height);
-   64D4 DD 6E FD      [19]  311 	ld	l,-3 (ix)
-   64D7 DD 66 FE      [19]  312 	ld	h,-2 (ix)
+   64D4 DD 6E FB      [19]  311 	ld	l,-5 (ix)
+   64D7 DD 66 FC      [19]  312 	ld	h,-4 (ix)
    64DA 11 09 00      [10]  313 	ld	de, #0x0009
    64DD 19            [11]  314 	add	hl, de
    64DE 7E            [ 7]  315 	ld	a, (hl)
-   64DF DD 77 F9      [19]  316 	ld	-7 (ix), a
-   64E2 DD 6E FD      [19]  317 	ld	l,-3 (ix)
-   64E5 DD 66 FE      [19]  318 	ld	h,-2 (ix)
+   64DF DD 77 FE      [19]  316 	ld	-2 (ix), a
+   64E2 DD 6E FB      [19]  317 	ld	l,-5 (ix)
+   64E5 DD 66 FC      [19]  318 	ld	h,-4 (ix)
    64E8 11 0A 00      [10]  319 	ld	de, #0x000a
    64EB 19            [11]  320 	add	hl, de
    64EC 7E            [ 7]  321 	ld	a, (hl)
-   64ED DD 77 FF      [19]  322 	ld	-1 (ix), a
+   64ED DD 77 FD      [19]  322 	ld	-3 (ix), a
                             323 ;src/render.c:76: cpct_getScreenPtr(mem_start, sprites[i].x, sprites[i].y),
-   64F0 DD 6E F7      [19]  324 	ld	l,-9 (ix)
-   64F3 DD 66 F8      [19]  325 	ld	h,-8 (ix)
+   64F0 DD 6E F9      [19]  324 	ld	l,-7 (ix)
+   64F3 DD 66 FA      [19]  325 	ld	h,-6 (ix)
    64F6 5E            [ 7]  326 	ld	e, (hl)
-   64F7 DD 6E FB      [19]  327 	ld	l,-5 (ix)
-   64FA DD 66 FC      [19]  328 	ld	h,-4 (ix)
+   64F7 DD 6E F7      [19]  327 	ld	l,-9 (ix)
+   64FA DD 66 F8      [19]  328 	ld	h,-8 (ix)
    64FD 56            [ 7]  329 	ld	d, (hl)
-   64FE FD 2A 67 6C   [20]  330 	ld	iy, (_mem_start)
+   64FE FD 2A AA 69   [20]  330 	ld	iy, (_mem_start)
    6502 C5            [11]  331 	push	bc
    6503 7B            [ 4]  332 	ld	a, e
    6504 F5            [11]  333 	push	af
@@ -339,59 +339,59 @@
    650D EB            [ 4]  339 	ex	de,hl
    650E C1            [10]  340 	pop	bc
                             341 ;src/render.c:74: cpct_drawSpriteMasked(sprite,
-   650F DD 66 F9      [19]  342 	ld	h, -7 (ix)
-   6512 DD 6E FF      [19]  343 	ld	l, -1 (ix)
+   650F DD 66 FE      [19]  342 	ld	h, -2 (ix)
+   6512 DD 6E FD      [19]  343 	ld	l, -3 (ix)
    6515 E5            [11]  344 	push	hl
    6516 D5            [11]  345 	push	de
    6517 C5            [11]  346 	push	bc
    6518 CD 88 68      [17]  347 	call	_cpct_drawSpriteMasked
    651B                     348 00119$:
                             349 ;src/render.c:76: cpct_getScreenPtr(mem_start, sprites[i].x, sprites[i].y),
-   651B DD 6E FB      [19]  350 	ld	l,-5 (ix)
-   651E DD 66 FC      [19]  351 	ld	h,-4 (ix)
+   651B DD 6E F7      [19]  350 	ld	l,-9 (ix)
+   651E DD 66 F8      [19]  351 	ld	h,-8 (ix)
    6521 4E            [ 7]  352 	ld	c, (hl)
                             353 ;src/render.c:82: if (!swap_memvideo) {
-   6522 3A 6A 6C      [13]  354 	ld	a,(#_swap_memvideo + 0)
+   6522 3A AD 69      [13]  354 	ld	a,(#_swap_memvideo + 0)
    6525 B7            [ 4]  355 	or	a, a
    6526 20 23         [12]  356 	jr	NZ,00121$
                             357 ;src/render.c:83: sprites[i].x_prev_B = sprites[i].x;
-   6528 DD 7E FD      [19]  358 	ld	a, -3 (ix)
+   6528 DD 7E FB      [19]  358 	ld	a, -5 (ix)
    652B C6 07         [ 7]  359 	add	a, #0x07
    652D 6F            [ 4]  360 	ld	l, a
-   652E DD 7E FE      [19]  361 	ld	a, -2 (ix)
+   652E DD 7E FC      [19]  361 	ld	a, -4 (ix)
    6531 CE 00         [ 7]  362 	adc	a, #0x00
    6533 67            [ 4]  363 	ld	h, a
    6534 71            [ 7]  364 	ld	(hl), c
                             365 ;src/render.c:84: sprites[i].y_prev_B = sprites[i].y;
-   6535 DD 7E FD      [19]  366 	ld	a, -3 (ix)
+   6535 DD 7E FB      [19]  366 	ld	a, -5 (ix)
    6538 C6 08         [ 7]  367 	add	a, #0x08
    653A 4F            [ 4]  368 	ld	c, a
-   653B DD 7E FE      [19]  369 	ld	a, -2 (ix)
+   653B DD 7E FC      [19]  369 	ld	a, -4 (ix)
    653E CE 00         [ 7]  370 	adc	a, #0x00
    6540 47            [ 4]  371 	ld	b, a
-   6541 DD 6E F7      [19]  372 	ld	l,-9 (ix)
-   6544 DD 66 F8      [19]  373 	ld	h,-8 (ix)
+   6541 DD 6E F9      [19]  372 	ld	l,-7 (ix)
+   6544 DD 66 FA      [19]  373 	ld	h,-6 (ix)
    6547 7E            [ 7]  374 	ld	a, (hl)
    6548 02            [ 7]  375 	ld	(bc), a
    6549 18 21         [12]  376 	jr	00127$
    654B                     377 00121$:
                             378 ;src/render.c:86: sprites[i].x_prev_A = sprites[i].x;
-   654B DD 7E FD      [19]  379 	ld	a, -3 (ix)
+   654B DD 7E FB      [19]  379 	ld	a, -5 (ix)
    654E C6 05         [ 7]  380 	add	a, #0x05
    6550 6F            [ 4]  381 	ld	l, a
-   6551 DD 7E FE      [19]  382 	ld	a, -2 (ix)
+   6551 DD 7E FC      [19]  382 	ld	a, -4 (ix)
    6554 CE 00         [ 7]  383 	adc	a, #0x00
    6556 67            [ 4]  384 	ld	h, a
    6557 71            [ 7]  385 	ld	(hl), c
                             386 ;src/render.c:87: sprites[i].y_prev_A = sprites[i].y;
-   6558 DD 7E FD      [19]  387 	ld	a, -3 (ix)
+   6558 DD 7E FB      [19]  387 	ld	a, -5 (ix)
    655B C6 06         [ 7]  388 	add	a, #0x06
    655D 4F            [ 4]  389 	ld	c, a
-   655E DD 7E FE      [19]  390 	ld	a, -2 (ix)
+   655E DD 7E FC      [19]  390 	ld	a, -4 (ix)
    6561 CE 00         [ 7]  391 	adc	a, #0x00
    6563 47            [ 4]  392 	ld	b, a
-   6564 DD 6E F7      [19]  393 	ld	l,-9 (ix)
-   6567 DD 66 F8      [19]  394 	ld	h,-8 (ix)
+   6564 DD 6E F9      [19]  393 	ld	l,-7 (ix)
+   6567 DD 66 FA      [19]  394 	ld	h,-6 (ix)
    656A 7E            [ 7]  395 	ld	a, (hl)
    656B 02            [ 7]  396 	ld	(bc), a
    656C                     397 00127$:
@@ -425,38 +425,38 @@
    658E 29            [11]  425 	add	hl, hl
    658F 29            [11]  426 	add	hl, hl
    6590 EB            [ 4]  427 	ex	de,hl
-   6591 21 AA 69      [10]  428 	ld	hl, #_sprites
+   6591 21 7A 6B      [10]  428 	ld	hl, #_sprites
    6594 19            [11]  429 	add	hl,de
    6595 EB            [ 4]  430 	ex	de,hl
    6596 1A            [ 7]  431 	ld	a, (de)
    6597 B7            [ 4]  432 	or	a, a
    6598 28 4F         [12]  433 	jr	Z,00108$
                             434 ;src/render.c:100: if (!swap_memvideo){
-   659A 3A 6A 6C      [13]  435 	ld	a,(#_swap_memvideo + 0)
+   659A 3A AD 69      [13]  435 	ld	a,(#_swap_memvideo + 0)
    659D B7            [ 4]  436 	or	a, a
    659E 20 14         [12]  437 	jr	NZ,00102$
                             438 ;src/render.c:101: x = sprites[i].x_prev_B;
    65A0 D5            [11]  439 	push	de
    65A1 FD E1         [14]  440 	pop	iy
    65A3 FD 7E 07      [19]  441 	ld	a, 7 (iy)
-   65A6 DD 77 FE      [19]  442 	ld	-2 (ix), a
+   65A6 DD 77 FF      [19]  442 	ld	-1 (ix), a
                             443 ;src/render.c:102: y = sprites[i].y_prev_B;
    65A9 D5            [11]  444 	push	de
    65AA FD E1         [14]  445 	pop	iy
    65AC FD 7E 08      [19]  446 	ld	a, 8 (iy)
-   65AF DD 77 FF      [19]  447 	ld	-1 (ix), a
+   65AF DD 77 FE      [19]  447 	ld	-2 (ix), a
    65B2 18 12         [12]  448 	jr	00103$
    65B4                     449 00102$:
                             450 ;src/render.c:105: x = sprites[i].x_prev_A;
    65B4 D5            [11]  451 	push	de
    65B5 FD E1         [14]  452 	pop	iy
    65B7 FD 7E 05      [19]  453 	ld	a, 5 (iy)
-   65BA DD 77 FE      [19]  454 	ld	-2 (ix), a
+   65BA DD 77 FF      [19]  454 	ld	-1 (ix), a
                             455 ;src/render.c:106: y = sprites[i].y_prev_A;
    65BD D5            [11]  456 	push	de
    65BE FD E1         [14]  457 	pop	iy
    65C0 FD 7E 06      [19]  458 	ld	a, 6 (iy)
-   65C3 DD 77 FF      [19]  459 	ld	-1 (ix), a
+   65C3 DD 77 FE      [19]  459 	ld	-2 (ix), a
    65C6                     460 00103$:
                             461 ;src/render.c:113: redrawTile(mem_start, x, y, sprites[i].width, sprites[i].height);
    65C6 D5            [11]  462 	push	de
@@ -469,10 +469,10 @@
    65D2 C5            [11]  469 	push	bc
    65D3 57            [ 4]  470 	ld	d,a
    65D4 D5            [11]  471 	push	de
-   65D5 DD 66 FF      [19]  472 	ld	h, -1 (ix)
-   65D8 DD 6E FE      [19]  473 	ld	l, -2 (ix)
+   65D5 DD 66 FE      [19]  472 	ld	h, -2 (ix)
+   65D8 DD 6E FF      [19]  473 	ld	l, -1 (ix)
    65DB E5            [11]  474 	push	hl
-   65DC 2A 67 6C      [16]  475 	ld	hl, (_mem_start)
+   65DC 2A AA 69      [16]  475 	ld	hl, (_mem_start)
    65DF E5            [11]  476 	push	hl
    65E0 CD 45 63      [17]  477 	call	_redrawTile
    65E3 21 06 00      [10]  478 	ld	hl, #6

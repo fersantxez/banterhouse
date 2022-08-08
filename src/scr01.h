@@ -7,6 +7,9 @@
 //   * Layer Bytes:     460 (20 x 23 items, 8 bits per item)
 //   * Total Bytes:     460 (460 x 1, bytes per layer times layers)
 //
+#ifndef _MAPS_SCR01_H_
+#define _MAPS_SCR01_H_
+
 #include <cpctelera.h>
 
 //#### Width and height constants ####
@@ -17,3 +20,5 @@
 //   Visible layers: 1
 //
 extern const u8 G_map[20*23];
+
+#endif

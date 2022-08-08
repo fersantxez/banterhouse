@@ -16,6 +16,9 @@
 	.globl _cpct_setVideoMode
 	.globl _cpct_setStackLocation
 	.globl _cpct_disableFirmware
+	.globl _anim_clock
+	.globl _sprites
+	.globl _map
 	.globl _swap_memvideo
 	.globl _mem_page
 	.globl _mem_start
@@ -32,6 +35,12 @@ _mem_start::
 _mem_page::
 	.ds 1
 _swap_memvideo::
+	.ds 1
+_map::
+	.ds 460
+_sprites::
+	.ds 240
+_anim_clock::
 	.ds 1
 ;--------------------------------------------------------
 ; ram data
@@ -57,41 +66,41 @@ _swap_memvideo::
 ; code
 ;--------------------------------------------------------
 	.area _CODE
-;src/main.c:31: void main(void) {
+;src/main.c:38: void main(void) {
 ;	---------------------------------
 ; Function main
 ; ---------------------------------
 _main::
-;src/main.c:34: cpct_setStackLocation ((u8*) 0x7FFF);        //Move stack to right before double buffer 0X8000
+;src/main.c:41: cpct_setStackLocation ((u8*) 0x7FFF);        //Move stack to right before double buffer 0X8000
 	ld	hl, #0x7fff
 	call	_cpct_setStackLocation
-;src/main.c:35: cpct_disableFirmware();
+;src/main.c:42: cpct_disableFirmware();
 	call	_cpct_disableFirmware
-;src/main.c:37: cpct_setVideoMode(0); //160x200; 16 colors in screen
+;src/main.c:44: cpct_setVideoMode(0); //160x200; 16 colors in screen
 	ld	l, #0x00
 	call	_cpct_setVideoMode
-;src/main.c:38: cpct_setPalette(paleta,16);
+;src/main.c:45: cpct_setPalette(paleta,16);
 	ld	hl, #0x0010
 	push	hl
 	ld	hl, #_paleta
 	push	hl
 	call	_cpct_setPalette
-;src/main.c:40: while (1) {
+;src/main.c:47: while (1) {
 00102$:
-;src/main.c:43: swap_memvideo = 0;                        //set DB switch to "zero" (upper VMEM page first)
+;src/main.c:50: swap_memvideo = 0;                        //set DB switch to "zero" (upper VMEM page first)
 	ld	hl,#_swap_memvideo + 0
 	ld	(hl), #0x00
-;src/main.c:44: mem_start = (u8*) CPCT_VMEM_START;        //upper, standard VMEM page first
+;src/main.c:51: mem_start = (u8*) CPCT_VMEM_START;        //upper, standard VMEM page first
 	ld	hl, #0xc000
 	ld	(_mem_start), hl
-;src/main.c:45: mem_page = cpct_pageC0;                   //upper, C0 page
+;src/main.c:52: mem_page = cpct_pageC0;                   //upper, C0 page
 	ld	hl,#_mem_page + 0
 	ld	(hl), #0x30
-;src/main.c:47: menu();
+;src/main.c:54: menu();
 	call	_menu
-;src/main.c:48: init_game();
+;src/main.c:55: init_game();
 	call	_init_game
-;src/main.c:49: game();
+;src/main.c:56: game();
 	call	_game
 	jr	00102$
 _paleta:

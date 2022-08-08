@@ -1,6 +1,9 @@
 /* main.h
 */
 
+#ifndef _MAIN_H_
+#define _MAIN_H_
+
 //Double buffer config
 #define CPCT_LVMEM_START 0x8000 		//lower VMEM page start; higher is standard CPCT_VMEM_START=0xC000
 
@@ -57,3 +60,5 @@ typedef struct {
 extern TSprite sprites[MAX_SPRITES];	//stores all sprites in the game
 extern u8 anim_clock;					//animation clock (1 -> ANIMATION_CYCLE)
 extern u8 map[20*23];					//FIXME: Use G_map_W/H instead. //buffer to store current level background
+
+#endif

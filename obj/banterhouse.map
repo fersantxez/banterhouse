@@ -138,12 +138,12 @@ _DATA                               000069AA    000002C1 =         705. bytes (R
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-     000069AA  _sprites                           game
-     00006A9A  _anim_clock                        game
-     00006A9B  _map                               game
-     00006C67  _mem_start                         main
-     00006C69  _mem_page                          main
-     00006C6A  _swap_memvideo                     main
+     000069AA  _mem_start                         main
+     000069AC  _mem_page                          main
+     000069AD  _swap_memvideo                     main
+     000069AE  _map                               main
+     00006B7A  _sprites                           main
+     00006C6A  _anim_clock                        main
 ASxxxx Linker V03.00 + NoICE + sdld,  page 5.
 
 Files Linked                              [ module(s) ]

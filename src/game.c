@@ -9,11 +9,6 @@
 #include "tileset.h"
 #include "scr01.h"
 
-TSprite sprites[MAX_SPRITES];
-u8 anim_clock;
-u8 map[G_map_W*G_map_H];               									//buffer to store current level background
-
-
 /* FIXME: Doc me how
 */
 void keyboard(){

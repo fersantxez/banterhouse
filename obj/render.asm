@@ -84,7 +84,7 @@ _redrawTile::
 ;src/render.c:27: new_width++;
 	inc	c
 00102$:
-;src/render.c:29: new_height = (height / 8) + 1;
+;src/render.c:29: new_height = (height / 8) + 1; //FIXME: that +1 is artificially added b/c this code is "leaving a trail"
 	ld	a, 9 (ix)
 	rrca
 	rrca
@@ -191,40 +191,40 @@ _renderSprites::
 	add	hl, hl
 	ld	bc,#_sprites
 	add	hl,bc
-	ld	-3 (ix), l
-	ld	-2 (ix), h
+	ld	-5 (ix), l
+	ld	-4 (ix), h
 	ld	a, (hl)
 	or	a, a
 	jp	Z, 00127$
 ;src/render.c:47: if (sprites[i].properties & MASK_RENDER) {
-	ld	l,-3 (ix)
-	ld	h,-2 (ix)
+	ld	l,-5 (ix)
+	ld	h,-4 (ix)
 	ld	de, #0x000b
 	add	hl, de
 	ld	c, (hl)
 ;src/render.c:76: cpct_getScreenPtr(mem_start, sprites[i].x, sprites[i].y),
-	ld	a, -3 (ix)
+	ld	a, -5 (ix)
 	add	a, #0x02
+	ld	-7 (ix), a
+	ld	a, -4 (ix)
+	adc	a, #0x00
+	ld	-6 (ix), a
+	ld	a, -5 (ix)
+	add	a, #0x01
 	ld	-9 (ix), a
-	ld	a, -2 (ix)
+	ld	a, -4 (ix)
 	adc	a, #0x00
 	ld	-8 (ix), a
-	ld	a, -3 (ix)
-	add	a, #0x01
-	ld	-5 (ix), a
-	ld	a, -2 (ix)
-	adc	a, #0x00
-	ld	-4 (ix), a
 ;src/render.c:47: if (sprites[i].properties & MASK_RENDER) {
 	bit	0, c
 	jp	Z,00119$
 ;src/render.c:62: sprite = sprites[i].sprite_f1; 
-	ld	a, -3 (ix)
+	ld	a, -5 (ix)
 	add	a, #0x0f
-	ld	-7 (ix), a
-	ld	a, -2 (ix)
+	ld	-2 (ix), a
+	ld	a, -4 (ix)
 	adc	a, #0x00
-	ld	-6 (ix), a
+	ld	-1 (ix), a
 ;src/render.c:49: if (sprites[i].properties & MASK_ANIMATE) {
 	bit	1, c
 	jr	Z,00114$
@@ -243,8 +243,8 @@ _renderSprites::
 	cp	a, #0x01
 	jr	NZ,00111$
 ;src/render.c:62: sprite = sprites[i].sprite_f1; 
-	ld	l,-7 (ix)
-	ld	h,-6 (ix)
+	ld	l,-2 (ix)
+	ld	h,-1 (ix)
 	ld	c, (hl)
 	inc	hl
 	ld	b, (hl)
@@ -254,8 +254,8 @@ _renderSprites::
 	cp	a, #0x02
 	jr	NZ,00108$
 ;src/render.c:64: sprite = sprites[i].sprite_f2;
-	ld	l,-3 (ix)
-	ld	h,-2 (ix)
+	ld	l,-5 (ix)
+	ld	h,-4 (ix)
 	ld	de, #0x0011
 	add	hl, de
 	ld	c, (hl)
@@ -267,8 +267,8 @@ _renderSprites::
 	sub	a, #0x03
 	jr	NZ,00105$
 ;src/render.c:66: sprite = sprites[i].sprite_f3; 
-	ld	l,-3 (ix)
-	ld	h,-2 (ix)
+	ld	l,-5 (ix)
+	ld	h,-4 (ix)
 	ld	de, #0x0013
 	add	hl, de
 	ld	c, (hl)
@@ -277,8 +277,8 @@ _renderSprites::
 	jr	00115$
 00105$:
 ;src/render.c:67: } else sprite = sprites[i].sprite_f4;
-	ld	l,-3 (ix)
-	ld	h,-2 (ix)
+	ld	l,-5 (ix)
+	ld	h,-4 (ix)
 	ld	de, #0x0015
 	add	hl, de
 	ld	c, (hl)
@@ -287,15 +287,15 @@ _renderSprites::
 	jr	00115$
 00114$:
 ;src/render.c:68: } else sprite = sprites[i].sprite_f1;
-	ld	l,-7 (ix)
-	ld	h,-6 (ix)
+	ld	l,-2 (ix)
+	ld	h,-1 (ix)
 	ld	c, (hl)
 	inc	hl
 	ld	b, (hl)
 00115$:
 ;src/render.c:70: if (sprites[i].turned)							//turn sprite around
-	ld	l,-3 (ix)
-	ld	h,-2 (ix)
+	ld	l,-5 (ix)
+	ld	h,-4 (ix)
 	ld	de, #0x0017
 	add	hl, de
 	ld	a, (hl)
@@ -308,24 +308,24 @@ _renderSprites::
 	ld	b, h
 00117$:
 ;src/render.c:77: sprites[i].width, sprites[i].height);
-	ld	l,-3 (ix)
-	ld	h,-2 (ix)
+	ld	l,-5 (ix)
+	ld	h,-4 (ix)
 	ld	de, #0x0009
 	add	hl, de
 	ld	a, (hl)
-	ld	-7 (ix), a
-	ld	l,-3 (ix)
-	ld	h,-2 (ix)
+	ld	-2 (ix), a
+	ld	l,-5 (ix)
+	ld	h,-4 (ix)
 	ld	de, #0x000a
 	add	hl, de
 	ld	a, (hl)
-	ld	-1 (ix), a
+	ld	-3 (ix), a
 ;src/render.c:76: cpct_getScreenPtr(mem_start, sprites[i].x, sprites[i].y),
+	ld	l,-7 (ix)
+	ld	h,-6 (ix)
+	ld	e, (hl)
 	ld	l,-9 (ix)
 	ld	h,-8 (ix)
-	ld	e, (hl)
-	ld	l,-5 (ix)
-	ld	h,-4 (ix)
 	ld	d, (hl)
 	ld	iy, (_mem_start)
 	push	bc
@@ -339,59 +339,59 @@ _renderSprites::
 	ex	de,hl
 	pop	bc
 ;src/render.c:74: cpct_drawSpriteMasked(sprite,
-	ld	h, -7 (ix)
-	ld	l, -1 (ix)
+	ld	h, -2 (ix)
+	ld	l, -3 (ix)
 	push	hl
 	push	de
 	push	bc
 	call	_cpct_drawSpriteMasked
 00119$:
 ;src/render.c:76: cpct_getScreenPtr(mem_start, sprites[i].x, sprites[i].y),
-	ld	l,-5 (ix)
-	ld	h,-4 (ix)
+	ld	l,-9 (ix)
+	ld	h,-8 (ix)
 	ld	c, (hl)
 ;src/render.c:82: if (!swap_memvideo) {
 	ld	a,(#_swap_memvideo + 0)
 	or	a, a
 	jr	NZ,00121$
 ;src/render.c:83: sprites[i].x_prev_B = sprites[i].x;
-	ld	a, -3 (ix)
+	ld	a, -5 (ix)
 	add	a, #0x07
 	ld	l, a
-	ld	a, -2 (ix)
+	ld	a, -4 (ix)
 	adc	a, #0x00
 	ld	h, a
 	ld	(hl), c
 ;src/render.c:84: sprites[i].y_prev_B = sprites[i].y;
-	ld	a, -3 (ix)
+	ld	a, -5 (ix)
 	add	a, #0x08
 	ld	c, a
-	ld	a, -2 (ix)
+	ld	a, -4 (ix)
 	adc	a, #0x00
 	ld	b, a
-	ld	l,-9 (ix)
-	ld	h,-8 (ix)
+	ld	l,-7 (ix)
+	ld	h,-6 (ix)
 	ld	a, (hl)
 	ld	(bc), a
 	jr	00127$
 00121$:
 ;src/render.c:86: sprites[i].x_prev_A = sprites[i].x;
-	ld	a, -3 (ix)
+	ld	a, -5 (ix)
 	add	a, #0x05
 	ld	l, a
-	ld	a, -2 (ix)
+	ld	a, -4 (ix)
 	adc	a, #0x00
 	ld	h, a
 	ld	(hl), c
 ;src/render.c:87: sprites[i].y_prev_A = sprites[i].y;
-	ld	a, -3 (ix)
+	ld	a, -5 (ix)
 	add	a, #0x06
 	ld	c, a
-	ld	a, -2 (ix)
+	ld	a, -4 (ix)
 	adc	a, #0x00
 	ld	b, a
-	ld	l,-9 (ix)
-	ld	h,-8 (ix)
+	ld	l,-7 (ix)
+	ld	h,-6 (ix)
 	ld	a, (hl)
 	ld	(bc), a
 00127$:
@@ -439,24 +439,24 @@ _deleteSprites::
 	push	de
 	pop	iy
 	ld	a, 7 (iy)
-	ld	-2 (ix), a
+	ld	-1 (ix), a
 ;src/render.c:102: y = sprites[i].y_prev_B;
 	push	de
 	pop	iy
 	ld	a, 8 (iy)
-	ld	-1 (ix), a
+	ld	-2 (ix), a
 	jr	00103$
 00102$:
 ;src/render.c:105: x = sprites[i].x_prev_A;
 	push	de
 	pop	iy
 	ld	a, 5 (iy)
-	ld	-2 (ix), a
+	ld	-1 (ix), a
 ;src/render.c:106: y = sprites[i].y_prev_A;
 	push	de
 	pop	iy
 	ld	a, 6 (iy)
-	ld	-1 (ix), a
+	ld	-2 (ix), a
 00103$:
 ;src/render.c:113: redrawTile(mem_start, x, y, sprites[i].width, sprites[i].height);
 	push	de
@@ -469,8 +469,8 @@ _deleteSprites::
 	push	bc
 	ld	d,a
 	push	de
-	ld	h, -1 (ix)
-	ld	l, -2 (ix)
+	ld	h, -2 (ix)
+	ld	l, -1 (ix)
 	push	hl
 	ld	hl, (_mem_start)
 	push	hl

@@ -101,10 +101,10 @@ DEF _cpct_setDrawCharM0 0x692F
 DEF _cpct_getScreenPtr 0x6954
 DEF _cpct_etm_setDrawTilemap4x8_ag 0x696A
 DEF dc_mode0_ct 0x699A
-DEF _sprites 0x69AA
-DEF _anim_clock 0x6A9A
-DEF _map 0x6A9B
-DEF _mem_start 0x6C67
-DEF _mem_page 0x6C69
-DEF _swap_memvideo 0x6C6A
+DEF _mem_start 0x69AA
+DEF _mem_page 0x69AC
+DEF _swap_memvideo 0x69AD
+DEF _map 0x69AE
+DEF _sprites 0x6B7A
+DEF _anim_clock 0x6C6A
 LOAD obj/banterhouse.ihx

@@ -63,7 +63,7 @@
    62E8 E5            [11]   63 	push	hl
    62E9 CD EC 68      [17]   64 	call	_cpct_px2byteM0
    62EC 55            [ 4]   65 	ld	d, l
-   62ED ED 4B 67 6C   [20]   66 	ld	bc, (_mem_start)
+   62ED ED 4B AA 69   [20]   66 	ld	bc, (_mem_start)
    62F1 21 00 40      [10]   67 	ld	hl, #0x4000
    62F4 E5            [11]   68 	push	hl
    62F5 D5            [11]   69 	push	de
