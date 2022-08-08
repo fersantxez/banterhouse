@@ -13,11 +13,11 @@ Symbol Table
     _cpct_etm_drawTilemap4x8_ag                                    **** GX
     _cpct_etm_setDrawTilemap4x8_ag                                 **** GX
     _cpct_getScreenPtr                                             **** GX
-  0 _deleteSprites                                                 0235 GR
+  0 _deleteSprites                                                 0237 GR
     _map                                                           **** GX
     _mem_start                                                     **** GX
   0 _redrawTile                                                    0000 GR
-  0 _renderSprites                                                 00AB GR
+  0 _renderSprites                                                 00AD GR
     _sprites                                                       **** GX
     _swap_memvideo                                                 **** GX
 
@@ -27,7 +27,7 @@ Hexadecimal [16-Bits]
 
 Area Table
 
-   0 _CODE                                      size  2AD   flags    0
+   0 _CODE                                      size  2AF   flags    0
    1 _DATA                                      size    0   flags    0
    2 _INITIALIZED                               size    0   flags    0
    3 _DABS                                      size    0   flags    8

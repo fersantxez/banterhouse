@@ -72,418 +72,422 @@
    6366 91            [ 4]   72 	sub	a, c
    6367 C6 F0         [ 7]   73 	add	a, #0xf0
    6369 5F            [ 4]   74 	ld	e, a
-                             75 ;src/render.c:25: new_width = (width / 4);
+                             75 ;src/render.c:25: new_width = (width / 4) + 1; //FIXME: that +1 is artificially added b/c this code is "leaving a trail"
    636A DD 4E 08      [19]   76 	ld	c, 8 (ix)
    636D CB 39         [ 8]   77 	srl	c
    636F CB 39         [ 8]   78 	srl	c
-                             79 ;src/render.c:26: if (width % 4)
-   6371 DD 7E 08      [19]   80 	ld	a, 8 (ix)
-   6374 E6 03         [ 7]   81 	and	a, #0x03
-   6376 28 01         [12]   82 	jr	Z,00102$
-                             83 ;src/render.c:27: new_width++;
-   6378 0C            [ 4]   84 	inc	c
-   6379                      85 00102$:
-                             86 ;src/render.c:29: new_height = (height / 8);
-   6379 DD 46 09      [19]   87 	ld	b, 9 (ix)
-   637C CB 38         [ 8]   88 	srl	b
-   637E CB 38         [ 8]   89 	srl	b
-   6380 CB 38         [ 8]   90 	srl	b
-                             91 ;src/render.c:30: if (height % 8)
-   6382 DD 7E 09      [19]   92 	ld	a, 9 (ix)
-   6385 E6 07         [ 7]   93 	and	a, #0x07
-   6387 28 01         [12]   94 	jr	Z,00104$
-                             95 ;src/render.c:31: new_height++;
-   6389 04            [ 4]   96 	inc	b
-   638A                      97 00104$:
-                             98 ;src/render.c:34: first_tile = (new_y / 8) * 20 + (new_x / 4); 				//from "coords" to tiles
-   638A 7B            [ 4]   99 	ld	a, e
-   638B 0F            [ 4]  100 	rrca
-   638C 0F            [ 4]  101 	rrca
-   638D 0F            [ 4]  102 	rrca
-   638E E6 1F         [ 7]  103 	and	a, #0x1f
-   6390 D5            [11]  104 	push	de
-   6391 5F            [ 4]  105 	ld	e,a
-   6392 16 00         [ 7]  106 	ld	d,#0x00
-   6394 6B            [ 4]  107 	ld	l, e
-   6395 62            [ 4]  108 	ld	h, d
-   6396 29            [11]  109 	add	hl, hl
-   6397 29            [11]  110 	add	hl, hl
-   6398 19            [11]  111 	add	hl, de
-   6399 29            [11]  112 	add	hl, hl
-   639A 29            [11]  113 	add	hl, hl
-   639B D1            [10]  114 	pop	de
-   639C DD 7E FD      [19]  115 	ld	a, -3 (ix)
-   639F 0F            [ 4]  116 	rrca
-   63A0 0F            [ 4]  117 	rrca
-   63A1 E6 3F         [ 7]  118 	and	a, #0x3f
-   63A3 DD 77 FE      [19]  119 	ld	-2 (ix), a
-   63A6 DD 36 FF 00   [19]  120 	ld	-1 (ix), #0x00
-   63AA 7D            [ 4]  121 	ld	a, l
-   63AB DD 86 FE      [19]  122 	add	a, -2 (ix)
-   63AE 6F            [ 4]  123 	ld	l, a
-   63AF 7C            [ 4]  124 	ld	a, h
-   63B0 DD 8E FF      [19]  125 	adc	a, -1 (ix)
-   63B3 67            [ 4]  126 	ld	h, a
-   63B4 33            [ 6]  127 	inc	sp
-   63B5 33            [ 6]  128 	inc	sp
-   63B6 E5            [11]  129 	push	hl
-                            130 ;src/render.c:36: cpct_etm_setDrawTilemap4x8_ag( new_width, new_height, 20, G_tileset_00 );
-   63B7 D5            [11]  131 	push	de
-   63B8 21 CC 41      [10]  132 	ld	hl, #_G_tileset_00
-   63BB E5            [11]  133 	push	hl
-   63BC 21 14 00      [10]  134 	ld	hl, #0x0014
-   63BF E5            [11]  135 	push	hl
-   63C0 C5            [11]  136 	push	bc
-   63C1 CD 68 69      [17]  137 	call	_cpct_etm_setDrawTilemap4x8_ag
-   63C4 D1            [10]  138 	pop	de
-                            139 ;src/render.c:37: cpct_etm_drawTilemap4x8_ag( (u8*)cpct_getScreenPtr( mem_start, new_x, new_y + GAME_AREA_TOP), &map[first_tile] );
-   63C5 DD 7E FB      [19]  140 	ld	a, -5 (ix)
-   63C8 C6 99         [ 7]  141 	add	a, #<(_map)
-   63CA 4F            [ 4]  142 	ld	c, a
-   63CB DD 7E FC      [19]  143 	ld	a, -4 (ix)
-   63CE CE 6A         [ 7]  144 	adc	a, #>(_map)
-   63D0 47            [ 4]  145 	ld	b, a
-   63D1 7B            [ 4]  146 	ld	a, e
-   63D2 C6 10         [ 7]  147 	add	a, #0x10
-   63D4 67            [ 4]  148 	ld	h, a
-   63D5 DD 5E 04      [19]  149 	ld	e,4 (ix)
-   63D8 DD 56 05      [19]  150 	ld	d,5 (ix)
-   63DB C5            [11]  151 	push	bc
-   63DC E5            [11]  152 	push	hl
-   63DD 33            [ 6]  153 	inc	sp
-   63DE DD 7E FD      [19]  154 	ld	a, -3 (ix)
-   63E1 F5            [11]  155 	push	af
-   63E2 33            [ 6]  156 	inc	sp
-   63E3 D5            [11]  157 	push	de
-   63E4 CD 52 69      [17]  158 	call	_cpct_getScreenPtr
-   63E7 E5            [11]  159 	push	hl
-   63E8 CD CE 67      [17]  160 	call	_cpct_etm_drawTilemap4x8_ag
-   63EB DD F9         [10]  161 	ld	sp, ix
-   63ED DD E1         [14]  162 	pop	ix
-   63EF C9            [10]  163 	ret
-                            164 ;src/render.c:40: void renderSprites(){
-                            165 ;	---------------------------------
-                            166 ; Function renderSprites
-                            167 ; ---------------------------------
-   63F0                     168 _renderSprites::
-   63F0 DD E5         [15]  169 	push	ix
-   63F2 DD 21 00 00   [14]  170 	ld	ix,#0
-   63F6 DD 39         [15]  171 	add	ix,sp
-   63F8 21 F6 FF      [10]  172 	ld	hl, #-10
-   63FB 39            [11]  173 	add	hl, sp
-   63FC F9            [ 6]  174 	ld	sp, hl
-                            175 ;src/render.c:45: for (i = 0; i < MAX_SPRITES; i++) {
-   63FD DD 36 F6 00   [19]  176 	ld	-10 (ix), #0x00
-   6401                     177 00126$:
-                            178 ;src/render.c:46: if (sprites[i].id !=0) {							//only live and renderable sprites
-   6401 DD 4E F6      [19]  179 	ld	c,-10 (ix)
-   6404 06 00         [ 7]  180 	ld	b,#0x00
-   6406 69            [ 4]  181 	ld	l, c
-   6407 60            [ 4]  182 	ld	h, b
-   6408 29            [11]  183 	add	hl, hl
-   6409 09            [11]  184 	add	hl, bc
-   640A 29            [11]  185 	add	hl, hl
-   640B 29            [11]  186 	add	hl, hl
-   640C 29            [11]  187 	add	hl, hl
-   640D 01 A8 69      [10]  188 	ld	bc,#_sprites
-   6410 09            [11]  189 	add	hl,bc
-   6411 DD 75 FC      [19]  190 	ld	-4 (ix), l
-   6414 DD 74 FD      [19]  191 	ld	-3 (ix), h
-   6417 7E            [ 7]  192 	ld	a, (hl)
-   6418 B7            [ 4]  193 	or	a, a
-   6419 CA 6A 65      [10]  194 	jp	Z, 00127$
-                            195 ;src/render.c:47: if (sprites[i].properties & MASK_RENDER) {
-   641C DD 6E FC      [19]  196 	ld	l,-4 (ix)
-   641F DD 66 FD      [19]  197 	ld	h,-3 (ix)
-   6422 11 0B 00      [10]  198 	ld	de, #0x000b
-   6425 19            [11]  199 	add	hl, de
-   6426 4E            [ 7]  200 	ld	c, (hl)
-                            201 ;src/render.c:76: cpct_getScreenPtr(mem_start, sprites[i].x, sprites[i].y),
-   6427 DD 7E FC      [19]  202 	ld	a, -4 (ix)
-   642A C6 02         [ 7]  203 	add	a, #0x02
-   642C DD 77 FA      [19]  204 	ld	-6 (ix), a
-   642F DD 7E FD      [19]  205 	ld	a, -3 (ix)
-   6432 CE 00         [ 7]  206 	adc	a, #0x00
-   6434 DD 77 FB      [19]  207 	ld	-5 (ix), a
-   6437 DD 7E FC      [19]  208 	ld	a, -4 (ix)
-   643A C6 01         [ 7]  209 	add	a, #0x01
-   643C DD 77 F8      [19]  210 	ld	-8 (ix), a
-   643F DD 7E FD      [19]  211 	ld	a, -3 (ix)
-   6442 CE 00         [ 7]  212 	adc	a, #0x00
-   6444 DD 77 F9      [19]  213 	ld	-7 (ix), a
-                            214 ;src/render.c:47: if (sprites[i].properties & MASK_RENDER) {
-   6447 CB 41         [ 8]  215 	bit	0, c
-   6449 CA 19 65      [10]  216 	jp	Z,00119$
-                            217 ;src/render.c:62: sprite = sprites[i].sprite_f1; 
-   644C DD 7E FC      [19]  218 	ld	a, -4 (ix)
-   644F C6 0F         [ 7]  219 	add	a, #0x0f
-   6451 DD 77 FE      [19]  220 	ld	-2 (ix), a
-   6454 DD 7E FD      [19]  221 	ld	a, -3 (ix)
-   6457 CE 00         [ 7]  222 	adc	a, #0x00
-   6459 DD 77 FF      [19]  223 	ld	-1 (ix), a
-                            224 ;src/render.c:49: if (sprites[i].properties & MASK_ANIMATE) {
-   645C CB 49         [ 8]  225 	bit	1, c
-   645E 28 55         [12]  226 	jr	Z,00114$
-                            227 ;src/render.c:57: if (anim_clock > 7) num_frame=2;
-   6460 3E 07         [ 7]  228 	ld	a, #0x07
-   6462 FD 21 98 6A   [14]  229 	ld	iy, #_anim_clock
-   6466 FD 96 00      [19]  230 	sub	a, 0 (iy)
-   6469 30 04         [12]  231 	jr	NC,00102$
-   646B 3E 02         [ 7]  232 	ld	a, #0x02
-   646D 18 02         [12]  233 	jr	00103$
-   646F                     234 00102$:
-                            235 ;src/render.c:58: else num_frame=1;
-   646F 3E 01         [ 7]  236 	ld	a, #0x01
-   6471                     237 00103$:
-                            238 ;src/render.c:61: if (num_frame == 1) {
-   6471 FE 01         [ 7]  239 	cp	a, #0x01
-   6473 20 0B         [12]  240 	jr	NZ,00111$
-                            241 ;src/render.c:62: sprite = sprites[i].sprite_f1; 
-   6475 DD 6E FE      [19]  242 	ld	l,-2 (ix)
-   6478 DD 66 FF      [19]  243 	ld	h,-1 (ix)
-   647B 4E            [ 7]  244 	ld	c, (hl)
-   647C 23            [ 6]  245 	inc	hl
-   647D 46            [ 7]  246 	ld	b, (hl)
-   647E 18 3E         [12]  247 	jr	00115$
-   6480                     248 00111$:
-                            249 ;src/render.c:63: } else if (num_frame == 2) {
-   6480 FE 02         [ 7]  250 	cp	a, #0x02
-   6482 20 0F         [12]  251 	jr	NZ,00108$
-                            252 ;src/render.c:64: sprite = sprites[i].sprite_f2;
-   6484 DD 6E FC      [19]  253 	ld	l,-4 (ix)
-   6487 DD 66 FD      [19]  254 	ld	h,-3 (ix)
-   648A 11 11 00      [10]  255 	ld	de, #0x0011
-   648D 19            [11]  256 	add	hl, de
-   648E 4E            [ 7]  257 	ld	c, (hl)
-   648F 23            [ 6]  258 	inc	hl
-   6490 46            [ 7]  259 	ld	b, (hl)
-   6491 18 2B         [12]  260 	jr	00115$
-   6493                     261 00108$:
-                            262 ;src/render.c:65: } else if (num_frame == 3) { 
-   6493 D6 03         [ 7]  263 	sub	a, #0x03
-   6495 20 0F         [12]  264 	jr	NZ,00105$
-                            265 ;src/render.c:66: sprite = sprites[i].sprite_f3; 
-   6497 DD 6E FC      [19]  266 	ld	l,-4 (ix)
-   649A DD 66 FD      [19]  267 	ld	h,-3 (ix)
-   649D 11 13 00      [10]  268 	ld	de, #0x0013
-   64A0 19            [11]  269 	add	hl, de
-   64A1 4E            [ 7]  270 	ld	c, (hl)
-   64A2 23            [ 6]  271 	inc	hl
-   64A3 46            [ 7]  272 	ld	b, (hl)
-   64A4 18 18         [12]  273 	jr	00115$
-   64A6                     274 00105$:
-                            275 ;src/render.c:67: } else sprite = sprites[i].sprite_f4;
-   64A6 DD 6E FC      [19]  276 	ld	l,-4 (ix)
-   64A9 DD 66 FD      [19]  277 	ld	h,-3 (ix)
-   64AC 11 15 00      [10]  278 	ld	de, #0x0015
-   64AF 19            [11]  279 	add	hl, de
-   64B0 4E            [ 7]  280 	ld	c, (hl)
-   64B1 23            [ 6]  281 	inc	hl
-   64B2 46            [ 7]  282 	ld	b, (hl)
-   64B3 18 09         [12]  283 	jr	00115$
-   64B5                     284 00114$:
-                            285 ;src/render.c:68: } else sprite = sprites[i].sprite_f1;
-   64B5 DD 6E FE      [19]  286 	ld	l,-2 (ix)
-   64B8 DD 66 FF      [19]  287 	ld	h,-1 (ix)
-   64BB 4E            [ 7]  288 	ld	c, (hl)
-   64BC 23            [ 6]  289 	inc	hl
-   64BD 46            [ 7]  290 	ld	b, (hl)
-   64BE                     291 00115$:
-                            292 ;src/render.c:70: if (sprites[i].turned)							//turn sprite around
-   64BE DD 6E FC      [19]  293 	ld	l,-4 (ix)
-   64C1 DD 66 FD      [19]  294 	ld	h,-3 (ix)
-   64C4 11 17 00      [10]  295 	ld	de, #0x0017
-   64C7 19            [11]  296 	add	hl, de
-   64C8 7E            [ 7]  297 	ld	a, (hl)
-   64C9 B7            [ 4]  298 	or	a, a
-   64CA 28 06         [12]  299 	jr	Z,00117$
-                            300 ;src/render.c:72: sprite = sprite + ((G_PITU_W*2)*G_PITU_H);	//find next sprite in memory, "rev" version
-   64CC 21 C0 01      [10]  301 	ld	hl, #0x01c0
-   64CF 09            [11]  302 	add	hl,bc
-   64D0 4D            [ 4]  303 	ld	c, l
-   64D1 44            [ 4]  304 	ld	b, h
-   64D2                     305 00117$:
-                            306 ;src/render.c:77: sprites[i].width, sprites[i].height);
-   64D2 DD 6E FC      [19]  307 	ld	l,-4 (ix)
-   64D5 DD 66 FD      [19]  308 	ld	h,-3 (ix)
-   64D8 11 09 00      [10]  309 	ld	de, #0x0009
-   64DB 19            [11]  310 	add	hl, de
-   64DC 7E            [ 7]  311 	ld	a, (hl)
-   64DD DD 77 FE      [19]  312 	ld	-2 (ix), a
-   64E0 DD 6E FC      [19]  313 	ld	l,-4 (ix)
-   64E3 DD 66 FD      [19]  314 	ld	h,-3 (ix)
-   64E6 11 0A 00      [10]  315 	ld	de, #0x000a
-   64E9 19            [11]  316 	add	hl, de
-   64EA 7E            [ 7]  317 	ld	a, (hl)
-   64EB DD 77 F7      [19]  318 	ld	-9 (ix), a
-                            319 ;src/render.c:76: cpct_getScreenPtr(mem_start, sprites[i].x, sprites[i].y),
-   64EE DD 6E FA      [19]  320 	ld	l,-6 (ix)
-   64F1 DD 66 FB      [19]  321 	ld	h,-5 (ix)
-   64F4 5E            [ 7]  322 	ld	e, (hl)
-   64F5 DD 6E F8      [19]  323 	ld	l,-8 (ix)
-   64F8 DD 66 F9      [19]  324 	ld	h,-7 (ix)
-   64FB 56            [ 7]  325 	ld	d, (hl)
-   64FC FD 2A 65 6C   [20]  326 	ld	iy, (_mem_start)
-   6500 C5            [11]  327 	push	bc
-   6501 7B            [ 4]  328 	ld	a, e
-   6502 F5            [11]  329 	push	af
-   6503 33            [ 6]  330 	inc	sp
-   6504 D5            [11]  331 	push	de
-   6505 33            [ 6]  332 	inc	sp
-   6506 FD E5         [15]  333 	push	iy
-   6508 CD 52 69      [17]  334 	call	_cpct_getScreenPtr
-   650B EB            [ 4]  335 	ex	de,hl
-   650C C1            [10]  336 	pop	bc
-                            337 ;src/render.c:74: cpct_drawSpriteMasked(sprite,
-   650D DD 66 FE      [19]  338 	ld	h, -2 (ix)
-   6510 DD 6E F7      [19]  339 	ld	l, -9 (ix)
-   6513 E5            [11]  340 	push	hl
-   6514 D5            [11]  341 	push	de
-   6515 C5            [11]  342 	push	bc
-   6516 CD 86 68      [17]  343 	call	_cpct_drawSpriteMasked
-   6519                     344 00119$:
-                            345 ;src/render.c:76: cpct_getScreenPtr(mem_start, sprites[i].x, sprites[i].y),
-   6519 DD 6E F8      [19]  346 	ld	l,-8 (ix)
-   651C DD 66 F9      [19]  347 	ld	h,-7 (ix)
-   651F 4E            [ 7]  348 	ld	c, (hl)
-                            349 ;src/render.c:82: if (!swap_memvideo) {
-   6520 3A 68 6C      [13]  350 	ld	a,(#_swap_memvideo + 0)
-   6523 B7            [ 4]  351 	or	a, a
-   6524 20 23         [12]  352 	jr	NZ,00121$
-                            353 ;src/render.c:83: sprites[i].x_prev_B = sprites[i].x;
-   6526 DD 7E FC      [19]  354 	ld	a, -4 (ix)
-   6529 C6 07         [ 7]  355 	add	a, #0x07
-   652B 6F            [ 4]  356 	ld	l, a
-   652C DD 7E FD      [19]  357 	ld	a, -3 (ix)
-   652F CE 00         [ 7]  358 	adc	a, #0x00
-   6531 67            [ 4]  359 	ld	h, a
-   6532 71            [ 7]  360 	ld	(hl), c
-                            361 ;src/render.c:84: sprites[i].y_prev_B = sprites[i].y;
-   6533 DD 7E FC      [19]  362 	ld	a, -4 (ix)
-   6536 C6 08         [ 7]  363 	add	a, #0x08
-   6538 4F            [ 4]  364 	ld	c, a
-   6539 DD 7E FD      [19]  365 	ld	a, -3 (ix)
-   653C CE 00         [ 7]  366 	adc	a, #0x00
-   653E 47            [ 4]  367 	ld	b, a
-   653F DD 6E FA      [19]  368 	ld	l,-6 (ix)
-   6542 DD 66 FB      [19]  369 	ld	h,-5 (ix)
-   6545 7E            [ 7]  370 	ld	a, (hl)
-   6546 02            [ 7]  371 	ld	(bc), a
-   6547 18 21         [12]  372 	jr	00127$
-   6549                     373 00121$:
-                            374 ;src/render.c:86: sprites[i].x_prev_A = sprites[i].x;
-   6549 DD 7E FC      [19]  375 	ld	a, -4 (ix)
-   654C C6 05         [ 7]  376 	add	a, #0x05
-   654E 6F            [ 4]  377 	ld	l, a
-   654F DD 7E FD      [19]  378 	ld	a, -3 (ix)
-   6552 CE 00         [ 7]  379 	adc	a, #0x00
-   6554 67            [ 4]  380 	ld	h, a
-   6555 71            [ 7]  381 	ld	(hl), c
-                            382 ;src/render.c:87: sprites[i].y_prev_A = sprites[i].y;
-   6556 DD 7E FC      [19]  383 	ld	a, -4 (ix)
-   6559 C6 06         [ 7]  384 	add	a, #0x06
-   655B 4F            [ 4]  385 	ld	c, a
-   655C DD 7E FD      [19]  386 	ld	a, -3 (ix)
-   655F CE 00         [ 7]  387 	adc	a, #0x00
-   6561 47            [ 4]  388 	ld	b, a
-   6562 DD 6E FA      [19]  389 	ld	l,-6 (ix)
-   6565 DD 66 FB      [19]  390 	ld	h,-5 (ix)
-   6568 7E            [ 7]  391 	ld	a, (hl)
-   6569 02            [ 7]  392 	ld	(bc), a
-   656A                     393 00127$:
-                            394 ;src/render.c:45: for (i = 0; i < MAX_SPRITES; i++) {
-   656A DD 34 F6      [23]  395 	inc	-10 (ix)
-   656D DD 7E F6      [19]  396 	ld	a, -10 (ix)
-   6570 D6 0A         [ 7]  397 	sub	a, #0x0a
-   6572 DA 01 64      [10]  398 	jp	C, 00126$
-   6575 DD F9         [10]  399 	ld	sp, ix
-   6577 DD E1         [14]  400 	pop	ix
-   6579 C9            [10]  401 	ret
-                            402 ;src/render.c:93: void deleteSprites(){
-                            403 ;	---------------------------------
-                            404 ; Function deleteSprites
-                            405 ; ---------------------------------
-   657A                     406 _deleteSprites::
-   657A DD E5         [15]  407 	push	ix
-   657C DD 21 00 00   [14]  408 	ld	ix,#0
-   6580 DD 39         [15]  409 	add	ix,sp
-   6582 F5            [11]  410 	push	af
-                            411 ;src/render.c:98: for (i = 0; i < MAX_SPRITES; i++) {
-   6583 0E 00         [ 7]  412 	ld	c, #0x00
-   6585                     413 00107$:
-                            414 ;src/render.c:99: if (sprites[i].id !=0) {
-   6585 06 00         [ 7]  415 	ld	b,#0x00
-   6587 69            [ 4]  416 	ld	l, c
-   6588 60            [ 4]  417 	ld	h, b
-   6589 29            [11]  418 	add	hl, hl
-   658A 09            [11]  419 	add	hl, bc
-   658B 29            [11]  420 	add	hl, hl
-   658C 29            [11]  421 	add	hl, hl
-   658D 29            [11]  422 	add	hl, hl
-   658E EB            [ 4]  423 	ex	de,hl
-   658F 21 A8 69      [10]  424 	ld	hl, #_sprites
-   6592 19            [11]  425 	add	hl,de
-   6593 EB            [ 4]  426 	ex	de,hl
-   6594 1A            [ 7]  427 	ld	a, (de)
-   6595 B7            [ 4]  428 	or	a, a
-   6596 28 4F         [12]  429 	jr	Z,00108$
-                            430 ;src/render.c:100: if (!swap_memvideo){
-   6598 3A 68 6C      [13]  431 	ld	a,(#_swap_memvideo + 0)
-   659B B7            [ 4]  432 	or	a, a
-   659C 20 14         [12]  433 	jr	NZ,00102$
-                            434 ;src/render.c:101: x = sprites[i].x_prev_B;
-   659E D5            [11]  435 	push	de
-   659F FD E1         [14]  436 	pop	iy
-   65A1 FD 7E 07      [19]  437 	ld	a, 7 (iy)
-   65A4 DD 77 FE      [19]  438 	ld	-2 (ix), a
-                            439 ;src/render.c:102: y = sprites[i].y_prev_B;
-   65A7 D5            [11]  440 	push	de
-   65A8 FD E1         [14]  441 	pop	iy
-   65AA FD 7E 08      [19]  442 	ld	a, 8 (iy)
-   65AD DD 77 FF      [19]  443 	ld	-1 (ix), a
-   65B0 18 12         [12]  444 	jr	00103$
-   65B2                     445 00102$:
-                            446 ;src/render.c:105: x = sprites[i].x_prev_A;
-   65B2 D5            [11]  447 	push	de
-   65B3 FD E1         [14]  448 	pop	iy
-   65B5 FD 7E 05      [19]  449 	ld	a, 5 (iy)
-   65B8 DD 77 FE      [19]  450 	ld	-2 (ix), a
-                            451 ;src/render.c:106: y = sprites[i].y_prev_A;
-   65BB D5            [11]  452 	push	de
-   65BC FD E1         [14]  453 	pop	iy
-   65BE FD 7E 06      [19]  454 	ld	a, 6 (iy)
-   65C1 DD 77 FF      [19]  455 	ld	-1 (ix), a
-   65C4                     456 00103$:
-                            457 ;src/render.c:113: redrawTile(mem_start, x, y, sprites[i].width, sprites[i].height);
-   65C4 D5            [11]  458 	push	de
-   65C5 FD E1         [14]  459 	pop	iy
-   65C7 FD 7E 09      [19]  460 	ld	a, 9 (iy)
-   65CA EB            [ 4]  461 	ex	de,hl
-   65CB 11 0A 00      [10]  462 	ld	de, #0x000a
-   65CE 19            [11]  463 	add	hl, de
-   65CF 5E            [ 7]  464 	ld	e, (hl)
-   65D0 C5            [11]  465 	push	bc
-   65D1 57            [ 4]  466 	ld	d,a
-   65D2 D5            [11]  467 	push	de
-   65D3 DD 66 FF      [19]  468 	ld	h, -1 (ix)
-   65D6 DD 6E FE      [19]  469 	ld	l, -2 (ix)
-   65D9 E5            [11]  470 	push	hl
-   65DA 2A 65 6C      [16]  471 	ld	hl, (_mem_start)
-   65DD E5            [11]  472 	push	hl
-   65DE CD 45 63      [17]  473 	call	_redrawTile
-   65E1 21 06 00      [10]  474 	ld	hl, #6
-   65E4 39            [11]  475 	add	hl, sp
-   65E5 F9            [ 6]  476 	ld	sp, hl
-   65E6 C1            [10]  477 	pop	bc
-   65E7                     478 00108$:
-                            479 ;src/render.c:98: for (i = 0; i < MAX_SPRITES; i++) {
-   65E7 0C            [ 4]  480 	inc	c
-   65E8 79            [ 4]  481 	ld	a, c
-   65E9 D6 0A         [ 7]  482 	sub	a, #0x0a
-   65EB 38 98         [12]  483 	jr	C,00107$
-   65ED DD F9         [10]  484 	ld	sp, ix
-   65EF DD E1         [14]  485 	pop	ix
-   65F1 C9            [10]  486 	ret
-                            487 	.area _CODE
-                            488 	.area _INITIALIZER
-                            489 	.area _CABS (ABS)
+   6371 0C            [ 4]   79 	inc	c
+                             80 ;src/render.c:26: if (width % 4)
+   6372 DD 7E 08      [19]   81 	ld	a, 8 (ix)
+   6375 E6 03         [ 7]   82 	and	a, #0x03
+   6377 28 01         [12]   83 	jr	Z,00102$
+                             84 ;src/render.c:27: new_width++;
+   6379 0C            [ 4]   85 	inc	c
+   637A                      86 00102$:
+                             87 ;src/render.c:29: new_height = (height / 8) + 1;
+   637A DD 7E 09      [19]   88 	ld	a, 9 (ix)
+   637D 0F            [ 4]   89 	rrca
+   637E 0F            [ 4]   90 	rrca
+   637F 0F            [ 4]   91 	rrca
+   6380 E6 1F         [ 7]   92 	and	a, #0x1f
+   6382 47            [ 4]   93 	ld	b, a
+   6383 04            [ 4]   94 	inc	b
+                             95 ;src/render.c:30: if (height % 8)
+   6384 DD 7E 09      [19]   96 	ld	a, 9 (ix)
+   6387 E6 07         [ 7]   97 	and	a, #0x07
+   6389 28 01         [12]   98 	jr	Z,00104$
+                             99 ;src/render.c:31: new_height++;
+   638B 04            [ 4]  100 	inc	b
+   638C                     101 00104$:
+                            102 ;src/render.c:34: first_tile = (new_y / 8) * 20 + (new_x / 4); 				//from "coords" to tiles
+   638C 7B            [ 4]  103 	ld	a, e
+   638D 0F            [ 4]  104 	rrca
+   638E 0F            [ 4]  105 	rrca
+   638F 0F            [ 4]  106 	rrca
+   6390 E6 1F         [ 7]  107 	and	a, #0x1f
+   6392 D5            [11]  108 	push	de
+   6393 5F            [ 4]  109 	ld	e,a
+   6394 16 00         [ 7]  110 	ld	d,#0x00
+   6396 6B            [ 4]  111 	ld	l, e
+   6397 62            [ 4]  112 	ld	h, d
+   6398 29            [11]  113 	add	hl, hl
+   6399 29            [11]  114 	add	hl, hl
+   639A 19            [11]  115 	add	hl, de
+   639B 29            [11]  116 	add	hl, hl
+   639C 29            [11]  117 	add	hl, hl
+   639D D1            [10]  118 	pop	de
+   639E DD 7E FD      [19]  119 	ld	a, -3 (ix)
+   63A1 0F            [ 4]  120 	rrca
+   63A2 0F            [ 4]  121 	rrca
+   63A3 E6 3F         [ 7]  122 	and	a, #0x3f
+   63A5 DD 77 FE      [19]  123 	ld	-2 (ix), a
+   63A8 DD 36 FF 00   [19]  124 	ld	-1 (ix), #0x00
+   63AC 7D            [ 4]  125 	ld	a, l
+   63AD DD 86 FE      [19]  126 	add	a, -2 (ix)
+   63B0 6F            [ 4]  127 	ld	l, a
+   63B1 7C            [ 4]  128 	ld	a, h
+   63B2 DD 8E FF      [19]  129 	adc	a, -1 (ix)
+   63B5 67            [ 4]  130 	ld	h, a
+   63B6 33            [ 6]  131 	inc	sp
+   63B7 33            [ 6]  132 	inc	sp
+   63B8 E5            [11]  133 	push	hl
+                            134 ;src/render.c:36: cpct_etm_setDrawTilemap4x8_ag( new_width, new_height, 20, G_tileset_00 );
+   63B9 D5            [11]  135 	push	de
+   63BA 21 CC 41      [10]  136 	ld	hl, #_G_tileset_00
+   63BD E5            [11]  137 	push	hl
+   63BE 21 14 00      [10]  138 	ld	hl, #0x0014
+   63C1 E5            [11]  139 	push	hl
+   63C2 C5            [11]  140 	push	bc
+   63C3 CD 6A 69      [17]  141 	call	_cpct_etm_setDrawTilemap4x8_ag
+   63C6 D1            [10]  142 	pop	de
+                            143 ;src/render.c:37: cpct_etm_drawTilemap4x8_ag( (u8*)cpct_getScreenPtr( mem_start, new_x, new_y + GAME_AREA_TOP), &map[first_tile] );
+   63C7 DD 7E FB      [19]  144 	ld	a, -5 (ix)
+   63CA C6 9B         [ 7]  145 	add	a, #<(_map)
+   63CC 4F            [ 4]  146 	ld	c, a
+   63CD DD 7E FC      [19]  147 	ld	a, -4 (ix)
+   63D0 CE 6A         [ 7]  148 	adc	a, #>(_map)
+   63D2 47            [ 4]  149 	ld	b, a
+   63D3 7B            [ 4]  150 	ld	a, e
+   63D4 C6 10         [ 7]  151 	add	a, #0x10
+   63D6 67            [ 4]  152 	ld	h, a
+   63D7 DD 5E 04      [19]  153 	ld	e,4 (ix)
+   63DA DD 56 05      [19]  154 	ld	d,5 (ix)
+   63DD C5            [11]  155 	push	bc
+   63DE E5            [11]  156 	push	hl
+   63DF 33            [ 6]  157 	inc	sp
+   63E0 DD 7E FD      [19]  158 	ld	a, -3 (ix)
+   63E3 F5            [11]  159 	push	af
+   63E4 33            [ 6]  160 	inc	sp
+   63E5 D5            [11]  161 	push	de
+   63E6 CD 54 69      [17]  162 	call	_cpct_getScreenPtr
+   63E9 E5            [11]  163 	push	hl
+   63EA CD D0 67      [17]  164 	call	_cpct_etm_drawTilemap4x8_ag
+   63ED DD F9         [10]  165 	ld	sp, ix
+   63EF DD E1         [14]  166 	pop	ix
+   63F1 C9            [10]  167 	ret
+                            168 ;src/render.c:40: void renderSprites(){
+                            169 ;	---------------------------------
+                            170 ; Function renderSprites
+                            171 ; ---------------------------------
+   63F2                     172 _renderSprites::
+   63F2 DD E5         [15]  173 	push	ix
+   63F4 DD 21 00 00   [14]  174 	ld	ix,#0
+   63F8 DD 39         [15]  175 	add	ix,sp
+   63FA 21 F6 FF      [10]  176 	ld	hl, #-10
+   63FD 39            [11]  177 	add	hl, sp
+   63FE F9            [ 6]  178 	ld	sp, hl
+                            179 ;src/render.c:45: for (i = 0; i < MAX_SPRITES; i++) {
+   63FF DD 36 F6 00   [19]  180 	ld	-10 (ix), #0x00
+   6403                     181 00126$:
+                            182 ;src/render.c:46: if (sprites[i].id !=0) {							//only live and renderable sprites
+   6403 DD 4E F6      [19]  183 	ld	c,-10 (ix)
+   6406 06 00         [ 7]  184 	ld	b,#0x00
+   6408 69            [ 4]  185 	ld	l, c
+   6409 60            [ 4]  186 	ld	h, b
+   640A 29            [11]  187 	add	hl, hl
+   640B 09            [11]  188 	add	hl, bc
+   640C 29            [11]  189 	add	hl, hl
+   640D 29            [11]  190 	add	hl, hl
+   640E 29            [11]  191 	add	hl, hl
+   640F 01 AA 69      [10]  192 	ld	bc,#_sprites
+   6412 09            [11]  193 	add	hl,bc
+   6413 DD 75 FD      [19]  194 	ld	-3 (ix), l
+   6416 DD 74 FE      [19]  195 	ld	-2 (ix), h
+   6419 7E            [ 7]  196 	ld	a, (hl)
+   641A B7            [ 4]  197 	or	a, a
+   641B CA 6C 65      [10]  198 	jp	Z, 00127$
+                            199 ;src/render.c:47: if (sprites[i].properties & MASK_RENDER) {
+   641E DD 6E FD      [19]  200 	ld	l,-3 (ix)
+   6421 DD 66 FE      [19]  201 	ld	h,-2 (ix)
+   6424 11 0B 00      [10]  202 	ld	de, #0x000b
+   6427 19            [11]  203 	add	hl, de
+   6428 4E            [ 7]  204 	ld	c, (hl)
+                            205 ;src/render.c:76: cpct_getScreenPtr(mem_start, sprites[i].x, sprites[i].y),
+   6429 DD 7E FD      [19]  206 	ld	a, -3 (ix)
+   642C C6 02         [ 7]  207 	add	a, #0x02
+   642E DD 77 F7      [19]  208 	ld	-9 (ix), a
+   6431 DD 7E FE      [19]  209 	ld	a, -2 (ix)
+   6434 CE 00         [ 7]  210 	adc	a, #0x00
+   6436 DD 77 F8      [19]  211 	ld	-8 (ix), a
+   6439 DD 7E FD      [19]  212 	ld	a, -3 (ix)
+   643C C6 01         [ 7]  213 	add	a, #0x01
+   643E DD 77 FB      [19]  214 	ld	-5 (ix), a
+   6441 DD 7E FE      [19]  215 	ld	a, -2 (ix)
+   6444 CE 00         [ 7]  216 	adc	a, #0x00
+   6446 DD 77 FC      [19]  217 	ld	-4 (ix), a
+                            218 ;src/render.c:47: if (sprites[i].properties & MASK_RENDER) {
+   6449 CB 41         [ 8]  219 	bit	0, c
+   644B CA 1B 65      [10]  220 	jp	Z,00119$
+                            221 ;src/render.c:62: sprite = sprites[i].sprite_f1; 
+   644E DD 7E FD      [19]  222 	ld	a, -3 (ix)
+   6451 C6 0F         [ 7]  223 	add	a, #0x0f
+   6453 DD 77 F9      [19]  224 	ld	-7 (ix), a
+   6456 DD 7E FE      [19]  225 	ld	a, -2 (ix)
+   6459 CE 00         [ 7]  226 	adc	a, #0x00
+   645B DD 77 FA      [19]  227 	ld	-6 (ix), a
+                            228 ;src/render.c:49: if (sprites[i].properties & MASK_ANIMATE) {
+   645E CB 49         [ 8]  229 	bit	1, c
+   6460 28 55         [12]  230 	jr	Z,00114$
+                            231 ;src/render.c:57: if (anim_clock > 7) num_frame=2;
+   6462 3E 07         [ 7]  232 	ld	a, #0x07
+   6464 FD 21 9A 6A   [14]  233 	ld	iy, #_anim_clock
+   6468 FD 96 00      [19]  234 	sub	a, 0 (iy)
+   646B 30 04         [12]  235 	jr	NC,00102$
+   646D 3E 02         [ 7]  236 	ld	a, #0x02
+   646F 18 02         [12]  237 	jr	00103$
+   6471                     238 00102$:
+                            239 ;src/render.c:58: else num_frame=1;
+   6471 3E 01         [ 7]  240 	ld	a, #0x01
+   6473                     241 00103$:
+                            242 ;src/render.c:61: if (num_frame == 1) {
+   6473 FE 01         [ 7]  243 	cp	a, #0x01
+   6475 20 0B         [12]  244 	jr	NZ,00111$
+                            245 ;src/render.c:62: sprite = sprites[i].sprite_f1; 
+   6477 DD 6E F9      [19]  246 	ld	l,-7 (ix)
+   647A DD 66 FA      [19]  247 	ld	h,-6 (ix)
+   647D 4E            [ 7]  248 	ld	c, (hl)
+   647E 23            [ 6]  249 	inc	hl
+   647F 46            [ 7]  250 	ld	b, (hl)
+   6480 18 3E         [12]  251 	jr	00115$
+   6482                     252 00111$:
+                            253 ;src/render.c:63: } else if (num_frame == 2) {
+   6482 FE 02         [ 7]  254 	cp	a, #0x02
+   6484 20 0F         [12]  255 	jr	NZ,00108$
+                            256 ;src/render.c:64: sprite = sprites[i].sprite_f2;
+   6486 DD 6E FD      [19]  257 	ld	l,-3 (ix)
+   6489 DD 66 FE      [19]  258 	ld	h,-2 (ix)
+   648C 11 11 00      [10]  259 	ld	de, #0x0011
+   648F 19            [11]  260 	add	hl, de
+   6490 4E            [ 7]  261 	ld	c, (hl)
+   6491 23            [ 6]  262 	inc	hl
+   6492 46            [ 7]  263 	ld	b, (hl)
+   6493 18 2B         [12]  264 	jr	00115$
+   6495                     265 00108$:
+                            266 ;src/render.c:65: } else if (num_frame == 3) { 
+   6495 D6 03         [ 7]  267 	sub	a, #0x03
+   6497 20 0F         [12]  268 	jr	NZ,00105$
+                            269 ;src/render.c:66: sprite = sprites[i].sprite_f3; 
+   6499 DD 6E FD      [19]  270 	ld	l,-3 (ix)
+   649C DD 66 FE      [19]  271 	ld	h,-2 (ix)
+   649F 11 13 00      [10]  272 	ld	de, #0x0013
+   64A2 19            [11]  273 	add	hl, de
+   64A3 4E            [ 7]  274 	ld	c, (hl)
+   64A4 23            [ 6]  275 	inc	hl
+   64A5 46            [ 7]  276 	ld	b, (hl)
+   64A6 18 18         [12]  277 	jr	00115$
+   64A8                     278 00105$:
+                            279 ;src/render.c:67: } else sprite = sprites[i].sprite_f4;
+   64A8 DD 6E FD      [19]  280 	ld	l,-3 (ix)
+   64AB DD 66 FE      [19]  281 	ld	h,-2 (ix)
+   64AE 11 15 00      [10]  282 	ld	de, #0x0015
+   64B1 19            [11]  283 	add	hl, de
+   64B2 4E            [ 7]  284 	ld	c, (hl)
+   64B3 23            [ 6]  285 	inc	hl
+   64B4 46            [ 7]  286 	ld	b, (hl)
+   64B5 18 09         [12]  287 	jr	00115$
+   64B7                     288 00114$:
+                            289 ;src/render.c:68: } else sprite = sprites[i].sprite_f1;
+   64B7 DD 6E F9      [19]  290 	ld	l,-7 (ix)
+   64BA DD 66 FA      [19]  291 	ld	h,-6 (ix)
+   64BD 4E            [ 7]  292 	ld	c, (hl)
+   64BE 23            [ 6]  293 	inc	hl
+   64BF 46            [ 7]  294 	ld	b, (hl)
+   64C0                     295 00115$:
+                            296 ;src/render.c:70: if (sprites[i].turned)							//turn sprite around
+   64C0 DD 6E FD      [19]  297 	ld	l,-3 (ix)
+   64C3 DD 66 FE      [19]  298 	ld	h,-2 (ix)
+   64C6 11 17 00      [10]  299 	ld	de, #0x0017
+   64C9 19            [11]  300 	add	hl, de
+   64CA 7E            [ 7]  301 	ld	a, (hl)
+   64CB B7            [ 4]  302 	or	a, a
+   64CC 28 06         [12]  303 	jr	Z,00117$
+                            304 ;src/render.c:72: sprite = sprite + ((G_PITU_W*2)*G_PITU_H);	//find next sprite in memory, "rev" version
+   64CE 21 C0 01      [10]  305 	ld	hl, #0x01c0
+   64D1 09            [11]  306 	add	hl,bc
+   64D2 4D            [ 4]  307 	ld	c, l
+   64D3 44            [ 4]  308 	ld	b, h
+   64D4                     309 00117$:
+                            310 ;src/render.c:77: sprites[i].width, sprites[i].height);
+   64D4 DD 6E FD      [19]  311 	ld	l,-3 (ix)
+   64D7 DD 66 FE      [19]  312 	ld	h,-2 (ix)
+   64DA 11 09 00      [10]  313 	ld	de, #0x0009
+   64DD 19            [11]  314 	add	hl, de
+   64DE 7E            [ 7]  315 	ld	a, (hl)
+   64DF DD 77 F9      [19]  316 	ld	-7 (ix), a
+   64E2 DD 6E FD      [19]  317 	ld	l,-3 (ix)
+   64E5 DD 66 FE      [19]  318 	ld	h,-2 (ix)
+   64E8 11 0A 00      [10]  319 	ld	de, #0x000a
+   64EB 19            [11]  320 	add	hl, de
+   64EC 7E            [ 7]  321 	ld	a, (hl)
+   64ED DD 77 FF      [19]  322 	ld	-1 (ix), a
+                            323 ;src/render.c:76: cpct_getScreenPtr(mem_start, sprites[i].x, sprites[i].y),
+   64F0 DD 6E F7      [19]  324 	ld	l,-9 (ix)
+   64F3 DD 66 F8      [19]  325 	ld	h,-8 (ix)
+   64F6 5E            [ 7]  326 	ld	e, (hl)
+   64F7 DD 6E FB      [19]  327 	ld	l,-5 (ix)
+   64FA DD 66 FC      [19]  328 	ld	h,-4 (ix)
+   64FD 56            [ 7]  329 	ld	d, (hl)
+   64FE FD 2A 67 6C   [20]  330 	ld	iy, (_mem_start)
+   6502 C5            [11]  331 	push	bc
+   6503 7B            [ 4]  332 	ld	a, e
+   6504 F5            [11]  333 	push	af
+   6505 33            [ 6]  334 	inc	sp
+   6506 D5            [11]  335 	push	de
+   6507 33            [ 6]  336 	inc	sp
+   6508 FD E5         [15]  337 	push	iy
+   650A CD 54 69      [17]  338 	call	_cpct_getScreenPtr
+   650D EB            [ 4]  339 	ex	de,hl
+   650E C1            [10]  340 	pop	bc
+                            341 ;src/render.c:74: cpct_drawSpriteMasked(sprite,
+   650F DD 66 F9      [19]  342 	ld	h, -7 (ix)
+   6512 DD 6E FF      [19]  343 	ld	l, -1 (ix)
+   6515 E5            [11]  344 	push	hl
+   6516 D5            [11]  345 	push	de
+   6517 C5            [11]  346 	push	bc
+   6518 CD 88 68      [17]  347 	call	_cpct_drawSpriteMasked
+   651B                     348 00119$:
+                            349 ;src/render.c:76: cpct_getScreenPtr(mem_start, sprites[i].x, sprites[i].y),
+   651B DD 6E FB      [19]  350 	ld	l,-5 (ix)
+   651E DD 66 FC      [19]  351 	ld	h,-4 (ix)
+   6521 4E            [ 7]  352 	ld	c, (hl)
+                            353 ;src/render.c:82: if (!swap_memvideo) {
+   6522 3A 6A 6C      [13]  354 	ld	a,(#_swap_memvideo + 0)
+   6525 B7            [ 4]  355 	or	a, a
+   6526 20 23         [12]  356 	jr	NZ,00121$
+                            357 ;src/render.c:83: sprites[i].x_prev_B = sprites[i].x;
+   6528 DD 7E FD      [19]  358 	ld	a, -3 (ix)
+   652B C6 07         [ 7]  359 	add	a, #0x07
+   652D 6F            [ 4]  360 	ld	l, a
+   652E DD 7E FE      [19]  361 	ld	a, -2 (ix)
+   6531 CE 00         [ 7]  362 	adc	a, #0x00
+   6533 67            [ 4]  363 	ld	h, a
+   6534 71            [ 7]  364 	ld	(hl), c
+                            365 ;src/render.c:84: sprites[i].y_prev_B = sprites[i].y;
+   6535 DD 7E FD      [19]  366 	ld	a, -3 (ix)
+   6538 C6 08         [ 7]  367 	add	a, #0x08
+   653A 4F            [ 4]  368 	ld	c, a
+   653B DD 7E FE      [19]  369 	ld	a, -2 (ix)
+   653E CE 00         [ 7]  370 	adc	a, #0x00
+   6540 47            [ 4]  371 	ld	b, a
+   6541 DD 6E F7      [19]  372 	ld	l,-9 (ix)
+   6544 DD 66 F8      [19]  373 	ld	h,-8 (ix)
+   6547 7E            [ 7]  374 	ld	a, (hl)
+   6548 02            [ 7]  375 	ld	(bc), a
+   6549 18 21         [12]  376 	jr	00127$
+   654B                     377 00121$:
+                            378 ;src/render.c:86: sprites[i].x_prev_A = sprites[i].x;
+   654B DD 7E FD      [19]  379 	ld	a, -3 (ix)
+   654E C6 05         [ 7]  380 	add	a, #0x05
+   6550 6F            [ 4]  381 	ld	l, a
+   6551 DD 7E FE      [19]  382 	ld	a, -2 (ix)
+   6554 CE 00         [ 7]  383 	adc	a, #0x00
+   6556 67            [ 4]  384 	ld	h, a
+   6557 71            [ 7]  385 	ld	(hl), c
+                            386 ;src/render.c:87: sprites[i].y_prev_A = sprites[i].y;
+   6558 DD 7E FD      [19]  387 	ld	a, -3 (ix)
+   655B C6 06         [ 7]  388 	add	a, #0x06
+   655D 4F            [ 4]  389 	ld	c, a
+   655E DD 7E FE      [19]  390 	ld	a, -2 (ix)
+   6561 CE 00         [ 7]  391 	adc	a, #0x00
+   6563 47            [ 4]  392 	ld	b, a
+   6564 DD 6E F7      [19]  393 	ld	l,-9 (ix)
+   6567 DD 66 F8      [19]  394 	ld	h,-8 (ix)
+   656A 7E            [ 7]  395 	ld	a, (hl)
+   656B 02            [ 7]  396 	ld	(bc), a
+   656C                     397 00127$:
+                            398 ;src/render.c:45: for (i = 0; i < MAX_SPRITES; i++) {
+   656C DD 34 F6      [23]  399 	inc	-10 (ix)
+   656F DD 7E F6      [19]  400 	ld	a, -10 (ix)
+   6572 D6 0A         [ 7]  401 	sub	a, #0x0a
+   6574 DA 03 64      [10]  402 	jp	C, 00126$
+   6577 DD F9         [10]  403 	ld	sp, ix
+   6579 DD E1         [14]  404 	pop	ix
+   657B C9            [10]  405 	ret
+                            406 ;src/render.c:93: void deleteSprites(){
+                            407 ;	---------------------------------
+                            408 ; Function deleteSprites
+                            409 ; ---------------------------------
+   657C                     410 _deleteSprites::
+   657C DD E5         [15]  411 	push	ix
+   657E DD 21 00 00   [14]  412 	ld	ix,#0
+   6582 DD 39         [15]  413 	add	ix,sp
+   6584 F5            [11]  414 	push	af
+                            415 ;src/render.c:98: for (i = 0; i < MAX_SPRITES; i++) {
+   6585 0E 00         [ 7]  416 	ld	c, #0x00
+   6587                     417 00107$:
+                            418 ;src/render.c:99: if (sprites[i].id !=0) {
+   6587 06 00         [ 7]  419 	ld	b,#0x00
+   6589 69            [ 4]  420 	ld	l, c
+   658A 60            [ 4]  421 	ld	h, b
+   658B 29            [11]  422 	add	hl, hl
+   658C 09            [11]  423 	add	hl, bc
+   658D 29            [11]  424 	add	hl, hl
+   658E 29            [11]  425 	add	hl, hl
+   658F 29            [11]  426 	add	hl, hl
+   6590 EB            [ 4]  427 	ex	de,hl
+   6591 21 AA 69      [10]  428 	ld	hl, #_sprites
+   6594 19            [11]  429 	add	hl,de
+   6595 EB            [ 4]  430 	ex	de,hl
+   6596 1A            [ 7]  431 	ld	a, (de)
+   6597 B7            [ 4]  432 	or	a, a
+   6598 28 4F         [12]  433 	jr	Z,00108$
+                            434 ;src/render.c:100: if (!swap_memvideo){
+   659A 3A 6A 6C      [13]  435 	ld	a,(#_swap_memvideo + 0)
+   659D B7            [ 4]  436 	or	a, a
+   659E 20 14         [12]  437 	jr	NZ,00102$
+                            438 ;src/render.c:101: x = sprites[i].x_prev_B;
+   65A0 D5            [11]  439 	push	de
+   65A1 FD E1         [14]  440 	pop	iy
+   65A3 FD 7E 07      [19]  441 	ld	a, 7 (iy)
+   65A6 DD 77 FE      [19]  442 	ld	-2 (ix), a
+                            443 ;src/render.c:102: y = sprites[i].y_prev_B;
+   65A9 D5            [11]  444 	push	de
+   65AA FD E1         [14]  445 	pop	iy
+   65AC FD 7E 08      [19]  446 	ld	a, 8 (iy)
+   65AF DD 77 FF      [19]  447 	ld	-1 (ix), a
+   65B2 18 12         [12]  448 	jr	00103$
+   65B4                     449 00102$:
+                            450 ;src/render.c:105: x = sprites[i].x_prev_A;
+   65B4 D5            [11]  451 	push	de
+   65B5 FD E1         [14]  452 	pop	iy
+   65B7 FD 7E 05      [19]  453 	ld	a, 5 (iy)
+   65BA DD 77 FE      [19]  454 	ld	-2 (ix), a
+                            455 ;src/render.c:106: y = sprites[i].y_prev_A;
+   65BD D5            [11]  456 	push	de
+   65BE FD E1         [14]  457 	pop	iy
+   65C0 FD 7E 06      [19]  458 	ld	a, 6 (iy)
+   65C3 DD 77 FF      [19]  459 	ld	-1 (ix), a
+   65C6                     460 00103$:
+                            461 ;src/render.c:113: redrawTile(mem_start, x, y, sprites[i].width, sprites[i].height);
+   65C6 D5            [11]  462 	push	de
+   65C7 FD E1         [14]  463 	pop	iy
+   65C9 FD 7E 09      [19]  464 	ld	a, 9 (iy)
+   65CC EB            [ 4]  465 	ex	de,hl
+   65CD 11 0A 00      [10]  466 	ld	de, #0x000a
+   65D0 19            [11]  467 	add	hl, de
+   65D1 5E            [ 7]  468 	ld	e, (hl)
+   65D2 C5            [11]  469 	push	bc
+   65D3 57            [ 4]  470 	ld	d,a
+   65D4 D5            [11]  471 	push	de
+   65D5 DD 66 FF      [19]  472 	ld	h, -1 (ix)
+   65D8 DD 6E FE      [19]  473 	ld	l, -2 (ix)
+   65DB E5            [11]  474 	push	hl
+   65DC 2A 67 6C      [16]  475 	ld	hl, (_mem_start)
+   65DF E5            [11]  476 	push	hl
+   65E0 CD 45 63      [17]  477 	call	_redrawTile
+   65E3 21 06 00      [10]  478 	ld	hl, #6
+   65E6 39            [11]  479 	add	hl, sp
+   65E7 F9            [ 6]  480 	ld	sp, hl
+   65E8 C1            [10]  481 	pop	bc
+   65E9                     482 00108$:
+                            483 ;src/render.c:98: for (i = 0; i < MAX_SPRITES; i++) {
+   65E9 0C            [ 4]  484 	inc	c
+   65EA 79            [ 4]  485 	ld	a, c
+   65EB D6 0A         [ 7]  486 	sub	a, #0x0a
+   65ED 38 98         [12]  487 	jr	C,00107$
+   65EF DD F9         [10]  488 	ld	sp, ix
+   65F1 DD E1         [14]  489 	pop	ix
+   65F3 C9            [10]  490 	ret
+                            491 	.area _CODE
+                            492 	.area _INITIALIZER
+                            493 	.area _CABS (ABS)

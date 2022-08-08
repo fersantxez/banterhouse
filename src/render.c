@@ -22,11 +22,11 @@ void redrawTile(u8* mem_start, u8 x, u8 y, u8 width, u8 height) {
 
 	//find out # of tiles that make height and width
 	//if not aligned with a tile we need to also pick the next one
-	new_width = (width / 4);
+	new_width = (width / 4) + 1; //FIXME: that +1 is artificially added b/c this code is "leaving a trail"
 	if (width % 4)
 		new_width++;
 
-	new_height = (height / 8);
+	new_height = (height / 8) + 1;
 	if (height % 8)
 		new_height++;
 
