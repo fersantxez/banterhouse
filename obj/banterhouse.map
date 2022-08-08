@@ -18,21 +18,21 @@ Area                                    Addr        Size        Decimal Bytes (A
      00000000  s__CABS                         
      00000000  s__DABS                         
      000002C1  l__DATA                         
-     00002A19  l__CODE                         
+     000029A8  l__CODE                         
      00004000  s__CODE                         
-     00006A19  s__DATA                         
-     00006CDA  s__GSFINAL                      
-     00006CDA  s__GSINIT                       
-     00006CDA  s__HOME                         
-     00006CDA  s__INITIALIZED                  
-     00006CDA  s__INITIALIZER                  
+     000069A8  s__DATA                         
+     00006C69  s__GSFINAL                      
+     00006C69  s__GSINIT                       
+     00006C69  s__HOME                         
+     00006C69  s__INITIALIZED                  
+     00006C69  s__INITIALIZER                  
 
 ASxxxx Linker V03.00 + NoICE + sdld,  page 2.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-_CODE                               00004000    00002A19 =       10777. bytes (REL,CON)
+_CODE                               00004000    000029A8 =       10664. bytes (REL,CON)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
@@ -77,73 +77,73 @@ _CODE                               00004000    00002A19 =       10777. bytes (R
      0000629A  _main                              main
      000062CE  _paleta                            main
      000062DE  _menu                              menu
-     00006345  _renderSprites                     render
-     000064CF  _deleteSprites                     render
-     000065BC  _cpct_setPalette                   cpct_video
-     000065D3  _cpct_isKeyPressed                 cpct_keyboard
-     000065D3  cpct_isKeyPressed_asm              cpct_keyboard
-     000065DF  _cpct_scanKeyboard_f               cpct_keyboard
-     000065DF  cpct_scanKeyboard_f_asm            cpct_keyboard
-     00006649  _cpct_setPALColour                 cpct_video
-     00006655  _cpct_drawStringM0                 cpct_strings
+     00006345  _redrawTile                        render
+     000063F0  _renderSprites                     render
+     0000657A  _deleteSprites                     render
+     000065F2  _cpct_setPalette                   cpct_video
+     00006609  _cpct_isKeyPressed                 cpct_keyboard
+     00006609  cpct_isKeyPressed_asm              cpct_keyboard
+     00006615  _cpct_scanKeyboard_f               cpct_keyboard
+     00006615  cpct_scanKeyboard_f_asm            cpct_keyboard
+     0000667F  _cpct_setPALColour                 cpct_video
 ASxxxx Linker V03.00 + NoICE + sdld,  page 3.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-_CODE                               00004000    00002A19 =       10777. bytes (REL,CON)
+_CODE                               00004000    000029A8 =       10664. bytes (REL,CON)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-     0000668F  cpct_drawCharM0_inner_asm          cpct_strings
-     000066EF  dc_2pxtableM0                      cpct_strings
-     000066F3  _cpct_drawSprite                   cpct_sprites
-     00006798  _cpct_etm_drawTilemap4x8_ag        cpct_easytilemaps
-     000067A2  cpct_etm_dtm4x8_ag_c_widthHeight   cpct_easytilemaps
-     000067B8  cpct_etm_dtm4x8_ag_c_tilesetPtr    cpct_easytilemaps
-     00006823  cpct_etm_dtm4x8_ag_c_restoreI      cpct_easytilemaps
-     00006829  cpct_etm_dtm4x8_ag_c_incrementHL   cpct_easytilemaps
-     0000682E  cpct_etm_dtm4x8_ag_c_restoreWidt   cpct_easytilemaps
-     00006831  cpct_etm_dtm4x8_ag_c_updateWidth   cpct_easytilemaps
-     0000683D  _cpct_keyboardStatusBuffer         cpct_keyboard
-     00006847  _cpct_setVideoMemoryPage           cpct_video
-     00006847  cpct_setVideoMemoryPage_asm        cpct_video
-     00006850  _cpct_drawSpriteMasked             cpct_sprites
-     0000687F  _cpct_setStackLocation             cpct_memutils
-     0000687F  cpct_setStackLocation_asm          cpct_memutils
-     00006883  _cpct_isAnyKeyPressed_f            cpct_keyboard
-     00006883  cpct_isAnyKeyPressed_f_asm         cpct_keyboard
-     0000689E  _cpct_setVideoMode                 cpct_video
-     000068AC  _cpct_waitVSYNC                    cpct_video
-     000068AC  cpct_waitVSYNC_asm                 cpct_video
-     000068B4  _cpct_px2byteM0                    cpct_sprites
-     000068D0  _cpct_memcpy                       cpct_memutils
-     000068D8  _cpct_memset                       cpct_memutils
-     000068E6  _cpct_disableFirmware              cpct_firmware
-     000068E6  _cpct_removeInterruptHandler       cpct_firmware
-     000068E6  cpct_disableFirmware_asm           cpct_firmware
-     000068E6  cpct_removeInterruptHandler_asm    cpct_firmware
-     000068F6  _cpct_drawSolidBox                 cpct_sprites
-     0000699D  _cpct_mode_rom_status              cpct_firmware
-     0000699E  _cpct_setDrawCharM0                cpct_strings
-     000069C3  _cpct_getScreenPtr                 cpct_video
-     000069D9  _cpct_etm_setDrawTilemap4x8_ag     cpct_easytilemaps
-     00006A09  dc_mode0_ct                        cpct_strings
+     0000668B  _cpct_drawStringM0                 cpct_strings
+     000066C5  cpct_drawCharM0_inner_asm          cpct_strings
+     00006725  dc_2pxtableM0                      cpct_strings
+     00006729  _cpct_drawSprite                   cpct_sprites
+     000067CE  _cpct_etm_drawTilemap4x8_ag        cpct_easytilemaps
+     000067D8  cpct_etm_dtm4x8_ag_c_widthHeight   cpct_easytilemaps
+     000067EE  cpct_etm_dtm4x8_ag_c_tilesetPtr    cpct_easytilemaps
+     00006859  cpct_etm_dtm4x8_ag_c_restoreI      cpct_easytilemaps
+     0000685F  cpct_etm_dtm4x8_ag_c_incrementHL   cpct_easytilemaps
+     00006864  cpct_etm_dtm4x8_ag_c_restoreWidt   cpct_easytilemaps
+     00006867  cpct_etm_dtm4x8_ag_c_updateWidth   cpct_easytilemaps
+     00006873  _cpct_keyboardStatusBuffer         cpct_keyboard
+     0000687D  _cpct_setVideoMemoryPage           cpct_video
+     0000687D  cpct_setVideoMemoryPage_asm        cpct_video
+     00006886  _cpct_drawSpriteMasked             cpct_sprites
+     000068B5  _cpct_setStackLocation             cpct_memutils
+     000068B5  cpct_setStackLocation_asm          cpct_memutils
+     000068B9  _cpct_isAnyKeyPressed_f            cpct_keyboard
+     000068B9  cpct_isAnyKeyPressed_f_asm         cpct_keyboard
+     000068D4  _cpct_setVideoMode                 cpct_video
+     000068E2  _cpct_waitVSYNC                    cpct_video
+     000068E2  cpct_waitVSYNC_asm                 cpct_video
+     000068EA  _cpct_px2byteM0                    cpct_sprites
+     00006906  _cpct_memcpy                       cpct_memutils
+     0000690E  _cpct_memset                       cpct_memutils
+     0000691C  _cpct_disableFirmware              cpct_firmware
+     0000691C  _cpct_removeInterruptHandler       cpct_firmware
+     0000691C  cpct_disableFirmware_asm           cpct_firmware
+     0000691C  cpct_removeInterruptHandler_asm    cpct_firmware
+     0000692C  _cpct_mode_rom_status              cpct_firmware
+     0000692D  _cpct_setDrawCharM0                cpct_strings
+     00006952  _cpct_getScreenPtr                 cpct_video
+     00006968  _cpct_etm_setDrawTilemap4x8_ag     cpct_easytilemaps
+     00006998  dc_mode0_ct                        cpct_strings
 ASxxxx Linker V03.00 + NoICE + sdld,  page 4.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-_DATA                               00006A19    000002C1 =         705. bytes (REL,CON)
+_DATA                               000069A8    000002C1 =         705. bytes (REL,CON)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-     00006A19  _sprites                           game
-     00006B09  _anim_clock                        game
-     00006B0A  _map                               game
-     00006CD6  _mem_start                         main
-     00006CD8  _mem_page                          main
-     00006CD9  _swap_memvideo                     main
+     000069A8  _sprites                           game
+     00006A98  _anim_clock                        game
+     00006A99  _map                               game
+     00006C65  _mem_start                         main
+     00006C67  _mem_page                          main
+     00006C68  _swap_memvideo                     main
 ASxxxx Linker V03.00 + NoICE + sdld,  page 5.
 
 Files Linked                              [ module(s) ]
@@ -197,8 +197,6 @@ Libraries Linked                          [ object file ]
                                           [ cpct_memset_cbinding.rel ]
 /home/fersanchez/cpctelera/cpctelera/cpctelera.lib
                                           [ cpct_removeInterruptHandler.rel ]
-/home/fersanchez/cpctelera/cpctelera/cpctelera.lib
-                                          [ cpct_drawSolidBox_cbindings.rel ]
 /home/fersanchez/cpctelera/cpctelera/cpctelera.lib
                                           [ cpc_mode_rom_status.rel ]
 /home/fersanchez/cpctelera/cpctelera/cpctelera.lib
