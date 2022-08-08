@@ -7,7 +7,8 @@
 -k /home/fersanchez/cpctelera/cpctelera/tools/sdcc-3.6.8-r9946/share/sdcc/lib/z80
 -l /home/fersanchez/cpctelera/cpctelera/cpctelera.lib
 -l z80
-obj/pitu.rel
+obj/scr01.rel
+obj/tileset.rel
 obj/game.rel
 obj/graphics.rel
 obj/main.rel

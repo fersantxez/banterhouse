@@ -63,9 +63,10 @@
 #PALETTE={FW_BLACK FW_BRIGHT_WHITE FW_SKY_BLUE FW_BRIGHT_CYAN FW_PASTEL_CYAN FW_WHITE \
 #		 FW_BRIGHT_GREEN FW_PASTEL_GREEN FW_PASTEL_YELLOW FW_RED FW_PURPLE FW_PASTEL_MAGENTA \
 #		 FW_ORANGE FW_PINK FW_YELLOW FW_BLUE}
-PALETTE={0 26 11 20 23 13 \
+#NOTE: palette definition has no curly braces {} or parentheses () ?
+PALETTE=0 26 11 20 23 13 \
 		 18 22 25 3 7 17 \
-		 15 16 12 1}
+		 15 16 12 1
 
 ## Example image conversion
 ##    This example would convert img/example.png into src/example.{c|h} files.
