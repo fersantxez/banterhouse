@@ -1,0 +1,125 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 3.6.8 #9946 (Linux)
+                              4 ;--------------------------------------------------------
+                              5 	.module main
+                              6 	.optsdcc -mz80
+                              7 	
+                              8 ;--------------------------------------------------------
+                              9 ; Public variables in this module
+                             10 ;--------------------------------------------------------
+                             11 	.globl _main
+                             12 	.globl _game
+                             13 	.globl _init_game
+                             14 	.globl _menu
+                             15 	.globl _cpct_setPalette
+                             16 	.globl _cpct_setVideoMode
+                             17 	.globl _cpct_setStackLocation
+                             18 	.globl _cpct_disableFirmware
+                             19 	.globl _anim_clock
+                             20 	.globl _sprites
+                             21 	.globl _map
+                             22 	.globl _swap_memvideo
+                             23 	.globl _mem_page
+                             24 	.globl _mem_start
+                             25 	.globl _paleta
+                             26 ;--------------------------------------------------------
+                             27 ; special function registers
+                             28 ;--------------------------------------------------------
+                             29 ;--------------------------------------------------------
+                             30 ; ram data
+                             31 ;--------------------------------------------------------
+                             32 	.area _DATA
+   0000                      33 _mem_start::
+   0000                      34 	.ds 2
+   0002                      35 _mem_page::
+   0002                      36 	.ds 1
+   0003                      37 _swap_memvideo::
+   0003                      38 	.ds 1
+   0004                      39 _map::
+   0004                      40 	.ds 460
+   01D0                      41 _sprites::
+   01D0                      42 	.ds 240
+   02C0                      43 _anim_clock::
+   02C0                      44 	.ds 1
+                             45 ;--------------------------------------------------------
+                             46 ; ram data
+                             47 ;--------------------------------------------------------
+                             48 	.area _INITIALIZED
+                             49 ;--------------------------------------------------------
+                             50 ; absolute external ram data
+                             51 ;--------------------------------------------------------
+                             52 	.area _DABS (ABS)
+                             53 ;--------------------------------------------------------
+                             54 ; global & static initialisations
+                             55 ;--------------------------------------------------------
+                             56 	.area _HOME
+                             57 	.area _GSINIT
+                             58 	.area _GSFINAL
+                             59 	.area _GSINIT
+                             60 ;--------------------------------------------------------
+                             61 ; Home
+                             62 ;--------------------------------------------------------
+                             63 	.area _HOME
+                             64 	.area _HOME
+                             65 ;--------------------------------------------------------
+                             66 ; code
+                             67 ;--------------------------------------------------------
+                             68 	.area _CODE
+                             69 ;src/main.c:38: void main(void) {
+                             70 ;	---------------------------------
+                             71 ; Function main
+                             72 ; ---------------------------------
+   0000                      73 _main::
+                             74 ;src/main.c:41: cpct_setStackLocation ((u8*) 0x7FFF);        //Move stack to right before double buffer 0X8000
+   0000 21 FF 7F      [10]   75 	ld	hl, #0x7fff
+   0003 CDr00r00      [17]   76 	call	_cpct_setStackLocation
+                             77 ;src/main.c:42: cpct_disableFirmware();
+   0006 CDr00r00      [17]   78 	call	_cpct_disableFirmware
+                             79 ;src/main.c:44: cpct_setVideoMode(0); //160x200; 16 colors in screen
+   0009 2E 00         [ 7]   80 	ld	l, #0x00
+   000B CDr00r00      [17]   81 	call	_cpct_setVideoMode
+                             82 ;src/main.c:45: cpct_setPalette(paleta,16);
+   000E 21 10 00      [10]   83 	ld	hl, #0x0010
+   0011 E5            [11]   84 	push	hl
+   0012 21r34r00      [10]   85 	ld	hl, #_paleta
+   0015 E5            [11]   86 	push	hl
+   0016 CDr00r00      [17]   87 	call	_cpct_setPalette
+                             88 ;src/main.c:47: while (1) {
+   0019                      89 00102$:
+                             90 ;src/main.c:50: swap_memvideo = 0;                        //set DB switch to "zero" (upper VMEM page first)
+   0019 21r03r00      [10]   91 	ld	hl,#_swap_memvideo + 0
+   001C 36 00         [10]   92 	ld	(hl), #0x00
+                             93 ;src/main.c:51: mem_start = (u8*) CPCT_VMEM_START;        //upper, standard VMEM page first
+   001E 21 00 C0      [10]   94 	ld	hl, #0xc000
+   0021 22r00r00      [16]   95 	ld	(_mem_start), hl
+                             96 ;src/main.c:52: mem_page = cpct_pageC0;                   //upper, C0 page
+   0024 21r02r00      [10]   97 	ld	hl,#_mem_page + 0
+   0027 36 30         [10]   98 	ld	(hl), #0x30
+                             99 ;src/main.c:54: menu();
+   0029 CDr00r00      [17]  100 	call	_menu
+                            101 ;src/main.c:55: init_game();
+   002C CDr00r00      [17]  102 	call	_init_game
+                            103 ;src/main.c:56: game();
+   002F CDr00r00      [17]  104 	call	_game
+   0032 18 E5         [12]  105 	jr	00102$
+   0034                     106 _paleta:
+   0034 14                  107 	.db #0x14	; 20
+   0035 0B                  108 	.db #0x0b	; 11
+   0036 17                  109 	.db #0x17	; 23
+   0037 13                  110 	.db #0x13	; 19
+   0038 1B                  111 	.db #0x1b	; 27
+   0039 00                  112 	.db #0x00	; 0
+   003A 12                  113 	.db #0x12	; 18
+   003B 19                  114 	.db #0x19	; 25
+   003C 03                  115 	.db #0x03	; 3
+   003D 1C                  116 	.db #0x1c	; 28
+   003E 05                  117 	.db #0x05	; 5
+   003F 0F                  118 	.db #0x0f	; 15
+   0040 0E                  119 	.db #0x0e	; 14
+   0041 07                  120 	.db #0x07	; 7
+   0042 1E                  121 	.db #0x1e	; 30
+   0043 04                  122 	.db #0x04	; 4
+                            123 	.area _CODE
+                            124 	.area _INITIALIZER
+                            125 	.area _CABS (ABS)

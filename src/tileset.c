@@ -1,7 +1,7 @@
 #include "tileset.h"
 // Data created with Img2CPC - (c) Retroworks - 2007-2017
 // Tile g_tileset_00: 8x8 pixels, 4x8 bytes.
-const u8 G_tileset_00[4 * 8] = {
+const u8 g_tileset_00[4 * 8] = {
 	0xc0, 0xc0, 0xc0, 0xc0,
 	0xc0, 0xc0, 0xc0, 0xc0,
 	0xc0, 0xc0, 0xc0, 0xc0,
@@ -12,8 +12,8 @@ const u8 G_tileset_00[4 * 8] = {
 	0xc0, 0xc0, 0xc0, 0xc0
 };
 
-// Tile G_tileset_01: 8x8 pixels, 4x8 bytes.
-const u8 G_tileset_01[4 * 8] = {
+// Tile g_tileset_01: 8x8 pixels, 4x8 bytes.
+const u8 g_tileset_01[4 * 8] = {
 	0xcc, 0xcc, 0xcc, 0xcc,
 	0xc0, 0xc0, 0xc0, 0xc0,
 	0xc0, 0xc0, 0xc0, 0xc0,
@@ -24,8 +24,8 @@ const u8 G_tileset_01[4 * 8] = {
 	0xc0, 0xc0, 0xc0, 0xc0
 };
 
-// Tile G_tileset_02: 8x8 pixels, 4x8 bytes.
-const u8 G_tileset_02[4 * 8] = {
+// Tile g_tileset_02: 8x8 pixels, 4x8 bytes.
+const u8 g_tileset_02[4 * 8] = {
 	0xc8, 0xc0, 0xc0, 0xc0,
 	0xc0, 0xc0, 0xc0, 0xc8,
 	0xc8, 0xc0, 0xc0, 0xc0,
@@ -36,8 +36,8 @@ const u8 G_tileset_02[4 * 8] = {
 	0xc0, 0xc0, 0xc0, 0xc8
 };
 
-// Tile G_tileset_03: 8x8 pixels, 4x8 bytes.
-const u8 G_tileset_03[4 * 8] = {
+// Tile g_tileset_03: 8x8 pixels, 4x8 bytes.
+const u8 g_tileset_03[4 * 8] = {
 	0xc0, 0xc0, 0xc0, 0xc4,
 	0xc4, 0xc0, 0xc0, 0xc0,
 	0xc0, 0xc0, 0xc0, 0xc4,
@@ -48,8 +48,8 @@ const u8 G_tileset_03[4 * 8] = {
 	0xc4, 0xc0, 0xc0, 0xc0
 };
 
-// Tile G_tileset_04: 8x8 pixels, 4x8 bytes.
-const u8 G_tileset_04[4 * 8] = {
+// Tile g_tileset_04: 8x8 pixels, 4x8 bytes.
+const u8 g_tileset_04[4 * 8] = {
 	0xcc, 0xcc, 0xcc, 0xcc,
 	0xc0, 0xc0, 0xc0, 0xc8,
 	0xc8, 0xc0, 0xc0, 0xc0,
@@ -60,8 +60,8 @@ const u8 G_tileset_04[4 * 8] = {
 	0xc0, 0xc0, 0xc0, 0xc8
 };
 
-// Tile G_tileset_05: 8x8 pixels, 4x8 bytes.
-const u8 G_tileset_05[4 * 8] = {
+// Tile g_tileset_05: 8x8 pixels, 4x8 bytes.
+const u8 g_tileset_05[4 * 8] = {
 	0xcc, 0xcc, 0xcc, 0xcc,
 	0xc4, 0xc0, 0xc0, 0xc0,
 	0xc0, 0xc0, 0xc0, 0xc4,
@@ -72,8 +72,8 @@ const u8 G_tileset_05[4 * 8] = {
 	0xc4, 0xc0, 0xc0, 0xc0
 };
 
-// Tile G_tileset_06: 8x8 pixels, 4x8 bytes.
-const u8 G_tileset_06[4 * 8] = {
+// Tile g_tileset_06: 8x8 pixels, 4x8 bytes.
+const u8 g_tileset_06[4 * 8] = {
 	0xc8, 0xc0, 0xc0, 0xc0,
 	0xc0, 0xc0, 0xc0, 0xc8,
 	0xc8, 0xc0, 0xc0, 0xc0,
@@ -84,8 +84,8 @@ const u8 G_tileset_06[4 * 8] = {
 	0xc0, 0xc0, 0xc0, 0xc8
 };
 
-// Tile G_tileset_07: 8x8 pixels, 4x8 bytes.
-const u8 G_tileset_07[4 * 8] = {
+// Tile g_tileset_07: 8x8 pixels, 4x8 bytes.
+const u8 g_tileset_07[4 * 8] = {
 	0xc0, 0xc0, 0xc0, 0xc4,
 	0xc4, 0xc0, 0xc0, 0xc0,
 	0xc0, 0xc0, 0xc0, 0xc4,
@@ -96,8 +96,8 @@ const u8 G_tileset_07[4 * 8] = {
 	0xc4, 0xc0, 0xc0, 0xc0
 };
 
-// Tile G_tileset_08: 8x8 pixels, 4x8 bytes.
-const u8 G_tileset_08[4 * 8] = {
+// Tile g_tileset_08: 8x8 pixels, 4x8 bytes.
+const u8 g_tileset_08[4 * 8] = {
 	0x63, 0x73, 0xb3, 0xd3,
 	0xd3, 0xb3, 0xd3, 0xf3,
 	0xc3, 0xc3, 0xf3, 0x63,
@@ -108,8 +108,8 @@ const u8 G_tileset_08[4 * 8] = {
 	0xe3, 0xe3, 0xc3, 0xe3
 };
 
-// Tile G_tileset_09: 8x8 pixels, 4x8 bytes.
-const u8 G_tileset_09[4 * 8] = {
+// Tile g_tileset_09: 8x8 pixels, 4x8 bytes.
+const u8 g_tileset_09[4 * 8] = {
 	0x00, 0x3f, 0x3f, 0x3f,
 	0x3f, 0x3f, 0x3f, 0x3f,
 	0x3f, 0x3f, 0x3f, 0x3f,
@@ -120,8 +120,8 @@ const u8 G_tileset_09[4 * 8] = {
 	0x3f, 0x3f, 0x3f, 0x3f
 };
 
-// Tile G_tileset_10: 8x8 pixels, 4x8 bytes.
-const u8 G_tileset_10[4 * 8] = {
+// Tile g_tileset_10: 8x8 pixels, 4x8 bytes.
+const u8 g_tileset_10[4 * 8] = {
 	0xf0, 0xf0, 0xa0, 0x50,
 	0x00, 0x00, 0xa0, 0xf0,
 	0xf0, 0xf0, 0xf0, 0xf0,
@@ -132,8 +132,8 @@ const u8 G_tileset_10[4 * 8] = {
 	0xf0, 0xf0, 0xf0, 0xf0
 };
 
-// Tile G_tileset_11: 8x8 pixels, 4x8 bytes.
-const u8 G_tileset_11[4 * 8] = {
+// Tile g_tileset_11: 8x8 pixels, 4x8 bytes.
+const u8 g_tileset_11[4 * 8] = {
 	0xb0, 0x70, 0xb0, 0x30,
 	0x30, 0xb0, 0xf0, 0xf0,
 	0xf0, 0xb0, 0xf0, 0x30,
@@ -144,8 +144,8 @@ const u8 G_tileset_11[4 * 8] = {
 	0x30, 0xf0, 0xb0, 0xf0
 };
 
-// Tile G_tileset_12: 8x8 pixels, 4x8 bytes.
-const u8 G_tileset_12[4 * 8] = {
+// Tile g_tileset_12: 8x8 pixels, 4x8 bytes.
+const u8 g_tileset_12[4 * 8] = {
 	0xc3, 0xc3, 0xc3, 0xc3,
 	0xc3, 0xc3, 0xc3, 0xc3,
 	0xc3, 0xc3, 0xc3, 0xc3,
@@ -156,8 +156,8 @@ const u8 G_tileset_12[4 * 8] = {
 	0xc3, 0xc3, 0xc3, 0xc3
 };
 
-// Tile G_tileset_13: 8x8 pixels, 4x8 bytes.
-const u8 G_tileset_13[4 * 8] = {
+// Tile g_tileset_13: 8x8 pixels, 4x8 bytes.
+const u8 g_tileset_13[4 * 8] = {
 	0xc0, 0xc0, 0xc0, 0xc0,
 	0xc0, 0xc0, 0xc0, 0xc0,
 	0xc0, 0xc0, 0xc0, 0xc0,
@@ -168,8 +168,8 @@ const u8 G_tileset_13[4 * 8] = {
 	0xc0, 0xc0, 0xc0, 0xc0
 };
 
-// Tile G_tileset_14: 8x8 pixels, 4x8 bytes.
-const u8 G_tileset_14[4 * 8] = {
+// Tile g_tileset_14: 8x8 pixels, 4x8 bytes.
+const u8 g_tileset_14[4 * 8] = {
 	0xc0, 0xc0, 0xc0, 0xc0,
 	0xc0, 0xc0, 0xc0, 0xc0,
 	0xc0, 0xc0, 0xc0, 0xc0,
@@ -180,8 +180,8 @@ const u8 G_tileset_14[4 * 8] = {
 	0xc0, 0xc0, 0xc0, 0xc0
 };
 
-// Tile G_tileset_15: 8x8 pixels, 4x8 bytes.
-const u8 G_tileset_15[4 * 8] = {
+// Tile g_tileset_15: 8x8 pixels, 4x8 bytes.
+const u8 g_tileset_15[4 * 8] = {
 	0xc0, 0xc0, 0xc0, 0xc0,
 	0xc0, 0xc0, 0xc0, 0xc0,
 	0xc0, 0xc0, 0xc0, 0xc0,

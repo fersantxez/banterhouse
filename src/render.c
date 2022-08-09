@@ -33,7 +33,7 @@ void redrawTile(u8* mem_start, u8 x, u8 y, u8 width, u8 height) {
 	//first tile of tilemap to render (20 is number of tiles per row)
 	first_tile = (new_y / 8) * 20 + (new_x / 4); 				//from "coords" to tiles
 
-	cpct_etm_setDrawTilemap4x8_ag( new_width, new_height, 20, G_tileset_00 );
+	cpct_etm_setDrawTilemap4x8_ag( new_width, new_height, 20, g_tileset_00 );
 	cpct_etm_drawTilemap4x8_ag( (u8*)cpct_getScreenPtr( mem_start, new_x, new_y + GAME_AREA_TOP), &map[first_tile] );
 }
 

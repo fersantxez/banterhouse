@@ -48,6 +48,9 @@
 
 # Name of the project (without spaces, as it will be used as filename)
 #   and Z80 memory location where code will start in the generated binary
+#if not using "drawText" (or any other FW functions, 
+#we can push this down to gain RAM from 0x0040 (+32k).
+#ref: https://youtu.be/hGb7WjeaJgM?t=1583
 PROJNAME   := banterhouse
 Z80CODELOC := 0x4000
 

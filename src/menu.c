@@ -8,7 +8,7 @@ void menu () {
     cpct_memset(mem_start, cpct_px2byteM0(5,5), 0x4000); //5=WHITE ordinal from palette; 0x4000 is VMEM_SIZE
 
     //Logo
-	cpct_drawSprite(G_logo,
+	cpct_drawSprite(g_logo,
 		cpctm_screenPtr(CPCT_VMEM_START, 25, 50),
 		G_LOGO_W,G_LOGO_H);
 

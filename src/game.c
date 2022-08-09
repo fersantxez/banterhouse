@@ -92,9 +92,9 @@ void init_level() {
 	//cpct_zx7b_decrunch_s((void *)(map+((G_map_W*G_map_H)-1)).(void *)map_ptr);
 
 	//copy map to buffer - used for decompressing into memory when compression is used
-	cpct_memcpy((u8*)map, (u8*)G_map, G_map_W*G_map_H);
+	cpct_memcpy((u8*)map, (u8*)g_map, g_map_W*g_map_H);
 	//initalize tilemap - can use 2x4 if tiles are small
-	cpct_etm_setDrawTilemap4x8_ag( G_map_W, G_map_H, G_map_W, G_tileset_00); //3rd param (20,G_map_W) is how many tiles per line
+	cpct_etm_setDrawTilemap4x8_ag( g_map_W, g_map_H, g_map_W, g_tileset_00); //3rd param (20,G_map_W) is how many tiles per line
 	//render the tilemap on both Video Mem pages (double buffer)
 	cpct_etm_drawTilemap4x8_ag( cpctm_screenPtr((u8*) CPCT_VMEM_START, GAME_AREA_LEFT, GAME_AREA_TOP), map );
 	cpct_etm_drawTilemap4x8_ag( cpctm_screenPtr((u8*) CPCT_LVMEM_START, GAME_AREA_LEFT, GAME_AREA_TOP), map );
@@ -124,10 +124,10 @@ void init_game() {
 	sprites[0].properties = 0;										//bitmasked properties - init to 0
 	sprites[0].properties = sprites[0].properties | MASK_RENDER;	//init to "render" on screen
 	sprites[0].frames = 2;											//main sprite has two "moves" to animate
-	sprites[0].sprite_f1 = (u8*)G_pitu; 							//first render for sprite. &G_pitu[0]
-	sprites[0].sprite_f2 = (u8*)G_pitu_walk;
-	sprites[0].sprite_f3 = (u8*)G_pitu_jump;
-	sprites[0].sprite_f3 = (u8*)G_blast;
+	sprites[0].sprite_f1 = (u8*)g_pitu; 							//first render for sprite. &G_pitu[0]
+	sprites[0].sprite_f2 = (u8*)g_pitu_walk;
+	sprites[0].sprite_f3 = (u8*)g_pitu_jump;
+	sprites[0].sprite_f3 = (u8*)g_blast;
 	sprites[0].turned = 0;											//start looking right/front
 
 	//zero out memory for sprites (e.g. after reset)

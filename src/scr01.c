@@ -1,5 +1,5 @@
 //
-// File maps/scr01.tmx converted to csv using cpct_tmx2data [Mon Aug  8 12:07:30 2022]
+// File maps/scr01.tmx converted to csv using cpct_tmx2data [Tue Aug  9 18:02:17 2022]
 //   * Visible Layers:  1
 //   * Layer Width:     20
 //   * Layer Height:    23
@@ -12,7 +12,7 @@
 //#### Converted layer tilemaps ####
 //   Visible layers: 1
 //
-const u8 G_map[20*23] = {
+const u8 g_map[460] = {
      
      4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 5
    , 2,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13, 3
