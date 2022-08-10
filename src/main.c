@@ -6,7 +6,6 @@
 #include "menu.h"
 #include "game.h"
 
-#include "scr01.h"
 
 /* Palette:
 Definition of palette in code needs HW values. 

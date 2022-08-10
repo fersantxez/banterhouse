@@ -6,8 +6,8 @@
 #include "render.h"
 #include "graphics.h"
 
-#include "tileset.h"
-#include "scr01.h"
+#include "tileset-02.h"
+#include "maps/scr00.h"
 
 /* FIXME: Doc me how
 */
@@ -88,7 +88,7 @@ void moveSprites() {
 */
 void init_level() {
 	u8* map_ptr;
-	map_ptr = (u8 *)scr01_end; //FIXME: need better naming
+	map_ptr = (u8 *)scr00_end; //FIXME: need better naming
 
 	//copy map to buffer - used for decompressing into memory when compression is used
 	//cpct_memcpy((u8*)&map[0], (u8*)&g_map[0], g_map_W*g_map_H);	//no compression

@@ -15,6 +15,13 @@
 #define GAME_AREA_LEFT 0
 #define GAME_AREA_RIGHT 80
 
+//FIXME: This should be in the header file from the map but now it's not generated automatically
+#define g_map_W 20
+#define g_map_H 23
+
+#define MAX_TILES_SOLID 31				//tiles are grouped by nature and sorted by row in tileset
+#define MAX_TILES_LETHAL 47				//tiles 0-31 (first two rows) are solid, 32-47 are lethal. 47+ decoration
+
 #define MASK_RENDER 		0b00000001	//BITMASK to signal which sprites to render (e.g. still on screen)
 #define MASK_ANIMATE 		0b00000010	//BITMASK to signal which sprites to animate
 
@@ -59,6 +66,6 @@ typedef struct {
 
 extern TSprite sprites[MAX_SPRITES];	//stores all sprites in the game
 extern u8 anim_clock;					//animation clock (1 -> ANIMATION_CYCLE)
-extern u8 map[20*23];					//FIXME: Use G_map_W/H instead. //buffer to store current level background
+extern u8 map[g_map_W*g_map_H];					//FIXME: Use G_map_W/H instead. //buffer to store current level background
 
 #endif

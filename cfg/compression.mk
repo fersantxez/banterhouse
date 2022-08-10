@@ -38,7 +38,7 @@
 #$(eval $(call ADD2PACK,mygraphics,gfx/background.bin))
 #$(eval $(call PACKZX7B,mygraphics,src/))
 
-$(eval $(call ADD2PACK,scr00,gfx/banterhouse-00.bin))
+$(eval $(call ADD2PACK,scr00,gfx/map-02.bin))
 $(eval $(call PACKZX7B,scr00,src/maps/))
 
 

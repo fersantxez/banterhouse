@@ -102,4 +102,4 @@ $(eval $(call IMG2SP, SET_IMG_FORMAT  , zgtiles       ))  #CPCtelera uses this f
 $(eval $(call IMG2SP, SET_OUTPUT      , c             ))  
 $(eval $(call IMG2SP, SET_PALETTE_FW  , $(PALETTE)    ))
 #$(eval $(call IMG2SP, CONVERT_PALETTE , $(PALETTE), g_palette ))
-$(eval $(call IMG2SP, CONVERT         , maps/tileset.png, 8, 8, g_tileset, , ))
+$(eval $(call IMG2SP, CONVERT         , maps/tileset-02.png, 8, 8, g_tileset, , ))

@@ -1,6 +1,6 @@
 // Data created with Img2CPC - (c) Retroworks - 2007-2017
-#ifndef _MAPS_TILESET_H_
-#define _MAPS_TILESET_H_
+#ifndef _MAPS_TILESET_02_H_
+#define _MAPS_TILESET_02_H_
 
 #include <types.h>
 #define G_TILESET_00_W 4
