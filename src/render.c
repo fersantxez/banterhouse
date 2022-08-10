@@ -9,34 +9,6 @@
 #include "game.h"
 #include "tileset.h"
 
-void redrawTile(u8* mem_start, u8 x, u8 y, u8 width, u8 height) {
-	u8 new_x;												//x aligned to a tile start
-	u8 new_y;												//y aligned to a tile start
-	u8 new_width;											//number of tiles the sprite fills
-	u8 new_height;
-	u16 first_tile;											//first tile the sprite is filling
-
-	//ensure x and y are the beginning of a tile (tiles are 8x8)
-	new_x = x - (x % 4);									//x is bytes not pixels - M0
-	new_y = y - (y % 8) - GAME_AREA_TOP;					//remove the space for scoreboard
-
-	//find out # of tiles that make height and width
-	//if not aligned with a tile we need to also pick the next one
-	new_width = (width / 4) + 1; //FIXME: that +1 is artificially added b/c this code is "leaving a trail"
-	if (width % 4)
-		new_width++;
-
-	new_height = (height / 8) + 1; //FIXME: that +1 is artificially added b/c this code is "leaving a trail"
-	if (height % 8)
-		new_height++;
-
-	//first tile of tilemap to render (20 is number of tiles per row)
-	first_tile = (new_y / 8) * 20 + (new_x / 4); 				//from "coords" to tiles
-
-	cpct_etm_setDrawTilemap4x8_ag( new_width, new_height, 20, g_tileset_00 );
-	cpct_etm_drawTilemap4x8_ag( (u8*)cpct_getScreenPtr( mem_start, new_x, new_y + GAME_AREA_TOP), &map[first_tile] );
-}
-
 void renderSprites(){
 
 	u8 i, num_frame;
@@ -88,6 +60,36 @@ void renderSprites(){
 			}
 		}
 	}
+}
+
+void redrawTile(u8* mem_start, u8 x, u8 y, u8 width, u8 height) {
+	u8 new_x;												//x aligned to a tile start
+	u8 new_y;												//y aligned to a tile start
+	u8 new_width;											//number of tiles the sprite fills
+	u8 new_height;
+	u16 first_tile;											//first tile the sprite is filling
+
+	//ensure x and y are the beginning of a tile (tiles are 8x8)
+	new_x = x - (x % 4);									//x is bytes not pixels - M0
+	new_y = y - (y % 8) - GAME_AREA_TOP;					//remove the space for scoreboard
+
+	//find out # of tiles that make height and width
+	//if not aligned with a tile we need to also pick the next one
+	new_width = (width / 4); 
+	if (width % 4)
+		new_width++;
+	new_width++; //FIXME: that +1 is artificially added b/c this code is "leaving a trail"
+
+	new_height = (height / 8); 
+	if (height % 8)
+		new_height++;
+	new_height++; //FIXME: that +1 is artificially added b/c this code is "leaving a trail"
+
+	//first tile of tilemap to render (20 is number of tiles per row)
+	first_tile = (new_y / 8) * 20 + (new_x / 4); 			//from "coords" to tiles
+
+	cpct_etm_setDrawTilemap4x8_ag( new_width, new_height, 20, &g_tileset_00[0] );
+	cpct_etm_drawTilemap4x8_ag( (u8*)cpct_getScreenPtr( mem_start, new_x, new_y + GAME_AREA_TOP), &map[first_tile] );
 }
 
 void deleteSprites(){

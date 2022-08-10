@@ -87,17 +87,18 @@ void moveSprites() {
 	Initialize screen from tilemap for each level
 */
 void init_level() {
-	//u8* map;
-	//map_ptr = (u8 *)scr01_end; //FIXME: need better naming
-	//cpct_zx7b_decrunch_s((void *)(map+((G_map_W*G_map_H)-1)).(void *)map_ptr);
+	u8* map_ptr;
+	map_ptr = (u8 *)scr01_end; //FIXME: need better naming
 
 	//copy map to buffer - used for decompressing into memory when compression is used
-	cpct_memcpy((u8*)map, (u8*)g_map, g_map_W*g_map_H);
+	//cpct_memcpy((u8*)&map[0], (u8*)&g_map[0], g_map_W*g_map_H);	//no compression
+	cpct_zx7b_decrunch_s((void *)(&map[0]+((g_map_W*g_map_H)-1)),(void *)map_ptr);
+
 	//initalize tilemap - can use 2x4 if tiles are small
-	cpct_etm_setDrawTilemap4x8_ag( g_map_W, g_map_H, g_map_W, g_tileset_00); //3rd param (20,G_map_W) is how many tiles per line
+	cpct_etm_setDrawTilemap4x8_ag( g_map_W, g_map_H, g_map_W, &g_tileset_00[0]); //3rd param (20,g_map_W) is how many tiles per line
 	//render the tilemap on both Video Mem pages (double buffer)
-	cpct_etm_drawTilemap4x8_ag( cpctm_screenPtr((u8*) CPCT_VMEM_START, GAME_AREA_LEFT, GAME_AREA_TOP), map );
-	cpct_etm_drawTilemap4x8_ag( cpctm_screenPtr((u8*) CPCT_LVMEM_START, GAME_AREA_LEFT, GAME_AREA_TOP), map );
+	cpct_etm_drawTilemap4x8_ag( cpctm_screenPtr((u8*) CPCT_VMEM_START, GAME_AREA_LEFT, GAME_AREA_TOP), &map[0] );
+	cpct_etm_drawTilemap4x8_ag( cpctm_screenPtr((u8*) CPCT_LVMEM_START, GAME_AREA_LEFT, GAME_AREA_TOP), &map[0] );
 
 }
 

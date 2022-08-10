@@ -80,8 +80,10 @@
 #example - conversion
 $(eval $(call TMX2DATA, SET_ASMVARPREFIX, yes           ))
 $(eval $(call TMX2DATA, SET_USEMACROS   , yes           ))
-$(eval $(call TMX2DATA, SET_OUTPUTS     , h c           ))
+#$(eval $(call TMX2DATA, SET_OUTPUTS     , h c           ))
+$(eval $(call TMX2DATA, SET_OUTPUTS     , bin           ))
 $(eval $(call TMX2DATA, SET_BASE        , dec           ))
 $(eval $(call TMX2DATA, SET_BITSPERITEM , 8             ))
+$(eval $(call TMX2DATA, SET_FOLDER      , gfx/          ))
 $(eval $(call TMX2DATA, SET_EXTRAPAR    ,               ))
-$(eval $(call TMX2DATA, CONVERT         , maps/scr01.tmx))   #relative path from project root
+$(eval $(call TMX2DATA, CONVERT         , maps/banterhouse-00.tmx))   #relative path from project root

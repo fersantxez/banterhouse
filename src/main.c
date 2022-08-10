@@ -31,8 +31,8 @@ u8* mem_start;          //current vmem_start - 0xC000/CPCT_VMEM_START or 0x8000/
 u8 mem_page;            //used for CRTC to know which page to start on - can be deduced from above
 u8 swap_memvideo;       //boolean switch one to the other
 
-u8 map[g_map_W*g_map_H];                                          //buffer to store current level background
-TSprite sprites[MAX_SPRITES];
+u8 map [g_map_W*g_map_H];                                          //buffer to store current level background
+TSprite sprites [MAX_SPRITES];
 u8 anim_clock;
 
 void main(void) {
