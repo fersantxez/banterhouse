@@ -22,6 +22,10 @@
 #define MAX_TILES_SOLID 31				//tiles are grouped by nature and sorted by row in tileset
 #define MAX_TILES_LETHAL 47				//tiles 0-31 (first two rows) are solid, 32-47 are lethal. 47+ decoration
 
+#define TILE_BACKGROUND 0
+#define TILE_SOLID 1
+#define TILE_LETHAL 2
+
 #define MASK_RENDER 		0b00000001	//BITMASK to signal which sprites to render (e.g. still on screen)
 #define MASK_ANIMATE 		0b00000010	//BITMASK to signal which sprites to animate
 

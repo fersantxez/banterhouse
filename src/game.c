@@ -6,7 +6,7 @@
 #include "render.h"
 #include "graphics.h"
 
-#include "tileset-02.h"
+#include "tileset-03.h"
 #include "maps/scr00.h"
 
 /* FIXME: Doc me how
@@ -86,7 +86,7 @@ void moveSprites() {
 /*	FIXME: Doc me how
 	Initialize screen from tilemap for each level
 */
-void init_level() {
+void initLevel() {
 	u8* map_ptr;
 	map_ptr = (u8 *)scr00_end; //FIXME: need better naming
 
@@ -94,12 +94,39 @@ void init_level() {
 	//cpct_memcpy((u8*)&map[0], (u8*)&g_map[0], g_map_W*g_map_H);	//no compression
 	cpct_zx7b_decrunch_s((void *)(&map[0]+((g_map_W*g_map_H)-1)),(void *)map_ptr);
 
-	//initalize tilemap - can use 2x4 if tiles are small
+	//initalize tilemap - could alternatively use 2x4 if tiles were small
 	cpct_etm_setDrawTilemap4x8_ag( g_map_W, g_map_H, g_map_W, &g_tileset_00[0]); //3rd param (20,g_map_W) is how many tiles per line
 	//render the tilemap on both Video Mem pages (double buffer)
 	cpct_etm_drawTilemap4x8_ag( cpctm_screenPtr((u8*) CPCT_VMEM_START, GAME_AREA_LEFT, GAME_AREA_TOP), &map[0] );
 	cpct_etm_drawTilemap4x8_ag( cpctm_screenPtr((u8*) CPCT_LVMEM_START, GAME_AREA_LEFT, GAME_AREA_TOP), &map[0] );
 
+}
+
+
+/*	FIXME: Doc me how
+*/
+u16 tileCell(u8 x, u8 y) {
+	return ((g_map_W*((y - GAME_AREA_TOP) /8)) + (x/4));
+}
+
+/*	FIXME: Doc me how
+*/
+u8 tileValue(u8 x, u8 y) {
+	return (map[tileCell(x, y)]);
+}
+
+/*	u8 tileType(u8 tile): 
+	Returns the type of a tile. Used to calculate sprite collisions with tiles.
+	Assumes that tiles are organized in order:
+	tile_solid < MAX_TILES_SOLID < tile_lethal < MAX_TILES_LETHAL < tile_background < MAX_TILES
+*/
+u8 tileType(u8 tile) {
+	if (tile <= MAX_TILES_SOLID)
+		return TILE_SOLID;
+	else if (tile <= MAX_TILES_LETHAL)
+		return TILE_LETHAL;
+	else
+		return TILE_BACKGROUND;
 }
 
 /*	FIXME: Doc me how
@@ -110,7 +137,7 @@ void collisions() {
 /*	FIXME: Doc me how
 	Initialize storage and config for sprites/game elements
 */
-void init_game() {
+void initGame() {
 	u8 i; //index
 
 	sprites[0].id = 1;												//mark the sprite "alive" (non-zero)
@@ -146,7 +173,7 @@ void game(){
 	cpct_setBorder(HW_WHITE);
 	//clear screen from "LVMEM" to "VMEM" for "double buffer" - 0x8000 to 0xFFFF: 0x8000 long
 	cpct_memset ((u8*)CPCT_LVMEM_START, cpct_px2byteM0(5, 5), 0x8000); //5 is ordinal for WHITE from palette in M0 with 16c
-	init_level();								//render first level background
+	initLevel();								//render first level background
 
 	while (1) {
 

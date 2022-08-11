@@ -51,7 +51,7 @@ void main(void) {
       mem_page = cpct_pageC0;                   //upper, C0 page
 
       menu();
-      init_game();
+      initGame();
       game();
    }
    

@@ -86,4 +86,4 @@ $(eval $(call TMX2DATA, SET_BASE        , dec           ))
 $(eval $(call TMX2DATA, SET_BITSPERITEM , 8             ))
 $(eval $(call TMX2DATA, SET_FOLDER      , gfx/          ))
 $(eval $(call TMX2DATA, SET_EXTRAPAR    ,               ))
-$(eval $(call TMX2DATA, CONVERT         , maps/map-02.tmx))   #relative path from project root
+$(eval $(call TMX2DATA, CONVERT         , maps/map-03.tmx))   #relative path from project root
