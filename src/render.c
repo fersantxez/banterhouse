@@ -27,7 +27,7 @@ void renderSprites(){
 					//frame=((sprites[i].frames*anim_clock)/ANIM_CYCLE);
 					//num_frame=ceil(frame);
 					
-					//quick fix for this specific scenario:
+					//HACK: quick fix for this specific scenario:
 					if (anim_clock > 7) num_frame=2;
 					else num_frame=1;
 

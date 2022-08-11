@@ -76,4 +76,11 @@ extern TSprite sprites[MAX_SPRITES];	//stores all sprites in the game
 extern u8 anim_clock;					//animation clock (1 -> ANIMATION_CYCLE)
 extern u8 map[g_map_W*g_map_H];					//FIXME: Use G_map_W/H instead. //buffer to store current level background
 
+#define CHART_ROWS 9					//"map" of screens to form larger "chart"
+#define CHART_COLUMNS 8  				//9*8 = 72 rooms total 
+
+extern u8 current_room;
+extern const u8 chart[(CHART_ROWS*CHART_COLUMNS)/2];		//only need 4 exits per room. Each byte holds two room.
+extern const u8 chart_done[(CHART_ROWS*CHART_COLUMNS)/8];	//1 "done" bit per room, so 8 rooms per byte.
+
 #endif

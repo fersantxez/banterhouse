@@ -101,36 +101,38 @@ void moveSprites() {
 			cpct_setBorder(HW_WHITE);		//will use red border to signal lethal, so reset to no coll.
 			x_mv = 0;
 			do {
-				if (x_mv == sprites[i].width) {	//if the tile being evaluated is exactly our width
-					x_mv = x_mv - 2;			//look at half prev tile - hack to simplify collsn
+				if (x_mv == sprites[i].width) {	//if the tile being evaluated is exactly our width this may fail
+					x_mv = x_mv - 2;			//hack: look at half prev tile
 				}
 
 				y_mv = 0;
 				do {
-					if (y_mv == sprites[i].height)	//if the tile being evaluated is exactly our height
-						y_mv = y_mv - 4;			//look at half prev tile
+					if (y_mv == sprites[i].height)	//if the tile being evaluated is exactly our height this may fail
+						y_mv = y_mv - 4;			//hack: look at half prev tile
 					//This won't work if objects are just 1 tile big - MIN 2x2!!
 					if (tileType(tileValue(x+x_mv,y+y_mv)) == TILE_SOLID) {
 						//sprite is hitting a tile, signal collision to avoid movement
-						//FIXME: what is this thing below doing:
+						//differentiate between horizontal and vertical collision:
 						if (tileType(tileValue(x+x_mv,sprites[i].y+y_mv)) == TILE_SOLID){
 							//can be false positive if not aligned
 							//don't look beyond sprite height
 							collision = collision | RIGHT_COLLISION; //LEFT_RIGHT_COLLISION;
+							cpct_setBorder(HW_PASTEL_YELLOW); 
 						}
 						if(tileType(tileValue(sprites[i].x+x_mv,y+y_mv)) == TILE_SOLID){
 							collision = collision | BOTTOM_COLLISION; //TOP_BOTTOM_COLLISION;
+							cpct_setBorder(HW_SKY_BLUE); 
 						}
 					}
 
 					if (tileType(tileValue(x+x_mv, y+y_mv)) == TILE_LETHAL) {
-						cpct_setBorder(HW_RED); //COLLISION WITH LETHAL: YOURE DEAD!!!!!!
+						cpct_setBorder(HW_RED); 	//COLLISION WITH LETHAL: YOURE DEAD!!!!!!
 					}
 					y_mv = y_mv + 8; 				//Move to next tile until we've covered the height
-				} while (y_mv <= sprites[i].height);//this *should* be < not <= but accounting for not aligned
+				} while (y_mv <= sprites[i].height);//hack: this *should* be < not <= but accounting for not aligned
 
 				x_mv = x_mv + 4;					//Move to next tile until we've covered the height
-			} while (x_mv <= sprites[i].width);
+			} while (x_mv <= sprites[i].width);		//hack: 
 
 			//GAME AREA: If outside, signal collision with corresponding bitmask
 			if (x > (GAME_AREA_RIGHT - sprites[i].width))
