@@ -72,6 +72,8 @@ void redrawTile(u8* mem_start, u8 x, u8 y, u8 width, u8 height) {
 	u8 px_to_clean; 										//since alignment
 	u16 first_tile;											//first tile the sprite is filling
 
+	//FIXME: still leaving a small X axis trail.
+
 	//ensure x and y are the beginning of a tile (tiles are 8x8)
 	new_x = x - (x % 4);									//x is bytes not pixels - M0
 	new_y = y - (y % 8);

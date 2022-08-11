@@ -103,20 +103,22 @@ void initLevel() {
 }
 
 
-/*	FIXME: Doc me how
+/*	u16 tileCell(u8 x, u8 y):
+	Returns the ordinal byte of a tile in the tile matrix from the X, Y coords of a pixel
 */
 u16 tileCell(u8 x, u8 y) {
-	return ((g_map_W*((y - GAME_AREA_TOP) /8)) + (x/4));
+	return ((g_map_W*((y - GAME_AREA_TOP) /8)) + (x/4)); //8 bits/px V, 4bits/px H (M0)
 }
 
-/*	FIXME: Doc me how
+/*	u8 tileValue(u8 x, u8 y):
+	Returns an actual tile from a pair of X,Y coords
 */
 u8 tileValue(u8 x, u8 y) {
 	return (map[tileCell(x, y)]);
 }
 
 /*	u8 tileType(u8 tile): 
-	Returns the type of a tile. Used to calculate sprite collisions with tiles.
+	Returns the type of a tile based on its ordinal. Used to calculate sprite collisions with tiles.
 	Assumes that tiles are organized in order:
 	tile_solid < MAX_TILES_SOLID < tile_lethal < MAX_TILES_LETHAL < tile_background < MAX_TILES
 */

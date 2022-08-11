@@ -2,8 +2,8 @@
 ;; Compresor used:   zx7b
 ;; Files compressed: [ 'gfx/map-03.bin' ]
 ;; Uncompressed:     460 bytes
-;; Compressed:       71 bytes
-;; Space saved:      389 bytes
+;; Compressed:       70 bytes
+;; Space saved:      390 bytes
 ;;
 
 ;; Declaration of the compressed array and
@@ -12,7 +12,7 @@
 .globl _scr00_end
 
 ;; Compressed and uncompressed sizes
-_scr00_size_z == 71
+_scr00_size_z == 70
 _scr00_size   == 460
 
 

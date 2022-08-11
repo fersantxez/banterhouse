@@ -2,22 +2,22 @@
 // Compresor used:   zx7b
 // Files compressed: [ 'gfx/map-03.bin' ]
 // Uncompressed:     460 bytes
-// Compressed:       71 bytes
-// Space saved:      389 bytes
+// Compressed:       70 bytes
+// Space saved:      390 bytes
 //
 
-#ifndef scr00_71_H
-#define scr00_71_H
+#ifndef scr00_70_H
+#define scr00_70_H
 
 
 // Declaration of the compressed array
-extern const unsigned char scr00[71];
+extern const unsigned char scr00[70];
 
 // Address of the latest byte of the compressed array (for unpacking purposes)
-#define scr00_end      (scr00 + 71 - 1)
+#define scr00_end      (scr00 + 70 - 1)
 
 // Compressed and uncompressed sizes
-#define scr00_size_z   71
+#define scr00_size_z   70
 #define scr00_size     460
 
 
