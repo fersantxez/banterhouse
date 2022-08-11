@@ -45,64 +45,6 @@ void keyboard(){
 void AI(){
 }
 
-/* FIXME: Doc me how
-*/
-void moveSprites() {
-
-	u8 i,x,y,collision;
-
-	for (i=0; i < MAX_SPRITES; i++) {
-		if (sprites[i].id !=0) {			//check only live sprites to optimize CPU (non-zero)
-			collision = 0;
-
-			x = sprites[i].x;
-			y = sprites[i].y;
-
-			x = x + (sprites[i].moveH);
-			y = y + (4*sprites[i].moveV);	//vertical movement: Y is *px, X is *byte. M0 so Y is 4 times slower
-
-			//GAME AREA: If outside, signal collision with corresponding bitmask
-			if (x > (GAME_AREA_RIGHT - sprites[i].width))
-				collision = collision | RIGHT_COLLISION;
-			if (x < GAME_AREA_LEFT)
-				collision = collision | LEFT_COLLISION;
-
-			if (y > (GAME_AREA_BOTTOM - sprites[i].height))
-				collision = collision | BOTTOM_COLLISION;
-			if (y < GAME_AREA_TOP)
-				collision = collision | TOP_COLLISION;
-			
-			//Treat vertical and horizonal collision differently so that
-			//diagonal collision doesn't block both directions
-			if ((collision & LEFT_RIGHT_COLLISION) == 0)		//if not hitting right, move up/down
-				sprites[i].x = x;								//keep x as it was
-			//FIXME: not working - always believes there's TOPDOWN collision so not moving up or down
-			if ((collision & TOP_BOTTOM_COLLISION) == 0)		//if not hitting top, move sideways //
-				sprites[i].y = y;								//keep y as it was
-		}
-	}
-}
-
-/*	FIXME: Doc me how
-	Initialize screen from tilemap for each level
-*/
-void initLevel() {
-	u8* map_ptr;
-	map_ptr = (u8 *)scr00_end; //FIXME: need better naming
-
-	//copy map to buffer - used for decompressing into memory when compression is used
-	//cpct_memcpy((u8*)&map[0], (u8*)&g_map[0], g_map_W*g_map_H);	//no compression
-	cpct_zx7b_decrunch_s((void *)(&map[0]+((g_map_W*g_map_H)-1)),(void *)map_ptr);
-
-	//initalize tilemap - could alternatively use 2x4 if tiles were small
-	cpct_etm_setDrawTilemap4x8_ag( g_map_W, g_map_H, g_map_W, &g_tileset_00[0]); //3rd param (20,g_map_W) is how many tiles per line
-	//render the tilemap on both Video Mem pages (double buffer)
-	cpct_etm_drawTilemap4x8_ag( cpctm_screenPtr((u8*) CPCT_VMEM_START, GAME_AREA_LEFT, GAME_AREA_TOP), &map[0] );
-	cpct_etm_drawTilemap4x8_ag( cpctm_screenPtr((u8*) CPCT_LVMEM_START, GAME_AREA_LEFT, GAME_AREA_TOP), &map[0] );
-
-}
-
-
 /*	u16 tileCell(u8 x, u8 y):
 	Returns the ordinal byte of a tile in the tile matrix from the X, Y coords of a pixel
 */
@@ -131,6 +73,103 @@ u8 tileType(u8 tile) {
 		return TILE_BACKGROUND;
 }
 
+
+/* FIXME: Doc me how
+*/
+void moveSprites() {
+
+	u8 i,x,y,a,b,collision;
+
+	for (i=0; i < MAX_SPRITES; i++) {
+		if (sprites[i].id !=0) {			//check only live sprites to optimize CPU (non-zero)
+			collision = 0;
+
+			x = sprites[i].x;
+			y = sprites[i].y;
+
+			x = x + (sprites[i].moveH);
+			y = y + (4*sprites[i].moveV);	//vertical movement: Y is *px, X is *byte. M0 so Y is 4 times slower
+
+			//Temp storage hack
+			*((u8*) TEMP_X) = x;			//save x in temp memory position
+			*((u8*) TEMP_Y) = y;			//used in debugging
+
+			//Collision with screen Tiles: solid and lethal
+			cpct_setBorder(HW_WHITE);
+			a = 0;								//index for X collision calcs
+			do {
+				if (a == sprites[i].width) {	//if width is a tile division, just look at half next tile - hack to simplify collsn
+					a = a - 2;
+				}
+
+				b = 0;							//index for Y collision calcs
+				do {
+					if (b == sprites[i].height) //if height is a tile division, just look at half next tile
+					b = b - 4;
+					//This won't work if objects are just 1 tile big - MIN 2x2!!
+					if (tileType(tileValue(x+a,y+b)) == TILE_SOLID) {
+						//sprite is hitting a tile, signal collision to avoid movement
+						if (tileType(tileValue(x+a,sprites[i].y+b)) == 1){
+							//can be false positive if not aligned
+							//don't look beyond sprite height
+							collision = collision | LEFT_RIGHT_COLLISION;
+						}
+						if(tileType(tileValue(sprites[i].x+a,y+b)) == 1){
+							collision = collision | TOP_BOTTOM_COLLISION;
+						}
+					}
+
+					if (tileType(tileValue(x+a, y+b)) == TILE_LETHAL) {
+						cpct_setBorder(HW_RED); //COLLISION WITH LETHAL: YOURE DEAD!!!!!!
+					}
+					b = b + 8;
+				} while (b <= sprites[i].height); //this *should* be < not <= but accounting for not aligned
+
+				a = a + 4;
+			} while (a <= sprites[i].width);
+
+			//GAME AREA: If outside, signal collision with corresponding bitmask
+			if (x > (GAME_AREA_RIGHT - sprites[i].width))
+				collision = collision | RIGHT_COLLISION;
+			if (x < GAME_AREA_LEFT)
+				collision = collision | LEFT_COLLISION;
+
+			if (y > (GAME_AREA_BOTTOM - sprites[i].height))
+				collision = collision | BOTTOM_COLLISION;
+			if (y < GAME_AREA_TOP)
+				collision = collision | TOP_COLLISION;
+			
+			//Treat vertical and horizonal collision differently so that
+			//diagonal collision doesn't block both directions
+			if ((collision & LEFT_RIGHT_COLLISION) == 0)		//if not hitting right, move up/down
+				sprites[i].x = x;								//keep x as it was
+			//FIXME: not working - always believes there's TOPDOWN collision so not moving up or down
+			if ((collision & TOP_BOTTOM_COLLISION) == 0)		//if not hitting top, move sideways //
+				sprites[i].y = y;								//keep y as it was
+
+		}
+	}
+}
+
+/*	FIXME: Doc me how
+	Initialize screen from tilemap for each level
+*/
+void initLevel() {
+	u8* map_ptr;
+	map_ptr = (u8 *)scr00_end; //FIXME: need better naming
+
+	//copy map to buffer - used for decompressing into memory when compression is used
+	//cpct_memcpy((u8*)&map[0], (u8*)&g_map[0], g_map_W*g_map_H);	//no compression
+	cpct_zx7b_decrunch_s((void *)(&map[0]+((g_map_W*g_map_H)-1)),(void *)map_ptr);
+
+	//initalize tilemap - could alternatively use 2x4 if tiles were small
+	cpct_etm_setDrawTilemap4x8_ag( g_map_W, g_map_H, g_map_W, &g_tileset_00[0]); //3rd param (20,g_map_W) is how many tiles per line
+	//render the tilemap on both Video Mem pages (double buffer)
+	cpct_etm_drawTilemap4x8_ag( cpctm_screenPtr((u8*) CPCT_VMEM_START, GAME_AREA_LEFT, GAME_AREA_TOP), &map[0] );
+	cpct_etm_drawTilemap4x8_ag( cpctm_screenPtr((u8*) CPCT_LVMEM_START, GAME_AREA_LEFT, GAME_AREA_TOP), &map[0] );
+
+}
+
 /*	FIXME: Doc me how
 */
 void collisions() {
@@ -143,8 +182,8 @@ void initGame() {
 	u8 i; //index
 
 	sprites[0].id = 1;												//mark the sprite "alive" (non-zero)
-	sprites[0].x = GAME_AREA_LEFT;									//init position to 0,0
-	sprites[0].y = GAME_AREA_TOP;
+	sprites[0].x = GAME_AREA_LEFT+10;								//init position to 0,0
+	sprites[0].y = GAME_AREA_TOP-40;
 	sprites[0].moveV = sprites[0].moveH = 0;						//init movement to none
 	//refs to prev positions of moving sprites in both (A,B) VMEM pages (double buffer) - init to 0
 	sprites[0].x_prev_A = sprites[0].x_prev_B = GAME_AREA_LEFT;		//init prev position to 0,0

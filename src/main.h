@@ -19,6 +19,10 @@
 #define g_map_W 20
 #define g_map_H 23
 
+//Animation controls
+#define ANIM_CYCLE 16					//max animation frames
+#define ANIM_SPEED 2 					//1-4; 4 is faster
+
 #define MAX_TILES_SOLID 31				//tiles are grouped by nature and sorted by row in tileset
 #define MAX_TILES_LETHAL 47				//tiles 0-31 (first two rows) are solid, 32-47 are lethal. 47+ decoration
 
@@ -36,8 +40,8 @@
 #define TOP_COLLISION 			0b00000101
 #define TOP_BOTTOM_COLLISION 	0b00000001
 
-#define ANIM_CYCLE 16					//max animation frames
-#define ANIM_SPEED 2 					//1-4; 4 is faster
+#define TEMP_X		0xFFFF				//Memory positions for internal storage in collision calc
+#define TEMP_Y		0xFFFE				//in CPC the last 384k of video mem are unused/unrendered
 
 //Double buffer storage
 extern u8* mem_start;					//current vmem_start - 0xC000/CPCT_VMEM_START for page 1,0x8000/CPCT_LVMEM_START for page 0
