@@ -65,10 +65,8 @@ void renderSprites(){
 }
 
 void redrawTile(u8* mem_start, u8 x, u8 y, u8 width, u8 height) {
-	u8 new_x;												//x aligned to a tile start
-	u8 new_y;												//y aligned to a tile start
-	u8 new_width;											//number of tiles the sprite fills
-	u8 new_height;
+	u8 new_x, new_y;										//x,y aligned to a tile start
+	u8 new_width, new_height;								//number of tiles the sprite fills
 	u8 px_to_clean; 										//since alignment
 	u16 first_tile;											//first tile the sprite is filling
 

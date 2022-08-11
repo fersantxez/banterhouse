@@ -78,55 +78,59 @@ u8 tileType(u8 tile) {
 */
 void moveSprites() {
 
-	u8 i,x,y,a,b,collision;
+	u8 i,x,y,collision;
+	u8 x_mv,y_mv;									//coords for next tile after move sprite vs. current
 
 	for (i=0; i < MAX_SPRITES; i++) {
 		if (sprites[i].id !=0) {			//check only live sprites to optimize CPU (non-zero)
 			collision = 0;
 
+			//start in current sprite position
 			x = sprites[i].x;
 			y = sprites[i].y;
 
+			//x,y now point to the next candidate move.
 			x = x + (sprites[i].moveH);
-			y = y + (4*sprites[i].moveV);	//vertical movement: Y is *px, X is *byte. M0 so Y is 4 times slower
+			y = y + (sprites[i].moveV*4);	//vertical movement: Y is *px, X is *byte. M0 so Y is 4 times slower
 
 			//Temp storage hack
 			*((u8*) TEMP_X) = x;			//save x in temp memory position
 			*((u8*) TEMP_Y) = y;			//used in debugging
 
 			//Collision with screen Tiles: solid and lethal
-			cpct_setBorder(HW_WHITE);
-			a = 0;								//index for X collision calcs
+			cpct_setBorder(HW_WHITE);		//will use red border to signal lethal, so reset to no coll.
+			x_mv = 0;
 			do {
-				if (a == sprites[i].width) {	//if width is a tile division, just look at half next tile - hack to simplify collsn
-					a = a - 2;
+				if (x_mv == sprites[i].width) {	//if the tile being evaluated is exactly our width
+					x_mv = x_mv - 2;			//look at half prev tile - hack to simplify collsn
 				}
 
-				b = 0;							//index for Y collision calcs
+				y_mv = 0;
 				do {
-					if (b == sprites[i].height) //if height is a tile division, just look at half next tile
-					b = b - 4;
+					if (y_mv == sprites[i].height)	//if the tile being evaluated is exactly our height
+						y_mv = y_mv - 4;			//look at half prev tile
 					//This won't work if objects are just 1 tile big - MIN 2x2!!
-					if (tileType(tileValue(x+a,y+b)) == TILE_SOLID) {
+					if (tileType(tileValue(x+x_mv,y+y_mv)) == TILE_SOLID) {
 						//sprite is hitting a tile, signal collision to avoid movement
-						if (tileType(tileValue(x+a,sprites[i].y+b)) == 1){
+						//FIXME: what is this thing below doing:
+						if (tileType(tileValue(x+x_mv,sprites[i].y+y_mv)) == TILE_SOLID){
 							//can be false positive if not aligned
 							//don't look beyond sprite height
-							collision = collision | LEFT_RIGHT_COLLISION;
+							collision = collision | RIGHT_COLLISION; //LEFT_RIGHT_COLLISION;
 						}
-						if(tileType(tileValue(sprites[i].x+a,y+b)) == 1){
-							collision = collision | TOP_BOTTOM_COLLISION;
+						if(tileType(tileValue(sprites[i].x+x_mv,y+y_mv)) == TILE_SOLID){
+							collision = collision | BOTTOM_COLLISION; //TOP_BOTTOM_COLLISION;
 						}
 					}
 
-					if (tileType(tileValue(x+a, y+b)) == TILE_LETHAL) {
+					if (tileType(tileValue(x+x_mv, y+y_mv)) == TILE_LETHAL) {
 						cpct_setBorder(HW_RED); //COLLISION WITH LETHAL: YOURE DEAD!!!!!!
 					}
-					b = b + 8;
-				} while (b <= sprites[i].height); //this *should* be < not <= but accounting for not aligned
+					y_mv = y_mv + 8; 				//Move to next tile until we've covered the height
+				} while (y_mv <= sprites[i].height);//this *should* be < not <= but accounting for not aligned
 
-				a = a + 4;
-			} while (a <= sprites[i].width);
+				x_mv = x_mv + 4;					//Move to next tile until we've covered the height
+			} while (x_mv <= sprites[i].width);
 
 			//GAME AREA: If outside, signal collision with corresponding bitmask
 			if (x > (GAME_AREA_RIGHT - sprites[i].width))
