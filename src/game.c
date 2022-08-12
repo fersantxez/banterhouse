@@ -49,9 +49,9 @@ u8 tileType(u8 tile) {
 void moveSprites() {
 
 	u8 i,x,y,collision;
-	u8 x_mv,y_mv;									//coords for next tile after move sprite vs. current
+	u8 x_mv,y_mv;							//coords for next tile after move sprite vs. current
 	u8 position[6];
-	u8 x10,x1,y100,y10,y1;
+	//u8 x10,x1,y100,y10,y1;				//DEBUG position to screen
 
 	for (i=0; i < MAX_SPRITES; i++) {
 		if (sprites[i].id !=0) {			//check only live sprites to optimize CPU (non-zero)
@@ -104,7 +104,7 @@ void moveSprites() {
 				} while (y_mv <= sprites[i].height);//hack: this *should* be < not <= but accounting for not aligned
 
 				x_mv = x_mv + 4;					//Move to next tile until we've covered the height
-			} while (x_mv <= sprites[i].width);		//hack: 
+			} while (x_mv <= sprites[i].width); 
 
 			//GAME AREA: If outside, signal collision with corresponding bitmask
 			if (x > (GAME_AREA_RIGHT - sprites[i].width))
@@ -121,7 +121,7 @@ void moveSprites() {
 			//diagonal collision doesn't block both directions
 			if ((collision & LEFT_RIGHT_COLLISION) == 0)		//if not hitting right, move up/down
 				sprites[i].x = x;								//keep x as it was
-			//FIXME: not working - always believes there's TOPDOWN collision so not moving up or down
+
 			if ((collision & TOP_BOTTOM_COLLISION) == 0)		//if not hitting top, move sideways //
 				sprites[i].y = y;								//keep y as it was
 
@@ -163,7 +163,7 @@ void nextLevel(){
 	}
 	//exit LEFT - FIXME: BROKEN
 	if (sprites[0].x<=2){ 
-		current_room = current_room - 1 - 1; //FIXME: HOW DOES THIS WORK??? SHOULD BE A SINGLE -1
+		current_room = current_room - 1;
 		sprites[0].x = sprites[0].x_prev_A = sprites[0].x_prev_B = GAME_AREA_RIGHT - G_PITU_W - 4;
 		levelFinished = 1;
 	}
