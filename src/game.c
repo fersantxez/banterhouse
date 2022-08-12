@@ -160,6 +160,38 @@ void moveSprites() {
 /*	FIXME: Doc me how
 	Initialize screen from tilemap for each level
 */
+void initGates(){
+ u8 i;
+
+ //North gate
+ if (!cpct_getBit (&chart_done[0], current_room) || cpct_getBit ( &chart[0], current_room )){
+ 	for (i=0; i<4; i++)
+ 		map[8+i] = 9; //"close the gate" - Draw tile #9 on that position and the following 4
+ }
+
+ //South gate
+ if (!cpct_getBit (&chart_done[0], current_room) || cpct_getBit ( &chart[0], current_room )){
+ 	for (i=0; i<4; i++)
+ 		map[(22*20)+8+i] = 9; //"close the gate"
+ }
+
+ //West gate
+ if (!cpct_getBit (&chart_done[0], current_room) || cpct_getBit ( &chart[0], current_room )){
+ 	for (i=0; i<5; i++)
+ 		map[(9+i)*20] = 9; //"close the gate" - Draw tile #9 on that position and the following 4
+ }
+
+ //East gate
+ if (!cpct_getBit (&chart_done[0], current_room) || cpct_getBit ( &chart[0], current_room )){
+ 	for (i=0; i<5; i++)
+ 		map[(9+i)*20 + 19] = 9; //"close the gate" - Draw tile #9 on that position and the following 4
+ }
+
+}
+
+/*	FIXME: Doc me how
+	Initialize screen from tilemap for each level
+*/
 void initLevel() {
 	u8* map_ptr;
 	map_ptr = (u8 *)scr00_end; //FIXME: need better naming
@@ -167,6 +199,8 @@ void initLevel() {
 	//copy map to buffer - used for decompressing into memory when compression is used
 	//cpct_memcpy((u8*)&map[0], (u8*)&g_map[0], g_map_W*g_map_H);	//no compression
 	cpct_zx7b_decrunch_s((void *)(&map[0]+((g_map_W*g_map_H)-1)),(void *)map_ptr);
+
+	initGates(); //FIXME: doc me
 
 	//initalize tilemap - could alternatively use 2x4 if tiles were small
 	cpct_etm_setDrawTilemap4x8_ag( g_map_W, g_map_H, g_map_W, &g_tileset_00[0]); //3rd param (20,g_map_W) is how many tiles per line
