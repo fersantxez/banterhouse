@@ -163,26 +163,28 @@ void moveSprites() {
 void initGates(){
  u8 i;
 
+ //Check collisions counting which fases are "done" (completed), and 
+
  //North gate
- if (!cpct_getBit (&chart_done[0], current_room) || cpct_getBit ( &chart[0], current_room )){
+ if (!cpct_getBit (&chart_done[0], current_room) || cpct_getBit ( &chart[0], (current_room*4)+0 ) == 0 ) {
  	for (i=0; i<4; i++)
  		map[8+i] = 9; //"close the gate" - Draw tile #9 on that position and the following 4
  }
 
  //South gate
- if (!cpct_getBit (&chart_done[0], current_room) || cpct_getBit ( &chart[0], current_room )){
+ if (!cpct_getBit (&chart_done[0], current_room) || cpct_getBit ( &chart[0], (current_room*4)+1 ) == 0 ) {
  	for (i=0; i<4; i++)
  		map[(22*20)+8+i] = 9; //"close the gate"
  }
 
  //West gate
- if (!cpct_getBit (&chart_done[0], current_room) || cpct_getBit ( &chart[0], current_room )){
+ if (!cpct_getBit (&chart_done[0], current_room) || cpct_getBit ( &chart[0], (current_room*4)+2 ) == 0 ) {
  	for (i=0; i<5; i++)
  		map[(9+i)*20] = 9; //"close the gate" - Draw tile #9 on that position and the following 4
  }
 
  //East gate
- if (!cpct_getBit (&chart_done[0], current_room) || cpct_getBit ( &chart[0], current_room )){
+ if (!cpct_getBit (&chart_done[0], current_room) || cpct_getBit ( &chart[0], (current_room*4)+2 ) == 0 ) {
  	for (i=0; i<5; i++)
  		map[(9+i)*20 + 19] = 9; //"close the gate" - Draw tile #9 on that position and the following 4
  }
@@ -244,6 +246,12 @@ void initGame() {
 		sprites[i].id=0;
 
 	anim_clock=1;
+
+	//in the screen "chart", mark all maps (screens) as "not done"/not completed
+	for (i = 0, i < (CHART_ROWS*CHART_COLUMNS)/8; i++) {
+		chart_done[i] = 0x00;
+	}
+	current_room = 3;	//initial room
 
 }
 
