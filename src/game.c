@@ -50,6 +50,8 @@ void moveSprites() {
 
 	u8 i,x,y,collision;
 	u8 x_mv,y_mv;									//coords for next tile after move sprite vs. current
+	u8 position[6];
+	u8 x10,x1,y100,y10,y1;
 
 	for (i=0; i < MAX_SPRITES; i++) {
 		if (sprites[i].id !=0) {			//check only live sprites to optimize CPU (non-zero)
@@ -124,6 +126,15 @@ void moveSprites() {
 				sprites[i].y = y;								//keep y as it was
 
 		}
+	
+	/*DEBUG: debug position
+	position[0]='X';position[3]='Y';
+	//48 is ASCII for 0
+	position[1]=x/10+48;position[2]=x%10+48;position[4]=y/100+48;position[5]=(y%100)/10+48;position[6]=y%10+48;
+	cpct_drawStringM0 (position, cpctm_screenPtr ((u8*) CPCT_LVMEM_START + 32, 0, 0));
+	cpct_drawStringM0 (position, cpctm_screenPtr ((u8*) CPCT_VMEM_START + 32, 0, 0));
+	*/
+
 	}
 }
 
@@ -137,29 +148,29 @@ void nextLevel(){
 	next = 0;
 
 	//check if sprite is in a "gate" location - it's in a "border position"
-	//exit DOWN
-	if (sprites[0].y<=GAME_AREA_TOP + 4){  //FIXME:swap for ref to constant - not 20
+	//G_PITU_H=32 G_PITU_W=8 - X,y is top left corner
+	//exit UP
+	if (sprites[0].y<=GAME_AREA_TOP + 4){  //FIXME: <=20
 		current_room = current_room - CHART_COLUMNS;
-		sprites[0].y = sprites[0].y_prev_A = sprites[0].y_prev_B = 160; //relocate to beginning of next
+		sprites[0].y = sprites[0].y_prev_A = sprites[0].y_prev_B = GAME_AREA_BOTTOM - G_PITU_H - 8; //relocate to beginning of next
 		levelFinished = 1;
 	}
-	//exit UP
-	if (sprites[0].y>=GAME_AREA_BOTTOM - 2 - G_PITU_H){  //FIXME:swap for ref to constant //164 is Y + height 200 - 16=184+
+	//exit DOWN
+	if (sprites[0].y>=GAME_AREA_BOTTOM - G_PITU_H - 6 ){  //FIXME: >=164
 		current_room = current_room + CHART_COLUMNS;
-		sprites[0].y = sprites[0].y_prev_A = sprites[0].y_prev_B = 24; //relocate to beginning of next
+		sprites[0].y = sprites[0].y_prev_A = sprites[0].y_prev_B = GAME_AREA_TOP + 8;
 		levelFinished = 1;
 	}
 	//exit LEFT - FIXME: BROKEN
-	if (sprites[0].x<=2+2){  //FIXME:swap for ref to constant - als "+2" is my hack
+	if (sprites[0].x<=2){ 
 		current_room = current_room - 1 - 1; //FIXME: HOW DOES THIS WORK??? SHOULD BE A SINGLE -1
-		sprites[0].x = sprites[0].x_prev_A = sprites[0].x_prev_B = 71; //relocate to beginning of next
+		sprites[0].x = sprites[0].x_prev_A = sprites[0].x_prev_B = GAME_AREA_RIGHT - G_PITU_W - 4;
 		levelFinished = 1;
 	}
 	//exit RIGHT
-	if (sprites[0].x>=(GAME_AREA_RIGHT - 2 - G_PITU_W)){  //78 - 5 FIXME:swap for ref to constant -- 5 is VALUE OF EXAMPLE, SWAP FOR OUR OWN
-		//XY is coords - width
+	if (sprites[0].x>=(GAME_AREA_RIGHT - 2 - G_PITU_W)){ 
 		current_room = current_room + 1;
-		sprites[0].x = sprites[0].x_prev_A = sprites[0].x_prev_B = 4+2; //relocate to beginning of next, "+2" is my hack
+		sprites[0].x = sprites[0].x_prev_A = sprites[0].x_prev_B = GAME_AREA_LEFT + 4;
 		levelFinished = 1;
 	}
 
@@ -232,6 +243,7 @@ void initLevel() {
 
 	cpct_drawStringM0 (room_name, cpctm_screenPtr ((u8*) CPCT_LVMEM_START, 0, 0));
 	cpct_drawStringM0 (room_name, cpctm_screenPtr ((u8*) CPCT_VMEM_START, 0, 0));
+
 }
 
 /*	FIXME: Doc me how
