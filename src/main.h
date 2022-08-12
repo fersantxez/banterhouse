@@ -82,5 +82,6 @@ extern u8 map[g_map_W*g_map_H];					//FIXME: Use G_map_W/H instead. //buffer to 
 extern u8 current_room;
 extern const u8 chart[(CHART_ROWS*CHART_COLUMNS)/2];		//only need 4 exits per room. Each byte holds two room.
 extern u8 chart_done[(CHART_ROWS*CHART_COLUMNS)/8];	//1 "done" bit per room, so 8 rooms per byte.
+extern u8 levelFinished;
 
 #endif

@@ -34,11 +34,12 @@ u8 map [g_map_W*g_map_H];                                          //buffer to s
 TSprite sprites [MAX_SPRITES];
 u8 anim_clock;
 
-
-//====
 #define CHART_ROWS 9             //"map" of screens to form larger "chart"
 #define CHART_COLUMNS 8             //9*8 = 72 rooms total 
 
+u8 current_room;
+u8 levelFinished;
+u8 chart_done[(CHART_ROWS*CHART_COLUMNS)/8];   //1 "done" bit per room, so 8 rooms per byte.
 
 /* MAP STRUCTURE
 *-*-* S-* * *-*
@@ -67,9 +68,6 @@ u8 anim_clock;
 //room 2 is open left and right: 0011
 //so first byte is 0b01010011
 
-u8 current_room;
-u8 chart_done[(CHART_ROWS*CHART_COLUMNS)/8];   //1 "done" bit per room, so 8 rooms per byte.
-
 //FIXME: Ideally this would be randomly initialized on game start
 const u8 chart[(CHART_ROWS*CHART_COLUMNS)/2] = {
 0b01010011, 0b01100101, 0b01100100, 0b01010110,
@@ -83,11 +81,6 @@ const u8 chart[(CHART_ROWS*CHART_COLUMNS)/2] = {
 0b00010011, 0b10110010, 0b00011010, 0b10011010
 };
 
-
-
-
-
-//====
 void main(void) {
    u8* pvmem;                                   // Pointer to video memory
 

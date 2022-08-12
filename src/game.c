@@ -9,36 +9,6 @@
 #include "tileset-03.h"
 #include "maps/scr00.h"
 
-/* FIXME: Doc me how
-*/
-void keyboard(){
-	// Read keyboard and move user's sprite
-
-	sprites[0].moveV = sprites[0].moveH = 0; 							//start with no movement
-
-	//sprite movement: read keyboard/joystick and update movement registers
-	cpct_scanKeyboard_f();
-	if (cpct_isKeyPressed(Key_CursorUp) || cpct_isKeyPressed(Key_Q) || cpct_isKeyPressed(Joy0_Up)){	
-		sprites[0].moveV = -1;		
-	}
-	if (cpct_isKeyPressed(Key_CursorDown) || cpct_isKeyPressed(Key_A) || cpct_isKeyPressed(Joy0_Down)){
-		sprites[0].moveV = 1;
-	}
-	if (cpct_isKeyPressed(Key_CursorLeft) || cpct_isKeyPressed(Key_O) || cpct_isKeyPressed(Joy0_Left)){
-		sprites[0].moveH = -1;
-		sprites[0].turned = 1;
-	}
-	if (cpct_isKeyPressed(Key_CursorRight) || cpct_isKeyPressed(Key_P) || cpct_isKeyPressed(Joy0_Right)){
-		sprites[0].moveH = 1;
-		sprites[0].turned = 0;
-	}
-
-	//sprite animation: if sprite moved, mark for animation
-	if (sprites[0].moveH !=0 || sprites[0].moveV !=0)					//sprite moved
-		sprites[0].properties = sprites[0].properties | MASK_ANIMATE; 	//mark for animation
-	else
-		sprites[0].properties = sprites[0].properties & ~MASK_ANIMATE;	//unmark for animation;
-}
 
 /* FIXME: Doc me how
 */
@@ -157,15 +127,55 @@ void moveSprites() {
 	}
 }
 
+
+/*	FIXME: Doc me how
+	check if the user is in a "gate" location and change the level if so
+*/
+void nextLevel(){
+	u8 next;
+
+	next = 0;
+
+	//check if sprite is in a "gate" location - it's in a "border position"
+	//exit DOWN
+	if (sprites[0].y<=GAME_AREA_TOP + 4){  //FIXME:swap for ref to constant - not 20
+		current_room = current_room - CHART_COLUMNS;
+		sprites[0].y = sprites[0].y_prev_A = sprites[0].y_prev_B = 160; //relocate to beginning of next
+		levelFinished = 1;
+	}
+	//exit UP
+	if (sprites[0].y>=GAME_AREA_BOTTOM - 2 - G_PITU_H){  //FIXME:swap for ref to constant //164 is Y + height 200 - 16=184+
+		current_room = current_room + CHART_COLUMNS;
+		sprites[0].y = sprites[0].y_prev_A = sprites[0].y_prev_B = 24; //relocate to beginning of next
+		levelFinished = 1;
+	}
+	//exit LEFT - FIXME: BROKEN
+	if (sprites[0].x<=2+2){  //FIXME:swap for ref to constant - als "+2" is my hack
+		current_room = current_room - 1 - 1; //FIXME: HOW DOES THIS WORK??? SHOULD BE A SINGLE -1
+		sprites[0].x = sprites[0].x_prev_A = sprites[0].x_prev_B = 71; //relocate to beginning of next
+		levelFinished = 1;
+	}
+	//exit RIGHT
+	if (sprites[0].x>=(GAME_AREA_RIGHT - 2 - G_PITU_W)){  //78 - 5 FIXME:swap for ref to constant -- 5 is VALUE OF EXAMPLE, SWAP FOR OUR OWN
+		//XY is coords - width
+		current_room = current_room + 1;
+		sprites[0].x = sprites[0].x_prev_A = sprites[0].x_prev_B = 4+2; //relocate to beginning of next, "+2" is my hack
+		levelFinished = 1;
+	}
+
+}
+
+
 /*	FIXME: Doc me how
 	Initialize screen from tilemap for each level
 */
 void initGates(){
  u8 i;
 
- //Check collisions counting which fases are "done" (completed), and 
+ //Check gate collisions counting which fases are "done" (completed), 
+ //and that the gate in direction X exists (bit is 1)
 
- //North gate
+ //North gate - cpct_getBit gives us the value of a "bit" out of a "byte"
  if (!cpct_getBit (&chart_done[0], current_room) || cpct_getBit ( &chart[0], (current_room*4)+0 ) == 0 ) {
  	for (i=0; i<4; i++)
  		map[8+i] = 9; //"close the gate" - Draw tile #9 on that position and the following 4
@@ -184,7 +194,7 @@ void initGates(){
  }
 
  //East gate
- if (!cpct_getBit (&chart_done[0], current_room) || cpct_getBit ( &chart[0], (current_room*4)+2 ) == 0 ) {
+ if (!cpct_getBit (&chart_done[0], current_room) || cpct_getBit ( &chart[0], (current_room*4)+3 ) == 0 ) {
  	for (i=0; i<5; i++)
  		map[(9+i)*20 + 19] = 9; //"close the gate" - Draw tile #9 on that position and the following 4
  }
@@ -196,7 +206,9 @@ void initGates(){
 */
 void initLevel() {
 	u8* map_ptr;
-	map_ptr = (u8 *)scr00_end; //FIXME: need better naming
+	u8 room_name[8];
+
+	map_ptr = (u8 *)scr00_end; //Will decompress from the end of the screen
 
 	//copy map to buffer - used for decompressing into memory when compression is used
 	//cpct_memcpy((u8*)&map[0], (u8*)&g_map[0], g_map_W*g_map_H);	//no compression
@@ -210,11 +222,59 @@ void initLevel() {
 	cpct_etm_drawTilemap4x8_ag( cpctm_screenPtr((u8*) CPCT_VMEM_START, GAME_AREA_LEFT, GAME_AREA_TOP), &map[0] );
 	cpct_etm_drawTilemap4x8_ag( cpctm_screenPtr((u8*) CPCT_LVMEM_START, GAME_AREA_LEFT, GAME_AREA_TOP), &map[0] );
 
+	levelFinished=0;
+
+	//set room name for display
+	room_name[0]='R';room_name[1]='O';room_name[2]='O';room_name[3]='M';room_name[4]=' ';
+	room_name[5]=48+(current_room/10); //*10
+	room_name[6]=48+(current_room%10); //*1
+	room_name[7]=0;
+
+	cpct_drawStringM0 (room_name, cpctm_screenPtr ((u8*) CPCT_LVMEM_START, 0, 0));
+	cpct_drawStringM0 (room_name, cpctm_screenPtr ((u8*) CPCT_VMEM_START, 0, 0));
 }
 
 /*	FIXME: Doc me how
 */
 void collisions() {
+}
+
+/* FIXME: Doc me how
+*/
+void keyboard(){
+	// Read keyboard and move user's sprite
+
+	sprites[0].moveV = sprites[0].moveH = 0; 							//start with no movement
+
+	//sprite movement: read keyboard/joystick and update movement registers
+	cpct_scanKeyboard_f();
+	if (cpct_isKeyPressed(Key_CursorUp) || cpct_isKeyPressed(Key_Q) || cpct_isKeyPressed(Joy0_Up)){	
+		sprites[0].moveV = -1;		
+	}
+	if (cpct_isKeyPressed(Key_CursorDown) || cpct_isKeyPressed(Key_A) || cpct_isKeyPressed(Joy0_Down)){
+		sprites[0].moveV = 1;
+	}
+	if (cpct_isKeyPressed(Key_CursorLeft) || cpct_isKeyPressed(Key_O) || cpct_isKeyPressed(Joy0_Left)){
+		sprites[0].moveH = -1;
+		sprites[0].turned = 1;
+	}
+	if (cpct_isKeyPressed(Key_CursorRight) || cpct_isKeyPressed(Key_P) || cpct_isKeyPressed(Joy0_Right)){
+		sprites[0].moveH = 1;
+		sprites[0].turned = 0;
+	}
+
+	//sprite animation: if sprite moved, mark for animation
+	if (sprites[0].moveH !=0 || sprites[0].moveV !=0)					//sprite moved
+		sprites[0].properties = sprites[0].properties | MASK_ANIMATE; 	//mark for animation
+	else
+		sprites[0].properties = sprites[0].properties & ~MASK_ANIMATE;	//unmark for animation;
+
+	//FIXME: to open gates, simply press Esc
+	if (cpct_isKeyPressed(Key_Esc) ){
+		cpct_setBit( &chart_done[0], 1, current_room);
+		initLevel();
+	}
+
 }
 
 /*	FIXME: Doc me how
@@ -248,10 +308,11 @@ void initGame() {
 	anim_clock=1;
 
 	//in the screen "chart", mark all maps (screens) as "not done"/not completed
-	for (i = 0, i < (CHART_ROWS*CHART_COLUMNS)/8; i++) {
+	for (i = 0; i < (CHART_ROWS*CHART_COLUMNS)/8; i++) {
 		chart_done[i] = 0x00;
 	}
-	current_room = 3;	//initial room
+	current_room = 3;	//starting room
+	levelFinished = 0;
 
 }
 
@@ -260,35 +321,39 @@ void initGame() {
 void game(){
 
 	cpct_setBorder(HW_WHITE);
-	//clear screen from "LVMEM" to "VMEM" for "double buffer" - 0x8000 to 0xFFFF: 0x8000 long
-	cpct_memset ((u8*)CPCT_LVMEM_START, cpct_px2byteM0(5, 5), 0x8000); //5 is ordinal for WHITE from palette in M0 with 16c
-	initLevel();								//render first level background
-
+	
 	while (1) {
+		//clear screen from "LVMEM" to "VMEM" for "double buffer" - 0x8000 to 0xFFFF: 0x8000 long
+		cpct_memset ((u8*)CPCT_LVMEM_START, cpct_px2byteM0(5, 5), 0x8000); //5 is ordinal for WHITE from palette in M0 with 16c
+		initLevel();								//render first level background
 
-		//double buffer: switch screen to be painted in next sync
-		if (!swap_memvideo) { 					//switch
-			mem_start = (u8*) CPCT_LVMEM_START;	//lower VMEM page
-			mem_page = cpct_page80;				//FIXME:: can probably delete??
-		} else {
-			mem_start = (u8*) CPCT_VMEM_START;	//upper,regular VMEM page
-			mem_page = cpct_pageC0;
+		while (!levelFinished) {
+
+			//double buffer: switch screen to be painted in next sync
+			if (!swap_memvideo) { 					//switch
+				mem_start = (u8*) CPCT_LVMEM_START;	//lower VMEM page
+				mem_page = cpct_page80;				//FIXME:: can probably delete??
+			} else {
+				mem_start = (u8*) CPCT_VMEM_START;	//upper,regular VMEM page
+				mem_page = cpct_pageC0;
+			}
+
+			//collisions(); 						//check collisions before next move
+			keyboard(); 							//user movement
+			//AI();									//decide next move for bad guys
+			moveSprites();
+			deleteSprites();
+			renderSprites();
+			nextLevel();
+
+			//Wait for screen ready
+			cpct_waitVSYNC();						//Wait until CRTC has printed a full frame to "repaint"
+			cpct_setVideoMemoryPage(mem_page);		//Tell CRTC to "paint" the new page--FIXME: can this use "mem_start" instead?
+			swap_memvideo = ~swap_memvideo; 		//flip the switch
+
+			anim_clock+=ANIM_SPEED;
+			if (anim_clock > ANIM_CYCLE)
+				anim_clock=1;
 		}
-
-		//collisions(); 						//check collisions before next move
-		keyboard(); 							//user movement
-		//AI();									//decide next move for bad guys
-		moveSprites();
-		deleteSprites();
-		renderSprites();
-
-		//Wait for screen ready
-		cpct_waitVSYNC();						//Wait until CRTC has printed a full frame to "repaint"
-		cpct_setVideoMemoryPage(mem_page);		//Tell CRTC to "paint" the new page--FIXME: can this use "mem_start" instead?
-		swap_memvideo = ~swap_memvideo; 		//flip the switch
-
-		anim_clock+=ANIM_SPEED;
-		if (anim_clock > ANIM_CYCLE)
-			anim_clock=1;
-		}
+	}
 }
