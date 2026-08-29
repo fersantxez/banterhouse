@@ -1,0 +1,376 @@
+/* game.c
+*/
+
+#include <cpctelera.h>
+#include "main.h"
+#include "render.h"
+#include "graphics.h"
+
+#include "tileset-03.h"
+#include "maps/scr00.h"
+
+
+/* FIXME: Doc me how
+*/
+void AI(){
+}
+
+/*	u16 tileCell(u8 x, u8 y):
+	Returns the ordinal byte of a tile in the tile matrix from the X, Y coords of a pixel
+*/
+u16 tileCell(u8 x, u8 y) {
+	return ((g_map_W*((y - GAME_AREA_TOP) /8)) + (x/4)); //8 bits/px V, 4bits/px H (M0)
+}
+
+/*	u8 tileValue(u8 x, u8 y):
+	Returns an actual tile from a pair of X,Y coords
+*/
+u8 tileValue(u8 x, u8 y) {
+	return (map[tileCell(x, y)]);
+}
+
+/*	u8 tileType(u8 tile): 
+	Returns the type of a tile based on its ordinal. Used to calculate sprite collisions with tiles.
+	Assumes that tiles are organized in order:
+	tile_solid < MAX_TILES_SOLID < tile_lethal < MAX_TILES_LETHAL < tile_background < MAX_TILES
+*/
+u8 tileType(u8 tile) {
+	if (tile <= MAX_TILES_SOLID)
+		return TILE_SOLID;
+	else if (tile <= MAX_TILES_LETHAL)
+		return TILE_LETHAL;
+	else
+		return TILE_BACKGROUND;
+}
+
+
+/* FIXME: Doc me how
+*/
+void moveSprites() {
+
+	u8 i,x,y,collision;
+	u8 x_mv,y_mv;							//coords for next tile after move sprite vs. current
+	u8 position[6];
+	//u8 x10,x1,y100,y10,y1;				//DEBUG position to screen
+
+	for (i=0; i < MAX_SPRITES; i++) {
+		if (sprites[i].id !=0) {			//check only live sprites to optimize CPU (non-zero)
+			collision = 0;
+
+			//start in current sprite position
+			x = sprites[i].x;
+			y = sprites[i].y;
+
+			//x,y now point to the next candidate move.
+			x = x + (sprites[i].moveH);
+			y = y + (sprites[i].moveV*4);	//vertical movement: Y is *px, X is *byte. M0 so Y is 4 times slower
+
+			//Temp storage hack
+			*((u8*) TEMP_X) = x;			//save x in temp memory position
+			*((u8*) TEMP_Y) = y;			//used in debugging
+
+			//Collision with screen Tiles: solid and lethal
+			cpct_setBorder(HW_WHITE);		//will use red border to signal lethal, so reset to no coll.
+			x_mv = 0;
+			do {
+				if (x_mv == sprites[i].width) {	//if the tile being evaluated is exactly our width this may fail
+					x_mv = x_mv - 2;			//hack: look at half prev tile
+				}
+
+				y_mv = 0;
+				do {
+					if (y_mv == sprites[i].height)	//if the tile being evaluated is exactly our height this may fail
+						y_mv = y_mv - 4;			//hack: look at half prev tile
+					//This won't work if objects are just 1 tile big - MIN 2x2!!
+					if (tileType(tileValue(x+x_mv,y+y_mv)) == TILE_SOLID) {
+						//sprite is hitting a tile, signal collision to avoid movement
+						//differentiate between horizontal and vertical collision:
+						if (tileType(tileValue(x+x_mv,sprites[i].y+y_mv)) == TILE_SOLID){
+							//can be false positive if not aligned
+							//don't look beyond sprite height
+							collision = collision | RIGHT_COLLISION; //LEFT_RIGHT_COLLISION;
+							cpct_setBorder(HW_PASTEL_YELLOW); 
+						}
+						if(tileType(tileValue(sprites[i].x+x_mv,y+y_mv)) == TILE_SOLID){
+							collision = collision | BOTTOM_COLLISION; //TOP_BOTTOM_COLLISION;
+							cpct_setBorder(HW_SKY_BLUE); 
+						}
+					}
+
+					if (tileType(tileValue(x+x_mv, y+y_mv)) == TILE_LETHAL) {
+						cpct_setBorder(HW_RED); 	//COLLISION WITH LETHAL: YOURE DEAD!!!!!!
+					}
+					y_mv = y_mv + 8; 				//Move to next tile until we've covered the height
+				} while (y_mv <= sprites[i].height);//hack: this *should* be < not <= but accounting for not aligned
+
+				x_mv = x_mv + 4;					//Move to next tile until we've covered the height
+			} while (x_mv <= sprites[i].width); 
+
+			//GAME AREA: If outside, signal collision with corresponding bitmask
+			if (x > (GAME_AREA_RIGHT - sprites[i].width))
+				collision = collision | RIGHT_COLLISION;
+			if (x < GAME_AREA_LEFT)
+				collision = collision | LEFT_COLLISION;
+
+			if (y > (GAME_AREA_BOTTOM - sprites[i].height))
+				collision = collision | BOTTOM_COLLISION;
+			if (y < GAME_AREA_TOP)
+				collision = collision | TOP_COLLISION;
+			
+			//Treat vertical and horizonal collision differently so that
+			//diagonal collision doesn't block both directions
+			if ((collision & LEFT_RIGHT_COLLISION) == 0)		//if not hitting right, move up/down
+				sprites[i].x = x;								//keep x as it was
+
+			if ((collision & TOP_BOTTOM_COLLISION) == 0)		//if not hitting top, move sideways //
+				sprites[i].y = y;								//keep y as it was
+
+		}
+	
+	/*DEBUG: debug position
+	position[0]='X';position[3]='Y';
+	//48 is ASCII for 0
+	position[1]=x/10+48;position[2]=x%10+48;position[4]=y/100+48;position[5]=(y%100)/10+48;position[6]=y%10+48;
+	cpct_drawStringM0 (position, cpctm_screenPtr ((u8*) CPCT_LVMEM_START + 32, 0, 0));
+	cpct_drawStringM0 (position, cpctm_screenPtr ((u8*) CPCT_VMEM_START + 32, 0, 0));
+	*/
+
+	}
+}
+
+
+/*	FIXME: Doc me how
+	check if the user is in a "gate" location and change the level if so
+*/
+void nextLevel(){
+	u8 next;
+
+	next = 0;
+
+	//check if sprite is in a "gate" location - it's in a "border position"
+	//G_PITU_H=32 G_PITU_W=8 - X,y is top left corner
+	//exit UP
+	if (sprites[0].y<=GAME_AREA_TOP + 4){  //FIXME: <=20
+		current_room = current_room - CHART_COLUMNS;
+		sprites[0].y = sprites[0].y_prev_A = sprites[0].y_prev_B = GAME_AREA_BOTTOM - G_PITU_H - 8; //relocate to beginning of next
+		levelFinished = 1;
+	}
+	//exit DOWN
+	if (sprites[0].y>=GAME_AREA_BOTTOM - G_PITU_H - 6 ){  //FIXME: >=164
+		current_room = current_room + CHART_COLUMNS;
+		sprites[0].y = sprites[0].y_prev_A = sprites[0].y_prev_B = GAME_AREA_TOP + 8;
+		levelFinished = 1;
+	}
+	//exit LEFT - FIXME: BROKEN
+	if (sprites[0].x<=2){ 
+		current_room = current_room - 1;
+		sprites[0].x = sprites[0].x_prev_A = sprites[0].x_prev_B = GAME_AREA_RIGHT - G_PITU_W - 4;
+		levelFinished = 1;
+	}
+	//exit RIGHT
+	if (sprites[0].x>=(GAME_AREA_RIGHT - 2 - G_PITU_W)){ 
+		current_room = current_room + 1;
+		sprites[0].x = sprites[0].x_prev_A = sprites[0].x_prev_B = GAME_AREA_LEFT + 4;
+		levelFinished = 1;
+	}
+
+}
+
+
+/*	FIXME: Doc me how
+	Initialize screen from tilemap for each level
+*/
+void initGates(){
+ u8 i;
+
+ //Check gate collisions counting which fases are "done" (completed), 
+ //and that the gate in direction X exists (bit is 1)
+
+ //North gate - cpct_getBit gives us the value of a "bit" out of a "byte"
+ if (!cpct_getBit (&chart_done[0], current_room) || cpct_getBit ( &chart[0], (current_room*4)+0 ) == 0 ) {
+ 	for (i=0; i<4; i++)
+ 		map[8+i] = 9; //"close the gate" - Draw tile #9 on that position and the following 4
+ }
+
+ //South gate
+ if (!cpct_getBit (&chart_done[0], current_room) || cpct_getBit ( &chart[0], (current_room*4)+1 ) == 0 ) {
+ 	for (i=0; i<4; i++)
+ 		map[(22*20)+8+i] = 9; //"close the gate"
+ }
+
+ //West gate
+ if (!cpct_getBit (&chart_done[0], current_room) || cpct_getBit ( &chart[0], (current_room*4)+2 ) == 0 ) {
+ 	for (i=0; i<5; i++)
+ 		map[(9+i)*20] = 9; //"close the gate" - Draw tile #9 on that position and the following 4
+ }
+
+ //East gate
+ if (!cpct_getBit (&chart_done[0], current_room) || cpct_getBit ( &chart[0], (current_room*4)+3 ) == 0 ) {
+ 	for (i=0; i<5; i++)
+ 		map[(9+i)*20 + 19] = 9; //"close the gate" - Draw tile #9 on that position and the following 4
+ }
+
+}
+
+/*	FIXME: Doc me how
+	Initialize screen from tilemap for each level
+*/
+void initLevel() {
+	u8* map_ptr;
+	u8 room_name[8];
+
+	map_ptr = (u8 *)scr00_end; //Will decompress from the end of the screen
+
+	//copy map to buffer - used for decompressing into memory when compression is used
+	//cpct_memcpy((u8*)&map[0], (u8*)&g_map[0], g_map_W*g_map_H);	//no compression
+	cpct_zx7b_decrunch_s((void *)(&map[0]+((g_map_W*g_map_H)-1)),(void *)map_ptr);
+
+	initGates(); //FIXME: doc me
+
+	//initalize tilemap - could alternatively use 2x4 if tiles were small
+	cpct_etm_setDrawTilemap4x8_ag( g_map_W, g_map_H, g_map_W, &g_tileset_00[0]); //3rd param (20,g_map_W) is how many tiles per line
+	//render the tilemap on both Video Mem pages (double buffer)
+	cpct_etm_drawTilemap4x8_ag( cpctm_screenPtr((u8*) CPCT_VMEM_START, GAME_AREA_LEFT, GAME_AREA_TOP), &map[0] );
+	cpct_etm_drawTilemap4x8_ag( cpctm_screenPtr((u8*) CPCT_LVMEM_START, GAME_AREA_LEFT, GAME_AREA_TOP), &map[0] );
+
+	levelFinished=0;
+
+	//set room name for display
+	room_name[0]='R';room_name[1]='O';room_name[2]='O';room_name[3]='M';room_name[4]=' ';
+	// Avoid SDCC's runtime division helpers: CPCtelera 1.5 uses the legacy ABI.
+	room_name[5] = '0';
+	room_name[6] = '0' + current_room;
+	while (room_name[6] > '9') {
+		room_name[5]++;
+		room_name[6] -= 10;
+	}
+	room_name[7]=0;
+
+	cpct_drawStringM0 (room_name, cpctm_screenPtr ((u8*) CPCT_LVMEM_START, 0, 0));
+	cpct_drawStringM0 (room_name, cpctm_screenPtr ((u8*) CPCT_VMEM_START, 0, 0));
+
+}
+
+/*	FIXME: Doc me how
+*/
+void collisions() {
+}
+
+/* FIXME: Doc me how
+*/
+void keyboard(){
+	// Read keyboard and move user's sprite
+
+	sprites[0].moveV = sprites[0].moveH = 0; 							//start with no movement
+
+	//sprite movement: read keyboard/joystick and update movement registers
+	cpct_scanKeyboard_f();
+	if (cpct_isKeyPressed(Key_CursorUp) || cpct_isKeyPressed(Key_Q) || cpct_isKeyPressed(Joy0_Up)){	
+		sprites[0].moveV = -1;		
+	}
+	if (cpct_isKeyPressed(Key_CursorDown) || cpct_isKeyPressed(Key_A) || cpct_isKeyPressed(Joy0_Down)){
+		sprites[0].moveV = 1;
+	}
+	if (cpct_isKeyPressed(Key_CursorLeft) || cpct_isKeyPressed(Key_O) || cpct_isKeyPressed(Joy0_Left)){
+		sprites[0].moveH = -1;
+		sprites[0].turned = 1;
+	}
+	if (cpct_isKeyPressed(Key_CursorRight) || cpct_isKeyPressed(Key_P) || cpct_isKeyPressed(Joy0_Right)){
+		sprites[0].moveH = 1;
+		sprites[0].turned = 0;
+	}
+
+	//sprite animation: if sprite moved, mark for animation
+	if (sprites[0].moveH !=0 || sprites[0].moveV !=0)					//sprite moved
+		sprites[0].properties = sprites[0].properties | MASK_ANIMATE; 	//mark for animation
+	else
+		sprites[0].properties = sprites[0].properties & ~MASK_ANIMATE;	//unmark for animation;
+
+	//FIXME: to open gates, simply press Esc
+	if (cpct_isKeyPressed(Key_Esc) ){
+		cpct_setBit( &chart_done[0], 1, current_room);
+		initLevel();
+	}
+
+}
+
+/*	FIXME: Doc me how
+	Initialize storage and config for sprites/game elements
+*/
+void initGame() {
+	u8 i; //index
+
+	sprites[0].id = 1;												//mark the sprite "alive" (non-zero)
+	sprites[0].x = GAME_AREA_LEFT+8;								//init position to 0,0
+	sprites[0].y = GAME_AREA_TOP+8;
+	sprites[0].moveV = sprites[0].moveH = 0;						//init movement to none
+	//refs to prev positions of moving sprites in both (A,B) VMEM pages (double buffer) - init to 0
+	sprites[0].x_prev_A = sprites[0].x_prev_B = GAME_AREA_LEFT;		//init prev position to 0,0
+	sprites[0].y_prev_A = sprites[0].y_prev_B = GAME_AREA_TOP;
+	sprites[0].height = G_PITU_H;
+	sprites[0].width = G_PITU_W;									//!?! /2: - M0, length in bytes = /2 in px
+	sprites[0].properties = 0;										//bitmasked properties - init to 0
+	sprites[0].properties = sprites[0].properties | MASK_RENDER;	//init to "render" on screen
+	sprites[0].frames = 2;											//main sprite has two "moves" to animate
+	sprites[0].sprite_f1 = (u8*)g_pitu; 							//first render for sprite. &G_pitu[0]
+	sprites[0].sprite_f2 = (u8*)g_pitu_walk;
+	sprites[0].sprite_f3 = (u8*)g_pitu_jump;
+	sprites[0].sprite_f3 = (u8*)g_blast;
+	sprites[0].turned = 0;											//start looking right/front
+
+	//zero out memory for sprites (e.g. after reset)
+	for (i = 1; i < MAX_SPRITES; i++)
+		sprites[i].id=0;
+
+	anim_clock=1;
+
+	//in the screen "chart", mark all maps (screens) as "not done"/not completed
+	for (i = 0; i < (CHART_ROWS*CHART_COLUMNS)/8; i++) {
+		chart_done[i] = 0x00;
+	}
+	current_room = 3;	//starting room
+	levelFinished = 0;
+
+}
+
+/* FIXME: Doc me how
+*/
+void game(){
+
+	cpct_setBorder(HW_WHITE);
+	
+	while (1) {
+		//clear screen from "LVMEM" to "VMEM" for "double buffer" - 0x8000 to 0xFFFF: 0x8000 long
+		cpct_memset ((u8*)CPCT_LVMEM_START, cpct_px2byteM0(5, 5), 0x8000); //5 is ordinal for WHITE from palette in M0 with 16c
+		initLevel();								//render first level background
+
+		while (!levelFinished) {
+
+			//double buffer: switch screen to be painted in next sync
+			if (!swap_memvideo) { 					//switch
+				mem_start = (u8*) CPCT_LVMEM_START;	//lower VMEM page
+				mem_page = cpct_page80;				//FIXME:: can probably delete??
+			} else {
+				mem_start = (u8*) CPCT_VMEM_START;	//upper,regular VMEM page
+				mem_page = cpct_pageC0;
+			}
+
+			//collisions(); 						//check collisions before next move
+			keyboard(); 							//user movement
+			//AI();									//decide next move for bad guys
+			moveSprites();
+			deleteSprites();
+			renderSprites();
+			nextLevel();
+
+			//Wait for screen ready
+			cpct_waitVSYNC();						//Wait until CRTC has printed a full frame to "repaint"
+			cpct_setVideoMemoryPage(mem_page);		//Tell CRTC to "paint" the new page--FIXME: can this use "mem_start" instead?
+			swap_memvideo = ~swap_memvideo; 		//flip the switch
+
+			anim_clock+=ANIM_SPEED;
+			if (anim_clock > ANIM_CYCLE)
+				anim_clock=1;
+		}
+	}
+}
