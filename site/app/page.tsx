@@ -13,6 +13,7 @@ export default function Home() {
           <a href="#argumento">Argumento</a>
           <a href="#expediente">Expediente</a>
           <a href="#descargas">Descargas</a>
+          <a href="#micromania">Micromanía</a>
           <a href="#jugar">Jugar</a>
         </div>
       </nav>
@@ -219,7 +220,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="magazine-feature" aria-labelledby="magazine-heading">
+      <section className="magazine-feature" id="micromania" aria-labelledby="magazine-heading">
         <div className="magazine-feature-copy">
           <p className="eyebrow">Hemeroteca imposible / Noviembre 1987</p>
           <h2 id="magazine-heading">Micromanía somete la Casa de la Guasa a su joystick.</h2>
@@ -234,6 +235,12 @@ export default function Home() {
             </a>
             <a className="button button-dark" href="/release/banterhouse-micromania-spread.png" download>
               Alta resolución
+            </a>
+            <a className="button button-secondary" href="/release/banterhouse-launch-email.html">
+              Ver anuncio email
+            </a>
+            <a className="button button-dark" href="/release/banterhouse-email-ad.png" download>
+              Descargar anuncio
             </a>
           </div>
           <small>PIEZA APÓCRIFA · NO PUBLICADA NI AFILIADA A MICROMANÍA</small>
@@ -282,7 +289,8 @@ export default function Home() {
         <p>BANTERHOUSE · UN PRODUCTO DE LA CASA DE LA GUASA · MADRID / 1987→2026</p>
         <p>
           Emulación por <a href="https://github.com/salvogendut/1984">1984</a> · GPL-2.0 ·
-          Hecho con 128K, café recalentado y cambios mínimos.
+          Hecho con 128K, café recalentado y cambios mínimos ·
+          <a href="https://github.com/fersantxez/banterhouse"> Código en GitHub</a>.
         </p>
       </footer>
     </main>

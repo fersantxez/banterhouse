@@ -48,6 +48,7 @@ literales, de anuncios de Dinamic, Topo Soft, Opera Soft y Ocean. Referencias:
 | Estuche de disco 3″ | Impresión A4 horizontal | `site/public/release/banterhouse-disk-inlay.png` |
 | Anuncio | Revista A4 vertical | `site/public/release/banterhouse-ad-a4.png` |
 | Artículo Micromanía | Doble página 4960 × 3508 y PDF A3 | `site/public/release/banterhouse-micromania-spread.png` |
+| Email de lanzamiento | Anuncio HTML y PNG 760 × 1500 con pantallazos y CTA | `site/public/release/banterhouse-launch-email.html`, `site/public/release/banterhouse-email-ad.png` |
 | Juego en cassette | Descarga directa, 875 PTAS. | `site/public/release/banterhouse.cdt` |
 | Juego en disco 3″ | Descarga directa, 1.900 PTAS. | `site/public/release/banterhouse.dsk` |
 | Paquete | Juego, CDT, arte y prensa | `site/public/release/banterhouse-release.zip` |

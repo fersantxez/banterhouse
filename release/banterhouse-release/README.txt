@@ -30,6 +30,12 @@ press/banterhouse-micromania-spread.png
 press/banterhouse-micromania-article.pdf
   Versión A3 horizontal lista para imprimir del artículo de revista.
 
+press/banterhouse-launch-email.html
+  Anuncio HTML para email con pantallazos y enlaces a la web, el artículo y el ZIP.
+
+press/banterhouse-email-ad.png
+  Anuncio gráfico de 760 × 1500 px para insertar directamente en el correo.
+
 press/banterhouse-cassette-hero.png
   Fotografía promocional de la edición física.
 
