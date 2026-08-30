@@ -26,23 +26,24 @@ export default function CassetteInlay() {
         </div>
 
         <div className="inlay-spine">
-          <b>BANTERHOUSE</b><span>AMSTRAD CPC 128K</span><i>BH-128</i>
+          <b>BANTERHOUSE</b><span>CASSETTE · AMSTRAD CPC 128K</span><i>BH-K7</i>
         </div>
 
         <div className="inlay-front">
           <img src="/release/banterhouse-cover.png" alt="Portada" />
           <div className="front-badge">128K</div>
-          <div className="front-platform">AMSTRAD CPC 6128 · DISCO / CASSETTE EDITION</div>
+          <div className="front-price">875<small>PTAS.</small></div>
+          <div className="front-platform">AMSTRAD CPC 128K · CASSETTE EDITION · 875 PTAS.</div>
         </div>
       </section>
 
       <section className="cassette-labels" aria-label="Etiquetas para cassette">
         <div className="cassette-label label-a">
-          <span>CARA A</span><b>BANTERHOUSE</b><i>LA CASA DE LA GUASA</i><small>128K · BH-128</small>
+          <span>CARA A</span><b>BANTERHOUSE</b><i>LA CASA DE LA GUASA</i><small>128K · BH-K7 · 875 PTAS.</small>
           <div className="label-holes"><i></i><i></i><i></i></div>
         </div>
         <div className="cassette-label label-b">
-          <span>CARA B</span><b>THE BRIEFING SIDE</b><i>NO APAGUE EL ORDENADOR</i><small>128K · BH-128</small>
+          <span>CARA B</span><b>THE BRIEFING SIDE</b><i>NO APAGUE EL ORDENADOR</i><small>128K · BH-K7 · 875 PTAS.</small>
           <div className="label-holes"><i></i><i></i><i></i></div>
         </div>
       </section>

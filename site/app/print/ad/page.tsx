@@ -63,7 +63,8 @@ export default function Advertisement() {
 
         <footer className="ad-footer">
           <div><b>CASA DE LA GUASA SOFTWARE</b><span>MODO 0 · MÚSICA AY · TECLADO/JOYSTICK</span></div>
-          <div className="ad-price"><small>PRECIO LANZAMIENTO</small><b>1.495 PTS.</b></div>
+          <div className="ad-price"><small>CASSETTE</small><b>875 PTAS.</b></div>
+          <div className="ad-price ad-price-disk"><small>DISCO 3&quot;</small><b>1.900 PTAS.</b></div>
           <div className="ad-platform"><b>128K</b><span>DISCO 3&quot;</span></div>
         </footer>
       </section>

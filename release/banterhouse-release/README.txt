@@ -18,6 +18,9 @@ art/banterhouse-cover.png
 art/banterhouse-cassette-inlay.png
   Carátula desplegada y etiquetas de cassette, preparada a 3508 × 2480 px.
 
+art/banterhouse-disk-inlay.png
+  Estuche y etiqueta para disco Amstrad CPC de 3 pulgadas, a 3508 × 2480 px.
+
 press/banterhouse-ad-a4.png
   Anuncio de revista A4 a 2480 × 3508 px.
 
@@ -28,6 +31,12 @@ REQUISITOS
 ----------
 
 Amstrad CPC 6128 o emulador compatible. 128K de memoria.
+
+FORMATOS Y PRECIOS DE ÉPOCA
+---------------------------
+
+Cassette (ref. BH-K7)    875 PTAS.
+Disco 3" (ref. BH-D3) 1.900 PTAS.
 
 ARRANQUE DESDE DSK
 ------------------

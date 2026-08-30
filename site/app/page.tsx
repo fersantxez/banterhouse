@@ -29,8 +29,8 @@ export default function Home() {
           </p>
           <div className="hero-actions">
             <a className="button button-primary" href="#jugar">Jugar ahora</a>
-            <a className="button button-secondary" href="/release/banterhouse.dsk" download>
-              Descargar .DSK
+            <a className="button button-secondary" href="#descargas">
+              Elegir formato
             </a>
           </div>
           <p className="compatibility">AMSTRAD CPC 6128 · 128K · MODO 0 · AY SOUND</p>
@@ -41,7 +41,7 @@ export default function Home() {
             src="/release/banterhouse-cassette-hero.png"
             alt="Edición en cassette de Banterhouse con Pitu y Alberto en portada"
           />
-          <figcaption>Edición Briefing de Medianoche · Ref. BH-128</figcaption>
+          <figcaption>Cassette 875 PTAS. · Disco 3&quot; 1.900 PTAS.</figcaption>
         </figure>
 
         <div className="sticker" aria-label="100% publicidad de guerrilla">
@@ -164,44 +164,53 @@ export default function Home() {
         </header>
 
         <div className="release-grid">
-          <article className="release-card release-complete">
-            <span className="format-label">PACK COMPLETO</span>
-            <img src="/release/banterhouse-cover.png" alt="Portada de Banterhouse" />
+          <article className="release-card release-cassette">
+            <span className="format-label">CASSETTE · 875 PTAS.</span>
+            <img src="/release/banterhouse-cassette-hero.png" alt="Edición cassette de Banterhouse" />
             <div className="release-card-copy">
-              <h3>Edición Casa de la Guasa</h3>
-              <p>Juego + anuncio A4 + packaging imprimible + portada + instrucciones.</p>
-              <a className="button button-primary" href="/release/banterhouse-release.zip" download>
-                Descargar ZIP
+              <h3>Cassette de medianoche</h3>
+              <p>Imagen `.cdt` y carátula desplegada con etiquetas para las dos caras.</p>
+              <a className="button button-primary" href="/release/banterhouse.cdt" download>
+                Descargar .CDT
               </a>
-              <small>REF. BH-ZIP · 0 PTS · COPIAS ESCANDALOSAMENTE ILIMITADAS</small>
+              <a className="packaging-link" href="/release/banterhouse-cassette-inlay.png" download>
+                Carátula cassette ↘
+              </a>
+              <small>REF. BH-K7 · PRECIO DE VENTA AL PÚBLICO: 875 PTAS.</small>
             </div>
           </article>
 
           <article className="release-card release-dsk">
-            <span className="format-label">SOLO JUEGO</span>
+            <span className="format-label">DISCO 3&quot; · 1.900 PTAS.</span>
             <div className="disk-art" aria-hidden="true">
-              <span>3&quot;</span><b>DSK</b><i>BANTERHOUSE</i>
+              <span>3&quot;</span><b>DISCO</b><i>BANTERHOUSE · 128K</i>
             </div>
             <div className="release-card-copy">
-              <h3>Disco para impacientes</h3>
-              <p>Imagen `.dsk` lista para emulador o hardware compatible.</p>
+              <h3>Disquete ejecutivo</h3>
+              <p>Imagen `.dsk` y estuche imprimible para disco Amstrad CPC de 3 pulgadas.</p>
               <a className="button button-dark" href="/release/banterhouse.dsk" download>
                 Descargar .DSK
               </a>
-              <small>AMSTRAD CPC 6128 · 128K OBLIGATORIOS</small>
+              <a className="packaging-link" href="/release/banterhouse-disk-inlay.png" download>
+                Carátula disco 3&quot; ↘
+              </a>
+              <small>REF. BH-D3 · PRECIO DE VENTA AL PÚBLICO: 1.900 PTAS.</small>
             </div>
           </article>
 
-          <article className="release-card release-print">
-            <span className="format-label">PARA IMPRENTA</span>
+          <article className="release-card release-complete">
+            <span className="format-label">PACK COMPLETO</span>
             <img src="/release/banterhouse-ad-a4.png" alt="Anuncio de revista de Banterhouse" />
             <div className="release-card-copy">
-              <h3>Campaña nacional</h3>
-              <p>Anuncio y carátula en alta resolución. Papel couché no incluido.</p>
-              <div className="stacked-links">
-                <a href="/release/banterhouse-ad-a4.png" download>Anuncio A4 ↘</a>
-                <a href="/release/banterhouse-cassette-inlay.png" download>Carátula cassette ↘</a>
-              </div>
+              <h3>Casa de la Guasa</h3>
+              <p>Los dos juegos, las dos carátulas, portada, anuncio A4 e instrucciones.</p>
+              <a className="button button-secondary" href="/release/banterhouse-release.zip" download>
+                Descargar ZIP
+              </a>
+              <a className="packaging-link" href="/release/banterhouse-ad-a4.png" download>
+                Anuncio de revista ↘
+              </a>
+              <small>REF. BH-ZIP · COPIAS ESCANDALOSAMENTE ILIMITADAS</small>
             </div>
           </article>
         </div>

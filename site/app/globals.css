@@ -378,7 +378,7 @@ h1 {
   white-space: nowrap;
   transform: rotate(3deg);
 }
-.release-grid { position: relative; display: grid; grid-template-columns: 1.15fr .85fr .85fr; gap: clamp(1rem, 2.5vw, 2.5rem); }
+.release-grid { position: relative; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: clamp(1rem, 2.5vw, 2.5rem); }
 .release-card {
   position: relative;
   display: flex;
@@ -408,6 +408,17 @@ h1 {
 .release-card p { min-height: 3em; font-weight: 700; line-height: 1.4; }
 .release-card .button { margin-top: auto; }
 .release-card small { display: block; margin-top: 1.25rem; font-size: .65rem; font-weight: 700; }
+.packaging-link {
+  display: inline-block;
+  margin-top: .9rem;
+  padding-bottom: .25rem;
+  border-bottom: 2px solid currentColor;
+  font: 900 .72rem/1 Arial, sans-serif;
+  letter-spacing: .04em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+.packaging-link:hover { color: var(--magenta); }
 .button-dark { color: white; background: var(--ink); }
 .disk-art {
   position: relative;
@@ -554,7 +565,7 @@ footer p { margin: 0; }
 .ad-screens figcaption { padding: .42vw .2vw 0; font: 900 .75vw/1 Arial, sans-serif; text-align: center; }
 .ad-footer {
   display: grid;
-  grid-template-columns: 1.25fr .7fr .45fr;
+  grid-template-columns: 1.25fr .66fr .66fr .4fr;
   align-items: center;
   gap: 1vw;
   padding: .8vw 1.6vw;
@@ -568,6 +579,7 @@ footer p { margin: 0; }
 .ad-footer small { font: 700 .65vw/1.2 Arial, sans-serif; }
 .ad-price { padding: .5vw; color: var(--ink); background: var(--acid); border: .2vw solid var(--ink); text-align: center; transform: rotate(-2deg); }
 .ad-price b { font-size: 1.6vw; }
+.ad-price-disk { background: var(--cyan); transform: rotate(1.5deg); }
 .ad-platform { align-items: center; text-align: center; }
 .ad-platform b { font: 1000 2.4vw/.85 Impact, sans-serif; }
 
@@ -645,6 +657,22 @@ footer p { margin: 0; }
   font: 1000 1.7vw/1 Impact, sans-serif;
   transform: rotate(7deg);
 }
+.front-price {
+  position: absolute;
+  left: 1.1vw;
+  top: 1.1vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: .5vw .75vw;
+  color: var(--ink);
+  background: var(--acid);
+  border: .24vw solid var(--ink);
+  box-shadow: .35vw .35vw 0 var(--magenta);
+  font: 1000 1.8vw/.8 Impact, sans-serif;
+  transform: rotate(-5deg);
+}
+.front-price small { font: 900 .7vw/1 Arial, sans-serif; }
 .front-platform {
   position: absolute;
   inset: auto 0 0;
@@ -683,6 +711,158 @@ footer p { margin: 0; }
 .label-holes { position: absolute; left: 20%; right: 20%; bottom: 1.2vw; display: flex; justify-content: space-between; }
 .label-holes i { width: 1vw; aspect-ratio: 1; background: #e7deca; border: .15vw solid #777; border-radius: 50%; }
 .label-holes i:nth-child(2) { width: 4vw; border-radius: .3vw; }
+
+.disk-canvas {
+  padding: 2.4vw 3.5vw;
+  background:
+    radial-gradient(rgb(0 0 0 / 10%) .7px, transparent .7px),
+    #e7deca;
+  background-size: 5px 5px;
+}
+.disk-package {
+  position: relative;
+  height: 42vw;
+  display: grid;
+  grid-template-columns: 42vw 5vw 42vw;
+  justify-content: center;
+  overflow: hidden;
+  border: .24vw solid var(--ink);
+  outline: .08vw dashed #777;
+  outline-offset: .45vw;
+}
+.disk-package::before,
+.disk-package::after { content: ""; position: absolute; z-index: 7; top: 0; bottom: 0; border-left: .12vw dashed #555; }
+.disk-package::before { left: calc(50% - 2.5vw); }
+.disk-package::after { left: calc(50% + 2.5vw); }
+.disk-cover-front { position: relative; overflow: hidden; background: white; }
+.disk-cover-front > img { width: 100%; height: 100%; object-fit: cover; }
+.disk-format-badge {
+  position: absolute;
+  right: 1.2vw;
+  top: 1.2vw;
+  display: grid;
+  place-content: center;
+  width: 6vw;
+  aspect-ratio: 1;
+  color: var(--ink);
+  background: var(--cyan);
+  border: .27vw solid var(--ink);
+  border-radius: 50%;
+  font: 1000 1.3vw/.85 Impact, sans-serif;
+  text-align: center;
+  transform: rotate(6deg);
+}
+.disk-price-badge {
+  position: absolute;
+  left: 1.2vw;
+  top: 1.3vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: .65vw .9vw;
+  color: var(--ink);
+  background: var(--acid);
+  border: .27vw solid var(--ink);
+  box-shadow: .4vw .4vw 0 var(--magenta);
+  font: 1000 2vw/.8 Impact, sans-serif;
+  transform: rotate(-5deg);
+}
+.disk-price-badge small { font: 900 .72vw/1 Arial, sans-serif; }
+.disk-cover-band {
+  position: absolute;
+  inset: auto 0 0;
+  padding: .75vw 1vw;
+  color: white;
+  background: var(--magenta);
+  border-top: .27vw solid var(--ink);
+  font: 900 .72vw/1 Arial, sans-serif;
+  letter-spacing: .1em;
+  text-align: center;
+}
+.disk-package-spine {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1vw .25vw;
+  color: var(--ink);
+  background: var(--acid);
+  text-align: center;
+}
+.disk-package-spine b,
+.disk-package-spine span { writing-mode: vertical-rl; transform: rotate(180deg); }
+.disk-package-spine b { font: 1000 1.7vw/1 Impact, sans-serif; letter-spacing: .05em; }
+.disk-package-spine span { font: 900 .52vw/1 Arial, sans-serif; }
+.disk-package-spine i { color: var(--magenta); font: 900 .72vw/1 Arial, sans-serif; }
+.disk-cover-back { display: flex; min-width: 0; flex-direction: column; padding: 1.4vw; color: white; background: var(--ink); }
+.disk-cover-back header { display: flex; flex-direction: column; padding-bottom: .7vw; border-bottom: .25vw solid var(--cyan); }
+.disk-cover-back header b { color: var(--magenta); font: 1000 3.9vw/.8 Impact, sans-serif; }
+.disk-cover-back header span { margin-top: .55vw; font: 900 .72vw/1 Arial, sans-serif; letter-spacing: .1em; }
+.disk-cover-back h2 { margin: 1vw 0 .6vw; color: var(--acid); font: 1000 2.35vw/.9 Impact, sans-serif; text-transform: uppercase; }
+.disk-cover-back > p { margin: 0 0 .8vw; font: 700 .75vw/1.25 "Courier New", monospace; }
+.disk-back-screens { display: grid; grid-template-columns: 1fr 1fr; gap: .8vw; }
+.disk-back-screens figure { margin: 0; padding: .25vw; color: var(--ink); background: white; border: .15vw solid white; }
+.disk-back-screens img { display: block; width: 100%; aspect-ratio: 4/3; object-fit: cover; image-rendering: pixelated; }
+.disk-back-screens figcaption { padding: .35vw .15vw .15vw; font: 900 .58vw/1 Arial, sans-serif; text-align: center; }
+.disk-back-features { display: grid; gap: .2vw; margin-top: auto; padding: .65vw; color: var(--ink); background: var(--cyan); font: 900 .58vw/1 Arial, sans-serif; }
+.disk-back-features b { font-size: .78vw; }
+.disk-cover-back footer {
+  display: flex;
+  justify-content: space-between;
+  margin: .7vw 0 0;
+  padding: .6vw 0 0;
+  color: white;
+  background: transparent;
+  border-top: .16vw solid #777;
+  font: 900 .58vw/1 Arial, sans-serif;
+  letter-spacing: .04em;
+}
+.disk-cover-back footer b { color: var(--acid); }
+.disk-print-extras {
+  width: 84%;
+  height: 15.5vw;
+  display: grid;
+  grid-template-columns: 1fr 1.25fr;
+  gap: 3vw;
+  align-items: stretch;
+  margin: 2.6vw auto 0;
+}
+.amstrad-disk-label {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  color: white;
+  background: #191919;
+  border: .28vw solid #050505;
+  border-radius: .45vw;
+  outline: .08vw dashed #777;
+  outline-offset: .4vw;
+  text-align: center;
+}
+.amstrad-disk-label span { color: var(--acid); font: 900 .65vw/1 Arial, sans-serif; letter-spacing: .12em; }
+.amstrad-disk-label b { margin: .5vw 0 .25vw; color: var(--magenta); font: 1000 2.6vw/.8 Impact, sans-serif; }
+.amstrad-disk-label i { font: 900 .52vw/1 Arial, sans-serif; }
+.disk-shutter { position: absolute; left: 25%; right: 25%; top: 0; height: 3.2vw; background: #aaa; border: .2vw solid #686868; }
+.disk-hub { position: absolute; left: 50%; bottom: 1vw; width: 2.7vw; aspect-ratio: 1; background: #e7deca; border: .25vw solid #777; border-radius: 50%; transform: translateX(-50%); }
+.disk-instructions-block {
+  display: flex;
+  flex-direction: column;
+  padding: 1.2vw 1.5vw;
+  color: var(--ink);
+  background: var(--acid);
+  border: .25vw solid var(--ink);
+  outline: .08vw dashed #777;
+  outline-offset: .4vw;
+}
+.disk-instructions-block h3 { margin: 0; color: var(--magenta); font: 1000 2.1vw/.85 Impact, sans-serif; }
+.disk-instructions-block p { margin: .7vw 0; font: 700 .72vw/1.25 "Courier New", monospace; }
+.disk-instructions-block > div { display: flex; align-items: center; justify-content: space-between; margin-top: auto; padding-top: .7vw; border-top: .2vw solid var(--ink); }
+.disk-instructions-block > div b { font: 1000 1.05vw/1 Arial Black, Arial, sans-serif; }
+.disk-instructions-block > div span { font: 900 .6vw/1 Arial, sans-serif; }
+.disk-instructions-block strong { padding: .5vw .7vw; color: white; background: var(--magenta); border: .18vw solid var(--ink); font: 1000 1.35vw/1 Impact, sans-serif; transform: rotate(-2deg); }
 
 @media (max-width: 900px) {
   .hero {

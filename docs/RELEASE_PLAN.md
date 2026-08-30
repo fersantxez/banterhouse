@@ -5,8 +5,8 @@
 **Titular:** *La Gran Idea no se entrega. Se sobrevive.*
 
 **Promesa:** una pieza perdida de la edad de oro del software español reaparece
-con juego real para Amstrad CPC 6128, carátula de cassette, anuncio de revista y
-una recreativa doméstica dentro del navegador.
+con juego real para Amstrad CPC 6128, ediciones físicas de cassette y disco de
+3 pulgadas, anuncio de revista y una recreativa doméstica dentro del navegador.
 
 **Conflicto:** Madrid, 03:17. Pitu debe reconstruir una campaña hecha pedazos
 antes de que Alberto Pérez del Briefing Ramírez de Quiñones la alcance con otro
@@ -43,8 +43,10 @@ literales, de anuncios de Dinamic, Topo Soft, Opera Soft y Ocean. Referencias:
 | Portada | Carátula y prensa | `site/public/release/banterhouse-cover.png` |
 | Cassette hero | Cabecera de landing y prensa | `site/public/release/banterhouse-cassette-hero.png` |
 | Carátula desplegada | Impresión A4 horizontal | `site/public/release/banterhouse-cassette-inlay.png` |
+| Estuche de disco 3″ | Impresión A4 horizontal | `site/public/release/banterhouse-disk-inlay.png` |
 | Anuncio | Revista A4 vertical | `site/public/release/banterhouse-ad-a4.png` |
-| Juego | Descarga directa | `site/public/release/banterhouse.dsk` |
+| Juego en cassette | Descarga directa, 875 PTAS. | `site/public/release/banterhouse.cdt` |
+| Juego en disco 3″ | Descarga directa, 1.900 PTAS. | `site/public/release/banterhouse.dsk` |
 | Paquete | Juego, CDT, arte y prensa | `site/public/release/banterhouse-release.zip` |
 | Social card | Open Graph y X | `site/public/og.png` |
 | Emulador | Juego en navegador | `site/public/emulator/` |
@@ -55,7 +57,7 @@ literales, de anuncios de Dinamic, Topo Soft, Opera Soft y Ocean. Referencias:
 2. Argumento como anuncio de videojuego.
 3. Expedientes de Pitu y Alberto.
 4. Banterhouse / Casa de la Guasa.
-5. Formatos: paquete completo, DSK y artes para imprenta.
+5. Formatos: cassette a 875 PTAS., disco de 3″ a 1.900 PTAS. y paquete completo.
 6. Emulador CPC 6128 con el disco montado y autoarranque.
 
 ## Emulación
