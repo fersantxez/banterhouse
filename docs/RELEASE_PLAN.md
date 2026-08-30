@@ -33,6 +33,8 @@ literales, de anuncios de Dinamic, Topo Soft, Opera Soft y Ocean. Referencias:
 - [Archivo de publicidad de Dinamic en CPC Rulez](https://cpcrulez.fr/info-dinamic.htm)
 - [Topo Soft: el reto de ser distintos](https://cpcrulez.fr/games-company-topo_soft-el_reto_de_ser_distintos_ASO.htm)
 - [Anuncios de software en MicroHobby 189](https://archive.org/download/microhobby-magazine-189.pdf/MicroHobby_189.pdf)
+- [Micromanía, primera época, número 28 (octubre de 1987)](https://archive.org/details/MicromaniaPrimerEpocaspanishIssue28)
+- [Micromanía, primera época, número 32 (febrero de 1988)](https://archive.org/details/MicromaniaPrimerEpocaspanishIssue32)
 - [Anuncio de NARC de Ocean](https://worldofspectrum.net/item/0003360/)
 - [Archivo original de Creatas y Ejecutas](https://www.flickr.com/photos/danielsolana/albums/72157604028721493/)
 
@@ -45,6 +47,7 @@ literales, de anuncios de Dinamic, Topo Soft, Opera Soft y Ocean. Referencias:
 | Carátula desplegada | Impresión A4 horizontal | `site/public/release/banterhouse-cassette-inlay.png` |
 | Estuche de disco 3″ | Impresión A4 horizontal | `site/public/release/banterhouse-disk-inlay.png` |
 | Anuncio | Revista A4 vertical | `site/public/release/banterhouse-ad-a4.png` |
+| Artículo Micromanía | Doble página 4960 × 3508 y PDF A3 | `site/public/release/banterhouse-micromania-spread.png` |
 | Juego en cassette | Descarga directa, 875 PTAS. | `site/public/release/banterhouse.cdt` |
 | Juego en disco 3″ | Descarga directa, 1.900 PTAS. | `site/public/release/banterhouse.dsk` |
 | Paquete | Juego, CDT, arte y prensa | `site/public/release/banterhouse-release.zip` |
@@ -58,7 +61,8 @@ literales, de anuncios de Dinamic, Topo Soft, Opera Soft y Ocean. Referencias:
 3. Expedientes de Pitu y Alberto.
 4. Banterhouse / Casa de la Guasa.
 5. Formatos: cassette a 875 PTAS., disco de 3″ a 1.900 PTAS. y paquete completo.
-6. Emulador CPC 6128 con el disco montado y autoarranque.
+6. Hemeroteca imposible: artículo apócrifo de Micromanía con análisis y puntuaciones.
+7. Emulador CPC 6128 con el disco montado y autoarranque.
 
 ## Emulación
 

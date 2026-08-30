@@ -210,10 +210,37 @@ export default function Home() {
               <a className="packaging-link" href="/release/banterhouse-ad-a4.png" download>
                 Anuncio de revista ↘
               </a>
+              <a className="packaging-link" href="/release/banterhouse-micromania-article.pdf" download>
+                Artículo Micromanía ↘
+              </a>
               <small>REF. BH-ZIP · COPIAS ESCANDALOSAMENTE ILIMITADAS</small>
             </div>
           </article>
         </div>
+      </section>
+
+      <section className="magazine-feature" aria-labelledby="magazine-heading">
+        <div className="magazine-feature-copy">
+          <p className="eyebrow">Hemeroteca imposible / Noviembre 1987</p>
+          <h2 id="magazine-heading">Micromanía somete la Casa de la Guasa a su joystick.</h2>
+          <p>
+            Una doble página con análisis, pantallazos, ficha técnica y veredicto
+            editorial. Recreación no oficial inspirada en la primera época de la
+            prensa española de 8 bits.
+          </p>
+          <div className="magazine-actions">
+            <a className="button button-primary" href="/release/banterhouse-micromania-article.pdf" download>
+              Descargar PDF
+            </a>
+            <a className="button button-dark" href="/release/banterhouse-micromania-spread.png" download>
+              Alta resolución
+            </a>
+          </div>
+          <small>PIEZA APÓCRIFA · NO PUBLICADA NI AFILIADA A MICROMANÍA</small>
+        </div>
+        <a className="magazine-preview" href="/release/banterhouse-micromania-spread.png" download aria-label="Descargar doble página de Micromanía en alta resolución">
+          <img src="/release/banterhouse-micromania-spread.png" alt="Doble página de revista dedicada a Banterhouse" />
+        </a>
       </section>
 
       <section className="play-section" id="jugar" aria-labelledby="play-heading">

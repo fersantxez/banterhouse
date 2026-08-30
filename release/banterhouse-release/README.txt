@@ -24,6 +24,12 @@ art/banterhouse-disk-inlay.png
 press/banterhouse-ad-a4.png
   Anuncio de revista A4 a 2480 × 3508 px.
 
+press/banterhouse-micromania-spread.png
+  Artículo de dos páginas inspirado en la prensa española de 8 bits, a 4960 × 3508 px.
+
+press/banterhouse-micromania-article.pdf
+  Versión A3 horizontal lista para imprimir del artículo de revista.
+
 press/banterhouse-cassette-hero.png
   Fotografía promocional de la edición física.
 
@@ -70,3 +76,6 @@ La landing integra el emulador 1984 de Salvo Gendut, distribuido bajo GPL-2.0:
 https://github.com/salvogendut/1984
 
 © 1987→2026 CASA DE LA GUASA SOFTWARE
+
+El artículo de Micromanía es una recreación editorial no oficial creada en 2026.
+No fue publicado ni está afiliado a la revista original.
