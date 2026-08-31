@@ -4,6 +4,7 @@
 
 [Play in your browser](https://banterhouse-128k.donatoexposito.chatgpt.site/#jugar) ·
 [Download the recommended DSK](https://banterhouse-128k.donatoexposito.chatgpt.site/release/banterhouse.dsk) ·
+[Read the illustrated manual](https://banterhouse-128k.donatoexposito.chatgpt.site/release/banterhouse-manual.pdf) ·
 [Get the complete release pack](https://banterhouse-128k.donatoexposito.chatgpt.site/release/banterhouse-release.zip)
 
 ![Thirty rooms from the Banterhouse campaign](docs/images/room-gallery.png)
@@ -45,8 +46,9 @@ which mounts the game in a CPC 6128 emulator automatically.
 
 For an emulator or real machine, use the **DSK edition** as the recommended
 format. A CDT cassette image is also available from the project site. The full
-release pack includes both game formats, cover art, cassette and disk inlays,
-an A4 advertisement, instructions and the magazine-style feature.
+release pack includes both game formats, a 12-page illustrated user manual,
+cover art, cassette and disk inlays, an A4 advertisement and the magazine-style
+feature.
 
 ### Controls
 

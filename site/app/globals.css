@@ -472,6 +472,56 @@ h1 {
   text-transform: uppercase;
 }
 .packaging-link:hover { color: var(--magenta); }
+.manual-callout {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(190px, .65fr) 1.35fr;
+  gap: clamp(1.5rem, 5vw, 5rem);
+  align-items: center;
+  margin-top: clamp(3rem, 7vw, 7rem);
+  padding: clamp(1.2rem, 3vw, 2.8rem);
+  color: white;
+  background: var(--ink);
+  border: 5px solid var(--ink);
+  box-shadow: 13px 14px 0 var(--magenta);
+}
+.manual-cover {
+  position: relative;
+  min-height: 315px;
+  padding: 1.25rem;
+  overflow: hidden;
+  color: white;
+  background:
+    radial-gradient(circle, rgb(255 255 255 / 12%) 0 2px, transparent 2.5px) 0 0 / 15px 15px,
+    #24131a;
+  border: 4px solid white;
+  box-shadow: 9px 10px 0 var(--cyan);
+  transform: rotate(-2deg);
+}
+.manual-cover::after {
+  content: "10 PLANTAS";
+  position: absolute;
+  right: -1.1rem;
+  bottom: 1rem;
+  width: 6.3rem;
+  padding: 1.25rem .4rem;
+  color: var(--ink);
+  background: var(--acid);
+  border: 3px solid var(--ink);
+  font: 1000 .72rem/1 Arial, sans-serif;
+  text-align: center;
+  transform: rotate(7deg);
+}
+.manual-cover small,
+.manual-cover i { display: block; font: 900 .68rem/1.2 Arial, sans-serif; letter-spacing: .08em; }
+.manual-cover small { display: inline-block; padding: .45rem .55rem; background: var(--magenta); }
+.manual-cover strong { display: block; margin-top: 1.5rem; font: 1000 clamp(2.6rem, 5vw, 4.8rem)/.76 Impact, sans-serif; }
+.manual-cover span { display: block; margin-top: 1rem; color: var(--acid); font: 1000 clamp(1.2rem, 2.4vw, 2.2rem)/.88 Impact, sans-serif; }
+.manual-cover i { position: absolute; left: 1.25rem; bottom: 1.2rem; font-style: normal; }
+.manual-copy h3 { max-width: 850px; margin: .25rem 0 1rem; font: 1000 clamp(2.4rem, 5vw, 5rem)/.86 Impact, sans-serif; text-transform: uppercase; }
+.manual-copy > p:not(.eyebrow) { max-width: 780px; font-size: clamp(1rem, 1.5vw, 1.2rem); font-weight: 700; line-height: 1.5; }
+.manual-actions { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: 1.5rem; }
+.manual-copy > small { display: block; margin-top: 1.2rem; color: var(--acid); font: 900 .68rem/1.3 Arial, sans-serif; letter-spacing: .07em; }
 .button-dark { color: white; background: var(--ink); }
 .disk-art {
   position: relative;
@@ -1123,6 +1173,8 @@ footer p { margin: 0; }
   .release-complete { grid-column: auto; }
   .release-card { box-shadow: 7px 8px 0 var(--ink); }
   .release-recommended { box-shadow: 8px 9px 0 var(--magenta); }
+  .manual-callout { grid-template-columns: 1fr; box-shadow: 8px 9px 0 var(--magenta); }
+  .manual-cover { width: min(100%, 310px); min-height: 360px; justify-self: center; }
   .magazine-preview { padding: .55rem; box-shadow: 8px 9px 0 #071d18; transform: none; }
   .play-section { padding-inline: .8rem; }
   .play-copy { padding-inline: .5rem; }

@@ -196,6 +196,9 @@ export default function Home() {
               <a className="packaging-link" href="/release/banterhouse-disk-inlay.png" download>
                 Carátula disco 3&quot; ↘
               </a>
+              <a className="packaging-link" href="/release/banterhouse-manual.pdf" download>
+                Manual ilustrado ↘
+              </a>
               <small>REF. BH-D3 · EDICIÓN RECOMENDADA · 1.900 PTAS.</small>
             </div>
           </article>
@@ -221,7 +224,7 @@ export default function Home() {
             <img src="/release/banterhouse-ad-a4.png" alt="Anuncio de revista de Banterhouse" />
             <div className="release-card-copy">
               <h3>Casa de la Guasa</h3>
-              <p>DSK, CDT, carátulas, portada, anuncio A4 e instrucciones.</p>
+              <p>DSK, CDT, manual ilustrado, carátulas, portada y materiales de lanzamiento.</p>
               <a className="button button-secondary" href="/release/banterhouse-release.zip" download>
                 Descargar ZIP
               </a>
@@ -235,6 +238,33 @@ export default function Home() {
             </div>
           </article>
         </div>
+
+        <article className="manual-callout" id="manual" aria-labelledby="manual-heading">
+          <div className="manual-cover" aria-hidden="true">
+            <small>EDICIÓN CPC 6128 / 128K</small>
+            <strong>BANTER<br />HOUSE</strong>
+            <span>MANUAL DE<br />INSTRUCCIONES</span>
+            <i>12 PÁGINAS · A5</i>
+          </div>
+          <div className="manual-copy">
+            <p className="eyebrow">Documentación para sobrevivir al briefing</p>
+            <h3 id="manual-heading">El manual que debía venir en la caja.</h3>
+            <p>
+              Misión, controles, Carga y café, cinco dificultades, las diez plantas,
+              consejos de supervivencia y guía de arranque. Un libreto original
+              inspirado en la energía editorial del software español de 8 bits.
+            </p>
+            <div className="manual-actions">
+              <a className="button button-primary" href="/release/banterhouse-manual.pdf" download>
+                Descargar manual PDF
+              </a>
+              <a className="button button-dark" href="/release/banterhouse-release.zip" download>
+                Manual + juego
+              </a>
+            </div>
+            <small>PDF A5 · 12 PÁGINAS · INCLUIDO TAMBIÉN EN EL PACK COMPLETO</small>
+          </div>
+        </article>
       </section>
 
       <section className="magazine-feature" id="micromania" aria-labelledby="magazine-heading">

@@ -10,6 +10,10 @@ Este paquete contiene el juego completo y sus materiales de lanzamiento.
 La campaña recorre diez plantas y treinta pantallas con fondos, paletas y
 elementos propios inspirados en una agencia de publicidad dibujada como cómic.
 
+manual/banterhouse-manual.pdf
+  Manual de instrucciones ilustrado de 12 páginas, preparado en formato A5
+  para lectura en pantalla o impresión doméstica.
+
 game/banterhouse.dsk
   Imagen de disco para Amstrad CPC 6128 y emuladores compatibles.
 
@@ -67,6 +71,9 @@ CONTROLES
 Flechas o QAOP       Mover a Pitu
 S, Espacio o fuego   Acción
 Esc                  Pausa
+
+Consulta manual/banterhouse-manual.pdf para conocer la misión, las reglas de
+Carga y café, las cinco dificultades, el directorio de plantas y el pitch final.
 
 ARGUMENTO
 ---------

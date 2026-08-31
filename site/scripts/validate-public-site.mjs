@@ -74,6 +74,7 @@ const requiredFiles = [
   'banterhouse-release.zip',
   'banterhouse-disk-inlay.png',
   'banterhouse-cassette-inlay.png',
+  'banterhouse-manual.pdf',
   'banterhouse-micromania-article.pdf',
 ];
 for (const filename of requiredFiles) {
@@ -85,6 +86,8 @@ const png = readFileSync(join(releaseDir, 'banterhouse-disk-inlay.png'));
 check(png.subarray(0, 8).equals(Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a])), 'La carátula DSK no es un PNG válido.');
 const pdf = readFileSync(join(releaseDir, 'banterhouse-micromania-article.pdf'));
 check(pdf.subarray(0, 5).toString() === '%PDF-', 'El artículo descargable no es un PDF válido.');
+const manualPdf = readFileSync(join(releaseDir, 'banterhouse-manual.pdf'));
+check(manualPdf.subarray(0, 5).toString() === '%PDF-', 'El manual descargable no es un PDF válido.');
 
 const archive = join(releaseDir, 'banterhouse-release.zip');
 for (const format of ['dsk', 'cdt']) {
@@ -102,6 +105,12 @@ if (archivedReadme.status === 0) {
   for (const pattern of forbiddenPublicCopy) {
     check(!pattern.test(archivedReadme.stdout), `El README del ZIP contiene texto interno: ${pattern}`);
   }
+}
+
+const archivedManual = spawnSync('unzip', ['-p', archive, 'banterhouse-release/manual/banterhouse-manual.pdf'], { maxBuffer: 8 * 1024 * 1024 });
+check(archivedManual.status === 0, 'El ZIP no contiene el manual de usuario.');
+if (archivedManual.status === 0) {
+  check(sha256(archivedManual.stdout) === sha256(manualPdf), 'El manual no coincide entre la descarga directa y el ZIP.');
 }
 
 check(existsSync(join(publicDir, 'emulator', 'index.html')), 'Falta la entrada del emulador web.');
