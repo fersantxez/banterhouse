@@ -4,6 +4,10 @@
 #include "banterhouse-theme.h"
 #include "banterhouse-sfx.h"
 
+#ifdef __SDCC
+#pragma constseg BH_GFX
+#endif
+
 #define BH_SFX_CHANNEL AY_CHANNEL_C
 
 static u8 current_priority;

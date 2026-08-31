@@ -1,12 +1,25 @@
 const cpcScreens = [
-  { src: '/release/screenshots/loading.png', alt: 'Pantalla de carga de Banterhouse' },
-  { src: '/release/screenshots/gameplay.png', alt: 'Pitu recorre la agencia en Amstrad CPC' },
-  { src: '/release/screenshots/boss.png', alt: 'El pitch final ante el Presidente' },
+  {
+    src: '/release/screenshots/gameplay.png',
+    alt: 'Pitu atraviesa el Túnel Pantone de la agencia en Amstrad CPC',
+    caption: 'Túnel Pantone · Planta 3',
+  },
+  {
+    src: '/release/screenshots/night.png',
+    alt: 'Pitu recorre el Estudio Noche con un fondo azul y magenta',
+    caption: 'Estudio Noche · Planta 7',
+  },
+  {
+    src: '/release/screenshots/boss.png',
+    alt: 'El pitch final en la sala de Proyección ante el Presidente',
+    caption: 'Proyección · Pitch final',
+  },
 ];
 
 export default function Home() {
   return (
-    <main>
+    <main id="contenido">
+      <a className="skip-link" href="#release-title">Saltar al contenido</a>
       <nav className="topbar" aria-label="Navegación principal">
         <a className="topbar-brand" href="#arriba">BH/128</a>
         <div className="topbar-links">
@@ -29,20 +42,20 @@ export default function Home() {
             a la agencia que convirtió el caos en método: la Casa de la Guasa.
           </p>
           <div className="hero-actions">
-            <a className="button button-primary" href="#jugar">Jugar ahora</a>
-            <a className="button button-secondary" href="#descargas">
-              Elegir formato
+            <a className="button button-primary" href="#jugar">Jugar DSK ahora</a>
+            <a className="button button-secondary" href="/release/banterhouse.dsk" download>
+              Descargar DSK
             </a>
           </div>
-          <p className="compatibility">AMSTRAD CPC 6128 · 128K · MODO 0 · AY SOUND</p>
+          <p className="compatibility">EDICIÓN DSK · CPC 6128 · 128K · MODO 0 · AY SOUND</p>
         </div>
 
         <figure className="product-shot">
           <img
-            src="/release/banterhouse-cassette-hero.png"
-            alt="Edición en cassette de Banterhouse con Pitu y Alberto en portada"
+            src="/release/banterhouse-disk-inlay.png"
+            alt="Edición recomendada de Banterhouse en disco de 3 pulgadas, con estuche, etiqueta e instrucciones"
           />
-          <figcaption>Cassette 875 PTAS. · Disco 3&quot; 1.900 PTAS.</figcaption>
+          <figcaption>Edición recomendada · Disco 3&quot; · 1.900 PTAS.</figcaption>
         </figure>
 
         <div className="sticker" aria-label="100% publicidad de guerrilla">
@@ -52,7 +65,10 @@ export default function Home() {
       </section>
 
       <div className="marquee" aria-label="Características del juego">
-        <div>★ NUEVO ★ ACCIÓN PUBLICITARIA EN 128K ★ 30 PANTALLAS ★ 12 PIEZAS DE CREATIVIDAD ★ UN BRIEFING DE MÁS ★</div>
+        <div className="marquee-track">
+          <span>★ NUEVO ★ ACCIÓN PUBLICITARIA EN 128K ★ 30 PANTALLAS ★ 12 PIEZAS DE CREATIVIDAD ★ UN BRIEFING DE MÁS ★</span>
+          <span aria-hidden="true">★ NUEVO ★ ACCIÓN PUBLICITARIA EN 128K ★ 30 PANTALLAS ★ 12 PIEZAS DE CREATIVIDAD ★ UN BRIEFING DE MÁS ★</span>
+        </div>
       </div>
 
       <section className="story-section" id="argumento">
@@ -78,7 +94,7 @@ export default function Home() {
           {cpcScreens.map((screen, index) => (
             <figure key={screen.src} className={`screen screen-${index + 1}`}>
               <img src={screen.src} alt={screen.alt} />
-              <figcaption>Imagen real Amstrad CPC · {index + 1}/3</figcaption>
+              <figcaption>{screen.caption} · Imagen real Amstrad CPC</figcaption>
             </figure>
           ))}
         </div>
@@ -151,9 +167,10 @@ export default function Home() {
           </p>
           <p>
             Diez plantas. Treinta pantallas. Doce piezas de creatividad. Un pitch
-            final ante el Presidente. Y una promesa publicitaria que, por una vez,
-            es rigurosamente cierta: <strong>no hay dos partidas iguales si nadie
-            entiende el briefing.</strong>
+            final ante el Presidente. Cada sala tiene su propio rótulo, paleta y
+            landmark: del Túnel Pantone al Estudio Noche, del archivo a la sala de
+            Proyección. Y una promesa publicitaria que, por una vez, es rigurosamente
+            cierta: <strong>no hay dos partidas iguales si nadie entiende el briefing.</strong>
           </p>
         </div>
       </section>
@@ -165,37 +182,37 @@ export default function Home() {
         </header>
 
         <div className="release-grid">
-          <article className="release-card release-cassette">
-            <span className="format-label">CASSETTE · 875 PTAS.</span>
-            <img src="/release/banterhouse-cassette-hero.png" alt="Edición cassette de Banterhouse" />
-            <div className="release-card-copy">
-              <h3>Cassette de medianoche</h3>
-              <p>Imagen `.cdt` y carátula desplegada con etiquetas para las dos caras.</p>
-              <a className="button button-primary" href="/release/banterhouse.cdt" download>
-                Descargar .CDT
-              </a>
-              <a className="packaging-link" href="/release/banterhouse-cassette-inlay.png" download>
-                Carátula cassette ↘
-              </a>
-              <small>REF. BH-K7 · PRECIO DE VENTA AL PÚBLICO: 875 PTAS.</small>
-            </div>
-          </article>
-
-          <article className="release-card release-dsk">
-            <span className="format-label">DISCO 3&quot; · 1.900 PTAS.</span>
+          <article className="release-card release-dsk release-recommended">
+            <span className="format-label">RECOMENDADA · DISCO 3&quot;</span>
             <div className="disk-art" aria-hidden="true">
               <span>3&quot;</span><b>DISCO</b><i>BANTERHOUSE · 128K</i>
             </div>
             <div className="release-card-copy">
               <h3>Disquete ejecutivo</h3>
-              <p>Imagen `.dsk` y estuche imprimible para disco Amstrad CPC de 3 pulgadas.</p>
-              <a className="button button-dark" href="/release/banterhouse.dsk" download>
+              <p>La experiencia por defecto: carga rápida, emulador integrado y estuche imprimible.</p>
+              <a className="button button-primary" href="/release/banterhouse.dsk" download>
                 Descargar .DSK
               </a>
               <a className="packaging-link" href="/release/banterhouse-disk-inlay.png" download>
                 Carátula disco 3&quot; ↘
               </a>
-              <small>REF. BH-D3 · PRECIO DE VENTA AL PÚBLICO: 1.900 PTAS.</small>
+              <small>REF. BH-D3 · EDICIÓN RECOMENDADA · 1.900 PTAS.</small>
+            </div>
+          </article>
+
+          <article className="release-card release-cassette">
+            <span className="format-label">ALTERNATIVA · CASSETTE</span>
+            <img src="/release/banterhouse-cassette-hero.png" alt="Edición cassette de Banterhouse" />
+            <div className="release-card-copy">
+              <h3>Cassette de medianoche</h3>
+              <p>Formato alternativo de conservación en CDT, con carátula para las dos caras.</p>
+              <a className="button button-dark" href="/release/banterhouse.cdt" download>
+                Descargar .CDT
+              </a>
+              <a className="packaging-link" href="/release/banterhouse-cassette-inlay.png" download>
+                Carátula cassette ↘
+              </a>
+              <small>REF. BH-K7 · EDICIÓN ALTERNATIVA · 875 PTAS.</small>
             </div>
           </article>
 
@@ -204,7 +221,7 @@ export default function Home() {
             <img src="/release/banterhouse-ad-a4.png" alt="Anuncio de revista de Banterhouse" />
             <div className="release-card-copy">
               <h3>Casa de la Guasa</h3>
-              <p>Los dos juegos, las dos carátulas, portada, anuncio A4 e instrucciones.</p>
+              <p>DSK, CDT, carátulas, portada, anuncio A4 e instrucciones.</p>
               <a className="button button-secondary" href="/release/banterhouse-release.zip" download>
                 Descargar ZIP
               </a>
@@ -270,8 +287,8 @@ export default function Home() {
 
         <div className="emulator-shell">
           <div className="monitor-label">
-            <span>BANTERHOUSE VISION</span>
-            <i>128K COLOUR PERSONAL COMPUTER</i>
+            <span>BANTERHOUSE VISION · DSK</span>
+            <i>EDICIÓN RECOMENDADA · 128K</i>
           </div>
           <iframe
             title="Emulador Amstrad CPC 6128 con Banterhouse"
@@ -289,7 +306,7 @@ export default function Home() {
         <p>BANTERHOUSE · UN PRODUCTO DE LA CASA DE LA GUASA · MADRID / 1987→2026</p>
         <p>
           Emulación por <a href="https://github.com/salvogendut/1984">1984</a> · GPL-2.0 ·
-          Hecho con 128K, café recalentado y cambios mínimos ·
+          Hecho con 128K, café recalentado e ideas imposibles ·
           <a href="https://github.com/fersantxez/banterhouse"> Código en GitHub</a>.
         </p>
       </footer>

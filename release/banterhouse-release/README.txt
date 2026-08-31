@@ -6,6 +6,10 @@ La Gran Idea no se entrega. Se sobrevive.
 CONTENIDO
 ---------
 
+Este paquete contiene el juego completo y sus materiales de lanzamiento.
+La campaña recorre diez plantas y treinta pantallas con fondos, paletas y
+elementos propios inspirados en una agencia de publicidad dibujada como cómic.
+
 game/banterhouse.dsk
   Imagen de disco para Amstrad CPC 6128 y emuladores compatibles.
 
@@ -60,9 +64,9 @@ ARRANQUE DESDE DSK
 CONTROLES
 ---------
 
-Flechas o QAOP  Mover a Pitu
-Espacio         Acción
-Esc             Pausa
+Flechas o QAOP       Mover a Pitu
+S, Espacio o fuego   Acción
+Esc                  Pausa
 
 ARGUMENTO
 ---------

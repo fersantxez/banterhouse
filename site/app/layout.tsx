@@ -4,10 +4,19 @@ import './globals.css';
 export const metadata: Metadata = {
   metadataBase: new URL('https://banterhouse-128k.donatoexposito.chatgpt.site'),
   title: 'Banterhouse — La Gran Idea no se entrega. Se sobrevive.',
-  description: 'Un juego de persecución, puzles y publicidad para Amstrad CPC 6128.',
+  description: 'Juega online o descarga la edición DSK recomendada de Banterhouse para Amstrad CPC 6128.',
+  alternates: {
+    canonical: '/',
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
   openGraph: {
     title: 'Banterhouse — La Gran Idea no se entrega. Se sobrevive.',
-    description: 'Pitu contra Alberto Pérez del Briefing en la Casa de la Guasa. Juega online o descarga la edición completa para Amstrad CPC 6128.',
+    description: 'Pitu contra Alberto Pérez del Briefing en la Casa de la Guasa. Juega online o descarga Banterhouse para Amstrad CPC 6128.',
+    url: '/',
+    siteName: 'Banterhouse',
     type: 'website',
     locale: 'es_ES',
     images: [{

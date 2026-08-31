@@ -93,12 +93,12 @@ reinicializa ambos punteros, evitando notas o ruido colgados.
 | `0x1E6C–0x1E91` | 38 | Trabajo del renderer. |
 | `0x1EA0–0x1F6F` | 208 | Banco Arkos SFX-only. |
 | `0x2000–0x305D` | 4190 | Sprites, logo y paleta. |
-| `0x4000–0x6B82` | — | Código y datos residentes. |
-| `0x6B83–0x7FFF` | 5245 disponibles | Pila y margen previo a vídeo. |
+| `0x4000–0x6F57` | — | Código y datos residentes del release Classic actual. |
+| `0x6F58–0x7FFF` | 4264 disponibles | Pila y margen previo a vídeo. |
 | `0x8000–0xBFFF` | 16384 | Framebuffer inferior. |
 | `0xC000–0xFFFF` | 16384 | Framebuffer superior. |
 
-`make sizes` calcula un high-water de `0x6B82` y exige al menos 4096 bytes de
+`make sizes` calcula un high-water de `0x6F57` y exige al menos 4096 bytes de
 margen. `make check` rechaza solapamientos del tema con `0x1300`, del banco SFX
 con `0x2000`, cualquier high-water `>= 0x8000` y cualquier `_INITIALIZED` o
 `_INITIALIZER` no vacío.
@@ -114,11 +114,11 @@ make release
 ```
 
 La prueba de audio ejecuta Caprice32 como CPC 6128 a velocidad PAL real y
-captura 75,42 segundos a 44,1 kHz/16-bit estéreo: una primera vuelta completa,
+captura 75,56 segundos a 44,1 kHz/16-bit estéreo: una primera vuelta completa,
 el cruce de loop, los ocho SFX, una colisión de prioridades, pausa, reanudación
 y parada. Artefacto validado:
-`artifacts/audio/midi-theme-events.MEV67v/audio.wav`, SHA-256
-`9283ee17edcdd4b9e2f6289fdc9939d801371e628c0c010646385a409dbac6c4`.
+`artifacts/audio/midi-theme-events.7EMMW8/audio.wav`, SHA-256
+`283f627e9c22b155c716b6b3b8135d2996c3d3fd2d6504c63b33c2f3e69e5746`.
 
 La matriz automatizada completa los diez niveles, las tres fases del jefe y la
 pantalla final en las cinco dificultades. Su `trap` y la prueba de audio dejan

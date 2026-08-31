@@ -17,10 +17,12 @@ test -s src/banterhouse-sfx.h
 test "$(wc -c < dsk_files/LOADING.SCR | tr -d ' ')" -eq 16384
 rg -q 'LOAD "LOADING.SCR",&C000' dsk_files/LOADER.BAS
 rg -q 'RUN "BANTERHO.BIN"' dsk_files/LOADER.BAS
-test "$(rg -c '"[A-Z0-9 ]+"' src/game.c | tr -d ' ')" -ge 10
-test "$(rg -c '^   \{ 0x' src/game.c | tr -d ' ')" -eq 5
+test "$(rg -o '"[A-Z0-9 ]+"' src/game.c src/game_render.c src/world_data.c | wc -l | tr -d ' ')" -ge 10
+rg -q 'bh_game_render_frame.*const BHGameState\*' src/game_render.h
+test "$(rg -c '^   \{ 0x' src/difficulty.c | tr -d ' ')" -eq 5
+rg -q 'const BHProfile bh_profiles\[BH_DIFFICULTY_COUNT\]' src/difficulty.c
 rg -q '#define BH_LEVELS          10' src/main.h
-rg -q 'BH_DIFFICULTY_COUNT' src/game.h
+rg -q 'BH_DIFFICULTY_COUNT' src/difficulty.h
 rg -q 'cpct_setVideoMemoryPage' src/game.c
 rg -q 'bh_audio_tick' src/audio.c
 rg -q 'cpct_akp_musicInit' src/audio.c

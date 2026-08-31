@@ -19,7 +19,14 @@ make clean # Remove generated compiler output
 make clean-build # Serial build from an empty output tree
 make parallel-build # Parallel build from an empty output tree
 make check # Validate content invariants and the CPC memory budget
+make room-visuals # Regenerate the 30 data-driven comic backdrops
+make gallery-dsk # Build the emulator-only 30-room visual acceptance reel
+make resources # Rebuild BHRES.BIN, room packs and generated resource IDs
+make resource-check # Validate manifest, CRCs, dependencies, DSK layout and rooms
+make reproducibility # Compare serial/parallel release and resource outputs byte-for-byte
 make matrix # Build the deterministic campaign regression for all 5 difficulties
+make qa # Full automated acceptance, including banks, FDC, audio and campaign
+make rc-verify # QA plus the 100-load FDC soak
 make release # Clean, validated release build
 ```
 
@@ -30,8 +37,30 @@ release DSK.
 
 The DSK boots through `LOADER.BAS`, which installs the loading-screen palette,
 loads `LOADING.SCR` at `0xC000`, and keeps it visible while the multi-area
-`BANTERHO.BIN` loads from `0x0800` (resident code starts at `0x4000`). The
+`BANTERHO.BIN` loads from `0x0800` (resident code starts at `0x3D00`). The
 screen therefore consumes no resident game memory.
+
+## Complete campaign and Expanded laboratory
+
+The downloadable DSK/CDT contains the complete ten-floor campaign with 30
+data-driven comic-panel rooms. Every screen has its own label, palette and
+landmark; a generated compact table keeps all backdrops resident without
+duplicating 16 KiB framebuffers. The runtime composes static scenery only when
+room state changes, then uses save-under buffers for moving actors at a measured
+25.1 logical frames per second on a CPC 6128 emulated at 100%.
+
+The Expanded work is an integrated technical slice rather than a replacement
+release: a low-memory kernel pages RAM4–RAM7, reads a versioned `BHRES.BIN`
+directly through the uPD765, validates CRC16, loads two external Mode 0 screens
+and places a room pack in RAM5. Six data-driven rooms for floors 1–2 are built
+and statically checked for bounds and a safe route.
+
+`make qa` is green across reproducible builds, host tests, 30 room schemas,
+10,000 bank changes, normal and faulty FDC paths, a 75.42-second AY capture and
+all ten levels at five difficulties. The RC soak adds 100 complete 16 KiB
+screen loads. See
+[`docs/IMPLEMENTATION_STATUS.md`](docs/IMPLEMENTATION_STATUS.md) for the exact
+scope, build identity and external hardware/playtest gates.
 
 ## AY soundtrack
 
@@ -70,6 +99,11 @@ Game code is under `src/`; maps and source artwork are under `maps/` and
 - [`docs/GAMEPLAY_RESEARCH.md`](docs/GAMEPLAY_RESEARCH.md): CPC gameplay references and lessons.
 - [`docs/IMPLEMENTATION_PLAN.md`](docs/IMPLEMENTATION_PLAN.md): build order and milestone gates.
 - [`docs/TEST_PLAN.md`](docs/TEST_PLAN.md): automated, emulator, performance and playtest plan.
+- [`docs/AMBITIOUS_IMPROVEMENT_PLAN.md`](docs/AMBITIOUS_IMPROVEMENT_PLAN.md): visual and product direction inspired by office comics and the best CPC patterns.
+- [`docs/AMBITIOUS_IMPLEMENTATION_TEST_PLAN.md`](docs/AMBITIOUS_IMPLEMENTATION_TEST_PLAN.md): phased implementation and complete test strategy.
+- [`docs/DISK_RESOURCE_ARCHITECTURE.md`](docs/DISK_RESOURCE_ARCHITECTURE.md): DSK/128K resource architecture and FDC contracts.
+- [`docs/IMPLEMENTATION_STATUS.md`](docs/IMPLEMENTATION_STATUS.md): current evidence, hashes, phase status and honest blockers.
+- [`docs/ROOM_VISUAL_SYSTEM.md`](docs/ROOM_VISUAL_SYSTEM.md): 30-room visual pipeline, runtime compositor and gallery evidence.
 - [`docs/AUDIO.md`](docs/AUDIO.md): MIDI-derived AY soundtrack, SFX, integration and memory map.
 - [`docs/PITU_CANON.md`](docs/PITU_CANON.md): non-negotiable Pitu model rules.
 - [`docs/CREATAS_CAST.md`](docs/CREATAS_CAST.md): approved character identities and model sheets.

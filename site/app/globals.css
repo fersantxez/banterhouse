@@ -25,6 +25,28 @@ a { color: inherit; }
 
 img { max-width: 100%; }
 
+:focus-visible {
+  outline: 4px solid var(--cyan);
+  outline-offset: 4px;
+}
+
+.skip-link {
+  position: fixed;
+  z-index: 100;
+  left: 1rem;
+  top: 1rem;
+  padding: .7rem 1rem;
+  color: var(--ink);
+  background: var(--acid);
+  border: 3px solid var(--ink);
+  font: 900 .8rem/1 Arial, sans-serif;
+  text-transform: uppercase;
+  transform: translateY(-180%);
+  transition: transform 120ms ease;
+}
+
+.skip-link:focus { transform: translateY(0); }
+
 .topbar {
   position: sticky;
   z-index: 50;
@@ -195,7 +217,13 @@ h1 {
   white-space: nowrap;
 }
 
-.marquee div { width: max-content; animation: ticker 26s linear infinite; }
+.marquee-track {
+  width: max-content;
+  display: flex;
+  animation: ticker 26s linear infinite;
+}
+
+.marquee-track span { padding-right: 2rem; }
 
 @keyframes ticker { to { transform: translateX(-50%); } }
 
@@ -388,6 +416,26 @@ h1 {
   background: var(--paper);
   border: 4px solid var(--ink);
   box-shadow: 10px 11px 0 var(--ink);
+}
+.release-recommended {
+  background: white;
+  border-width: 6px;
+  box-shadow: 13px 14px 0 var(--magenta);
+  transform: translateY(-.8rem);
+}
+.release-recommended::after {
+  content: "POR DEFECTO";
+  position: absolute;
+  z-index: 3;
+  right: -.75rem;
+  top: -.9rem;
+  padding: .5rem .7rem;
+  color: var(--ink);
+  background: var(--acid);
+  border: 3px solid var(--ink);
+  font: 1000 .67rem/1 Arial, sans-serif;
+  letter-spacing: .08em;
+  transform: rotate(3deg);
 }
 .format-label {
   position: absolute;
@@ -1021,6 +1069,7 @@ footer p { margin: 0; }
   .play-section { grid-template-columns: 1fr; }
   .character-cards { grid-template-columns: 1fr; }
   .release-grid { grid-template-columns: 1fr 1fr; }
+  .release-recommended { transform: none; }
   .release-complete { grid-column: 1 / -1; }
   .magazine-preview { margin-top: 1rem; }
   .emulator-shell { border-radius: 1rem; }
@@ -1051,5 +1100,6 @@ footer p { margin: 0; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .button { transition: none; }
-  .marquee div { animation: none; }
+  .marquee-track { animation: none; }
+  .skip-link { transition: none; }
 }

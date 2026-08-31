@@ -6,6 +6,10 @@
 #include "audio.h"
 #include "font.h"
 
+#ifdef __SDCC
+#pragma constseg BH_GFX
+#endif
+
 BHDifficulty bh_difficulty;
 
 static const u8* const difficulty_names[BH_DIFFICULTY_COUNT] = {

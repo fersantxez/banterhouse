@@ -1,0 +1,41 @@
+{
+  "format_version": 1,
+  "rooms": [
+    {
+      "symbol": "ROOM_F1_RECEPTION", "level": 0, "room": 0, "palette": 0, "landmark": "reception_arch",
+      "verb": "orientarse", "rule": "los bordes son rutas seguras", "twist": "el telefono distrae a Alberto",
+      "payoff": "primera idea visible", "safe_exit": "right", "spawn": [4, 132],
+      "obstacles": [[10, 36, 15, 10], [45, 72, 18, 9], [18, 140, 12, 9]]
+    },
+    {
+      "symbol": "ROOM_F1_BRAINSTORM", "level": 0, "room": 1, "palette": 0, "landmark": "paper_wall",
+      "verb": "recoger", "rule": "cada icono tiene silueta propia", "twist": "el cafe reduce Carga",
+      "payoff": "segunda idea completa el briefing", "safe_exit": "right", "spawn": [4, 126],
+      "obstacles": [[14, 36, 15, 10], [43, 72, 18, 9], [20, 140, 12, 9]]
+    },
+    {
+      "symbol": "ROOM_F1_ELEVATOR", "level": 0, "room": 2, "palette": 0, "landmark": "elevator_proof",
+      "verb": "entregar", "rule": "la salida exige las dos ideas", "twist": "la puerta anuncia FALTA IDEA",
+      "payoff": "ascensor a la planta dos", "safe_exit": "right", "spawn": [4, 120],
+      "obstacles": [[18, 36, 15, 10], [41, 72, 18, 9], [22, 140, 12, 9]]
+    },
+    {
+      "symbol": "ROOM_F2_COPY", "level": 1, "room": 0, "palette": 1, "landmark": "copy_machine",
+      "verb": "rodear", "rule": "las maquinas bloquean de verdad", "twist": "el ruido atrae a Alberto",
+      "payoff": "ruta inferior legible", "safe_exit": "right", "spawn": [4, 132],
+      "obstacles": [[14, 36, 15, 10], [43, 72, 18, 9], [20, 140, 12, 9]]
+    },
+    {
+      "symbol": "ROOM_F2_EDIT", "level": 1, "room": 1, "palette": 1, "landmark": "red_pencil",
+      "verb": "editar", "rule": "una palabra menos abre la salida", "twist": "el lapiz rojo marca el pickup",
+      "payoff": "idea de planta obtenida", "safe_exit": "right", "spawn": [4, 126],
+      "obstacles": [[18, 36, 15, 10], [41, 72, 18, 9], [22, 140, 12, 9]]
+    },
+    {
+      "symbol": "ROOM_F2_ELEVATOR", "level": 1, "room": 2, "palette": 1, "landmark": "deadline_clock",
+      "verb": "escapar", "rule": "la salida siempre tiene telegraph", "twist": "el reloj acelera la lectura visual",
+      "payoff": "cierre de vertical slice", "safe_exit": "right", "spawn": [4, 120],
+      "obstacles": [[22, 36, 15, 10], [39, 72, 18, 9], [24, 140, 12, 9]]
+    }
+  ]
+}

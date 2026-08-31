@@ -1,5 +1,14 @@
 # Banterhouse — plan de lanzamiento
 
+## Estado de publicación actual
+
+La web distribuye el juego completo para CPC 6128: diez plantas, treinta
+pantallas con fondos diferenciados y tres composiciones para el pitch final.
+La edición DSK es la opción recomendada y por defecto tanto en descargas como
+en el emulador. El trabajo Expanded de bancos/FDC sigue siendo infraestructura
+interna y no se expone como producto público. Las descargas se regeneran desde
+el build validado antes de cada publicación.
+
 ## Concepto de campaña
 
 **Titular:** *La Gran Idea no se entrega. Se sobrevive.*

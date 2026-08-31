@@ -4,6 +4,11 @@
 #include "game.h"
 #include "audio.h"
 #include "font_test.h"
+#include "fdc_lab.h"
+
+#ifdef __SDCC
+#pragma constseg BH_GFX
+#endif
 
 /* Pen 4 is the dark olive-green shadow from Pitu's canonical artwork. */
 const u8 bh_palette[16] = {
@@ -14,7 +19,7 @@ const u8 bh_palette[16] = {
 };
 
 void main(void) {
-#ifdef BH_AUDIO_LIFECYCLE_TEST
+#if defined(BH_AUDIO_LIFECYCLE_TEST)
    u16 frame;
    u8 effect;
 #endif
@@ -26,7 +31,9 @@ void main(void) {
    bh_difficulty = BH_NORMAL;
    bh_audio_init();
 
-#ifdef BH_AUDIO_LIFECYCLE_TEST
+#ifdef BH_FDC_LAB
+   bh_fdc_lab_run();
+#elif defined(BH_AUDIO_LIFECYCLE_TEST)
    bh_audio_scene(BH_AUDIO_MENU);
    /* 2688 frames are one complete 14-pattern first pass.  Extra frames prove
     * that the pattern-13 cuts return cleanly to loop pattern 2. */

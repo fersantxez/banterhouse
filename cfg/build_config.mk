@@ -54,7 +54,9 @@ export CPCT_PATH ?= $(CURDIR)/.tools/cpctelera/cpctelera
 #we can push this down to gain RAM from 0x0040 (+32k).
 #ref: https://youtu.be/hGb7WjeaJgM?t=1583
 PROJNAME   := banterhouse
-Z80CODELOC := 0x4000
+# Immutable graphics end at 0x3C1A.  Starting resident code at 0x3D00 keeps a
+# measured guard between both areas and recovers 768 bytes for stack safety.
+Z80CODELOC := 0x3D00
 
 ##
 ## Folders 
@@ -133,7 +135,7 @@ export CPCT_REAL_AKS2C
 ##   Flags used to configure the compilation of your code. They are usually 
 ##   fine for most of the projects, but you may change them for special uses.
 #####
-Z80CCFLAGS    := --sdcccall 0
+Z80CCFLAGS    := --sdcccall 0 --opt-code-size
 Z80ASMFLAGS   := -l -o -s
 Z80CCINCLUDE  := -I$(CPCT_SRC) -I$(SRCDIR)
 Z80CCLINKARGS := -mz80 --sdcccall 0 --no-std-crt0 -Wl-u \
@@ -172,6 +174,15 @@ CFILES         := $(foreach DIR, $(SUBDIRS), $(wildcard $(DIR)/*.$(C_EXT)))
 CFILES         := $(filter-out $(IMGCFILES), $(CFILES))
 ASMFILES       := $(foreach DIR, $(SUBDIRS), $(wildcard $(DIR)/*.$(ASM_EXT)))
 ASMFILES       := $(filter-out $(IMGASMFILES), $(ASMFILES))
+ifeq ($(FDC_LAB_ASM),1)
+ASMFILES       := $(sort $(ASMFILES) $(SRCDIR)/storage_fdc_lab.s)
+else
+ASMFILES       := $(filter-out $(SRCDIR)/storage_fdc_lab.s,$(ASMFILES))
+CFILES         := $(filter-out $(SRCDIR)/storage.c,$(CFILES))
+endif
+ifneq ($(RESOURCE_MANAGER),1)
+CFILES         := $(filter-out $(SRCDIR)/resource_manager.c,$(CFILES))
+endif
 CFILES         := $(filter-out $(SRCDIR)/tileset-03.c, $(CFILES))
 ASMFILES       := $(filter-out $(SRCDIR)/maps/scr00.s $(SRCDIR)/maps/scr00.h.s, $(ASMFILES))
 # Keep the generated absolute font object in the graph even if a developer
@@ -189,4 +200,8 @@ C_OBJFILES     := $(patsubst $(SRCDIR)%, $(OBJDIR)%, $(patsubst %.$(C_EXT), %.$(
 ASM_OBJFILES   := $(patsubst $(SRCDIR)%, $(OBJDIR)%, $(patsubst %.$(ASM_EXT), %.$(OBJ_EXT), $(ASMFILES)))
 DSKINCOBJFILES := $(foreach FILE, $(DSKINCSRCFILES), $(patsubst $(DSKFILESDIR)/%, $(OBJDSKINCSDIR)/%, $(FILE)).$(DSKINC_EXT))
 OBJFILES       := $(C_OBJFILES) $(ASM_OBJFILES)
+# Keep the canonical source-sprite block at 0x2000. Additional immutable room
+# tables share BH_GFX after it, but must never shift the addresses used by the
+# existing memory-layout acceptance tests and external diagnostics.
+OBJFILES       := $(OBJDIR)/graphics.rel $(filter-out $(OBJDIR)/graphics.rel,$(OBJFILES))
 GENOBJFILES    := $(GENC_OBJFILES) $(GENASM_OBJFILES)

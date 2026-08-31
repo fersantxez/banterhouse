@@ -1,0 +1,55 @@
+{
+  "format_version": 1,
+  "resources": [
+    {
+      "id": "0x0101",
+      "symbol": "RESOURCE_LAB_PAPER",
+      "type": "background_screen",
+      "source": "generated/resources/lab-paper.scr",
+      "codec": "none",
+      "target": "hidden_framebuffer",
+      "cache": "discardable",
+      "dependencies": []
+    },
+    {
+      "id": "0x0102",
+      "symbol": "RESOURCE_LAB_INK",
+      "type": "background_screen",
+      "source": "generated/resources/lab-ink.scr",
+      "codec": "none",
+      "target": "hidden_framebuffer",
+      "cache": "discardable",
+      "dependencies": []
+    },
+    {
+      "id": "0x0201", "symbol": "RESOURCE_ROOM_F1_RECEPTION", "type": "room_pack",
+      "source": "generated/rooms/room_f1_reception.bin", "codec": "none", "target": "ram5",
+      "cache": "room", "dependencies": ["RESOURCE_LAB_PAPER"]
+    },
+    {
+      "id": "0x0202", "symbol": "RESOURCE_ROOM_F1_BRAINSTORM", "type": "room_pack",
+      "source": "generated/rooms/room_f1_brainstorm.bin", "codec": "none", "target": "ram5",
+      "cache": "room", "dependencies": ["RESOURCE_LAB_PAPER"]
+    },
+    {
+      "id": "0x0203", "symbol": "RESOURCE_ROOM_F1_ELEVATOR", "type": "room_pack",
+      "source": "generated/rooms/room_f1_elevator.bin", "codec": "none", "target": "ram5",
+      "cache": "room", "dependencies": ["RESOURCE_LAB_PAPER"]
+    },
+    {
+      "id": "0x0204", "symbol": "RESOURCE_ROOM_F2_COPY", "type": "room_pack",
+      "source": "generated/rooms/room_f2_copy.bin", "codec": "none", "target": "ram5",
+      "cache": "room", "dependencies": ["RESOURCE_LAB_INK"]
+    },
+    {
+      "id": "0x0205", "symbol": "RESOURCE_ROOM_F2_EDIT", "type": "room_pack",
+      "source": "generated/rooms/room_f2_edit.bin", "codec": "none", "target": "ram5",
+      "cache": "room", "dependencies": ["RESOURCE_LAB_INK"]
+    },
+    {
+      "id": "0x0206", "symbol": "RESOURCE_ROOM_F2_ELEVATOR", "type": "room_pack",
+      "source": "generated/rooms/room_f2_elevator.bin", "codec": "none", "target": "ram5",
+      "cache": "room", "dependencies": ["RESOURCE_LAB_INK"]
+    }
+  ]
+}
