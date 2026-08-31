@@ -14,6 +14,8 @@ html { scroll-behavior: smooth; }
 
 body {
   margin: 0;
+  overflow-x: hidden;
+  overflow-x: clip;
   color: var(--ink);
   background:
     repeating-linear-gradient(0deg, rgb(18 17 15 / 3%) 0 1px, transparent 1px 4px),
@@ -24,6 +26,8 @@ body {
 a { color: inherit; }
 
 img { max-width: 100%; }
+
+main { min-width: 0; overflow-x: hidden; overflow-x: clip; }
 
 :focus-visible {
   outline: 4px solid var(--cyan);
@@ -66,7 +70,7 @@ img { max-width: 100%; }
 
 .topbar a { text-decoration: none; }
 .topbar-brand { color: var(--acid); font-size: .95rem; }
-.topbar-links { display: flex; gap: clamp(.8rem, 2vw, 2rem); }
+.topbar-links { display: flex; min-width: 0; gap: clamp(.8rem, 2vw, 2rem); }
 .topbar-links a:hover,
 .topbar-links a:focus-visible { color: var(--acid); }
 
@@ -96,7 +100,7 @@ img { max-width: 100%; }
   mix-blend-mode: multiply;
 }
 
-.hero-copy { position: relative; z-index: 2; max-width: 690px; }
+.hero-copy { position: relative; z-index: 2; min-width: 0; max-width: 690px; }
 
 .eyebrow {
   display: inline-block;
@@ -231,6 +235,7 @@ h1 {
 .release-section,
 .agency-section,
 .dossier,
+.magazine-feature,
 .play-section {
   position: relative;
   padding: clamp(4rem, 8vw, 8rem) clamp(1.3rem, 6vw, 6rem);
@@ -1059,7 +1064,7 @@ footer p { margin: 0; }
     gap: 2.7rem;
     background: linear-gradient(165deg, var(--acid) 0 53%, var(--ink) 53%);
   }
-  .hero-copy { padding-top: 2rem; }
+  .hero-copy { width: 100%; padding-top: 2rem; }
   .product-shot { margin: 0 -12vw -4rem -8vw; }
   .product-shot img { max-height: none; }
   .sticker { top: 56%; }
@@ -1076,25 +1081,64 @@ footer p { margin: 0; }
 }
 
 @media (max-width: 520px) {
-  .hero { padding: 1.3rem; }
-  h1 { font-size: clamp(3.65rem, 21vw, 6rem); }
+  .topbar {
+    min-height: calc(48px + env(safe-area-inset-top));
+    height: auto;
+    padding: env(safe-area-inset-top) max(1rem, env(safe-area-inset-right)) 0 max(1rem, env(safe-area-inset-left));
+  }
+  .topbar-brand { flex: 0 0 auto; }
+  .topbar-links { flex: 1 1 auto; justify-content: flex-end; gap: clamp(.55rem, 3vw, .9rem); font-size: .64rem; }
+  .hero { min-height: auto; padding: 1.3rem; }
+  .hero-copy { padding-top: .85rem; }
+  h1 { max-width: 100%; font-size: clamp(3rem, 16vw, 4.5rem); letter-spacing: -.02em; transform: none; }
+  .subhead { font-size: clamp(1.25rem, 7vw, 1.8rem); }
   .hero-actions { display: grid; }
   .button { width: 100%; }
   .sticker { display: none; }
   .topbar-links a:nth-child(-n + 2) { display: none; }
+  .product-shot { width: auto; margin: 0 -.25rem -2rem; transform: rotate(.45deg); }
+  .product-shot img { border-width: 4px; box-shadow: -8px 9px 0 var(--cyan), -13px 15px 0 var(--magenta); }
+  .product-shot figcaption { right: .4rem; bottom: -.8rem; max-width: calc(100% - .8rem); font-size: .62rem; }
+  .story-section,
+  .release-section,
+  .agency-section,
+  .dossier,
+  .magazine-feature,
+  .play-section { padding-block: 3.5rem; padding-inline: 1.15rem; }
+  .story-grid h2,
+  .section-heading h2,
+  .play-copy h2,
+  .magazine-feature-copy h2 { max-width: 100%; overflow-wrap: anywhere; font-size: clamp(2.15rem, 12.5vw, 3.35rem); }
   .screenshot-strip { grid-template-columns: 1fr; }
   .screen-2,
   .screen-3 { transform: none; }
   .character-card { grid-template-rows: 300px auto; }
-  .agency-title { align-items: flex-start; }
-  .agency-number { font-size: 7rem; }
+  .character-copy { padding: 1.25rem; }
+  .character-copy dl div { grid-template-columns: minmax(88px, 105px) 1fr; gap: .7rem; }
+  .agency-title { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: start; gap: .8rem; }
+  .agency-number { font-size: 5.6rem; -webkit-text-stroke-width: 3px; }
+  .agency-title h2 { max-width: 100%; overflow-wrap: anywhere; font-size: clamp(2.45rem, 13vw, 3.2rem); }
+  .agency-title em { font-size: .78rem; }
   .release-grid { grid-template-columns: 1fr; }
   .release-complete { grid-column: auto; }
+  .release-card { box-shadow: 7px 8px 0 var(--ink); }
+  .release-recommended { box-shadow: 8px 9px 0 var(--magenta); }
+  .magazine-preview { padding: .55rem; box-shadow: 8px 9px 0 #071d18; transform: none; }
   .play-section { padding-inline: .8rem; }
   .play-copy { padding-inline: .5rem; }
   .emulator-shell { padding: .55rem; border-width: 5px; box-shadow: 8px 10px 0 #050505; }
+  .emulator-shell iframe { aspect-ratio: 10 / 11; border-width: 2px; border-radius: .55rem; }
   .monitor-label { font-size: .48rem; }
   footer { display: grid; }
+}
+
+@media (max-width: 370px) {
+  .topbar-links a[href="#micromania"] { display: none; }
+  .topbar-links { font-size: .68rem; }
+  .hero { padding-inline: 1rem; }
+  .character-copy dl div { grid-template-columns: 1fr; gap: .25rem; }
+  .character-copy dd { padding-bottom: .2rem; }
+  .monitor-label i { display: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {

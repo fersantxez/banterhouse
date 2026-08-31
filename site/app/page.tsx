@@ -292,7 +292,7 @@ export default function Home() {
           </div>
           <iframe
             title="Emulador Amstrad CPC 6128 con Banterhouse"
-            src="/emulator/?memory=128&diska=../release/banterhouse.dsk&autorun=LOADER.BAS&theme=Retro%20CRT"
+            src="/emulator/?memory=128&diska=../release/banterhouse.dsk&autorun=LOADER.BAS&theme=Retro%20CRT&embed=1"
             allow="autoplay; fullscreen; gamepad"
             loading="lazy"
           />

@@ -350,6 +350,8 @@ document.addEventListener("click", event => {
 
 const cpcKeyboardEl = document.querySelector(".cpc464-keyboard");
 const cpcKeyboardKeysEl = $("cpcKeyboardKeys");
+const embedControlsEl = $("embedControls");
+const virtualKeyRoots = [cpcKeyboardKeysEl, embedControlsEl].filter(Boolean);
 const cpcKeyboardToggleEl = $("cpcKeyboardToggle");
 const cpcTapeDeckEl = $("tapeDeckMock");
 
@@ -1193,11 +1195,13 @@ create6128().then(m => {
   }
 
   function setModifierUi(scancode, active) {
-    for (const button of cpcKeyboardKeysEl.querySelectorAll(
-      `[data-modifier][data-scancode="${scancode}"]`
-    )) {
-      button.classList.toggle("latched", active);
-      button.setAttribute("aria-pressed", String(active));
+    for (const root of virtualKeyRoots) {
+      for (const button of root.querySelectorAll(
+        `[data-modifier][data-scancode="${scancode}"]`
+      )) {
+        button.classList.toggle("latched", active);
+        button.setAttribute("aria-pressed", String(active));
+      }
     }
   }
 
@@ -1223,32 +1227,18 @@ create6128().then(m => {
   function releaseAllVirtualKeys() {
     for (const scancode of [...virtualKeys]) releaseVirtualKey(scancode);
     latchedVirtualModifiers.clear();
-    for (const button of cpcKeyboardKeysEl.querySelectorAll("[data-scancode]")) {
-      button.classList.remove("active", "latched");
-      if (button.hasAttribute("data-modifier"))
-        button.setAttribute("aria-pressed", "false");
+    for (const root of virtualKeyRoots) {
+      for (const button of root.querySelectorAll("[data-scancode]")) {
+        button.classList.remove("active", "latched");
+        if (button.hasAttribute("data-modifier"))
+          button.setAttribute("aria-pressed", "false");
+      }
     }
   }
 
   function virtualKeyButton(target) {
     return target.closest("button[data-scancode]");
   }
-
-  cpcKeyboardKeysEl.addEventListener("pointerdown", event => {
-    const button = virtualKeyButton(event.target);
-    if (!button) return;
-    event.preventDefault();
-    startAudio();
-    const scancode = Number(button.dataset.scancode);
-    if (button.hasAttribute("data-modifier")) {
-      toggleVirtualModifier(scancode);
-    } else {
-      pressVirtualKey(scancode);
-      button.classList.add("active");
-      button.setPointerCapture(event.pointerId);
-    }
-    pulseInputLed();
-  });
 
   function finishVirtualPointer(event) {
     const button = virtualKeyButton(event.target);
@@ -1258,28 +1248,46 @@ create6128().then(m => {
     releaseLatchedModifiers();
   }
 
-  cpcKeyboardKeysEl.addEventListener("pointerup", finishVirtualPointer);
-  cpcKeyboardKeysEl.addEventListener("pointercancel", finishVirtualPointer);
-  cpcKeyboardKeysEl.addEventListener("lostpointercapture", finishVirtualPointer);
-  cpcKeyboardKeysEl.addEventListener("click", event => {
-    if (event.detail !== 0) return;
-    const button = virtualKeyButton(event.target);
-    if (!button) return;
-    startAudio();
-    const scancode = Number(button.dataset.scancode);
-    if (button.hasAttribute("data-modifier")) {
-      toggleVirtualModifier(scancode);
-    } else {
-      pressVirtualKey(scancode);
-      button.classList.add("active");
-      setTimeout(() => {
-        releaseVirtualKey(scancode);
-        button.classList.remove("active");
-        releaseLatchedModifiers();
-      }, 90);
-    }
-    pulseInputLed();
-  });
+  for (const root of virtualKeyRoots) {
+    root.addEventListener("pointerdown", event => {
+      const button = virtualKeyButton(event.target);
+      if (!button) return;
+      event.preventDefault();
+      startAudio();
+      const scancode = Number(button.dataset.scancode);
+      if (button.hasAttribute("data-modifier")) {
+        toggleVirtualModifier(scancode);
+      } else {
+        pressVirtualKey(scancode);
+        button.classList.add("active");
+        button.setPointerCapture(event.pointerId);
+      }
+      pulseInputLed();
+    });
+
+    root.addEventListener("pointerup", finishVirtualPointer);
+    root.addEventListener("pointercancel", finishVirtualPointer);
+    root.addEventListener("lostpointercapture", finishVirtualPointer);
+    root.addEventListener("click", event => {
+      if (event.detail !== 0) return;
+      const button = virtualKeyButton(event.target);
+      if (!button) return;
+      startAudio();
+      const scancode = Number(button.dataset.scancode);
+      if (button.hasAttribute("data-modifier")) {
+        toggleVirtualModifier(scancode);
+      } else {
+        pressVirtualKey(scancode);
+        button.classList.add("active");
+        setTimeout(() => {
+          releaseVirtualKey(scancode);
+          button.classList.remove("active");
+          releaseLatchedModifiers();
+        }, 90);
+      }
+      pulseInputLed();
+    });
+  }
   cpcKeyboardToggleEl.addEventListener("click", () => {
     if (cpcKeyboardKeysEl.hidden) releaseAllVirtualKeys();
   });

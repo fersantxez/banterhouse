@@ -5,6 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#121416">
 <title>Javascript 1984</title>
+<script>
+  if (new URLSearchParams(window.location.search).get('embed') === '1')
+    document.documentElement.classList.add('embed-mode');
+</script>
 <link rel="stylesheet" href="styles.css">
 <link rel="stylesheet" href="theme-retro-crt.css">
 <link rel="stylesheet" href="theme-sapporo.css">
@@ -285,6 +289,17 @@
           <strong id="blueValue">100%</strong>
         </label>
       </div>
+    </div>
+
+    <div id="embedControls" class="embed-controls" role="group" aria-label="Controles táctiles del juego">
+      <div class="embed-dpad" aria-label="Movimiento">
+        <button type="button" class="embed-key embed-up" data-scancode="82" aria-label="Arriba">▲</button>
+        <button type="button" class="embed-key embed-left" data-scancode="80" aria-label="Izquierda">◀</button>
+        <button type="button" class="embed-key embed-down" data-scancode="81" aria-label="Abajo">▼</button>
+        <button type="button" class="embed-key embed-right" data-scancode="79" aria-label="Derecha">▶</button>
+      </div>
+      <button type="button" class="embed-key embed-action" data-scancode="44">ACCIÓN</button>
+      <button type="button" class="embed-key embed-pause" data-scancode="41">PAUSA</button>
     </div>
 
     <div class="control-deck">
