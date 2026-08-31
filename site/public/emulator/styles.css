@@ -367,6 +367,14 @@ html.embed-mode[data-theme] .screen-stage {
   background: #090a0b;
 }
 
+/* Decorative speaker columns belong to the standalone receiver. At wide
+   fullscreen sizes they became grid rows inside the embedded player, pushing
+   the CPC display below the viewport. */
+html.embed-mode[data-theme] .screen-stage::before,
+html.embed-mode[data-theme] .screen-stage::after {
+  display: none !important;
+}
+
 html.embed-mode[data-theme] .screen-frame {
   width: min(100%, calc((100vh - 116px) * 4 / 3));
   padding: 5px;
