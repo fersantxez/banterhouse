@@ -46,11 +46,16 @@ for (const pattern of forbiddenPublicCopy) {
 check(!existsSync(join(releaseDir, 'screenshots', 'expanded-lab.png')), 'La captura interna expanded-lab.png no debe publicarse.');
 
 const page = readFileSync(join(appDir, 'page.tsx'), 'utf8');
+const emulator = readFileSync(join(appDir, 'EmulatorPlayer.tsx'), 'utf8');
 check(page.includes('src="/release/banterhouse-disk-inlay.png"'), 'El hero debe presentar la edición DSK recomendada.');
 check(page.includes('Jugar Disquette 3&quot; ahora'), 'La acción principal debe lanzar la edición Disquette 3 pulgadas.');
 check(!/>[^<]*(?:DSK|CDT)[^<]*</i.test(page), 'El sitio no debe mostrar las extensiones técnicas DSK o CDT al visitante.');
 check(page.indexOf('release-dsk') < page.indexOf('release-cassette'), 'La edición DSK debe aparecer antes que cassette.');
-check(page.includes('src="/emulator/?memory=128&diska=../release/banterhouse.dsk'), 'El emulador debe montar la edición DSK.');
+check(emulator.includes('src="/emulator/?memory=128&diska=../release/banterhouse.dsk'), 'El emulador debe montar la edición DSK.');
+check(emulator.includes('requestFullscreen'), 'Falta el modo de pantalla completa del emulador.');
+check(emulator.includes('emulator-shell--browser'), 'Falta el modo navegador del emulador.');
+check(emulator.includes('allowFullScreen'), 'El iframe debe autorizar la pantalla completa.');
+check(emulator.includes('aria-live="polite"'), 'El cambio de modo del emulador debe anunciar sus incidencias.');
 for (const screenshot of ['mesa-pitu.png', 'estudio-noche.png', 'proyeccion.png']) {
   check(page.includes(`/release/screenshots/${screenshot}`), `Falta el pantallazo actualizado ${screenshot}.`);
 }

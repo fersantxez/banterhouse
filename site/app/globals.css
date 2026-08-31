@@ -580,13 +580,58 @@ h1 {
   border-radius: 2rem;
   box-shadow: inset 0 0 0 3px #545454, 18px 22px 0 #050505;
 }
-.monitor-label { display: flex; justify-content: space-between; margin: 0 .5rem 1rem; color: #dad7c8; font: 900 .7rem/1 Arial, sans-serif; letter-spacing: .1em; }
+.emulator-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin: 0 .5rem 1rem; }
+.monitor-label { display: flex; flex: 1; justify-content: space-between; gap: 1rem; color: #dad7c8; font: 900 .7rem/1 Arial, sans-serif; letter-spacing: .1em; }
 .monitor-label i { font-style: normal; font-weight: 400; }
+.emulator-view-controls { display: flex; flex: 0 0 auto; gap: .5rem; }
+.emulator-view-controls button {
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  padding: .55rem .7rem;
+  color: #f6f0df;
+  background: #111;
+  border: 2px solid #777;
+  border-radius: .25rem;
+  font: 900 .58rem/1 Arial, sans-serif;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.emulator-view-controls button:hover,
+.emulator-view-controls button:focus-visible { color: var(--ink); background: var(--acid); border-color: var(--acid); outline: 3px solid var(--magenta); outline-offset: 2px; }
+.emulator-view-controls button[aria-pressed="true"] { color: white; background: var(--magenta); border-color: white; }
+.emulator-view-controls button span { font-size: 1rem; line-height: .6; }
+.emulator-status { min-height: 0; margin: -.45rem .5rem .65rem; color: var(--acid); font: 700 .65rem/1.25 "Courier New", monospace; }
+.emulator-status:empty { display: none; }
 .emulator-shell iframe { display: block; width: 100%; aspect-ratio: 16/11; background: #000; border: 4px solid #050505; border-radius: 1rem; }
 .monitor-controls { display: flex; align-items: center; gap: .7rem; margin: 1rem .5rem 0; color: #aaa; font: 700 .6rem/1 Arial, sans-serif; }
 .monitor-controls b { width: 18px; aspect-ratio: 1; border-radius: 50%; background: #111; border: 2px solid #555; }
 .monitor-controls b:first-of-type { background: #c13322; }
 .monitor-controls i { margin-left: auto; color: #d0d0d0; font: 900 1rem/1 Arial, sans-serif; }
+
+html.emulator-mode-open { overflow: hidden; }
+.emulator-shell--browser,
+.emulator-shell:fullscreen {
+  position: fixed;
+  z-index: 1000;
+  inset: 0;
+  width: 100vw;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  padding: clamp(.55rem, 1.5vw, 1.35rem);
+  background: #151515;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+.emulator-shell--browser iframe,
+.emulator-shell:fullscreen iframe { flex: 1 1 auto; min-height: 0; aspect-ratio: auto; border-radius: .4rem; }
+.emulator-shell--browser .emulator-toolbar,
+.emulator-shell:fullscreen .emulator-toolbar { margin-bottom: .65rem; }
+.emulator-shell--browser .monitor-controls,
+.emulator-shell:fullscreen .monitor-controls { margin-top: .55rem; }
 
 footer {
   display: flex;
@@ -1172,6 +1217,12 @@ footer p { margin: 0; }
   .play-copy { padding-inline: .5rem; }
   .emulator-shell { padding: .55rem; border-width: 5px; box-shadow: 8px 10px 0 #050505; }
   .emulator-shell iframe { aspect-ratio: 10 / 11; border-width: 2px; border-radius: .55rem; }
+  .emulator-toolbar { align-items: flex-start; flex-direction: column; }
+  .monitor-label { width: 100%; }
+  .emulator-view-controls { width: 100%; }
+  .emulator-view-controls button { flex: 1; justify-content: center; }
+  .emulator-shell--browser iframe,
+  .emulator-shell:fullscreen iframe { aspect-ratio: auto; }
   .monitor-label { font-size: .48rem; }
   footer { display: grid; }
 }

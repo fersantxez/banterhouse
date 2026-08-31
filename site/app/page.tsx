@@ -1,3 +1,5 @@
+import EmulatorPlayer from './EmulatorPlayer';
+
 const cpcScreens = [
   {
     src: '/release/screenshots/mesa-pitu.png',
@@ -321,21 +323,7 @@ export default function Home() {
           </p>
         </div>
 
-        <div className="emulator-shell">
-          <div className="monitor-label">
-            <span>BANTERHOUSE VISION · DISQUETTE 3&quot;</span>
-            <i>EDICIÓN RECOMENDADA · 128K</i>
-          </div>
-          <iframe
-            title="Emulador Amstrad CPC 6128 con Banterhouse"
-            src="/emulator/?memory=128&diska=../release/banterhouse.dsk&autorun=LOADER.BAS&theme=Retro%20CRT&embed=1"
-            allow="autoplay; fullscreen; gamepad"
-            loading="lazy"
-          />
-          <div className="monitor-controls" aria-hidden="true">
-            <span>POWER</span><b></b><b></b><b></b><i>GT-65</i>
-          </div>
-        </div>
+        <EmulatorPlayer />
       </section>
 
       <footer>
