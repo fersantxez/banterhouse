@@ -9,8 +9,6 @@ CONTENIDO
 Este paquete contiene el juego completo y sus materiales de lanzamiento.
 La campaña recorre diez plantas y treinta pantallas con fondos, paletas y
 elementos propios inspirados en una agencia de publicidad dibujada como cómic.
-El marcador incluye el logo BANTER/HOUSE y muestra ideas, Carga, cafés y
-puntuación de cinco cifras en todas las pantallas de juego.
 
 manual/banterhouse-manual.pdf
   Manual de instrucciones ilustrado de 12 páginas, preparado en formato A5

@@ -38,7 +38,6 @@ make                 build normal
 make clean-build     build serial desde cero
 make parallel-build  build -j2 desde cero
 make check           validadores + unitarias host + tamaños
-make hud-verify      golden visual del marcador en Caprice32
 make matrix          campaña de 10 niveles x 5 dificultades
 make sizes           memoria residente y bancos
 make qa              aceptación completa automatizada
@@ -204,10 +203,6 @@ La lógica se compila con tipos `u8/i8/u16` equivalentes y sin hardware.
 - Un sprite de cada tamaño se borra con su propio stride.
 - El CRTC cambia de página una vez por frame presentado.
 - HUD no parpadea al cambiar sala o banco.
-- El logo contiene exactamente 196 bytes empaquetados y se dibuja a 28×14 píxeles.
-- Ideas `00/12`, cinco hojas, café `0–9` y score `00000–65535` caben en 80×16 bytes.
-- Cambiar únicamente el score invalida la clave visual.
-- La captura `hud-score-panel.png` coincide byte a byte con Caprice32.
 - Parches modifican ambas páginas antes de devolver control.
 
 ### Entrada

@@ -29,7 +29,6 @@ agency’s temperamental machines and turns office chaos against her pursuer.
 - A complete ten-floor campaign with **30 individually composed rooms**.
 - Twelve pieces of creativity to recover before the final presentation.
 - Distinct landmarks, colour palettes and visual jokes in every room.
-- A permanent BANTER/HOUSE score panel for ideas, Carga, coffees and a five-digit score.
 - Five difficulty settings and a multi-stage final encounter.
 - Keyboard, joystick and browser-based touch controls.
 - Original packaging, printable artwork and an unofficial retro-magazine feature.
@@ -93,7 +92,6 @@ Start with the following documents when you need more detail:
 
 - [Game design](docs/GAME_DESIGN.md) — story, rules, rooms and campaign flow.
 - [Visual system](docs/ROOM_VISUAL_SYSTEM.md) — how the 30 room compositions are produced.
-- [HUD implementation and test plan](docs/HUD_IMPLEMENTATION_TEST_PLAN.md) — the Banterhouse scoreboard, logo, rendering and acceptance gates.
 - [Implementation status](docs/IMPLEMENTATION_STATUS.md) — current evidence and remaining external gates.
 - [Test plan](docs/TEST_PLAN.md) — automated, emulator and playtest coverage.
 - [Technical architecture](docs/DISK_RESOURCE_ARCHITECTURE.md) — memory, disk and resource design.

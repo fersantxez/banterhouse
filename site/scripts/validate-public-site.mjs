@@ -50,8 +50,6 @@ check(page.includes('src="/release/banterhouse-disk-inlay.png"'), 'El hero debe 
 check(page.includes('Jugar DSK ahora'), 'La acción principal debe lanzar la edición DSK.');
 check(page.indexOf('release-dsk') < page.indexOf('release-cassette'), 'La edición DSK debe aparecer antes que cassette.');
 check(page.includes('src="/emulator/?memory=128&diska=../release/banterhouse.dsk'), 'El emulador debe montar la edición DSK.');
-check(page.includes('src="/release/screenshots/hud.png"'), 'La página debe mostrar el marcador editorial real.');
-check(page.includes('Toda la agencia en 160 × 16 píxeles.'), 'Falta la explicación pública del marcador.');
 
 const ids = new Set([...page.matchAll(/\bid="([^"]+)"/g)].map((match) => match[1]));
 for (const match of page.matchAll(/href="#([^"]+)"/g)) {
