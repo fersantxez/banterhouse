@@ -1,113 +1,116 @@
-# banterhouse
+# Banterhouse
 
-An Amstrad CPC game fueled by curiosity and nostalgia.
+**A new Amstrad CPC 6128 game about surviving one impossible night in a Spanish advertising agency.**
 
-## Development
+[Play in your browser](https://banterhouse-128k.donatoexposito.chatgpt.site/#jugar) ·
+[Download the recommended DSK](https://banterhouse-128k.donatoexposito.chatgpt.site/release/banterhouse.dsk) ·
+[Get the complete release pack](https://banterhouse-128k.donatoexposito.chatgpt.site/release/banterhouse-release.zip)
 
-The project builds with CPCtelera and runs in a native Apple Silicon build of
-Caprice32. Both tools live under the ignored `.tools/` directory.
+![Thirty rooms from the Banterhouse campaign](docs/images/room-gallery.png)
+
+## Welcome to the Casa de la Guasa
+
+Madrid, 03:17. The client has asked for “the same thing, but different.” The
+Grand Idea has shattered into twelve pieces and disappeared across the ten
+floors of Banterhouse, an agency better known as the **Casa de la Guasa**.
+
+You play **Pitu**, the creative who has to recover concept, copy, art and layout
+before the final pitch. Standing in her way is **Alberto Pérez del Briefing
+Ramírez de Quiñones**, an account executive whose “one small change” is never
+small.
+
+Banterhouse is a fixed-screen exploration, chase and action-puzzle game. Pitu
+does not fight. She reads each room, finds cover, creates distractions, uses the
+agency’s temperamental machines and turns office chaos against her pursuer.
+
+## What to expect
+
+- A complete ten-floor campaign with **30 individually composed rooms**.
+- Twelve pieces of creativity to recover before the final presentation.
+- Distinct landmarks, colour palettes and visual jokes in every room.
+- Five difficulty settings and a multi-stage final encounter.
+- Keyboard, joystick and browser-based touch controls.
+- Original packaging, printable artwork and an unofficial retro-magazine feature.
+
+The visual language draws on the rhythm, colour and office-comic energy of
+*Creatas y Ejecutas*, while the game structure follows the clarity and economy
+of classic Amstrad CPC design. The result is an original playable story, not a
+digital reproduction of the comic.
+
+## Play and download
+
+The easiest way to begin is the
+[browser edition](https://banterhouse-128k.donatoexposito.chatgpt.site/#jugar),
+which mounts the game in a CPC 6128 emulator automatically.
+
+For an emulator or real machine, use the **DSK edition** as the recommended
+format. A CDT cassette image is also available from the project site. The full
+release pack includes both game formats, cover art, cassette and disk inlays,
+an A4 advertisement, instructions and the magazine-style feature.
+
+### Controls
+
+| Input | Action |
+|---|---|
+| Arrow keys or QAOP | Move Pitu |
+| `S`, Space or joystick fire | Interact / contextual action |
+| `Esc` | Pause |
+
+On the title screen, use left/right or `O`/`P` to choose a difficulty and press
+`S`, Space or fire to begin.
+
+## Platform
+
+- **Target:** Amstrad CPC 6128 with 128K RAM
+- **Display:** Mode 0, 160 × 200, 16 colours
+- **Formats:** DSK, CDT and browser emulation
+- **Language:** Spanish
+- **Typical first playthrough:** approximately 45–70 minutes
+
+## Project status
+
+The software campaign and downloadable packages are complete. Automated
+release, campaign, audio, disk-loading and long-run checks are passing, and the
+30-room gallery has been captured from the running CPC build. Broader testing
+on multiple physical CPC/CRTC combinations and first-time-player sessions
+remains useful before making a universal hardware-compatibility claim.
+
+## For contributors
+
+The game source lives in [`src/`](src/), content and artwork in
+[`assets/`](assets/) and [`maps/`](maps/), and the public website in
+[`site/`](site/). The project uses CPCtelera.
 
 ```bash
-make       # Build banterhouse.dsk and banterhouse.cdt
-make run   # Build and boot through the loading screen in Caprice32
-make loading-screen # Regenerate the 16 KiB Mode 0 loading screen
-make font-data # Re-extract the resident font from the official DSK
-make font-test-dsk # Build the CPC font specimen screen
-make audio-test-dsk # Build the complete-loop and gameplay-SFX diagnostic
-make audio-verify # Capture/validate the full loop and SFX reel, then restore release
-make clean # Remove generated compiler output
-make clean-build # Serial build from an empty output tree
-make parallel-build # Parallel build from an empty output tree
-make check # Validate content invariants and the CPC memory budget
-make room-visuals # Regenerate the 30 data-driven comic backdrops
-make gallery-dsk # Build the emulator-only 30-room visual acceptance reel
-make resources # Rebuild BHRES.BIN, room packs and generated resource IDs
-make resource-check # Validate manifest, CRCs, dependencies, DSK layout and rooms
-make reproducibility # Compare serial/parallel release and resource outputs byte-for-byte
-make matrix # Build the deterministic campaign regression for all 5 difficulties
-make qa # Full automated acceptance, including banks, FDC, audio and campaign
-make rc-verify # QA plus the 100-load FDC soak
-make release # Clean, validated release build
+make release  # clean, validated DSK and CDT build
+make qa       # complete automated acceptance suite
 ```
 
-Controls: choose difficulty with `O` / `P` or left/right; start and interact
-with `S`, Space or joystick fire; move with QAOP, cursor keys, or joystick;
-pause with Esc. The test build used by `make matrix` is never left in the
-release DSK.
+Start with the following documents when you need more detail:
 
-The DSK boots through `LOADER.BAS`, which installs the loading-screen palette,
-loads `LOADING.SCR` at `0xC000`, and keeps it visible while the multi-area
-`BANTERHO.BIN` loads from `0x0800` (resident code starts at `0x3D00`). The
-screen therefore consumes no resident game memory.
+- [Game design](docs/GAME_DESIGN.md) — story, rules, rooms and campaign flow.
+- [Visual system](docs/ROOM_VISUAL_SYSTEM.md) — how the 30 room compositions are produced.
+- [Implementation status](docs/IMPLEMENTATION_STATUS.md) — current evidence and remaining external gates.
+- [Test plan](docs/TEST_PLAN.md) — automated, emulator and playtest coverage.
+- [Technical architecture](docs/DISK_RESOURCE_ARCHITECTURE.md) — memory, disk and resource design.
+- [Audio](docs/AUDIO.md) — soundtrack, effects and provenance.
+- [Pitu canon](docs/PITU_CANON.md) and [cast guide](docs/CREATAS_CAST.md) — character references.
 
-## Complete campaign and Expanded laboratory
+## Credits and notes
 
-The downloadable DSK/CDT contains the complete ten-floor campaign with 30
-data-driven comic-panel rooms. Every screen has its own label, palette and
-landmark; a generated compact table keeps all backdrops resident without
-duplicating 16 KiB framebuffers. The runtime composes static scenery only when
-room state changes, then uses save-under buffers for moving actors at a measured
-25.1 logical frames per second on a CPC 6128 emulated at 100%.
-
-The Expanded work is an integrated technical slice rather than a replacement
-release: a low-memory kernel pages RAM4–RAM7, reads a versioned `BHRES.BIN`
-directly through the uPD765, validates CRC16, loads two external Mode 0 screens
-and places a room pack in RAM5. Six data-driven rooms for floors 1–2 are built
-and statically checked for bounds and a safe route.
-
-`make qa` is green across reproducible builds, host tests, 30 room schemas,
-10,000 bank changes, normal and faulty FDC paths, a 75.42-second AY capture and
-all ten levels at five difficulties. The RC soak adds 100 complete 16 KiB
-screen loads. See
-[`docs/IMPLEMENTATION_STATUS.md`](docs/IMPLEMENTATION_STATUS.md) for the exact
-scope, build identity and external hardware/playtest gates.
-
-## AY soundtrack
-
-The user-supplied MIDI is deterministically reduced to the editable Arkos
-Tracker source `music/banterhouse-theme.aks`; effects live independently in
-`music/banterhouse-sfx.aks`. CPCtelera's Arkos Player runs both at 50 Hz and
-provides eight prioritized gameplay SFX on channel C. The MIDI internally
-identifies a third-party composition, so redistribution clearance remains a
-release prerequisite. See [`docs/AUDIO.md`](docs/AUDIO.md) for provenance,
-conversion, instruments, memory map and emulator evidence.
-
-## Resident UI font
-
-All functional text uses a firmware-independent 8×8, 1-bpp renderer backed by
-the exact `SYMBOL` definitions in manuel3d's
+The browser edition uses Salvo Gendut’s
+[Javascript 1984](https://github.com/salvogendut/1984) emulator under GPL-2.0.
+The resident text font is derived from manuel3d’s
 [New Letter Font for AMSTRAD CPC](https://manuel3d.itch.io/letter-font-for-amstrad).
-The official `font.dsk` is kept under `assets/fonts/manuel3d/`, and
-`tools/import_manuel3d_font.py` deterministically extracts tokenized
-`FONTBASI.BAS` into `src/font_data.s`. See the asset README there for hashes,
-character coverage, internal Ñ/€/¿/¡ codes, attribution and licensing caveat.
-
-The CPC build does not call `cpct_drawStringM0`, `cpct_drawCharM0`, firmware or
-the character ROM. `make check` verifies the import hash, every glyph, Mode 0
-conversion, text inventory, framebuffer bounds, linker map and stack margin.
-Caprice32 evidence for the loading screen, font specimen, menu, both framebuffer
-pages, boss, victory and defeat is indexed in
-[`artifacts/font-validation/README.md`](artifacts/font-validation/README.md).
-
-Game code is under `src/`; maps and source artwork are under `maps/` and
-`assets/`. The imported game history comes from
+The repository history was imported from
 [`fersantxez/bntrhs`](https://github.com/fersantxez/bntrhs).
 
-## Production documents
+The Micromanía-style article is an unofficial 2026 editorial recreation and is
+not affiliated with the original magazine. The supplied soundtrack source
+contains third-party composition metadata; redistribution should be treated as
+requiring rights clearance. See [the audio documentation](docs/AUDIO.md) for
+the full provenance record.
 
-- [`docs/GAME_DESIGN.md`](docs/GAME_DESIGN.md): canonical 10-level game design.
-- [`docs/GAMEPLAY_RESEARCH.md`](docs/GAMEPLAY_RESEARCH.md): CPC gameplay references and lessons.
-- [`docs/IMPLEMENTATION_PLAN.md`](docs/IMPLEMENTATION_PLAN.md): build order and milestone gates.
-- [`docs/TEST_PLAN.md`](docs/TEST_PLAN.md): automated, emulator, performance and playtest plan.
-- [`docs/AMBITIOUS_IMPROVEMENT_PLAN.md`](docs/AMBITIOUS_IMPROVEMENT_PLAN.md): visual and product direction inspired by office comics and the best CPC patterns.
-- [`docs/AMBITIOUS_IMPLEMENTATION_TEST_PLAN.md`](docs/AMBITIOUS_IMPLEMENTATION_TEST_PLAN.md): phased implementation and complete test strategy.
-- [`docs/DISK_RESOURCE_ARCHITECTURE.md`](docs/DISK_RESOURCE_ARCHITECTURE.md): DSK/128K resource architecture and FDC contracts.
-- [`docs/IMPLEMENTATION_STATUS.md`](docs/IMPLEMENTATION_STATUS.md): current evidence, hashes, phase status and honest blockers.
-- [`docs/ROOM_VISUAL_SYSTEM.md`](docs/ROOM_VISUAL_SYSTEM.md): 30-room visual pipeline, runtime compositor and gallery evidence.
-- [`docs/AUDIO.md`](docs/AUDIO.md): MIDI-derived AY soundtrack, SFX, integration and memory map.
-- [`docs/PITU_CANON.md`](docs/PITU_CANON.md): non-negotiable Pitu model rules.
-- [`docs/CREATAS_CAST.md`](docs/CREATAS_CAST.md): approved character identities and model sheets.
+---
 
-The local CPCtelera 1.5/development checkout is pinned at commit
-`662fc885adc3301205c87d2cd89462d67a64d809` and uses native Homebrew SDCC 4.6
-because CPCtelera's bundled SDCC 3.6 cannot run on macOS ARM64.
+**La Gran Idea no se entrega. Se sobrevive.**
