@@ -143,7 +143,10 @@ at 1: warning 296: non-default sdcccall specified, but default stdlib or crt0
 /Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/random/random.h:57: warning 283: function declarator with no prototype
 /Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/random/random.h:58: warning 283: function declarator with no prototype
 /Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/random/random.h:62: warning 283: function declarator with no prototype
+src/game_render.c:146: warning 357: pointer to object in read-only code space should be pointer to const
 /opt/homebrew/bin/sdcc -I/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src -Isrc -mz80 --sdcccall 0 --opt-code-size -c  src/game_state.c -o  obj/game_state.rel
+at 1: warning 296: non-default sdcccall specified, but default stdlib or crt0
+/opt/homebrew/bin/sdcc -I/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src -Isrc -mz80 --sdcccall 0 --opt-code-size -c  src/hud_model.c -o  obj/hud_model.rel
 at 1: warning 296: non-default sdcccall specified, but default stdlib or crt0
 /opt/homebrew/bin/sdcc -I/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src -Isrc -mz80 --sdcccall 0 --opt-code-size -c  src/input.c -o  obj/input.rel
 at 1: warning 296: non-default sdcccall specified, but default stdlib or crt0
@@ -247,7 +250,7 @@ at 1: warning 296: non-default sdcccall specified, but default stdlib or crt0
 /opt/homebrew/bin/sdasz80 -l -o -s -I/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src -Isrc  obj/font_data.rel  src/font_data.s 
 /opt/homebrew/bin/sdasz80 -l -o -s -I/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src -Isrc  obj/font_renderer.rel  src/font_renderer.s 
 [1;31;49m[banterhouse][1;33;49m Linking binary file[0;39;49m
-/opt/homebrew/bin/sdcc -mz80 --sdcccall 0 --no-std-crt0 -Wl-u --code-loc 0x3D00 -Wl-b_BH_GFX=0x2000 --data-loc 0 -l/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/cpctelera.lib   obj/banterhouse-sfx.rel  obj/banterhouse-theme.rel obj/graphics.rel obj/audio.rel obj/difficulty.rel obj/fdc_lab.rel obj/font_test.rel obj/game.rel obj/game_render.rel obj/game_state.rel obj/input.rel obj/main.rel obj/menu.rel obj/render.rel obj/room_visuals.rel obj/world_data.rel obj/font_data.rel obj/font_renderer.rel -o "obj/banterhouse.ihx"
+/opt/homebrew/bin/sdcc -mz80 --sdcccall 0 --no-std-crt0 -Wl-u --code-loc 0x3D00 -Wl-b_BH_GFX=0x2000 --data-loc 0 -l/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/cpctelera.lib   obj/banterhouse-sfx.rel  obj/banterhouse-theme.rel obj/graphics.rel obj/audio.rel obj/difficulty.rel obj/fdc_lab.rel obj/font_test.rel obj/game.rel obj/game_render.rel obj/game_state.rel obj/hud_model.rel obj/input.rel obj/main.rel obj/menu.rel obj/render.rel obj/room_visuals.rel obj/world_data.rel obj/font_data.rel obj/font_renderer.rel -o "obj/banterhouse.ihx"
 at 1: warning 296: non-default sdcccall specified, but default stdlib or crt0
 [1;31;49m[banterhouse][1;33;49m Creating Amsdos binary file obj/banterhouse.bin[0;39;49m
 /Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/tools/hex2bin-2.0/bin/hex2bin -p 00 "obj/banterhouse.ihx" | tee obj/banterhouse.bin.log
@@ -255,10 +258,10 @@ hex2bin v2.0, Copyright (C) 2015 Jacques Pelletier & contributors
 
 Binary file start = 00000800
 Records start     = 00000800
-Highest address   = 00006DC1
+Highest address   = 00006F9F
 Pad Byte          = 0
 [1;31;49m[banterhouse][1;33;49m Creating Cassette file 'banterhouse.cdt'[0;39;49m
-[1;34;49m'[1;35;49mbanterhouse.cdt[1;34;49m' < '[1;35;49mbanterhouse.bin[1;34;49m' {Format:'[1;35;49mfirmware[1;34;49m' Load:'[1;35;49m0x0800[1;34;49m' Run:'[1;35;49m0x5EC0[1;34;49m' Name:'[1;35;49mGame[1;34;49m'}[0;39;49m
+[1;34;49m'[1;35;49mbanterhouse.cdt[1;34;49m' < '[1;35;49mbanterhouse.bin[1;34;49m' {Format:'[1;35;49mfirmware[1;34;49m' Load:'[1;35;49m0x0800[1;34;49m' Run:'[1;35;49m0x609E[1;34;49m' Name:'[1;35;49mGame[1;34;49m'}[0;39;49m
 [1;31;49m[banterhouse][1;33;49m Successfully created 'banterhouse.cdt'[0;39;49m
 [1;31;49m[banterhouse][1;33;49m Creating Disk File 'banterhouse.dsk'[0;39;49m
 DSK : banterhouse.dsk
@@ -269,11 +272,12 @@ DSK : banterhouse.dsk
 [1;31;49m[banterhouse.dsk][1;33;49m Added BIN file 'LOADING.SCR'[0;39;49m
 [1;31;49m[banterhouse][1;33;49m All files added to banterhouse.dsk. Disc ready.[0;39;49m
 /Library/Developer/CommandLineTools/usr/bin/make sizes
-Resident runtime high-water: 0x00006DEF; stack/framebuffer margin: 4624 bytes
+Resident runtime high-water: 0x00006FCD; stack/framebuffer margin: 4146 bytes
 Font: 776 bitmap + 100 index bytes; renderer: 356 code + 38 work bytes
 Pitu palette checks: PASS
 MIDI source: PASS (SMF0, 4/4, 60 BPM source, 28-bar AY arrangement)
 Theme AKS: PASS (125 BPM, 53.76s, loop 46.08s)
 SFX AKS: PASS (8 effects)
 Font import, glyphs, Mode 0 table, inventory and VRAM bounds: PASS
+HUD logo, maximum-value layout, cache key and memory margin (4146 bytes): PASS
 Static/content checks: PASS
