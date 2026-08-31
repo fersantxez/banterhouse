@@ -1,0 +1,28 @@
+INFO    src/argparse.cpp:154 - Override configuration: system.model = 2
+INFO    src/argparse.cpp:154 - Override configuration: system.ram_size = 128
+INFO    src/argparse.cpp:154 - Override configuration: system.printer = 1
+INFO    src/argparse.cpp:154 - Override configuration: system.limit_speed = 0
+INFO    src/argparse.cpp:154 - Override configuration: video.scr_fps = 0
+INFO    src/argparse.cpp:154 - Override configuration: sound.enabled = 0
+INFO    src/argparse.cpp:154 - Override configuration: file.printer_file = /Users/fer/dev/banterhouse/artifacts/campaigns/difficulty-1.4QK53w/result.dat
+VERBOSE src/argparse.cpp:117 - Append to autocmd: run"LOADER"
+Using configuration file: /Users/fer/dev/banterhouse/.tools/caprice32/cap32.cfg
+No joystick found.
+joysticks_init() failed. Joysticks won't work.
+VERBOSE src/slotshandler.cpp:118 - Loading drive A disk file: /Users/fer/dev/banterhouse/banterhouse.dsk
+VERBOSE src/slotshandler.cpp:1434 - Ignoring empty filename passed to file_load.
+VERBOSE src/slotshandler.cpp:1434 - Ignoring empty filename passed to file_load.
+VERBOSE src/slotshandler.cpp:1434 - Ignoring empty filename passed to file_load.
+VERBOSE src/cap32.cpp:1745 - Timing: First frame at 2119 - next frame in 20 ( 20/(4/4) ) at 2139
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: R - keycode: SDLK_r (114) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_r - CPC scancode: 98
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: U - keycode: SDLK_u (117) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_u - CPC scancode: 82
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: N - keycode: SDLK_n (110) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_n - CPC scancode: 86
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: ' - keycode: SDLK_QUOTE (39) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_DBLQUOTE - CPC scancode: 385
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: L - keycode: SDLK_l (108) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_L - CPC scancode: 324
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: O - keycode: SDLK_o (111) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_O - CPC scancode: 322
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: A - keycode: SDLK_a (97) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_A - CPC scancode: 389
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: D - keycode: SDLK_d (100) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_D - CPC scancode: 373
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: E - keycode: SDLK_e (101) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_E - CPC scancode: 370
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: R - keycode: SDLK_r (114) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_R - CPC scancode: 354
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: ' - keycode: SDLK_QUOTE (39) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_DBLQUOTE - CPC scancode: 385
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: Return - keycode: SDLK_RETURN (13) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_RETURN - CPC scancode: 34

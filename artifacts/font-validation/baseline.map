@@ -1,0 +1,291 @@
+ASxxxx Linker V05.50.4-SDLD,  page 1.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+.  .ABS.                            00000000    00000000 =           0. bytes (ABS,CON)
+
+         Value  Global                             Global Defined In Module
+         -----  --------------------------------   ------------------------
+     00000000  .__.ABS.                           cpct_strings
+     00000000  l__CABS                         
+     00000000  l__DABS                         
+     00000000  l__GSFINAL                      
+     00000000  l__GSINIT                       
+     00000000  l__HOME                         
+     00000000  l__INITIALIZED                  
+     00000000  l__INITIALIZER                  
+     00000000  s__CABS                         
+     00000000  s__DABS                         
+     000002CC  l__DATA                         
+     0000352E  l__CODE                         
+     00004000  s__CODE                         
+     0000752E  s__DATA                         
+     000077FA  s__GSFINAL                      
+     000077FA  s__GSINIT                       
+     000077FA  s__HOME                         
+     000077FA  s__INITIALIZED                  
+     000077FA  s__INITIALIZER                  
+
+ASxxxx Linker V05.50.4-SDLD,  page 2.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+_CODE                               00004000    0000352E =       13614. bytes (REL,CON)
+
+         Value  Global                             Global Defined In Module
+         -----  --------------------------------   ------------------------
+     00004000  _g_tileset_00                      tileset_03
+     00004020  _g_tileset_01                      tileset_03
+     00004040  _g_tileset_02                      tileset_03
+     00004060  _g_tileset_03                      tileset_03
+     00004080  _g_tileset_04                      tileset_03
+     000040A0  _g_tileset_05                      tileset_03
+     000040C0  _g_tileset_06                      tileset_03
+     000040E0  _g_tileset_07                      tileset_03
+     00004100  _g_tileset_08                      tileset_03
+     00004120  _g_tileset_09                      tileset_03
+     00004140  _g_tileset_10                      tileset_03
+     00004160  _g_tileset_11                      tileset_03
+     00004180  _g_tileset_12                      tileset_03
+     000041A0  _g_tileset_13                      tileset_03
+     000041C0  _g_tileset_14                      tileset_03
+     000041E0  _g_tileset_15                      tileset_03
+     00004200  _g_tileset_16                      tileset_03
+     00004220  _g_tileset_17                      tileset_03
+     00004240  _g_tileset_18                      tileset_03
+     00004260  _g_tileset_19                      tileset_03
+     00004280  _g_tileset_20                      tileset_03
+     000042A0  _g_tileset_21                      tileset_03
+     000042C0  _g_tileset_22                      tileset_03
+     000042E0  _g_tileset_23                      tileset_03
+     00004300  _g_tileset_24                      tileset_03
+     00004320  _g_tileset_25                      tileset_03
+     00004340  _g_tileset_26                      tileset_03
+     00004360  _g_tileset_27                      tileset_03
+     00004380  _g_tileset_28                      tileset_03
+     000043A0  _g_tileset_29                      tileset_03
+     000043C0  _g_tileset_30                      tileset_03
+     000043E0  _g_tileset_31                      tileset_03
+     00004400  _g_tileset_32                      tileset_03
+     00004420  _g_tileset_33                      tileset_03
+     00004440  _g_tileset_34                      tileset_03
+     00004460  _g_tileset_35                      tileset_03
+     00004480  _g_tileset_36                      tileset_03
+     000044A0  _g_tileset_37                      tileset_03
+     000044C0  _g_tileset_38                      tileset_03
+     000044E0  _g_tileset_39                      tileset_03
+     00004500  _g_tileset_40                      tileset_03
+     00004520  _g_tileset_41                      tileset_03
+     00004540  _g_tileset_42                      tileset_03
+     00004560  _g_tileset_43                      tileset_03
+     00004580  _g_tileset_44                      tileset_03
+     000045A0  _g_tileset_45                      tileset_03
+     000045C0  _g_tileset_46                      tileset_03
+     000045E0  _g_tileset_47                      tileset_03
+     00004600  _g_tileset_48                      tileset_03
+     00004620  _g_tileset_49                      tileset_03
+ASxxxx Linker V05.50.4-SDLD,  page 3.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+_CODE                               00004000    0000352E =       13614. bytes (REL,CON)
+
+         Value  Global                             Global Defined In Module
+         -----  --------------------------------   ------------------------
+     00004640  _g_tileset_50                      tileset_03
+     00004660  _g_tileset_51                      tileset_03
+     00004680  _g_tileset_52                      tileset_03
+     000046A0  _g_tileset_53                      tileset_03
+     000046C0  _g_tileset_54                      tileset_03
+     000046E0  _g_tileset_55                      tileset_03
+     00004700  _g_tileset_56                      tileset_03
+     00004720  _g_tileset_57                      tileset_03
+     00004740  _g_tileset_58                      tileset_03
+     00004760  _g_tileset_59                      tileset_03
+     00004780  _g_tileset_60                      tileset_03
+     000047A0  _g_tileset_61                      tileset_03
+     000047C0  _g_tileset_62                      tileset_03
+     000047E0  _g_tileset_63                      tileset_03
+     00004800  _scr00                             
+     00004837  _scr00_end                         
+     00004838  _AI                                game
+     00004839  _tileCell                          game
+     0000487C  _tileValue                         game
+     00004897  _tileType                          game
+     000048B2  _moveSprites                       game
+     00004ABE  _nextLevel                         game
+     00004B3E  _initGates                         game
+     00004C54  _initLevel                         game
+     00004CE5  _collisions                        game
+     00004CE6  _keyboard                          game
+     00004DC1  _initGame                          game
+     00004E56  _game                              game
+     00004ECE  _g_pitu_walk                       graphics
+     000050CE  _g_pitu_walk_rev                   graphics
+     000052CE  _g_pitu_jump                       graphics
+     000054CE  _g_pitu_jump_rev                   graphics
+     000056CE  _g_pitu                            graphics
+     000058CE  _g_pitu_rev                        graphics
+     00005ACE  _g_alberto                         graphics
+     00005CCE  _g_alberto_rev                     graphics
+     00005ECE  _g_alberto_walk                    graphics
+     000060CE  _g_alberto_walk_rev                graphics
+     000062CE  _g_blast                           graphics
+     000064CE  _g_beer                            graphics
+     0000652E  _g_beer_rev                        graphics
+     0000658E  _g_logo                            graphics
+     00006D8E  _main                              main
+     00006DC1  _paleta                            main
+     00006DD1  _chart                             main
+     00006DF5  _menu                              menu
+     00006E5B  _renderSprites                     render
+     00006F9D  _redrawTile                        render
+     00007071  _deleteSprites                     render
+     000070F7  _cpct_setPalette                   cpct_video
+     0000710E  _cpct_isKeyPressed                 cpct_keyboard
+ASxxxx Linker V05.50.4-SDLD,  page 4.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+_CODE                               00004000    0000352E =       13614. bytes (REL,CON)
+
+         Value  Global                             Global Defined In Module
+         -----  --------------------------------   ------------------------
+     0000710E  cpct_isKeyPressed_asm              cpct_keyboard
+     0000711A  _cpct_scanKeyboard_f               cpct_keyboard
+     0000711A  cpct_scanKeyboard_f_asm            cpct_keyboard
+     00007184  _cpct_setPALColour                 cpct_video
+     00007190  _cpct_getBit                       cpct_bitarray
+     000071B2  _cpct_drawStringM0                 cpct_strings
+     000071EC  cpct_drawCharM0_inner_asm          cpct_strings
+     0000724C  dc_2pxtableM0                      cpct_strings
+     00007250  _cpct_drawSprite                   cpct_sprites
+     000072F5  _cpct_etm_drawTilemap4x8_ag        cpct_easytilemaps
+     000072FF  cpct_etm_dtm4x8_ag_c_widthHeight   cpct_easytilemaps
+     00007315  cpct_etm_dtm4x8_ag_c_tilesetPtr    cpct_easytilemaps
+     00007380  cpct_etm_dtm4x8_ag_c_restoreI      cpct_easytilemaps
+     00007386  cpct_etm_dtm4x8_ag_c_incrementHL   cpct_easytilemaps
+     0000738B  cpct_etm_dtm4x8_ag_c_restoreWidt   cpct_easytilemaps
+     0000738E  cpct_etm_dtm4x8_ag_c_updateWidth   cpct_easytilemaps
+     0000739A  _cpct_setBit                       cpct_bitarray
+     000073BE  _cpct_keyboardStatusBuffer         cpct_keyboard
+     000073C8  _cpct_setVideoMemoryPage           cpct_video
+     000073C8  cpct_setVideoMemoryPage_asm        cpct_video
+     000073D1  _cpct_drawSpriteMasked             cpct_sprites
+     00007400  _cpct_setStackLocation             cpct_memutils
+     00007400  cpct_setStackLocation_asm          cpct_memutils
+     00007404  _cpct_isAnyKeyPressed_f            cpct_keyboard
+     00007404  cpct_isAnyKeyPressed_f_asm         cpct_keyboard
+     0000741F  _cpct_setVideoMode                 cpct_video
+     0000742D  _cpct_zx7b_decrunch_s              cpct_compression
+     00007470  _cpct_waitVSYNC                    cpct_video
+     00007470  cpct_waitVSYNC_asm                 cpct_video
+     00007478  _cpct_px2byteM0                    cpct_sprites
+     00007494  _cpct_memset                       cpct_memutils
+     000074A2  _cpct_disableFirmware              cpct_firmware
+     000074A2  _cpct_removeInterruptHandler       cpct_firmware
+     000074A2  cpct_disableFirmware_asm           cpct_firmware
+     000074A2  cpct_removeInterruptHandler_asm    cpct_firmware
+     000074B2  _cpct_mode_rom_status              cpct_firmware
+     000074B3  _cpct_setDrawCharM0                cpct_strings
+     000074D8  _cpct_getScreenPtr                 cpct_video
+     000074EE  _cpct_etm_setDrawTilemap4x8_ag     cpct_easytilemaps
+     0000751E  dc_mode0_ct                        cpct_strings
+ASxxxx Linker V05.50.4-SDLD,  page 5.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+_DATA                               0000752E    000002CC =         716. bytes (REL,CON)
+
+         Value  Global                             Global Defined In Module
+         -----  --------------------------------   ------------------------
+     0000752E  _mem_start                         main
+     00007530  _mem_page                          main
+     00007531  _swap_memvideo                     main
+     00007532  _map                               main
+     000076FE  _sprites                           main
+     000077EE  _anim_clock                        main
+     000077EF  _current_room                      main
+     000077F0  _levelFinished                     main
+     000077F1  _chart_done                        main
+ASxxxx Linker V05.50.4-SDLD,  page 6.
+
+Files Linked                              [ module(s) ]
+
+obj/tileset-03.rel                        [ tileset_03 ]
+obj/maps/scr00.rel                        [  ]
+obj/game.rel                              [ game ]
+obj/graphics.rel                          [ graphics ]
+obj/main.rel                              [ main ]
+obj/menu.rel                              [ menu ]
+obj/render.rel                            [ render ]
+
+
+Libraries Linked                          [ object file ]
+
+/private/tmp/banterhouse-build.ekrFNZ/.tools/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_setPalette_cbindings.rel ]
+/private/tmp/banterhouse-build.ekrFNZ/.tools/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_isKeyPressed.rel ]
+/private/tmp/banterhouse-build.ekrFNZ/.tools/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_scanKeyboard_f.rel ]
+/private/tmp/banterhouse-build.ekrFNZ/.tools/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_setPALColour_cbindings.rel ]
+/private/tmp/banterhouse-build.ekrFNZ/.tools/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_getBit_cbindings.rel ]
+/private/tmp/banterhouse-build.ekrFNZ/.tools/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_drawStringM0_cbindings.rel ]
+/private/tmp/banterhouse-build.ekrFNZ/.tools/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_drawCharM0_inner.rel ]
+/private/tmp/banterhouse-build.ekrFNZ/.tools/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_drawSprite_cbindings.rel ]
+/private/tmp/banterhouse-build.ekrFNZ/.tools/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_etm_drawTilemap4x8_ag_cbind ]
+/private/tmp/banterhouse-build.ekrFNZ/.tools/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_setBit_cbindings.rel ]
+/private/tmp/banterhouse-build.ekrFNZ/.tools/cpctelera/cpctelera/cpctelera.lib
+                                          [ keyboard.rel ]
+/private/tmp/banterhouse-build.ekrFNZ/.tools/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_setVideoMemoryPage.rel ]
+/private/tmp/banterhouse-build.ekrFNZ/.tools/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_drawSpriteMasked_cbindings. ]
+/private/tmp/banterhouse-build.ekrFNZ/.tools/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_setStackLocation.rel ]
+/private/tmp/banterhouse-build.ekrFNZ/.tools/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_isAnyKeyPressed_f.rel ]
+/private/tmp/banterhouse-build.ekrFNZ/.tools/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_setVideoMode_cbindings.rel ]
+/private/tmp/banterhouse-build.ekrFNZ/.tools/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_zx7b_decrunch_s_cbindings.r ]
+/private/tmp/banterhouse-build.ekrFNZ/.tools/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_waitVSYNC.rel ]
+/private/tmp/banterhouse-build.ekrFNZ/.tools/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_px2byteM0_cbindings.rel ]
+/private/tmp/banterhouse-build.ekrFNZ/.tools/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_memset_cbinding.rel ]
+/private/tmp/banterhouse-build.ekrFNZ/.tools/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_removeInterruptHandler.rel ]
+/private/tmp/banterhouse-build.ekrFNZ/.tools/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpc_mode_rom_status.rel ]
+/private/tmp/banterhouse-build.ekrFNZ/.tools/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_setDrawCharM0_cbindings.rel ]
+/private/tmp/banterhouse-build.ekrFNZ/.tools/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_getScreenPtr_cbindings.rel ]
+/private/tmp/banterhouse-build.ekrFNZ/.tools/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_etm_setDrawTilemap4x8_ag_cb ]
+/private/tmp/banterhouse-build.ekrFNZ/.tools/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_dc_mode0_ct.rel ]
+
+ASxxxx Linker V05.50.4-SDLD,  page 7.
+
+User Base Address Definitions
+
+_CODE = 0x4000
+_DATA = 0x0000
+
+

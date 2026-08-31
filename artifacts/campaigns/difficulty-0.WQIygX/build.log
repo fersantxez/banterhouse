@@ -1,0 +1,104 @@
+/Library/Developer/CommandLineTools/usr/bin/make cleanall
+[1;31;49m[banterhouse][1;33;49m Deleting folder: obj/[0;39;49m
+rm -f -r ./obj
+[1;31;49m[banterhouse][1;33;49m Deleting objects to clean: [0;39;49m
+[1;31;49m[banterhouse][1;33;49m Deleting banterhouse.cdt banterhouse.dsk obj/banterhouse.dsk.dskinc[0;39;49m
+rm -f banterhouse.cdt banterhouse.dsk obj/banterhouse.dsk.dskinc
+/Library/Developer/CommandLineTools/usr/bin/make Z80CCFLAGS='--sdcccall 0 -DBH_AUTOTEST -DBH_AUTOTEST_DIFFICULTY=0' all
+preobjs: 'obj/dsk_files/.folder obj/.folder obj/maps/.folder obj/music/.folder'
+[1;31;49m[banterhouse][1;33;49m [0;39;49m
+[1;31;49m[banterhouse][1;33;49m === PREBUILD PROCCESSING DONE![0;39;49m
+[1;31;49m[banterhouse][1;33;49m ============================================================[0;39;49m
+[1;31;49m[banterhouse][1;33;49m [0;39;49m
+/opt/homebrew/bin/sdasz80 -l -o -s -I/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src -Isrc  obj/banterhouse.rel  src/banterhouse.s 
+src/banterhouse.s:14: Error: <q> missing or improper operators, terminators, or delimiters
+src/banterhouse.s:18: Error: <q> missing or improper operators, terminators, or delimiters
+src/banterhouse.s:31: Error: <q> missing or improper operators, terminators, or delimiters
+src/banterhouse.s:39: Error: <q> missing or improper operators, terminators, or delimiters
+src/banterhouse.s:41: Error: <q> missing or improper operators, terminators, or delimiters
+src/banterhouse.s:42: Error: <q> missing or improper operators, terminators, or delimiters
+src/banterhouse.s:43: Error: <q> missing or improper operators, terminators, or delimiters
+src/banterhouse.s:45: Error: <q> missing or improper operators, terminators, or delimiters
+src/banterhouse.s:46: Error: <q> missing or improper operators, terminators, or delimiters
+src/banterhouse.s:49: Error: <q> missing or improper operators, terminators, or delimiters
+src/banterhouse.s:51: Error: <q> missing or improper operators, terminators, or delimiters
+src/banterhouse.s:56: Error: <q> missing or improper operators, terminators, or delimiters
+src/banterhouse.s:57: Error: <q> missing or improper operators, terminators, or delimiters
+src/banterhouse.s:58: Error: <q> missing or improper operators, terminators, or delimiters
+src/banterhouse.s:59: Error: <q> missing or improper operators, terminators, or delimiters
+src/banterhouse.s:60: Error: <q> missing or improper operators, terminators, or delimiters
+src/banterhouse.s:61: Error: <q> missing or improper operators, terminators, or delimiters
+src/banterhouse.s:62: Error: <q> missing or improper operators, terminators, or delimiters
+src/banterhouse.s:63: Error: <q> missing or improper operators, terminators, or delimiters
+src/banterhouse.s:64: Error: <q> missing or improper operators, terminators, or delimiters
+src/banterhouse.s:65: Error: <q> missing or improper operators, terminators, or delimiters
+src/banterhouse.s:66: Error: <q> missing or improper operators, terminators, or delimiters
+src/banterhouse.s:67: Error: <q> missing or improper operators, terminators, or delimiters
+src/banterhouse.s:68: Error: <q> missing or improper operators, terminators, or delimiters
+src/banterhouse.s:69: Error: <q> missing or improper operators, terminators, or delimiters
+src/banterhouse.s:70: Error: <q> missing or improper operators, terminators, or delimiters
+src/banterhouse.s:71: Error: <q> missing or improper operators, terminators, or delimiters
+src/banterhouse.s:72: Error: <q> missing or improper operators, terminators, or delimiters
+src/banterhouse.s:73: Error: <q> missing or improper operators, terminators, or delimiters
+src/banterhouse.s:74: Error: <q> missing or improper operators, terminators, or delimiters
+src/banterhouse.s:75: Error: <q> missing or improper operators, terminators, or delimiters
+src/banterhouse.s:76: Error: <q> missing or improper operators, terminators, or delimiters
+src/banterhouse.s:77: Error: <q> missing or improper operators, terminators, or delimiters
+src/banterhouse.s:78: Error: <q> missing or improper operators, terminators, or delimiters
+src/banterhouse.s:79: Error: <q> missing or improper operators, terminators, or delimiters
+src/banterhouse.s:85: Error: <q> missing or improper operators, terminators, or delimiters
+src/banterhouse.s:86: Error: <q> missing or improper operators, terminators, or delimiters
+src/banterhouse.s:87: Error: <q> missing or improper operators, terminators, or delimiters
+src/banterhouse.s:91: Error: <q> missing or improper operators, terminators, or delimiters
+src/banterhouse.s:92: Error: <q> missing or improper operators, terminators, or delimiters
+src/banterhouse.s:93: Error: <q> missing or improper operators, terminators, or delimiters
+src/banterhouse.s:94: Error: <q> missing or improper operators, terminators, or delimiters
+src/banterhouse.s:95: Error: <q> missing or improper operators, terminators, or delimiters
+src/banterhouse.s:96: Error: <q> missing or improper operators, terminators, or delimiters
+src/banterhouse.s:97: Error: <q> missing or improper operators, terminators, or delimiters
+src/banterhouse.s:98: Error: <q> missing or improper operators, terminators, or delimiters
+src/banterhouse.s:99: Error: <q> missing or improper operators, terminators, or delimiters
+src/banterhouse.s:100: Error: <q> missing or improper operators, terminators, or delimiters
+src/banterhouse.s:103: Error: <q> missing or improper operators, terminators, or delimiters
+src/banterhouse.s:105: Error: <q> missing or improper operators, terminators, or delimiters
+src/banterhouse.s:107: Error: <q> missing or improper operators, terminators, or delimiters
+src/banterhouse.s:108: Error: <q> missing or improper operators, terminators, or delimiters
+src/banterhouse.s:110: Error: <q> missing or improper operators, terminators, or delimiters
+src/banterhouse.s:111: Error: <q> missing or improper operators, terminators, or delimiters
+src/banterhouse.s:112: Error: <q> missing or improper operators, terminators, or delimiters
+src/banterhouse.s:113: Error: <q> missing or improper operators, terminators, or delimiters
+src/banterhouse.s:114: Error: <q> missing or improper operators, terminators, or delimiters
+src/banterhouse.s:117: Error: <q> missing or improper operators, terminators, or delimiters
+src/banterhouse.s:118: Error: <q> missing or improper operators, terminators, or delimiters
+src/banterhouse.s:120: Error: <q> missing or improper operators, terminators, or delimiters
+src/banterhouse.s:121: Error: <q> missing or improper operators, terminators, or delimiters
+src/banterhouse.s:122: Error: <q> missing or improper operators, terminators, or delimiters
+src/banterhouse.s:123: Error: <q> missing or improper operators, terminators, or delimiters
+src/banterhouse.s:135: Error: <q> missing or improper operators, terminators, or delimiters
+src/banterhouse.s:136: Error: <q> missing or improper operators, terminators, or delimiters
+src/banterhouse.s:137: Error: <q> missing or improper operators, terminators, or delimiters
+src/banterhouse.s:138: Error: <q> missing or improper operators, terminators, or delimiters
+src/banterhouse.s:139: Error: <q> missing or improper operators, terminators, or delimiters
+src/banterhouse.s:140: Error: <q> missing or improper operators, terminators, or delimiters
+src/banterhouse.s:141: Error: <q> missing or improper operators, terminators, or delimiters
+src/banterhouse.s:142: Error: <q> missing or improper operators, terminators, or delimiters
+src/banterhouse.s:143: Error: <q> missing or improper operators, terminators, or delimiters
+src/banterhouse.s:144: Error: <q> missing or improper operators, terminators, or delimiters
+src/banterhouse.s:146: Error: <q> missing or improper operators, terminators, or delimiters
+src/banterhouse.s:147: Error: <q> missing or improper operators, terminators, or delimiters
+src/banterhouse.s:150: Error: <q> missing or improper operators, terminators, or delimiters
+src/banterhouse.s:151: Error: <q> missing or improper operators, terminators, or delimiters
+src/banterhouse.s:152: Error: <q> missing or improper operators, terminators, or delimiters
+src/banterhouse.s:153: Error: <q> missing or improper operators, terminators, or delimiters
+src/banterhouse.s:154: Error: <q> missing or improper operators, terminators, or delimiters
+src/banterhouse.s:155: Error: <q> missing or improper operators, terminators, or delimiters
+src/banterhouse.s:156: Error: <q> missing or improper operators, terminators, or delimiters
+src/banterhouse.s:157: Error: <q> missing or improper operators, terminators, or delimiters
+src/banterhouse.s:158: Error: <q> missing or improper operators, terminators, or delimiters
+src/banterhouse.s:159: Error: <q> missing or improper operators, terminators, or delimiters
+src/banterhouse.s:162: Error: <q> missing or improper operators, terminators, or delimiters
+src/banterhouse.s:163: Error: <q> missing or improper operators, terminators, or delimiters
+removing obj/banterhouse.rel
+make[3]: *** [obj/banterhouse.rel] Error 2
+make[2]: *** [_bh-test-dsk] Error 2
+make[1]: *** [test-dsk] Error 2

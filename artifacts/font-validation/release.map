@@ -1,0 +1,257 @@
+ASxxxx Linker V05.50.4-SDLD,  page 1.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+.  .ABS.                            00000000    00000000 =           0. bytes (ABS,CON)
+
+         Value  Global                             Global Defined In Module
+         -----  --------------------------------   ------------------------
+     00000000  .__.ABS.                           cpct_strings
+     00000000  l__BH_FONT_DATA                 
+     00000000  l__BH_FONT_WORK                 
+     00000000  l__CABS                         
+     00000000  l__DABS                         
+     00000000  l__GSFINAL                      
+     00000000  l__GSINIT                       
+     00000000  l__HOME                         
+     00000000  l__INITIALIZED                  
+     00000000  l__INITIALIZER                  
+     00000000  l___bh_song                     
+     00000000  s__BH_FONT_DATA                 
+     00000000  s__BH_FONT_DATA0                
+     00000000  s__BH_FONT_WORK                 
+     00000000  s__BH_FONT_WORK0                
+     00000000  s__CABS                         
+     00000000  s__DABS                         
+     00000000  s___bh_song                     
+     00000000  s___bh_song0                    
+     00000026  l__BH_FONT_WORK0                
+     0000002E  l__DATA                         
+     0000036C  l__BH_FONT_DATA0                
+     00000A73  l___bh_song0                    
+     0000105E  l__BH_GFX                       
+     00001300  _g_pitu_rev                        graphics
+     00001500  _g_pitu_walk_rev                   graphics
+     00001700  _g_alberto_rev                     graphics
+     00001900  _g_alberto_walk_rev                graphics
+     00002000  s__BH_GFX                       
+     00002B17  l__CODE                         
+     00004000  s__CODE                         
+     00006B17  s__DATA                         
+     00006B45  s__GSFINAL                      
+     00006B45  s__GSINIT                       
+     00006B45  s__HOME                         
+     00006B45  s__INITIALIZED                  
+     00006B45  s__INITIALIZER                  
+
+ASxxxx Linker V05.50.4-SDLD,  page 2.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+_CODE                               00004000    00002B17 =       11031. bytes (REL,CON)
+
+         Value  Global                             Global Defined In Module
+         -----  --------------------------------   ------------------------
+     0000401C  _bh_audio_init                     audio
+     00004036  _bh_audio_tick                     audio
+     00004048  _bh_audio_sfx                      audio
+     000040FE  _bh_audio_scene                    audio
+     0000414A  _bh_audio_pause                    audio
+     00004156  _bh_audio_stop                     audio
+     00005B5F  _bh_game                           game
+     00005C6B  _main                              main
+     00005C94  _bh_palette                        main
+     00005D26  _bh_menu                           menu
+     00005EFF  _bh_font_set_colours               bh_font_renderer
+     00005FE9  _bh_font_glyph_index               bh_font_renderer
+     00005FF2  _bh_font_draw_char                 bh_font_renderer
+     0000600C  _bh_font_draw_string               bh_font_renderer
+     00006036  _bh_font_measure                   bh_font_renderer
+     0000604A  _cpct_setPalette                   cpct_video
+     00006061  _cpct_hflipSpriteMaskedM0          cpct_sprites
+     0000609F  _cpct_akp_digidrumStatus           cpct_audio
+     000060A0  _cpct_akp_songLoopTimes            cpct_audio
+     000060A1  _cpct_akp_musicPlay                cpct_audio
+     000060A1  cpct_akp_musicPlay_asm             cpct_audio
+     000067A4  _cpct_akp_musicInit                cpct_audio
+     000067AB  cpct_akp_musicInit_asm             cpct_audio
+     00006804  _cpct_akp_stop                     cpct_audio
+     00006804  cpct_akp_stop_asm                  cpct_audio
+     00006817  _cpct_akp_SFXGetInstrument         cpct_audio
+     0000681C  cpct_akp_SFXGetInstrument_asm      cpct_audio
+     00006830  _cpct_akp_SFXInit                  cpct_audio
+     00006837  cpct_akp_SFXInit_asm               cpct_audio
+     0000683E  _cpct_akp_SFXStopAll               cpct_audio
+     0000683E  cpct_akp_SFXStopAll_asm            cpct_audio
+     0000684B  _cpct_akp_SFXPlay                  cpct_audio
+     0000685D  cpct_akp_SFXPlay_asm               cpct_audio
+     000068AA  _cpct_akp_SFXStop                  cpct_audio
+     000068AF  cpct_akp_SFXStop_asm               cpct_audio
+     000068C8  _cpct_drawSprite                   cpct_sprites
+     0000696D  _cpct_keyboardStatusBuffer         cpct_keyboard
+     00006977  _cpct_setVideoMemoryPage           cpct_video
+     00006977  cpct_setVideoMemoryPage_asm        cpct_video
+     00006980  _cpct_drawSpriteMasked             cpct_sprites
+     000069AF  _cpct_setStackLocation             cpct_memutils
+     000069AF  cpct_setStackLocation_asm          cpct_memutils
+     000069B3  _cpct_isAnyKeyPressed              cpct_keyboard
+     000069B3  cpct_isAnyKeyPressed_asm           cpct_keyboard
+     000069C0  _cpct_setVideoMode                 cpct_video
+     000069CE  _cpct_waitVSYNC                    cpct_video
+     000069CE  cpct_waitVSYNC_asm                 cpct_video
+     000069D6  _cpct_px2byteM0                    cpct_sprites
+     000069F2  _cpct_memcpy                       cpct_memutils
+     000069FA  _cpct_memset                       cpct_memutils
+ASxxxx Linker V05.50.4-SDLD,  page 3.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+_CODE                               00004000    00002B17 =       11031. bytes (REL,CON)
+
+         Value  Global                             Global Defined In Module
+         -----  --------------------------------   ------------------------
+     00006A08  _cpct_disableFirmware              cpct_firmware
+     00006A08  _cpct_removeInterruptHandler       cpct_firmware
+     00006A08  cpct_disableFirmware_asm           cpct_firmware
+     00006A08  cpct_removeInterruptHandler_asm    cpct_firmware
+     00006A18  _cpct_drawSolidBox                 cpct_sprites
+     00006ABF  _cpct_mode_rom_status              cpct_firmware
+     00006AC0  _cpct_getScreenPtr                 cpct_video
+     00006AD6  _cpct_scanKeyboard                 cpct_keyboard
+     00006AD6  cpct_scanKeyboard_asm              cpct_keyboard
+     00006B07  dc_mode0_ct                        cpct_strings
+ASxxxx Linker V05.50.4-SDLD,  page 4.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+__bh_song0                          00000000    00000A73 =        2675. bytes (ABS,CON)
+
+         Value  Global                             Global Defined In Module
+         -----  --------------------------------   ------------------------
+     00000800  _bh_song                           
+
+ASxxxx Linker V05.50.4-SDLD,  page 5.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+_DATA                               00006B17    0000002E =          46. bytes (REL,CON)
+
+         Value  Global                             Global Defined In Module
+         -----  --------------------------------   ------------------------
+     00006B42  _bh_difficulty                     menu
+     00006B43  _bh_render_translation_unit        render
+
+ASxxxx Linker V05.50.4-SDLD,  page 6.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+_BH_GFX                             00002000    0000105E =        4190. bytes (REL,CON)
+
+         Value  Global                             Global Defined In Module
+         -----  --------------------------------   ------------------------
+     00002000  _g_pitu_walk                       graphics
+     00002200  _g_pitu                            graphics
+     00002400  _g_alberto                         graphics
+     00002600  _g_alberto_walk                    graphics
+     00002800  _g_logo                            graphics
+
+ASxxxx Linker V05.50.4-SDLD,  page 7.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+_BH_FONT_DATA0                      00000000    0000036C =         876. bytes (ABS,CON)
+
+         Value  Global                             Global Defined In Module
+         -----  --------------------------------   ------------------------
+     00001B00  _bh_font_glyphs                    
+     00001E08  _bh_font_ascii_map                 
+     00001E67  _bh_font_special_map               
+     00001E6C  _bh_font_data_end                  
+
+ASxxxx Linker V05.50.4-SDLD,  page 8.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+_BH_FONT_WORK0                      00000000    00000026 =          38. bytes (ABS,CON)
+
+         Value  Global                             Global Defined In Module
+         -----  --------------------------------   ------------------------
+     00001E6C  _bh_font_work_start                bh_font_renderer
+     00001E92  _bh_font_work_end                  bh_font_renderer
+
+ASxxxx Linker V05.50.4-SDLD,  page 9.
+
+Files Linked                              [ module(s) ]
+
+obj/banterhouse.rel                       [  ]
+obj/audio.rel                             [ audio ]
+obj/font_test.rel                         [ font_test ]
+obj/game.rel                              [ game ]
+obj/graphics.rel                          [ graphics ]
+obj/main.rel                              [ main ]
+obj/menu.rel                              [ menu ]
+obj/render.rel                            [ render ]
+obj/font_data.rel                         [  ]
+obj/font_renderer.rel                     [ bh_font_renderer ]
+
+
+Libraries Linked                          [ object file ]
+
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_setPalette_cbindings.rel ]
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_hflipSpriteMaskedM0_cbindin ]
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/cpctelera.lib
+                                          [ arkostracker.rel ]
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_drawSprite_cbindings.rel ]
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/cpctelera.lib
+                                          [ keyboard.rel ]
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_setVideoMemoryPage.rel ]
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_drawSpriteMasked_cbindings. ]
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_setStackLocation.rel ]
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_isAnyKeyPressed.rel ]
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_setVideoMode_cbindings.rel ]
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_waitVSYNC.rel ]
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_px2byteM0_cbindings.rel ]
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_memcpy_cbindings.rel ]
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_memset_cbinding.rel ]
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_removeInterruptHandler.rel ]
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_drawSolidBox_cbindings.rel ]
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpc_mode_rom_status.rel ]
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_getScreenPtr_cbindings.rel ]
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_scanKeyboard.rel ]
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/cpctelera.lib
+                                          [ cpct_dc_mode0_ct.rel ]
+
+ASxxxx Linker V05.50.4-SDLD,  page 10.
+
+User Base Address Definitions
+
+_CODE = 0x4000
+_DATA = 0x0000
+_BH_GFX=0x2000
+
+

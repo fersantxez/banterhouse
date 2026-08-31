@@ -1,0 +1,178 @@
+/Library/Developer/CommandLineTools/usr/bin/make cleanall
+[1;31;49m[banterhouse][1;33;49m Deleting folder: obj/[0;39;49m
+rm -f -r ./obj
+[1;31;49m[banterhouse][1;33;49m Deleting objects to clean: [0;39;49m
+[1;31;49m[banterhouse][1;33;49m Deleting banterhouse.cdt banterhouse.dsk obj/banterhouse.dsk.dskinc[0;39;49m
+rm -f banterhouse.cdt banterhouse.dsk obj/banterhouse.dsk.dskinc
+/Library/Developer/CommandLineTools/usr/bin/make all
+preobjs: 'obj/dsk_files/.folder obj/.folder obj/maps/.folder obj/music/.folder'
+[1;31;49m[banterhouse][1;33;49m [0;39;49m
+[1;31;49m[banterhouse][1;33;49m === PREBUILD PROCCESSING DONE![0;39;49m
+[1;31;49m[banterhouse][1;33;49m ============================================================[0;39;49m
+[1;31;49m[banterhouse][1;33;49m [0;39;49m
+/opt/homebrew/bin/sdasz80 -l -o -s -I/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src -Isrc  obj/banterhouse-sfx.rel  src/banterhouse-sfx.s 
+/opt/homebrew/bin/sdasz80 -l -o -s -I/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src -Isrc  obj/banterhouse-theme.rel  src/banterhouse-theme.s 
+/opt/homebrew/bin/sdcc -I/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src -Isrc -mz80 --sdcccall 0 -c  src/audio.c -o  obj/audio.rel
+at 1: warning 296: non-default sdcccall specified, but default stdlib or crt0
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/firmware/firmware.h:33: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/firmware/firmware.h:39: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/firmware/firmware.h:42: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/firmware/firmware.h:43: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/firmware/firmware.h:44: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/firmware/firmware.h:45: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/keyboard/keyboard.h:45: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/keyboard/keyboard.h:46: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/keyboard/keyboard.h:47: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/keyboard/keyboard.h:48: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/keyboard/keyboard.h:50: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/keyboard/keyboard.h:51: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/keyboard/keyboard.h:52: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/video/videomode.h:31: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/video/videomode.h:32: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/video/videomode.h:33: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/video/videomode.h:34: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/audio/audio.h:39: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/audio/audio.h:40: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/audio/audio.h:44: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/random/random_types.h:1053: warning 291: enumeration constant outside the range of int requires ISO C23 or later
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/random/random.h:40: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/random/random.h:41: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/random/random.h:53: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/random/random.h:54: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/random/random.h:55: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/random/random.h:57: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/random/random.h:58: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/random/random.h:62: warning 283: function declarator with no prototype
+/opt/homebrew/bin/sdcc -I/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src -Isrc -mz80 --sdcccall 0 -c  src/font_test.c -o  obj/font_test.rel
+at 1: warning 296: non-default sdcccall specified, but default stdlib or crt0
+src/font_test.c:1: warning 190: ISO C forbids an empty translation unit
+/opt/homebrew/bin/sdcc -I/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src -Isrc -mz80 --sdcccall 0 -c  src/game.c -o  obj/game.rel
+at 1: warning 296: non-default sdcccall specified, but default stdlib or crt0
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/firmware/firmware.h:33: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/firmware/firmware.h:39: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/firmware/firmware.h:42: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/firmware/firmware.h:43: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/firmware/firmware.h:44: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/firmware/firmware.h:45: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/keyboard/keyboard.h:45: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/keyboard/keyboard.h:46: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/keyboard/keyboard.h:47: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/keyboard/keyboard.h:48: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/keyboard/keyboard.h:50: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/keyboard/keyboard.h:51: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/keyboard/keyboard.h:52: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/video/videomode.h:31: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/video/videomode.h:32: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/video/videomode.h:33: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/video/videomode.h:34: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/audio/audio.h:39: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/audio/audio.h:40: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/audio/audio.h:44: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/random/random_types.h:1053: warning 291: enumeration constant outside the range of int requires ISO C23 or later
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/random/random.h:40: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/random/random.h:41: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/random/random.h:53: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/random/random.h:54: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/random/random.h:55: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/random/random.h:57: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/random/random.h:58: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/random/random.h:62: warning 283: function declarator with no prototype
+/opt/homebrew/bin/sdcc -I/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src -Isrc -mz80 --sdcccall 0 -c  src/graphics.c -o  obj/graphics.rel
+at 1: warning 296: non-default sdcccall specified, but default stdlib or crt0
+/opt/homebrew/bin/sdcc -I/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src -Isrc -mz80 --sdcccall 0 -c  src/main.c -o  obj/main.rel
+at 1: warning 296: non-default sdcccall specified, but default stdlib or crt0
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/firmware/firmware.h:33: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/firmware/firmware.h:39: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/firmware/firmware.h:42: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/firmware/firmware.h:43: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/firmware/firmware.h:44: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/firmware/firmware.h:45: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/keyboard/keyboard.h:45: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/keyboard/keyboard.h:46: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/keyboard/keyboard.h:47: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/keyboard/keyboard.h:48: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/keyboard/keyboard.h:50: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/keyboard/keyboard.h:51: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/keyboard/keyboard.h:52: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/video/videomode.h:31: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/video/videomode.h:32: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/video/videomode.h:33: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/video/videomode.h:34: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/audio/audio.h:39: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/audio/audio.h:40: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/audio/audio.h:44: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/random/random_types.h:1053: warning 291: enumeration constant outside the range of int requires ISO C23 or later
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/random/random.h:40: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/random/random.h:41: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/random/random.h:53: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/random/random.h:54: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/random/random.h:55: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/random/random.h:57: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/random/random.h:58: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/random/random.h:62: warning 283: function declarator with no prototype
+/opt/homebrew/bin/sdcc -I/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src -Isrc -mz80 --sdcccall 0 -c  src/menu.c -o  obj/menu.rel
+at 1: warning 296: non-default sdcccall specified, but default stdlib or crt0
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/firmware/firmware.h:33: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/firmware/firmware.h:39: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/firmware/firmware.h:42: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/firmware/firmware.h:43: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/firmware/firmware.h:44: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/firmware/firmware.h:45: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/keyboard/keyboard.h:45: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/keyboard/keyboard.h:46: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/keyboard/keyboard.h:47: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/keyboard/keyboard.h:48: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/keyboard/keyboard.h:50: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/keyboard/keyboard.h:51: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/keyboard/keyboard.h:52: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/video/videomode.h:31: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/video/videomode.h:32: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/video/videomode.h:33: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/video/videomode.h:34: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/audio/audio.h:39: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/audio/audio.h:40: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/audio/audio.h:44: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/random/random_types.h:1053: warning 291: enumeration constant outside the range of int requires ISO C23 or later
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/random/random.h:40: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/random/random.h:41: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/random/random.h:53: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/random/random.h:54: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/random/random.h:55: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/random/random.h:57: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/random/random.h:58: warning 283: function declarator with no prototype
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src/random/random.h:62: warning 283: function declarator with no prototype
+/opt/homebrew/bin/sdcc -I/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src -Isrc -mz80 --sdcccall 0 -c  src/render.c -o  obj/render.rel
+at 1: warning 296: non-default sdcccall specified, but default stdlib or crt0
+/opt/homebrew/bin/sdasz80 -l -o -s -I/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src -Isrc  obj/font_data.rel  src/font_data.s 
+/opt/homebrew/bin/sdasz80 -l -o -s -I/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/src -Isrc  obj/font_renderer.rel  src/font_renderer.s 
+[1;31;49m[banterhouse][1;33;49m Linking binary file[0;39;49m
+/opt/homebrew/bin/sdcc -mz80 --sdcccall 0 --no-std-crt0 -Wl-u --code-loc 0x4000 -Wl-b_BH_GFX=0x2000 --data-loc 0 -l/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/cpctelera.lib   obj/banterhouse-sfx.rel  obj/banterhouse-theme.rel  obj/audio.rel  obj/font_test.rel  obj/game.rel  obj/graphics.rel  obj/main.rel  obj/menu.rel  obj/render.rel  obj/font_data.rel  obj/font_renderer.rel -o "obj/banterhouse.ihx"
+at 1: warning 296: non-default sdcccall specified, but default stdlib or crt0
+[1;31;49m[banterhouse][1;33;49m Creating Amsdos binary file obj/banterhouse.bin[0;39;49m
+/Users/fer/dev/banterhouse/.tools/cpctelera/cpctelera/tools/hex2bin-2.0/bin/hex2bin -p 00 "obj/banterhouse.ihx" | tee obj/banterhouse.bin.log
+hex2bin v2.0, Copyright (C) 2015 Jacques Pelletier & contributors
+
+Binary file start = 00000800
+Records start     = 00000800
+Highest address   = 00006B54
+Pad Byte          = 0
+[1;31;49m[banterhouse][1;33;49m Creating Cassette file 'banterhouse.cdt'[0;39;49m
+[1;34;49m'[1;35;49mbanterhouse.cdt[1;34;49m' < '[1;35;49mbanterhouse.bin[1;34;49m' {Format:'[1;35;49mfirmware[1;34;49m' Load:'[1;35;49m0x0800[1;34;49m' Run:'[1;35;49m0x5CA9[1;34;49m' Name:'[1;35;49mGame[1;34;49m'}[0;39;49m
+[1;31;49m[banterhouse][1;33;49m Successfully created 'banterhouse.cdt'[0;39;49m
+[1;31;49m[banterhouse][1;33;49m Creating Disk File 'banterhouse.dsk'[0;39;49m
+DSK : banterhouse.dsk
+------------------------------------
+[1;31;49m[banterhouse.dsk][1;33;49m Added BIN file 'obj/banterhouse.bin'[0;39;49m
+[1;31;49m[banterhouse][1;33;49m Successfully created 'banterhouse.dsk'[0;39;49m
+[1;31;49m[banterhouse.dsk][1;33;49m Added ASCII file 'LOADER.BAS'[0;39;49m
+[1;31;49m[banterhouse.dsk][1;33;49m Added BIN file 'LOADING.SCR'[0;39;49m
+[1;31;49m[banterhouse][1;33;49m All files added to banterhouse.dsk. Disc ready.[0;39;49m
+/Library/Developer/CommandLineTools/usr/bin/make sizes
+Resident runtime high-water: 0x00006B82; stack/framebuffer margin: 5245 bytes
+Font: 776 bitmap + 100 index bytes; renderer: 356 code + 38 work bytes
+Pitu palette checks: PASS
+MIDI source: PASS (SMF0, 4/4, 60 BPM source, 28-bar AY arrangement)
+Theme AKS: PASS (125 BPM, 53.76s, loop 46.08s)
+SFX AKS: PASS (8 effects)
+Font import, glyphs, Mode 0 table, inventory and VRAM bounds: PASS
+Static/content checks: PASS

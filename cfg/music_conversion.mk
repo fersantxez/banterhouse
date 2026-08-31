@@ -51,3 +51,13 @@
 ## placed at the 0x42A0 memory address in an absolue way.
 ##
 #$(eval $(call AKS2C,music/song.aks,g_mysong,src/music/,0x42A0))
+
+# Arkos Tracker 1.0 sources -> absolute CPCtelera assembler/header exports.
+# The 2434-byte theme fits below the reverse-sprite block at 0x1300.  The
+# 208-byte SFX-only bank occupies the verified font/GFX gap at 0x1EA0.
+$(eval $(call AKS2DATA, SET_FOLDER  , src/ ))
+$(eval $(call AKS2DATA, SET_OUTPUTS , s h ))
+$(eval $(call AKS2DATA, SET_SFXONLY , no ))
+$(eval $(call AKS2DATA, CONVERT     , music/banterhouse-theme.aks , bh_theme , 0x0800 ))
+$(eval $(call AKS2DATA, SET_SFXONLY , yes ))
+$(eval $(call AKS2DATA, CONVERT     , music/banterhouse-sfx.aks , bh_sfx , 0x1EA0 ))

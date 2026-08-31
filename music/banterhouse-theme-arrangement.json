@@ -1,0 +1,20 @@
+{
+  "source": "source/banterhouse-theme.mid",
+  "source_sha256": "66fbb74e2dad5beec272eeddd3ac36507ed164e8a7480863c3f775ad1b38b2cf",
+  "embedded_title": "RASPBERRY BERET",
+  "embedded_artist": "Prince",
+  "provenance": "User-supplied MIDI; redistribution clearance has not been independently verified.",
+  "source_start_bar": 0,
+  "source_bars": 28,
+  "target_bpm": 125,
+  "rows_per_beat": 4,
+  "pattern_rows": 32,
+  "loop_start_pattern": 2,
+  "loop_end_pattern": 13,
+  "roles": {
+    "lead_channels": [2, 1],
+    "bass_channel": 0,
+    "harmony_channel": 3,
+    "drum_channel": 9
+  }
+}

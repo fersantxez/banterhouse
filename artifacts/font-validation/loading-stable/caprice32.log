@@ -1,0 +1,407 @@
+INFO    src/argparse.cpp:154 - Override configuration: system.model = 2
+INFO    src/argparse.cpp:154 - Override configuration: system.ram_size = 128
+INFO    src/argparse.cpp:154 - Override configuration: system.limit_speed = 0
+INFO    src/argparse.cpp:154 - Override configuration: video.scr_fps = 0
+INFO    src/argparse.cpp:154 - Override configuration: sound.enabled = 0
+INFO    src/argparse.cpp:154 - Override configuration: file.sdump_dir = /Users/fer/dev/banterhouse/artifacts/font-validation/loading-stable
+VERBOSE src/argparse.cpp:117 - Append to autocmd: mode 0:border 0:paper 0:pen 1:cls:ink 0,0:ink 1,1:ink 2,2:ink 3,11:ink 4,26:ink 5,25:ink 6,24:ink 7,16:ink 8,15:ink 9,6:ink 10,8:ink 11,4:ink 12,9:ink 13,18:ink 14,3:ink 15,13:load"LOADING.SCR",&c000:while -1:wend
+VERBOSE src/argparse.cpp:117 - Append to autocmd: CAP32_DELAY
+VERBOSE src/argparse.cpp:92 - Recognized keyword: CAP32_DELAY
+VERBOSE src/argparse.cpp:117 - Append to autocmd: CAP32_DELAY
+VERBOSE src/argparse.cpp:92 - Recognized keyword: CAP32_DELAY
+VERBOSE src/argparse.cpp:117 - Append to autocmd: CAP32_DELAY
+VERBOSE src/argparse.cpp:92 - Recognized keyword: CAP32_DELAY
+VERBOSE src/argparse.cpp:117 - Append to autocmd: CAP32_DELAY
+VERBOSE src/argparse.cpp:92 - Recognized keyword: CAP32_DELAY
+VERBOSE src/argparse.cpp:117 - Append to autocmd: CAP32_DELAY
+VERBOSE src/argparse.cpp:92 - Recognized keyword: CAP32_DELAY
+VERBOSE src/argparse.cpp:117 - Append to autocmd: CAP32_DELAY
+VERBOSE src/argparse.cpp:92 - Recognized keyword: CAP32_DELAY
+VERBOSE src/argparse.cpp:117 - Append to autocmd: CAP32_DELAY
+VERBOSE src/argparse.cpp:92 - Recognized keyword: CAP32_DELAY
+VERBOSE src/argparse.cpp:117 - Append to autocmd: CAP32_DELAY
+VERBOSE src/argparse.cpp:92 - Recognized keyword: CAP32_DELAY
+VERBOSE src/argparse.cpp:117 - Append to autocmd: CAP32_DELAY
+VERBOSE src/argparse.cpp:92 - Recognized keyword: CAP32_DELAY
+VERBOSE src/argparse.cpp:117 - Append to autocmd: CAP32_DELAY
+VERBOSE src/argparse.cpp:92 - Recognized keyword: CAP32_DELAY
+VERBOSE src/argparse.cpp:117 - Append to autocmd: CAP32_DELAY
+VERBOSE src/argparse.cpp:92 - Recognized keyword: CAP32_DELAY
+VERBOSE src/argparse.cpp:117 - Append to autocmd: CAP32_DELAY
+VERBOSE src/argparse.cpp:92 - Recognized keyword: CAP32_DELAY
+VERBOSE src/argparse.cpp:117 - Append to autocmd: CAP32_DELAY
+VERBOSE src/argparse.cpp:92 - Recognized keyword: CAP32_DELAY
+VERBOSE src/argparse.cpp:117 - Append to autocmd: CAP32_DELAY
+VERBOSE src/argparse.cpp:92 - Recognized keyword: CAP32_DELAY
+VERBOSE src/argparse.cpp:117 - Append to autocmd: CAP32_DELAY
+VERBOSE src/argparse.cpp:92 - Recognized keyword: CAP32_DELAY
+VERBOSE src/argparse.cpp:117 - Append to autocmd: CAP32_DELAY
+VERBOSE src/argparse.cpp:92 - Recognized keyword: CAP32_DELAY
+VERBOSE src/argparse.cpp:117 - Append to autocmd: CAP32_DELAY
+VERBOSE src/argparse.cpp:92 - Recognized keyword: CAP32_DELAY
+VERBOSE src/argparse.cpp:117 - Append to autocmd: CAP32_DELAY
+VERBOSE src/argparse.cpp:92 - Recognized keyword: CAP32_DELAY
+VERBOSE src/argparse.cpp:117 - Append to autocmd: CAP32_DELAY
+VERBOSE src/argparse.cpp:92 - Recognized keyword: CAP32_DELAY
+VERBOSE src/argparse.cpp:117 - Append to autocmd: CAP32_DELAY
+VERBOSE src/argparse.cpp:92 - Recognized keyword: CAP32_DELAY
+VERBOSE src/argparse.cpp:117 - Append to autocmd: CAP32_DELAY
+VERBOSE src/argparse.cpp:92 - Recognized keyword: CAP32_DELAY
+VERBOSE src/argparse.cpp:117 - Append to autocmd: CAP32_DELAY
+VERBOSE src/argparse.cpp:92 - Recognized keyword: CAP32_DELAY
+VERBOSE src/argparse.cpp:117 - Append to autocmd: CAP32_DELAY
+VERBOSE src/argparse.cpp:92 - Recognized keyword: CAP32_DELAY
+VERBOSE src/argparse.cpp:117 - Append to autocmd: CAP32_DELAY
+VERBOSE src/argparse.cpp:92 - Recognized keyword: CAP32_DELAY
+VERBOSE src/argparse.cpp:117 - Append to autocmd: CAP32_DELAY
+VERBOSE src/argparse.cpp:92 - Recognized keyword: CAP32_DELAY
+VERBOSE src/argparse.cpp:117 - Append to autocmd: CAP32_DELAY
+VERBOSE src/argparse.cpp:92 - Recognized keyword: CAP32_DELAY
+VERBOSE src/argparse.cpp:117 - Append to autocmd: CAP32_DELAY
+VERBOSE src/argparse.cpp:92 - Recognized keyword: CAP32_DELAY
+VERBOSE src/argparse.cpp:117 - Append to autocmd: CAP32_DELAY
+VERBOSE src/argparse.cpp:92 - Recognized keyword: CAP32_DELAY
+VERBOSE src/argparse.cpp:117 - Append to autocmd: CAP32_DELAY
+VERBOSE src/argparse.cpp:92 - Recognized keyword: CAP32_DELAY
+VERBOSE src/argparse.cpp:117 - Append to autocmd: CAP32_DELAY
+VERBOSE src/argparse.cpp:92 - Recognized keyword: CAP32_DELAY
+VERBOSE src/argparse.cpp:117 - Append to autocmd: CAP32_DELAY
+VERBOSE src/argparse.cpp:92 - Recognized keyword: CAP32_DELAY
+VERBOSE src/argparse.cpp:117 - Append to autocmd: CAP32_DELAY
+VERBOSE src/argparse.cpp:92 - Recognized keyword: CAP32_DELAY
+VERBOSE src/argparse.cpp:117 - Append to autocmd: CAP32_DELAY
+VERBOSE src/argparse.cpp:92 - Recognized keyword: CAP32_DELAY
+VERBOSE src/argparse.cpp:117 - Append to autocmd: CAP32_DELAY
+VERBOSE src/argparse.cpp:92 - Recognized keyword: CAP32_DELAY
+VERBOSE src/argparse.cpp:117 - Append to autocmd: CAP32_SCRNSHOT
+VERBOSE src/argparse.cpp:92 - Recognized keyword: CAP32_SCRNSHOT
+VERBOSE src/argparse.cpp:117 - Append to autocmd: CAP32_EXIT
+VERBOSE src/argparse.cpp:92 - Recognized keyword: CAP32_EXIT
+Using configuration file: /Users/fer/dev/banterhouse/.tools/caprice32/cap32.cfg
+No joystick found.
+joysticks_init() failed. Joysticks won't work.
+VERBOSE src/slotshandler.cpp:118 - Loading drive A disk file: /Users/fer/dev/banterhouse/.tools/caprice32/../../banterhouse.dsk
+VERBOSE src/slotshandler.cpp:1434 - Ignoring empty filename passed to file_load.
+VERBOSE src/slotshandler.cpp:1434 - Ignoring empty filename passed to file_load.
+VERBOSE src/slotshandler.cpp:1434 - Ignoring empty filename passed to file_load.
+VERBOSE src/cap32.cpp:1745 - Timing: First frame at 2232 - next frame in 20 ( 20/(4/4) ) at 2252
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: M - keycode: SDLK_m (109) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_m - CPC scancode: 70
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: O - keycode: SDLK_o (111) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_o - CPC scancode: 66
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: D - keycode: SDLK_d (100) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_d - CPC scancode: 117
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: E - keycode: SDLK_e (101) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_e - CPC scancode: 114
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: Space - keycode: SDLK_SPACE (32) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_SPACE - CPC scancode: 87
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: 0 - keycode: SDLK_0 (48) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_0 - CPC scancode: 64
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: ; - keycode: SDLK_SEMICOLON (59) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_COLON - CPC scancode: 53
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: B - keycode: SDLK_b (98) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_b - CPC scancode: 102
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: O - keycode: SDLK_o (111) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_o - CPC scancode: 66
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: R - keycode: SDLK_r (114) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_r - CPC scancode: 98
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: D - keycode: SDLK_d (100) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_d - CPC scancode: 117
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: E - keycode: SDLK_e (101) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_e - CPC scancode: 114
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: R - keycode: SDLK_r (114) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_r - CPC scancode: 98
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: Space - keycode: SDLK_SPACE (32) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_SPACE - CPC scancode: 87
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: 0 - keycode: SDLK_0 (48) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_0 - CPC scancode: 64
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: ; - keycode: SDLK_SEMICOLON (59) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_COLON - CPC scancode: 53
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: P - keycode: SDLK_p (112) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_p - CPC scancode: 51
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: A - keycode: SDLK_a (97) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_a - CPC scancode: 133
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: P - keycode: SDLK_p (112) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_p - CPC scancode: 51
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: E - keycode: SDLK_e (101) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_e - CPC scancode: 114
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: R - keycode: SDLK_r (114) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_r - CPC scancode: 98
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: Space - keycode: SDLK_SPACE (32) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_SPACE - CPC scancode: 87
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: 0 - keycode: SDLK_0 (48) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_0 - CPC scancode: 64
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: ; - keycode: SDLK_SEMICOLON (59) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_COLON - CPC scancode: 53
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: P - keycode: SDLK_p (112) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_p - CPC scancode: 51
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: E - keycode: SDLK_e (101) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_e - CPC scancode: 114
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: N - keycode: SDLK_n (110) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_n - CPC scancode: 86
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: Space - keycode: SDLK_SPACE (32) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_SPACE - CPC scancode: 87
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: 1 - keycode: SDLK_1 (49) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_1 - CPC scancode: 128
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: ; - keycode: SDLK_SEMICOLON (59) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_COLON - CPC scancode: 53
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: C - keycode: SDLK_c (99) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_c - CPC scancode: 118
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: L - keycode: SDLK_l (108) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_l - CPC scancode: 68
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: S - keycode: SDLK_s (115) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_s - CPC scancode: 116
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: ; - keycode: SDLK_SEMICOLON (59) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_COLON - CPC scancode: 53
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: I - keycode: SDLK_i (105) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_i - CPC scancode: 67
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: N - keycode: SDLK_n (110) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_n - CPC scancode: 86
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: K - keycode: SDLK_k (107) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_k - CPC scancode: 69
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: Space - keycode: SDLK_SPACE (32) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_SPACE - CPC scancode: 87
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: 0 - keycode: SDLK_0 (48) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_0 - CPC scancode: 64
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: , - keycode: SDLK_COMMA (44) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_COMMA - CPC scancode: 71
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: 0 - keycode: SDLK_0 (48) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_0 - CPC scancode: 64
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: ; - keycode: SDLK_SEMICOLON (59) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_COLON - CPC scancode: 53
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: I - keycode: SDLK_i (105) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_i - CPC scancode: 67
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: N - keycode: SDLK_n (110) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_n - CPC scancode: 86
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: K - keycode: SDLK_k (107) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_k - CPC scancode: 69
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: Space - keycode: SDLK_SPACE (32) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_SPACE - CPC scancode: 87
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: 1 - keycode: SDLK_1 (49) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_1 - CPC scancode: 128
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: , - keycode: SDLK_COMMA (44) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_COMMA - CPC scancode: 71
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: 1 - keycode: SDLK_1 (49) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_1 - CPC scancode: 128
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: ; - keycode: SDLK_SEMICOLON (59) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_COLON - CPC scancode: 53
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: I - keycode: SDLK_i (105) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_i - CPC scancode: 67
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: N - keycode: SDLK_n (110) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_n - CPC scancode: 86
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: K - keycode: SDLK_k (107) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_k - CPC scancode: 69
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: Space - keycode: SDLK_SPACE (32) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_SPACE - CPC scancode: 87
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: 2 - keycode: SDLK_2 (50) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_2 - CPC scancode: 129
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: , - keycode: SDLK_COMMA (44) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_COMMA - CPC scancode: 71
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: 2 - keycode: SDLK_2 (50) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_2 - CPC scancode: 129
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: ; - keycode: SDLK_SEMICOLON (59) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_COLON - CPC scancode: 53
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: I - keycode: SDLK_i (105) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_i - CPC scancode: 67
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: N - keycode: SDLK_n (110) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_n - CPC scancode: 86
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: K - keycode: SDLK_k (107) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_k - CPC scancode: 69
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: Space - keycode: SDLK_SPACE (32) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_SPACE - CPC scancode: 87
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: 3 - keycode: SDLK_3 (51) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_3 - CPC scancode: 113
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: , - keycode: SDLK_COMMA (44) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_COMMA - CPC scancode: 71
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: 1 - keycode: SDLK_1 (49) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_1 - CPC scancode: 128
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: 1 - keycode: SDLK_1 (49) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_1 - CPC scancode: 128
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: ; - keycode: SDLK_SEMICOLON (59) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_COLON - CPC scancode: 53
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: I - keycode: SDLK_i (105) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_i - CPC scancode: 67
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: N - keycode: SDLK_n (110) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_n - CPC scancode: 86
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: K - keycode: SDLK_k (107) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_k - CPC scancode: 69
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: Space - keycode: SDLK_SPACE (32) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_SPACE - CPC scancode: 87
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: 4 - keycode: SDLK_4 (52) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_4 - CPC scancode: 112
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: , - keycode: SDLK_COMMA (44) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_COMMA - CPC scancode: 71
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: 2 - keycode: SDLK_2 (50) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_2 - CPC scancode: 129
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: 6 - keycode: SDLK_6 (54) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_6 - CPC scancode: 96
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: ; - keycode: SDLK_SEMICOLON (59) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_COLON - CPC scancode: 53
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: I - keycode: SDLK_i (105) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_i - CPC scancode: 67
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: N - keycode: SDLK_n (110) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_n - CPC scancode: 86
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: K - keycode: SDLK_k (107) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_k - CPC scancode: 69
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: Space - keycode: SDLK_SPACE (32) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_SPACE - CPC scancode: 87
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: 5 - keycode: SDLK_5 (53) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_5 - CPC scancode: 97
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: , - keycode: SDLK_COMMA (44) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_COMMA - CPC scancode: 71
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: 2 - keycode: SDLK_2 (50) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_2 - CPC scancode: 129
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: 5 - keycode: SDLK_5 (53) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_5 - CPC scancode: 97
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: ; - keycode: SDLK_SEMICOLON (59) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_COLON - CPC scancode: 53
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: I - keycode: SDLK_i (105) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_i - CPC scancode: 67
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: N - keycode: SDLK_n (110) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_n - CPC scancode: 86
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: K - keycode: SDLK_k (107) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_k - CPC scancode: 69
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: Space - keycode: SDLK_SPACE (32) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_SPACE - CPC scancode: 87
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: 6 - keycode: SDLK_6 (54) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_6 - CPC scancode: 96
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: , - keycode: SDLK_COMMA (44) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_COMMA - CPC scancode: 71
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: 2 - keycode: SDLK_2 (50) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_2 - CPC scancode: 129
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: 4 - keycode: SDLK_4 (52) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_4 - CPC scancode: 112
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: ; - keycode: SDLK_SEMICOLON (59) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_COLON - CPC scancode: 53
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: I - keycode: SDLK_i (105) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_i - CPC scancode: 67
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: N - keycode: SDLK_n (110) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_n - CPC scancode: 86
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: K - keycode: SDLK_k (107) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_k - CPC scancode: 69
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: Space - keycode: SDLK_SPACE (32) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_SPACE - CPC scancode: 87
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: 7 - keycode: SDLK_7 (55) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_7 - CPC scancode: 81
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: , - keycode: SDLK_COMMA (44) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_COMMA - CPC scancode: 71
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: 1 - keycode: SDLK_1 (49) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_1 - CPC scancode: 128
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: 6 - keycode: SDLK_6 (54) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_6 - CPC scancode: 96
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: ; - keycode: SDLK_SEMICOLON (59) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_COLON - CPC scancode: 53
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: I - keycode: SDLK_i (105) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_i - CPC scancode: 67
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: N - keycode: SDLK_n (110) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_n - CPC scancode: 86
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: K - keycode: SDLK_k (107) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_k - CPC scancode: 69
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: Space - keycode: SDLK_SPACE (32) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_SPACE - CPC scancode: 87
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: 8 - keycode: SDLK_8 (56) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_8 - CPC scancode: 80
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: , - keycode: SDLK_COMMA (44) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_COMMA - CPC scancode: 71
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: 1 - keycode: SDLK_1 (49) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_1 - CPC scancode: 128
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: 5 - keycode: SDLK_5 (53) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_5 - CPC scancode: 97
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: ; - keycode: SDLK_SEMICOLON (59) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_COLON - CPC scancode: 53
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: I - keycode: SDLK_i (105) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_i - CPC scancode: 67
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: N - keycode: SDLK_n (110) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_n - CPC scancode: 86
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: K - keycode: SDLK_k (107) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_k - CPC scancode: 69
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: Space - keycode: SDLK_SPACE (32) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_SPACE - CPC scancode: 87
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: 9 - keycode: SDLK_9 (57) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_9 - CPC scancode: 65
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: , - keycode: SDLK_COMMA (44) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_COMMA - CPC scancode: 71
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: 6 - keycode: SDLK_6 (54) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_6 - CPC scancode: 96
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: ; - keycode: SDLK_SEMICOLON (59) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_COLON - CPC scancode: 53
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: I - keycode: SDLK_i (105) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_i - CPC scancode: 67
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: N - keycode: SDLK_n (110) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_n - CPC scancode: 86
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: K - keycode: SDLK_k (107) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_k - CPC scancode: 69
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: Space - keycode: SDLK_SPACE (32) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_SPACE - CPC scancode: 87
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: 1 - keycode: SDLK_1 (49) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_1 - CPC scancode: 128
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: 0 - keycode: SDLK_0 (48) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_0 - CPC scancode: 64
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: , - keycode: SDLK_COMMA (44) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_COMMA - CPC scancode: 71
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: 8 - keycode: SDLK_8 (56) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_8 - CPC scancode: 80
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: ; - keycode: SDLK_SEMICOLON (59) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_COLON - CPC scancode: 53
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: I - keycode: SDLK_i (105) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_i - CPC scancode: 67
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: N - keycode: SDLK_n (110) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_n - CPC scancode: 86
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: K - keycode: SDLK_k (107) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_k - CPC scancode: 69
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: Space - keycode: SDLK_SPACE (32) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_SPACE - CPC scancode: 87
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: 1 - keycode: SDLK_1 (49) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_1 - CPC scancode: 128
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: 1 - keycode: SDLK_1 (49) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_1 - CPC scancode: 128
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: , - keycode: SDLK_COMMA (44) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_COMMA - CPC scancode: 71
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: 4 - keycode: SDLK_4 (52) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_4 - CPC scancode: 112
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: ; - keycode: SDLK_SEMICOLON (59) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_COLON - CPC scancode: 53
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: I - keycode: SDLK_i (105) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_i - CPC scancode: 67
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: N - keycode: SDLK_n (110) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_n - CPC scancode: 86
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: K - keycode: SDLK_k (107) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_k - CPC scancode: 69
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: Space - keycode: SDLK_SPACE (32) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_SPACE - CPC scancode: 87
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: 1 - keycode: SDLK_1 (49) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_1 - CPC scancode: 128
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: 2 - keycode: SDLK_2 (50) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_2 - CPC scancode: 129
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: , - keycode: SDLK_COMMA (44) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_COMMA - CPC scancode: 71
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: 9 - keycode: SDLK_9 (57) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_9 - CPC scancode: 65
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: ; - keycode: SDLK_SEMICOLON (59) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_COLON - CPC scancode: 53
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: I - keycode: SDLK_i (105) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_i - CPC scancode: 67
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: N - keycode: SDLK_n (110) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_n - CPC scancode: 86
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: K - keycode: SDLK_k (107) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_k - CPC scancode: 69
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: Space - keycode: SDLK_SPACE (32) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_SPACE - CPC scancode: 87
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: 1 - keycode: SDLK_1 (49) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_1 - CPC scancode: 128
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: 3 - keycode: SDLK_3 (51) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_3 - CPC scancode: 113
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: , - keycode: SDLK_COMMA (44) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_COMMA - CPC scancode: 71
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: 1 - keycode: SDLK_1 (49) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_1 - CPC scancode: 128
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: 8 - keycode: SDLK_8 (56) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_8 - CPC scancode: 80
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: ; - keycode: SDLK_SEMICOLON (59) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_COLON - CPC scancode: 53
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: I - keycode: SDLK_i (105) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_i - CPC scancode: 67
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: N - keycode: SDLK_n (110) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_n - CPC scancode: 86
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: K - keycode: SDLK_k (107) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_k - CPC scancode: 69
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: Space - keycode: SDLK_SPACE (32) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_SPACE - CPC scancode: 87
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: 1 - keycode: SDLK_1 (49) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_1 - CPC scancode: 128
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: 4 - keycode: SDLK_4 (52) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_4 - CPC scancode: 112
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: , - keycode: SDLK_COMMA (44) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_COMMA - CPC scancode: 71
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: 3 - keycode: SDLK_3 (51) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_3 - CPC scancode: 113
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: ; - keycode: SDLK_SEMICOLON (59) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_COLON - CPC scancode: 53
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: I - keycode: SDLK_i (105) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_i - CPC scancode: 67
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: N - keycode: SDLK_n (110) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_n - CPC scancode: 86
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: K - keycode: SDLK_k (107) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_k - CPC scancode: 69
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: Space - keycode: SDLK_SPACE (32) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_SPACE - CPC scancode: 87
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: 1 - keycode: SDLK_1 (49) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_1 - CPC scancode: 128
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: 5 - keycode: SDLK_5 (53) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_5 - CPC scancode: 97
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: , - keycode: SDLK_COMMA (44) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_COMMA - CPC scancode: 71
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: 1 - keycode: SDLK_1 (49) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_1 - CPC scancode: 128
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: 3 - keycode: SDLK_3 (51) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_3 - CPC scancode: 113
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: ; - keycode: SDLK_SEMICOLON (59) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_COLON - CPC scancode: 53
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: L - keycode: SDLK_l (108) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_l - CPC scancode: 68
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: O - keycode: SDLK_o (111) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_o - CPC scancode: 66
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: A - keycode: SDLK_a (97) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_a - CPC scancode: 133
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: D - keycode: SDLK_d (100) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_d - CPC scancode: 117
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: ' - keycode: SDLK_QUOTE (39) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_DBLQUOTE - CPC scancode: 385
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: L - keycode: SDLK_l (108) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_L - CPC scancode: 324
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: O - keycode: SDLK_o (111) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_O - CPC scancode: 322
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: A - keycode: SDLK_a (97) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_A - CPC scancode: 389
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: D - keycode: SDLK_d (100) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_D - CPC scancode: 373
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: I - keycode: SDLK_i (105) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_I - CPC scancode: 323
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: N - keycode: SDLK_n (110) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_N - CPC scancode: 342
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: G - keycode: SDLK_g (103) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_G - CPC scancode: 356
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: . - keycode: SDLK_PERIOD (46) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_PERIOD - CPC scancode: 55
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: S - keycode: SDLK_s (115) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_S - CPC scancode: 372
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: C - keycode: SDLK_c (99) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_C - CPC scancode: 374
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: R - keycode: SDLK_r (114) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_R - CPC scancode: 354
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: ' - keycode: SDLK_QUOTE (39) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_DBLQUOTE - CPC scancode: 385
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: , - keycode: SDLK_COMMA (44) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_COMMA - CPC scancode: 71
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: 7 - keycode: SDLK_7 (55) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_AMPERSAND - CPC scancode: 352
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: C - keycode: SDLK_c (99) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_c - CPC scancode: 118
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: 0 - keycode: SDLK_0 (48) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_0 - CPC scancode: 64
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: 0 - keycode: SDLK_0 (48) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_0 - CPC scancode: 64
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: 0 - keycode: SDLK_0 (48) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_0 - CPC scancode: 64
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: ; - keycode: SDLK_SEMICOLON (59) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_COLON - CPC scancode: 53
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: W - keycode: SDLK_w (119) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_w - CPC scancode: 115
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: H - keycode: SDLK_h (104) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_h - CPC scancode: 84
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: I - keycode: SDLK_i (105) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_i - CPC scancode: 67
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: L - keycode: SDLK_l (108) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_l - CPC scancode: 68
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: E - keycode: SDLK_e (101) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_e - CPC scancode: 114
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: Space - keycode: SDLK_SPACE (32) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_SPACE - CPC scancode: 87
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: - - keycode: SDLK_MINUS (45) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_MINUS - CPC scancode: 49
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: 1 - keycode: SDLK_1 (49) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_1 - CPC scancode: 128
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: ; - keycode: SDLK_SEMICOLON (59) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_COLON - CPC scancode: 53
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: W - keycode: SDLK_w (119) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_w - CPC scancode: 115
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: E - keycode: SDLK_e (101) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_e - CPC scancode: 114
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: N - keycode: SDLK_n (110) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_n - CPC scancode: 86
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: D - keycode: SDLK_d (100) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_d - CPC scancode: 117
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: Return - keycode: SDLK_RETURN (13) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_RETURN - CPC scancode: 34
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: Pause - keycode: SDLK_PAUSE (1073741896) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CAP32_DELAY - CPC scancode: 4112
+VERBOSE src/cap32.cpp:2944 - Take into account CAP32_DELAY
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: Return - keycode: SDLK_RETURN (13) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_RETURN - CPC scancode: 34
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: Pause - keycode: SDLK_PAUSE (1073741896) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CAP32_DELAY - CPC scancode: 4112
+VERBOSE src/cap32.cpp:2944 - Take into account CAP32_DELAY
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: Return - keycode: SDLK_RETURN (13) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_RETURN - CPC scancode: 34
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: Pause - keycode: SDLK_PAUSE (1073741896) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CAP32_DELAY - CPC scancode: 4112
+VERBOSE src/cap32.cpp:2944 - Take into account CAP32_DELAY
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: Return - keycode: SDLK_RETURN (13) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_RETURN - CPC scancode: 34
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: Pause - keycode: SDLK_PAUSE (1073741896) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CAP32_DELAY - CPC scancode: 4112
+VERBOSE src/cap32.cpp:2944 - Take into account CAP32_DELAY
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: Return - keycode: SDLK_RETURN (13) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_RETURN - CPC scancode: 34
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: Pause - keycode: SDLK_PAUSE (1073741896) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CAP32_DELAY - CPC scancode: 4112
+VERBOSE src/cap32.cpp:2944 - Take into account CAP32_DELAY
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: Return - keycode: SDLK_RETURN (13) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_RETURN - CPC scancode: 34
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: Pause - keycode: SDLK_PAUSE (1073741896) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CAP32_DELAY - CPC scancode: 4112
+VERBOSE src/cap32.cpp:2944 - Take into account CAP32_DELAY
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: Return - keycode: SDLK_RETURN (13) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_RETURN - CPC scancode: 34
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: Pause - keycode: SDLK_PAUSE (1073741896) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CAP32_DELAY - CPC scancode: 4112
+VERBOSE src/cap32.cpp:2944 - Take into account CAP32_DELAY
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: Return - keycode: SDLK_RETURN (13) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_RETURN - CPC scancode: 34
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: Pause - keycode: SDLK_PAUSE (1073741896) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CAP32_DELAY - CPC scancode: 4112
+VERBOSE src/cap32.cpp:2944 - Take into account CAP32_DELAY
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: Return - keycode: SDLK_RETURN (13) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_RETURN - CPC scancode: 34
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: Pause - keycode: SDLK_PAUSE (1073741896) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CAP32_DELAY - CPC scancode: 4112
+VERBOSE src/cap32.cpp:2944 - Take into account CAP32_DELAY
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: Return - keycode: SDLK_RETURN (13) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_RETURN - CPC scancode: 34
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: Pause - keycode: SDLK_PAUSE (1073741896) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CAP32_DELAY - CPC scancode: 4112
+VERBOSE src/cap32.cpp:2944 - Take into account CAP32_DELAY
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: Return - keycode: SDLK_RETURN (13) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_RETURN - CPC scancode: 34
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: Pause - keycode: SDLK_PAUSE (1073741896) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CAP32_DELAY - CPC scancode: 4112
+VERBOSE src/cap32.cpp:2944 - Take into account CAP32_DELAY
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: Return - keycode: SDLK_RETURN (13) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_RETURN - CPC scancode: 34
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: Pause - keycode: SDLK_PAUSE (1073741896) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CAP32_DELAY - CPC scancode: 4112
+VERBOSE src/cap32.cpp:2944 - Take into account CAP32_DELAY
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: Return - keycode: SDLK_RETURN (13) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_RETURN - CPC scancode: 34
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: Pause - keycode: SDLK_PAUSE (1073741896) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CAP32_DELAY - CPC scancode: 4112
+VERBOSE src/cap32.cpp:2944 - Take into account CAP32_DELAY
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: Return - keycode: SDLK_RETURN (13) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_RETURN - CPC scancode: 34
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: Pause - keycode: SDLK_PAUSE (1073741896) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CAP32_DELAY - CPC scancode: 4112
+VERBOSE src/cap32.cpp:2944 - Take into account CAP32_DELAY
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: Return - keycode: SDLK_RETURN (13) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_RETURN - CPC scancode: 34
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: Pause - keycode: SDLK_PAUSE (1073741896) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CAP32_DELAY - CPC scancode: 4112
+VERBOSE src/cap32.cpp:2944 - Take into account CAP32_DELAY
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: Return - keycode: SDLK_RETURN (13) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_RETURN - CPC scancode: 34
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: Pause - keycode: SDLK_PAUSE (1073741896) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CAP32_DELAY - CPC scancode: 4112
+VERBOSE src/cap32.cpp:2944 - Take into account CAP32_DELAY
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: Return - keycode: SDLK_RETURN (13) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_RETURN - CPC scancode: 34
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: Pause - keycode: SDLK_PAUSE (1073741896) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CAP32_DELAY - CPC scancode: 4112
+VERBOSE src/cap32.cpp:2944 - Take into account CAP32_DELAY
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: Return - keycode: SDLK_RETURN (13) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_RETURN - CPC scancode: 34
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: Pause - keycode: SDLK_PAUSE (1073741896) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CAP32_DELAY - CPC scancode: 4112
+VERBOSE src/cap32.cpp:2944 - Take into account CAP32_DELAY
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: Return - keycode: SDLK_RETURN (13) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_RETURN - CPC scancode: 34
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: Pause - keycode: SDLK_PAUSE (1073741896) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CAP32_DELAY - CPC scancode: 4112
+VERBOSE src/cap32.cpp:2944 - Take into account CAP32_DELAY
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: Return - keycode: SDLK_RETURN (13) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_RETURN - CPC scancode: 34
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: Pause - keycode: SDLK_PAUSE (1073741896) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CAP32_DELAY - CPC scancode: 4112
+VERBOSE src/cap32.cpp:2944 - Take into account CAP32_DELAY
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: Return - keycode: SDLK_RETURN (13) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_RETURN - CPC scancode: 34
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: Pause - keycode: SDLK_PAUSE (1073741896) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CAP32_DELAY - CPC scancode: 4112
+VERBOSE src/cap32.cpp:2944 - Take into account CAP32_DELAY
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: Return - keycode: SDLK_RETURN (13) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_RETURN - CPC scancode: 34
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: Pause - keycode: SDLK_PAUSE (1073741896) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CAP32_DELAY - CPC scancode: 4112
+VERBOSE src/cap32.cpp:2944 - Take into account CAP32_DELAY
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: Return - keycode: SDLK_RETURN (13) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_RETURN - CPC scancode: 34
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: Pause - keycode: SDLK_PAUSE (1073741896) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CAP32_DELAY - CPC scancode: 4112
+VERBOSE src/cap32.cpp:2944 - Take into account CAP32_DELAY
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: Return - keycode: SDLK_RETURN (13) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_RETURN - CPC scancode: 34
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: Pause - keycode: SDLK_PAUSE (1073741896) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CAP32_DELAY - CPC scancode: 4112
+VERBOSE src/cap32.cpp:2944 - Take into account CAP32_DELAY
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: Return - keycode: SDLK_RETURN (13) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_RETURN - CPC scancode: 34
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: Pause - keycode: SDLK_PAUSE (1073741896) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CAP32_DELAY - CPC scancode: 4112
+VERBOSE src/cap32.cpp:2944 - Take into account CAP32_DELAY
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: Return - keycode: SDLK_RETURN (13) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_RETURN - CPC scancode: 34
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: Pause - keycode: SDLK_PAUSE (1073741896) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CAP32_DELAY - CPC scancode: 4112
+VERBOSE src/cap32.cpp:2944 - Take into account CAP32_DELAY
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: Return - keycode: SDLK_RETURN (13) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_RETURN - CPC scancode: 34
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: Pause - keycode: SDLK_PAUSE (1073741896) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CAP32_DELAY - CPC scancode: 4112
+VERBOSE src/cap32.cpp:2944 - Take into account CAP32_DELAY
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: Return - keycode: SDLK_RETURN (13) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_RETURN - CPC scancode: 34
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: Pause - keycode: SDLK_PAUSE (1073741896) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CAP32_DELAY - CPC scancode: 4112
+VERBOSE src/cap32.cpp:2944 - Take into account CAP32_DELAY
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: Return - keycode: SDLK_RETURN (13) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_RETURN - CPC scancode: 34
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: Pause - keycode: SDLK_PAUSE (1073741896) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CAP32_DELAY - CPC scancode: 4112
+VERBOSE src/cap32.cpp:2944 - Take into account CAP32_DELAY
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: Return - keycode: SDLK_RETURN (13) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_RETURN - CPC scancode: 34
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: Pause - keycode: SDLK_PAUSE (1073741896) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CAP32_DELAY - CPC scancode: 4112
+VERBOSE src/cap32.cpp:2944 - Take into account CAP32_DELAY
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: Return - keycode: SDLK_RETURN (13) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_RETURN - CPC scancode: 34
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: Pause - keycode: SDLK_PAUSE (1073741896) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CAP32_DELAY - CPC scancode: 4112
+VERBOSE src/cap32.cpp:2944 - Take into account CAP32_DELAY
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: Return - keycode: SDLK_RETURN (13) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_RETURN - CPC scancode: 34
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: Pause - keycode: SDLK_PAUSE (1073741896) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CAP32_DELAY - CPC scancode: 4112
+VERBOSE src/cap32.cpp:2944 - Take into account CAP32_DELAY
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: Return - keycode: SDLK_RETURN (13) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_RETURN - CPC scancode: 34
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: Pause - keycode: SDLK_PAUSE (1073741896) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CAP32_DELAY - CPC scancode: 4112
+VERBOSE src/cap32.cpp:2944 - Take into account CAP32_DELAY
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: Return - keycode: SDLK_RETURN (13) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_RETURN - CPC scancode: 34
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: Pause - keycode: SDLK_PAUSE (1073741896) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CAP32_DELAY - CPC scancode: 4112
+VERBOSE src/cap32.cpp:2944 - Take into account CAP32_DELAY
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: Return - keycode: SDLK_RETURN (13) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_RETURN - CPC scancode: 34
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: F3 - keycode: SDLK_F3 (1073741884) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CAP32_SCRNSHOT - CPC scancode: 4105
+INFO    src/cap32.cpp:2145 - Dumping screen to /Users/fer/dev/banterhouse/artifacts/font-validation/loading-stable/screenshot_20260830_124018.png
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: Return - keycode: SDLK_RETURN (13) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CPC_RETURN - CPC scancode: 34
+VERBOSE src/cap32.cpp:2891 - Keyboard: pressed: F10 - keycode: SDLK_F10 (1073741891) - scancode: SDL_SCANCODE_UNKNOWN (0) - CPC key: CAP32_EXIT - CPC scancode: 4096

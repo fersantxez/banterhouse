@@ -120,6 +120,13 @@ OBJS2CLEAN :=
 ####
 include $(CPCT_PATH)/cfg/global_paths.mk
 
+# cpct_aks2c normally streams directly into src/banterhouse.s.  Generate in a
+# private directory and rename the finished file so even independent make
+# invocations can never expose a partially written assembler source.
+CPCT_REAL_AKS2C := $(CPCTAKS2C)
+CPCTAKS2C       := $(CURDIR)/tools/cpct_aks2c_atomic.sh
+export CPCT_REAL_AKS2C
+
 ####
 ## SECTION 3: COMPILATION CONFIGURATION
 ##
@@ -131,6 +138,7 @@ Z80ASMFLAGS   := -l -o -s
 Z80CCINCLUDE  := -I$(CPCT_SRC) -I$(SRCDIR)
 Z80CCLINKARGS := -mz80 --sdcccall 0 --no-std-crt0 -Wl-u \
                  --code-loc $(Z80CODELOC) \
+                 -Wl-b_BH_GFX=0x2000 \
                  --data-loc 0 -l$(CPCT_LIB)
 ####
 ## SECTION 4: CALCULATED FOLDERS, SUBFOLDERS AND FILES
@@ -142,12 +150,17 @@ Z80CCLINKARGS := -mz80 --sdcccall 0 --no-std-crt0 -Wl-u \
 ####
 include $(CPCT_PATH)/cfg/global_functions.mk
 
-# Convert images and tilemaps
-include cfg/image_conversion.mk
-include cfg/tilemap_conversion.mk
+# The first prototype auto-generated a tileset and one compressed TMX map.
+# The production loop draws its compact office rooms procedurally, so neither
+# asset belongs in the resident image or may steal the code space below 0x8000.
+#include cfg/image_conversion.mk
+#include cfg/tilemap_conversion.mk
 include cfg/music_conversion.mk
-
-include cfg/compression.mk
+# The official AKS exports are source deliverables.  Keeping them across clean
+# builds also prevents independent make processes from observing partial files.
+OBJS2CLEAN := $(filter-out $(SRCDIR)/banterhouse-theme.s $(SRCDIR)/banterhouse-theme.h \
+                           $(SRCDIR)/banterhouse-sfx.s $(SRCDIR)/banterhouse-sfx.h,$(OBJS2CLEAN))
+#include cfg/compression.mk
 
 # Calculate all subdirectories
 SUBDIRS       := $(filter-out ., $(shell find $(SRCDIR) -type d -print))
@@ -159,6 +172,11 @@ CFILES         := $(foreach DIR, $(SUBDIRS), $(wildcard $(DIR)/*.$(C_EXT)))
 CFILES         := $(filter-out $(IMGCFILES), $(CFILES))
 ASMFILES       := $(foreach DIR, $(SUBDIRS), $(wildcard $(DIR)/*.$(ASM_EXT)))
 ASMFILES       := $(filter-out $(IMGASMFILES), $(ASMFILES))
+CFILES         := $(filter-out $(SRCDIR)/tileset-03.c, $(CFILES))
+ASMFILES       := $(filter-out $(SRCDIR)/maps/scr00.s $(SRCDIR)/maps/scr00.h.s, $(ASMFILES))
+# Keep the generated absolute font object in the graph even if a developer
+# deliberately removes font_data.s before asking make to reproduce it.
+ASMFILES       := $(sort $(ASMFILES) $(SRCDIR)/font_data.s)
 BIN2CFILES     := $(foreach DIR, $(SUBDIRS), $(wildcard $(DIR)/*.$(BIN_EXT)))
 DSKINCSRCFILES := $(wildcard $(DSKFILESDIR)/*)
 

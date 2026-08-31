@@ -1,0 +1,6 @@
+Resident runtime high-water: 0x00006B44; stack/framebuffer margin: 5307 bytes
+Font: 776 bitmap + 100 index bytes; renderer: 356 code + 38 work bytes
+Pitu palette checks: PASS
+AKS structure: PASS (125 BPM, 53.76s first pass, 46.08s loop)
+Font import, glyphs, Mode 0 table, inventory and VRAM bounds: PASS
+Static/content checks: PASS
