@@ -1,16 +1,16 @@
 const cpcScreens = [
   {
-    src: '/release/screenshots/gameplay.png',
+    src: '/release/screenshots/mesa-pitu.png',
     alt: 'Pitu comienza la campaña en su mesa de la primera planta',
     caption: 'Mesa Pitu · Planta 1',
   },
   {
-    src: '/release/screenshots/night.png',
+    src: '/release/screenshots/estudio-noche.png',
     alt: 'Pitu recorre el Estudio Noche con un fondo azul y magenta',
     caption: 'Estudio Noche · Planta 7',
   },
   {
-    src: '/release/screenshots/boss.png',
+    src: '/release/screenshots/proyeccion.png',
     alt: 'El pitch final en la sala de Proyección ante el Presidente',
     caption: 'Proyección · Pitch final',
   },
@@ -42,12 +42,12 @@ export default function Home() {
             a la agencia que convirtió el caos en método: la Casa de la Guasa.
           </p>
           <div className="hero-actions">
-            <a className="button button-primary" href="#jugar">Jugar DSK ahora</a>
+            <a className="button button-primary" href="#jugar">Jugar Disquette 3&quot; ahora</a>
             <a className="button button-secondary" href="/release/banterhouse.dsk" download>
-              Descargar DSK
+              Descargar Disquette 3&quot;
             </a>
           </div>
-          <p className="compatibility">EDICIÓN DSK · CPC 6128 · 128K · MODO 0 · AY SOUND</p>
+          <p className="compatibility">EDICIÓN DISQUETTE 3&quot; · CPC 6128 · 128K · MODO 0 · AY SOUND</p>
         </div>
 
         <figure className="product-shot">
@@ -58,10 +58,6 @@ export default function Home() {
           <figcaption>Edición recomendada · Disco 3&quot; · 1.900 PTAS.</figcaption>
         </figure>
 
-        <div className="sticker" aria-label="100% publicidad de guerrilla">
-          <span>100%</span>
-          <small>PUBLICIDAD<br />DE GUERRILLA</small>
-        </div>
       </section>
 
       <div className="marquee" aria-label="Características del juego">
@@ -186,13 +182,22 @@ export default function Home() {
           <article className="release-card release-dsk release-recommended">
             <span className="format-label">RECOMENDADA · DISCO 3&quot;</span>
             <div className="disk-art" aria-hidden="true">
-              <span>3&quot;</span><b>DISCO</b><i>BANTERHOUSE · 128K</i>
+              <div className="three-inch-disk">
+                <span className="disk-side">A</span>
+                <span className="disk-shutter-art" />
+                <span className="disk-spindle-art" />
+                <span className="disk-label-art">
+                  <small>BANTERHOUSE</small>
+                  <b>AMSTRAD CPC 6128</b>
+                  <i>DISQUETTE 3&quot;</i>
+                </span>
+              </div>
             </div>
             <div className="release-card-copy">
-              <h3>Disquete ejecutivo</h3>
+              <h3>Disquette 3&quot; ejecutivo</h3>
               <p>La experiencia por defecto: carga rápida, emulador integrado y estuche imprimible.</p>
               <a className="button button-primary" href="/release/banterhouse.dsk" download>
-                Descargar .DSK
+                Descargar Disquette 3&quot;
               </a>
               <a className="packaging-link" href="/release/banterhouse-disk-inlay.png" download>
                 Carátula disco 3&quot; ↘
@@ -209,9 +214,9 @@ export default function Home() {
             <img src="/release/banterhouse-cassette-hero.png" alt="Edición cassette de Banterhouse" />
             <div className="release-card-copy">
               <h3>Cassette de medianoche</h3>
-              <p>Formato alternativo de conservación en CDT, con carátula para las dos caras.</p>
+              <p>Formato alternativo en cinta magnética, con carátula para las dos caras.</p>
               <a className="button button-dark" href="/release/banterhouse.cdt" download>
-                Descargar .CDT
+                Descargar Cassette
               </a>
               <a className="packaging-link" href="/release/banterhouse-cassette-inlay.png" download>
                 Carátula cassette ↘
@@ -225,7 +230,7 @@ export default function Home() {
             <img src="/release/banterhouse-ad-a4.png" alt="Anuncio de revista de Banterhouse" />
             <div className="release-card-copy">
               <h3>Casa de la Guasa</h3>
-              <p>DSK, CDT, manual ilustrado, carátulas, portada y materiales de lanzamiento.</p>
+              <p>Disquette 3&quot;, Cassette, manual ilustrado, carátulas, portada y materiales de lanzamiento.</p>
               <a className="button button-secondary" href="/release/banterhouse-release.zip" download>
                 Descargar ZIP
               </a>
@@ -318,7 +323,7 @@ export default function Home() {
 
         <div className="emulator-shell">
           <div className="monitor-label">
-            <span>BANTERHOUSE VISION · DSK</span>
+            <span>BANTERHOUSE VISION · DISQUETTE 3&quot;</span>
             <i>EDICIÓN RECOMENDADA · 128K</i>
           </div>
           <iframe

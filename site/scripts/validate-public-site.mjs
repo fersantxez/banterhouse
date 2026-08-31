@@ -47,9 +47,13 @@ check(!existsSync(join(releaseDir, 'screenshots', 'expanded-lab.png')), 'La capt
 
 const page = readFileSync(join(appDir, 'page.tsx'), 'utf8');
 check(page.includes('src="/release/banterhouse-disk-inlay.png"'), 'El hero debe presentar la edición DSK recomendada.');
-check(page.includes('Jugar DSK ahora'), 'La acción principal debe lanzar la edición DSK.');
+check(page.includes('Jugar Disquette 3&quot; ahora'), 'La acción principal debe lanzar la edición Disquette 3 pulgadas.');
+check(!/>[^<]*(?:DSK|CDT)[^<]*</i.test(page), 'El sitio no debe mostrar las extensiones técnicas DSK o CDT al visitante.');
 check(page.indexOf('release-dsk') < page.indexOf('release-cassette'), 'La edición DSK debe aparecer antes que cassette.');
 check(page.includes('src="/emulator/?memory=128&diska=../release/banterhouse.dsk'), 'El emulador debe montar la edición DSK.');
+for (const screenshot of ['mesa-pitu.png', 'estudio-noche.png', 'proyeccion.png']) {
+  check(page.includes(`/release/screenshots/${screenshot}`), `Falta el pantallazo actualizado ${screenshot}.`);
+}
 
 const ids = new Set([...page.matchAll(/\bid="([^"]+)"/g)].map((match) => match[1]));
 for (const match of page.matchAll(/href="#([^"]+)"/g)) {
