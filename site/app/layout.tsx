@@ -11,7 +11,7 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL('https://banterhouse-128k.donatoexposito.chatgpt.site'),
   title: 'Banterhouse — La Gran Idea no se entrega. Se sobrevive.',
-  description: 'Juega online o descarga la edición DSK recomendada de Banterhouse para Amstrad CPC 6128.',
+  description: 'Juega online o descarga la edición Disquette 3 pulgadas recomendada de Banterhouse para Amstrad CPC 6128.',
   alternates: {
     canonical: '/',
   },
