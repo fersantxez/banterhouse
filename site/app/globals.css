@@ -325,6 +325,34 @@ h1 {
 }
 .screen figcaption { padding: .75rem .2rem 0; font-size: .68rem; font-weight: 700; }
 
+.scoreboard-feature {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: minmax(300px, .75fr) minmax(480px, 1.25fr);
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: center;
+  margin-top: clamp(4rem, 8vw, 8rem);
+  padding: clamp(1.3rem, 3vw, 3rem);
+  color: white;
+  background: var(--ink);
+  border: 5px solid var(--ink);
+  box-shadow: 13px 14px 0 var(--cyan);
+}
+.scoreboard-copy h3 {
+  margin: .2rem 0 1rem;
+  font: 1000 clamp(2.5rem, 5vw, 5.4rem)/.84 Impact, sans-serif;
+  text-transform: uppercase;
+}
+.scoreboard-copy > p:not(.eyebrow) { font-weight: 700; line-height: 1.5; }
+.scoreboard-copy dl { margin: 1.5rem 0 0; border-top: 2px solid #666; }
+.scoreboard-copy dl div { display: grid; grid-template-columns: 82px 1fr; gap: 1rem; padding: .55rem 0; border-bottom: 1px solid #555; }
+.scoreboard-copy dt { color: var(--acid); font-weight: 900; text-transform: uppercase; }
+.scoreboard-copy dd { margin: 0; }
+.scoreboard-pixel { min-width: 0; margin: 0; padding: 1rem; background: #000; border: 5px solid white; box-shadow: 10px 11px 0 var(--magenta); transform: rotate(1deg); }
+.scoreboard-pixel img { display: block; width: 100%; image-rendering: pixelated; }
+.scoreboard-pixel figcaption { padding: .9rem .2rem .1rem; color: white; font-size: .68rem; font-weight: 700; }
+
 .dossier { color: white; background: var(--ink); }
 .section-heading { max-width: 1100px; margin-bottom: clamp(2.5rem, 5vw, 5rem); }
 .section-heading > p {
@@ -1121,7 +1149,8 @@ footer p { margin: 0; }
   .story-grid,
   .agency-section,
   .magazine-feature,
-  .play-section { grid-template-columns: 1fr; }
+  .play-section,
+  .scoreboard-feature { grid-template-columns: 1fr; }
   .character-cards { grid-template-columns: 1fr; }
   .release-grid { grid-template-columns: 1fr 1fr; }
   .release-recommended { transform: none; }
@@ -1162,6 +1191,10 @@ footer p { margin: 0; }
   .screenshot-strip { grid-template-columns: 1fr; }
   .screen-2,
   .screen-3 { transform: none; }
+  .scoreboard-feature { padding: 1.15rem; box-shadow: 8px 9px 0 var(--cyan); }
+  .scoreboard-copy h3 { font-size: clamp(2.15rem, 12.5vw, 3.35rem); }
+  .scoreboard-pixel { padding: .45rem; border-width: 3px; box-shadow: 6px 7px 0 var(--magenta); transform: none; }
+  .scoreboard-pixel img { min-height: 38px; object-fit: fill; }
   .character-card { grid-template-rows: 300px auto; }
   .character-copy { padding: 1.25rem; }
   .character-copy dl div { grid-template-columns: minmax(88px, 105px) 1fr; gap: .7rem; }

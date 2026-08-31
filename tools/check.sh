@@ -45,6 +45,7 @@ node tools/check_pitu_palette.js
 python3 tools/check_midi.py
 python3 tools/check_aks.py music/banterhouse-theme.aks music/banterhouse-sfx.aks
 python3 tools/test_font.py
+python3 tools/test_hud.py
 
 check_tmp=$(mktemp -d /tmp/banterhouse-audio-check.XXXXXX)
 trap 'test -n "$check_tmp" && rm -rf "$check_tmp"' EXIT

@@ -1,8 +1,8 @@
 const cpcScreens = [
   {
     src: '/release/screenshots/gameplay.png',
-    alt: 'Pitu atraviesa el Túnel Pantone de la agencia en Amstrad CPC',
-    caption: 'Túnel Pantone · Planta 3',
+    alt: 'Pitu comienza la campaña en su mesa con el marcador editorial de Banterhouse',
+    caption: 'Mesa Pitu · Planta 1',
   },
   {
     src: '/release/screenshots/night.png',
@@ -98,6 +98,28 @@ export default function Home() {
             </figure>
           ))}
         </div>
+
+        <article className="scoreboard-feature" aria-labelledby="scoreboard-heading">
+          <div className="scoreboard-copy">
+            <p className="eyebrow">Marcador editorial / Imagen real CPC</p>
+            <h3 id="scoreboard-heading">Toda la agencia en 160 × 16 píxeles.</h3>
+            <p>
+              El logo BANTER/HOUSE firma cada pantalla. A su lado, el panel resume
+              de un vistazo la idea reconstruida, las hojas de Carga, los cafés de
+              reserva y una puntuación de cinco cifras.
+            </p>
+            <dl>
+              <div><dt>Idea</dt><dd>Fragmentos recuperados de 12</dd></div>
+              <div><dt>Carga</dt><dd>Impactos antes del burnout</dd></div>
+              <div><dt>Café</dt><dd>Intentos de reserva</dd></div>
+              <div><dt>Score</dt><dd>Marcador 00000–65535</dd></div>
+            </dl>
+          </div>
+          <figure className="scoreboard-pixel">
+            <img src="/release/screenshots/hud.png" alt="Marcador real con logo Banterhouse, ideas, Carga, café y puntuación" />
+            <figcaption>Lectura instantánea, identidad permanente y cero píxeles fuera de sitio.</figcaption>
+          </figure>
+        </article>
       </section>
 
       <section className="dossier" id="expediente" aria-labelledby="dossier-title">

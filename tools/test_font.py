@@ -158,7 +158,7 @@ def main() -> None:
     placements = [
         (4, 86, "EL PITCH IMPOSIBLE"), (8, 118, "O/P: DIFICULTAD"),
         (2, 142, "S O FUEGO: EMPEZAR"), (18, 128, "MUY DIFICIL"),
-        (0, 4, "L10R3 I12/12"), (52, 4, "C0/5 F5"),
+        (15, 4, "*12/12"), (55, 4, "9"), (60, 4, "65535"),
         (5, 22, "UNA PALABRA MENOS"), (4, 56, "APROBADO [ ][ ][ ]"),
         (54, 93, "PANEL"), (45, 95, "PEQUENO"),
         (8, 104, "ENTREGA ORIGINAL"), (4, 184, "BURNOUT: REINTENTO"),

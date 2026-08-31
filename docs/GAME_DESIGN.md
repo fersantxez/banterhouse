@@ -345,8 +345,16 @@ detalles animados. No consumen slots de IA.
 ## 14. HUD, puntuación y accesibilidad
 
 ```text
-IDEA 07/12   CARGA [ ][ ][ ]   CAFE x2
+BANTER  *07/12  |||--  CAFE 3  08450
+HOUSE
 ```
+
+El marcador ocupa los 160×16 píxeles superiores y se divide en cinco módulos:
+wordmark completo `BANTER/HOUSE`, progreso `00/12`, hojas de Carga según el
+perfil, taza con cafés restantes y score `00000–65535`. Blanco, magenta, cian y
+amarillo separan funciones, pero cada valor conserva además forma o cifra. El
+score forma parte de la clave de invalidación visual y se actualiza en el mismo
+frame lógico que el estado de campaña.
 
 - La cercanía de Alberto usa sonido direccional y un pulso corto de borde.
 - Color y forma comunican siempre lo mismo; Pantone no depende solo del color.

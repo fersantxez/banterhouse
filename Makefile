@@ -61,7 +61,7 @@ ROOM_VISUAL_H      := src/room_visuals.h
 ROOM_VISUAL_REPORT := generated/room-visual-report.json
 ROOM_VISUAL_STAMP  := generated/room-visuals.stamp
 
-.PHONY: run loading-screen music-source font-data room-visuals resources resource-check resource-report resource-lab-dsk fdc-lab-dsk fdc-verify fdc-soak fdc-faults bank-lab-dsk bank-verify expanded-lab-dsk expanded-verify clean-build parallel-build reproducibility check host-tests sizes test-dsk gallery-dsk font-test-dsk audio-test-dsk audio-verify matrix qa rc-verify release \
+.PHONY: run loading-screen music-source font-data room-visuals resources resource-check resource-report resource-lab-dsk fdc-lab-dsk fdc-verify fdc-soak fdc-faults bank-lab-dsk bank-verify expanded-lab-dsk expanded-verify clean-build parallel-build reproducibility check host-tests hud-verify sizes test-dsk gallery-dsk font-test-dsk audio-test-dsk audio-verify matrix qa rc-verify release \
 	_bh-clean-build _bh-parallel-build _bh-check _bh-fdc-lab-dsk _bh-test-dsk _bh-gallery-dsk _bh-font-test-dsk _bh-audio-test-dsk _bh-release
 
 $(ARKOS_THEME_SOURCE): tools/generate_aks.py tools/midi_smf.py $(ARKOS_TEMPLATE) $(MIDI_SOURCE) $(ARKOS_ARRANGEMENT)
@@ -170,6 +170,9 @@ _bh-check: all sizes
 host-tests:
 	@bash tools/run_host_tests.sh
 
+hud-verify:
+	@tools/with_build_lock.sh bash tools/run_hud_visual_test.sh
+
 resources: room-visuals
 	@python3 tools/generate_resource_fixtures.py --output-dir generated/resources
 	@python3 tools/build_rooms.py --source assets/rooms/vertical_slice.json \
@@ -226,6 +229,7 @@ fdc-faults:
 
 bank-lab-dsk:
 	@mkdir -p generated/bank-lab
+	@python3 tools/amsdos_text.py tools/bank_lab/BANKLAB.BAS generated/bank-lab/BANKLAB.BAS
 	@sdasz80 -l -o -s generated/bank-lab/BANKLAB.rel tools/bank_lab.s
 	@sdcc -mz80 --sdcccall 0 --no-std-crt0 --code-loc 0x0100 \
 		generated/bank-lab/BANKLAB.rel -o generated/bank-lab/BANKLAB.ihx
@@ -239,7 +243,7 @@ bank-lab-dsk:
 	@python3 tools/normalize_dsk_tracks.py generated/banterhouse-bank-lab.dsk --tracks 40
 	@$(IDSK) generated/banterhouse-bank-lab.dsk -i generated/bank-lab/BANKLAB.bin -c 0x0100 -e 0x0100 -t 1 -f >/dev/null
 	@$(IDSK) generated/banterhouse-bank-lab.dsk -i generated/bank-lab/BANKBOOT.bin -c 0x4000 -e 0x4000 -t 1 -f >/dev/null
-	@$(IDSK) generated/banterhouse-bank-lab.dsk -i tools/bank_lab/BANKLAB.BAS -t 0 -f >/dev/null
+	@$(IDSK) generated/banterhouse-bank-lab.dsk -i generated/bank-lab/BANKLAB.BAS -t 0 -f >/dev/null
 	@printf 'Bank lab DSK: generated/banterhouse-bank-lab.dsk\n'
 
 bank-verify:
@@ -247,6 +251,7 @@ bank-verify:
 
 expanded-lab-dsk: resources
 	@mkdir -p generated/expanded-lab
+	@python3 tools/amsdos_text.py tools/expanded/EXPLOAD.BAS generated/expanded-lab/EXPLOAD.BAS
 	@sdasz80 -l -o -s -Igenerated generated/expanded-lab/BHKERN.rel tools/expanded_kernel.s
 	@sdasz80 -l -o -s generated/expanded-lab/FDC.rel src/storage_fdc_lab.s
 	@sdcc -mz80 --sdcccall 0 --no-std-crt0 --code-loc 0x0100 \
@@ -264,7 +269,7 @@ expanded-lab-dsk: resources
 	@$(IDSK) generated/banterhouse-expanded-lab.dsk -i generated/expanded-lab/BHKERN.bin -c 0x0100 -e 0x0100 -t 1 -f >/dev/null
 	@$(IDSK) generated/banterhouse-expanded-lab.dsk -i generated/expanded-lab/BHBOOT.bin -c 0x4000 -e 0x4000 -t 1 -f >/dev/null
 	@$(IDSK) generated/banterhouse-expanded-lab.dsk -i dsk_files/LOADING.SCR -t 1 -f >/dev/null
-	@$(IDSK) generated/banterhouse-expanded-lab.dsk -i tools/expanded/EXPLOAD.BAS -t 0 -f >/dev/null
+	@$(IDSK) generated/banterhouse-expanded-lab.dsk -i generated/expanded-lab/EXPLOAD.BAS -t 0 -f >/dev/null
 	@python3 tools/check_resource_dsk.py generated/banterhouse-expanded-lab.dsk \
 		--container generated/BHRES.BIN --report generated/expanded-lab-dsk-report.json >/dev/null
 	@printf 'Expanded integrated lab DSK: generated/banterhouse-expanded-lab.dsk\n'

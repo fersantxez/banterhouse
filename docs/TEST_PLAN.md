@@ -2,7 +2,8 @@
 
 Este plan cubre desde la primera refactorización hasta el DSK final. El objetivo
 no es demostrar solo que compila: debe detectar corrupción de memoria, softlocks,
-ataques injustos, regresiones de canon y problemas de ritmo.
+ataques injustos, regresiones de canon y problemas de ritmo. La suite descrita
+en la sección siguiente está implementada y forma parte de la aceptación actual.
 
 ## 1. Entornos
 
@@ -30,23 +31,24 @@ que ejecute el Z80 más rápido de lo debido.
 8. **Playtest humano:** comprensión, justicia, dificultad y diversión.
 9. **Compatibilidad de release:** arranque, medios y máquina real.
 
-## 3. Automatización prevista
+## 3. Automatización disponible
 
 ```text
 make                 build normal
 make clean-build     build serial desde cero
 make parallel-build  build -j2 desde cero
 make check           validadores + unitarias host + tamaños
-make replay          golden replays en build debug
-make matrix          10 niveles x 5 dificultades y resumen de cobertura
-make smoke           arranque limitado en Caprice32
-make playtest-build  DSK debug con selector de nivel, sala y dificultad
+make hud-verify      golden visual del marcador en Caprice32
+make matrix          campaña de 10 niveles x 5 dificultades
 make sizes           memoria residente y bancos
+make qa              aceptación completa automatizada
+make fdc-soak        100 cargas FDC de 16 KiB
 make release         DSK reproducible sin flags debug
 ```
 
-Ninguna de estas nuevas reglas existe todavía. M0 del plan de implementación
-las crea antes de añadir gameplay.
+`make qa` combina reproducibilidad, checks estáticos, unitarias host, recursos,
+bancos RAM4–RAM7, kernel/FDC, fallos inyectados, audio y matriz de campaña.
+Los playtests humanos y el CPC físico siguen siendo gates externos separados.
 
 ## 4. Instrumentación debug
 
@@ -202,6 +204,10 @@ La lógica se compila con tipos `u8/i8/u16` equivalentes y sin hardware.
 - Un sprite de cada tamaño se borra con su propio stride.
 - El CRTC cambia de página una vez por frame presentado.
 - HUD no parpadea al cambiar sala o banco.
+- El logo contiene exactamente 196 bytes empaquetados y se dibuja a 28×14 píxeles.
+- Ideas `00/12`, cinco hojas, café `0–9` y score `00000–65535` caben en 80×16 bytes.
+- Cambiar únicamente el score invalida la clave visual.
+- La captura `hud-score-panel.png` coincide byte a byte con Caprice32.
 - Parches modifican ambas páginas antes de devolver control.
 
 ### Entrada

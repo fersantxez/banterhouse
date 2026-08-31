@@ -45,7 +45,7 @@ La versión final separa dos capas:
 
 El framebuffer visible permanece en `0xC000`; `0x8000–0x8240` se usa como área
 oculta de save-under. El código empieza en `0x3D00`, después de `_BH_GFX`, y el
-release medido termina en `0x6DEF`, con 4.624 bytes de margen hasta la pila.
+release medido termina en `0x6FCD`, con 4.146 bytes de margen hasta la pila.
 
 La prueba final recorrió 4.350 frames lógicos en 173 segundos: **25,1 Hz** con
 Caprice32 limitado al 100% de velocidad. Produjo exactamente 30 marcadores y 30

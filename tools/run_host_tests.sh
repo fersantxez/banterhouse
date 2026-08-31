@@ -17,6 +17,14 @@ cc -std=c99 -Wall -Wextra -Werror -DBH_QA_STATE_HASH \
 
 cc -std=c99 -Wall -Wextra -Werror \
   -I"$root/src" \
+  "$root/tests/host/test_hud_model.c" \
+  "$root/src/hud_model.c" \
+  -o "$test_dir/test_hud_model"
+
+"$test_dir/test_hud_model"
+
+cc -std=c99 -Wall -Wextra -Werror \
+  -I"$root/src" \
   "$root/tests/host/test_resource_manager.c" \
   "$root/src/resource_manager.c" \
   -o "$test_dir/test_resource_manager"

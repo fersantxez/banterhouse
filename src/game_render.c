@@ -4,6 +4,7 @@
 #include "font.h"
 #include "game_render.h"
 #include "graphics.h"
+#include "hud_model.h"
 #include "main.h"
 #include "room_visuals.h"
 #include "world_data.h"
@@ -21,6 +22,7 @@ typedef struct {
 typedef struct {
    u8 level, room, carga, cafes, coffee, difficulty;
    u16 pieces;
+   u16 score;
    u8 boss_phase, boss_progress, boss_phone, boss_expired;
    u8 message_visible, paused;
    const u8* message;
@@ -73,6 +75,26 @@ static void centred_text(u8* page, const u8* value, u8 y, u8 ink, u8 paper) {
    text(page, value, (BH_SCREEN_W - bh_font_measure(value)) >> 1, y, ink, paper);
 }
 
+/* A complete two-line wordmark is cheaper than a resident microfont and its
+ * renderer.  The packed sprite is 28x14 Mode 0 pixels and remains readable on
+ * colour and green-screen monitors. */
+static const u8 hud_logo[196] = {
+   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+   0xC0, 0x00, 0x40, 0x00, 0x80, 0x80, 0xC0, 0x80, 0xC0, 0x80, 0xC0, 0x00, 0x00, 0x00,
+   0x80, 0x80, 0x80, 0x80, 0xC0, 0x80, 0x40, 0x00, 0x80, 0x00, 0x80, 0x80, 0x00, 0x00,
+   0xC0, 0x00, 0xC0, 0x80, 0xC0, 0x80, 0x40, 0x00, 0xC0, 0x00, 0xC0, 0x00, 0x00, 0x00,
+   0x80, 0x80, 0x80, 0x80, 0xC0, 0x80, 0x40, 0x00, 0x80, 0x00, 0x80, 0x80, 0x00, 0x00,
+   0xC0, 0x00, 0x80, 0x80, 0x80, 0x80, 0x40, 0x00, 0xC0, 0x80, 0x80, 0x80, 0x00, 0x00,
+   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+   0x8A, 0x8A, 0x45, 0x00, 0x8A, 0x8A, 0x45, 0x8A, 0xCF, 0x8A, 0x00, 0x00, 0x00, 0x00,
+   0x8A, 0x8A, 0x8A, 0x8A, 0x8A, 0x8A, 0x8A, 0x00, 0x8A, 0x00, 0x00, 0x00, 0x00, 0x00,
+   0xCF, 0x8A, 0x8A, 0x8A, 0x8A, 0x8A, 0x45, 0x00, 0xCF, 0x00, 0x00, 0x00, 0x00, 0x00,
+   0x8A, 0x8A, 0x8A, 0x8A, 0x8A, 0x8A, 0x00, 0x8A, 0x8A, 0x00, 0x00, 0x00, 0x00, 0x00,
+   0x8A, 0x8A, 0x45, 0x00, 0xCF, 0x8A, 0xCF, 0x00, 0xCF, 0x8A, 0x00, 0x00, 0x00, 0x00,
+   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xCC, 0xCC, 0xCC, 0x00
+};
+
 static void restore_pixels(const u8* input, u8* page, BHSaveUnder* saved, u8 width, u8 height) {
    if (!saved->valid) return;
    cpct_drawSprite((u8*)input, cpct_getScreenPtr(page, saved->x, saved->y), width, height);
@@ -85,12 +107,6 @@ static void remember_pixels(u8* output, u8* page, BHSaveUnder* saved,
    saved->x = x;
    saved->y = y;
    saved->valid = 1;
-}
-
-static void number2(u8* output, u8 value) {
-   output[0] = '0';
-   while (value >= 10) { ++output[0]; value -= 10; }
-   output[1] = '0' + value;
 }
 
 static const BHRoomVisual* room_visual(u8 level, u8 room) {
@@ -120,18 +136,31 @@ static void draw_backdrop(u8* page, u8 level, u8 room) {
 }
 
 static void draw_hud(u8* page, const BHGameState* state) {
-   u8 line[18];
+   u8 idea[7];
+   u8 score[6];
+   u8 coffee[2];
    u8 count = bh_world_count_pieces(state->campaign.pieces);
+   u8 limit = bh_profiles[bh_difficulty].carga_limit;
+   u8 index;
    box(page, 0, 0, BH_SCREEN_W, BH_HUD_H, 0);
-   line[0] = 'L'; number2(&line[1], state->campaign.level + 1);
-   line[3] = 'R'; line[4] = '0' + state->campaign.room + 1;
-   line[5] = ' '; line[6] = 'I'; number2(&line[7], count);
-   line[9] = '/'; line[10] = '1'; line[11] = '2'; line[12] = 0;
-   text(page, line, 0, 4, 5, 0);
-   line[0] = 'C'; line[1] = '0' + state->campaign.carga; line[2] = '/';
-   line[3] = '0' + bh_profiles[bh_difficulty].carga_limit;
-   line[4] = ' '; line[5] = 'F'; line[6] = '0' + state->campaign.cafes; line[7] = 0;
-   text(page, line, 52, 4, 8, 0);
+   cpct_drawSprite((u8*)hud_logo, cpct_getScreenPtr(page, 0, 1), 14, 14);
+   box(page, 14, 2, 1, 12, 5);
+   box(page, 39, 2, 1, 12, 5);
+   box(page, 50, 2, 1, 12, 5);
+   box(page, 59, 2, 1, 12, 5);
+   box(page, 15, 15, 65, 1, 14);
+   idea[0] = '*'; bh_hud_digits2(&idea[1], count);
+   idea[3] = '/'; idea[4] = '1'; idea[5] = '2'; idea[6] = 0;
+   text(page, idea, 15, 4, 14, 0);
+   for (index = 0; index < limit; ++index) {
+      box(page, 40 + index * 2, 3, 1, 9,
+          index < state->campaign.carga ? 11 : 5);
+   }
+   box(page, 51, 5, 3, 6, 12);
+   coffee[0] = '0' + state->campaign.cafes; coffee[1] = 0;
+   text(page, coffee, 55, 4, 12, 0);
+   bh_hud_digits5(score, state->campaign.score);
+   text(page, score, 60, 4, 3, 0);
 }
 
 static void draw_idea_icon(u8* page, u8 id, u16 ticks) {
@@ -172,7 +201,6 @@ static void draw_office(u8* page, const BHGameState* state) {
    u8 piece = bh_world_pickup_id(level, room);
    const BHRoomVisual* visual = room_visual(level, room);
    draw_backdrop(page, level, room);
-   draw_hud(page, state);
    /* The three gameplay obstacles retain their exact collision geometry, but
     * inherit the room's paper/ink/accent instead of looking like placeholders. */
    box(page, 10 + (variant << 2), 36, 15, 7, visual->ink);
@@ -203,7 +231,6 @@ static void draw_boss(u8* page, const BHGameState* state) {
    u8 visual_room = boss->phase ? boss->phase - 1 : 0;
    const BHRoomVisual* visual = room_visual(9, visual_room);
    draw_backdrop(page, 9, visual_room);
-   draw_hud(page, state);
    box(page, 8, 67, 64, 22, visual->ink); box(page, 18, 71, 44, 14, visual->shadow);
    text(page, "EL PRESIDENTE", 23, 75, visual->ink, visual->shadow);
    text(page, "APROBADO [ ][ ][ ]", 4, 92, 1, visual->paper);
@@ -269,6 +296,7 @@ static void make_render_key(BHRenderKey* key, u8* page,
    key->coffee = state->campaign.coffee_available;
    key->difficulty = (u8)bh_difficulty;
    key->pieces = state->campaign.pieces;
+   key->score = state->campaign.score;
    key->boss_phase = state->boss.phase;
    key->boss_progress = state->boss.progress;
    key->boss_phone = state->boss.phone;
@@ -299,6 +327,7 @@ void bh_game_render_frame(u8* page, const BHGameState* state, const u8* message)
    if (!render_key_valid || different_render_key(&render_key, &next_key)) {
       if (state->campaign.level == 9) draw_boss(page, state);
       else draw_office(page, state);
+      draw_hud(page, state);
       draw_static_overlays(page, state, message);
       cpct_memcpy(&render_key, &next_key, sizeof(BHRenderKey));
       render_key_valid = 1;

@@ -14,6 +14,7 @@ por separado.
 | Campaña visual | PASS | 30 pantallas, 30 landmarks únicos y 330 elementos de fondo |
 | Rendimiento visual | PASS | 4.350 frames en 173 s: 25,1 Hz al 100% de velocidad CPC |
 | Galería real | PASS | 30 marcadores y 30 capturas, incluidas tres fases del boss |
+| Marcador editorial | PASS | Logo BANTER/HOUSE, ideas, Carga, cafés y score; golden real de Caprice32 |
 | Estado/input/render | PASS | Estado explícito, renderer de sólo lectura y unitarias host |
 | Recursos | PASS | `BHRES.BIN` v1, IDs generados, dependencias y CRC16 |
 | Disco/FDC | PASS | Lectura multitrack, retry acotado, CRC corrupto y sector ausente |
@@ -28,8 +29,9 @@ Identidad técnica actual:
 
 - Build de recursos: `0x173B6D8B`.
 - Contenedor: 35.839 bytes, ocho recursos.
-- High-water release: `0x6DEF`.
-- Margen a pila/framebuffer: 4.624 bytes.
+- High-water release: `0x6FCD`.
+- Margen a pila/framebuffer: 4.146 bytes.
+- Golden del marcador: `f1a6a117c5a1bd305a722086b587ad599b81169759ccaebda1b2bf34e51a155f`.
 - Datos visuales: 30 salas y 330 rectángulos compactos.
 
 ## Comandos de aceptación
@@ -37,11 +39,14 @@ Identidad técnica actual:
 ```sh
 make release
 make check
+make hud-verify
 make qa
 make fdc-soak
 ```
 
-`make qa` ejecuta reproducibilidad, checks estáticos y host, bancos, slice
+`make hud-verify` arranca un CPC 6128 real emulado, captura el primer panel y
+lo compara píxel a píxel con el golden aprobado. `make qa` ejecuta
+reproducibilidad, checks estáticos y host, bancos, slice
 Expanded, FDC normal y fallos, audio y la matriz de campaña. `make fdc-soak`
 añade las 100 cargas. Los helpers restauran el release normal incluso después
 de una variante de laboratorio.
