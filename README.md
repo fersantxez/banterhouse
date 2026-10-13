@@ -1,5 +1,7 @@
 # Banterhouse
 
+**Banterhouse 2 · ¡Devuelto!:** [GitHub](https://github.com/fersantxez/banterhouse2) · [Play in your browser](https://banterhouse-2-devuelto.freshkid64.chatgpt.site/#jugar)
+
 **A new Amstrad CPC 6128 game about surviving one impossible night in a Spanish advertising agency.**
 
 [Play in your browser](https://banterhouse-128k.donatoexposito.chatgpt.site/#jugar) ·
