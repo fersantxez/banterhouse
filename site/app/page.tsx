@@ -331,7 +331,8 @@ export default function Home() {
         <p>
           Emulación por <a href="https://github.com/salvogendut/1984">1984</a> · GPL-2.0 ·
           Hecho con 128K, café recalentado e ideas imposibles ·
-          <a href="https://github.com/fersantxez/banterhouse"> Código en GitHub</a>.
+          <a href="https://github.com/fersantxez/banterhouse"> ¿Cómo hemos hecho esto? ↗</a>.
+          {" · "}<a href="https://banterhouse-2-devuelto.freshkid64.chatgpt.site/">Jugar a Banterhouse 2 · ¡Devuelto! ↗</a>
         </p>
       </footer>
     </main>
